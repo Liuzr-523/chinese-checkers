@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 模型参数与训练数据（体积大，不入库）
+*.pkl
+*.pt
+*.pth
+
+# 日志与临时文件
+*.log
+*.out
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
