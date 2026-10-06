@@ -21,7 +21,9 @@ from engine import AlphaBetaIDSEngine
 
 cc = engine.cc
 
-CLYSTO_DIR = "/Users/liuzirui/Desktop/py/clysto-cc"
+# 依赖外部引擎 clysto/chinese-checkers（C++）：需自行克隆并编译出 cc_cli。
+# 默认路径是本机；其他机器用环境变量覆盖：CLYSTO_DIR=/path/to/clysto-cc python3 arena_vs_clysto.py
+CLYSTO_DIR = os.environ.get("CLYSTO_DIR", "/Users/liuzirui/Desktop/py/clysto-cc")
 CLI_PATH = os.path.join(CLYSTO_DIR, "cc_cli")
 
 

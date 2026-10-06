@@ -11,7 +11,7 @@ import time
 
 # 导入规则模块：路径相对于本脚本目录，不依赖 cwd
 _HERE = os.path.dirname(os.path.abspath(__file__))
-_spec = importlib.util.spec_from_file_location("cc", os.path.join(_HERE, "Chinese Checker.py"))
+_spec = importlib.util.spec_from_file_location("cc", os.path.join(_HERE, "Chinese_Checker.py"))
 cc = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(cc)
 
