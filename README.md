@@ -2,6 +2,12 @@
 
 从零手写、不依赖 AI 框架的中国跳棋 AI：从棋盘规则、搜索与启发式评估，到行为克隆（BC）与 AlphaZero 风格 MCTS 自对弈的深度学习，全链路手写实现。
 
+## 界面
+
+![对局界面](screenshot_game.png)
+
+![开始菜单](screenshot_menu.png)
+
 ## 功能与 AI 强度
 
 - 支持 人 vs 人 / 人 vs AI / AI vs AI（GUI 或终端）
