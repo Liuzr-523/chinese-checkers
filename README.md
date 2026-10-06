@@ -29,6 +29,4 @@ python3 test_logic.py      # 核心逻辑回归测试
 
 `arena_vs_clysto.py` 需自行编译外部引擎 [clysto/chinese-checkers](https://github.com/clysto/chinese-checkers)，不配置不影响其他功能。
 
-详细原理见 [`讲解文档.md`](讲解文档.md)。
-
 License: MIT
