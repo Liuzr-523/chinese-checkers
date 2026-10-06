@@ -708,7 +708,7 @@ class NNEasyEngine:
 
 # ---------- 一键入口 ----------
 def train_iteration(
-    save_dir="/Users/liuzirui/Desktop/py/chinese-checkers/nn_checkpoints",
+    save_dir=None,
     n_games_per_step=10, n_sim=24, n_steps=1, bs=8, lr=3e-4, seed_init=0,
     replay_cap=DEFAULT_REPLAY_CAP, train_steps_per_it=50,
     max_norm=5.0, weight_decay=1e-4,
@@ -733,6 +733,8 @@ def train_iteration(
       params_latest.pkl 时优先加载它（而不是重新初始化）。
       支持文件名（相对 save_dir）或绝对路径。
     """
+    if save_dir is None:
+        save_dir = Path(__file__).parent / "nn_checkpoints"
     save_dir = Path(save_dir)
     save_dir.mkdir(parents=True, exist_ok=True)
     ckpt_path = save_dir / "params_latest.pkt"  # fallback 占位（稍后覆盖）
@@ -809,7 +811,7 @@ def train_iteration(
 
 
 def train_iteration_bc(
-    save_dir="/Users/liuzirui/Desktop/py/chinese-checkers/nn_checkpoints",
+    save_dir=None,
     replay_filename="replay_v2_aug.pkl",
     n_steps=500, bs=32, lr=1e-3, seed_init=7,
     max_norm=5.0, weight_decay=1e-4,
@@ -836,6 +838,8 @@ def train_iteration_bc(
     跟 train_iteration 区别：不自对弈，直接用现成棋谱；lr 稍高、bs 大、训练步数多。
     监督训练 loss 应该明显下降（不像 RL 从零那样 loss 不动）。
     """
+    if save_dir is None:
+        save_dir = Path(__file__).parent / "nn_checkpoints"
     save_dir = Path(save_dir)
     save_dir.mkdir(parents=True, exist_ok=True)
     ckpt_path = save_dir / ckpt_filename
