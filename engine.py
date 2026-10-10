@@ -48,6 +48,24 @@ def evaluate(board, player):
 
 
 # ================================
+# 评估查表化：预计算 81 格位置分（每方视角一张表）
+#   - 进度表 _PROG：P1 视角 = y 坐标（越大越靠 P2 目标区）；P2 视角 = 16-y（越小越靠 P1 目标区）
+#   - 起步区表 _BACK：P1 在 0-9，P2 在 71-80（还在起点的棋子受后排惩罚）
+# 让 evaluate 从"81 格大循环 + 二维索引 + 三角判断"变成"一次查表 + 简单加法"。
+# ================================
+_PROG = (
+    None,
+    tuple(cc.POS_TO_XY[pos][1] for pos in range(81)),
+    tuple(16 - cc.POS_TO_XY[pos][1] for pos in range(81)),
+)
+_BACK = (
+    None,
+    tuple(pos < 10 for pos in range(81)),
+    tuple(pos >= 71 for pos in range(81)),
+)
+
+
+# ================================
 # 启发函数各版本（迭代验证用，每个版本互相独立）
 # ================================
 
@@ -57,18 +75,20 @@ def evaluate_v0(board, player):
       - v1 纯总和 → 只推前排，后排卡死，80%平局
       - v2 纯最落后 → 区分度太低，全平局
       - v0 加权组合 → 主分推后排，次分保证有区分度
+    查表版：与旧实现数值完全等价（同一张 _PROG 表，一次遍历）。
     """
-    progress = []
+    prog = _PROG[player]
+    m = 17            # 进度最大 16，17 表示该方已无棋子
+    s = 0
     for pos in range(81):
         if board[pos] == player:
-            y = cc.POS_TO_XY[pos][1]
-            if player == 1:
-                progress.append(y)          # P1：y 越大越靠近目标
-            else:
-                progress.append(16 - y)     # P2：y 越小越靠近目标
-    if not progress:
+            v = prog[pos]
+            if v < m:
+                m = v
+            s += v
+    if m == 17:
         return 0
-    return min(progress) * 100 + sum(progress)
+    return m * 100 + s
 
 
 def evaluate_v1(board, player):
@@ -100,35 +120,40 @@ def evaluate_v2(board, player):
     v2（关卡 5 最终保留版）：v0 基线 + 后排惩罚(W=3) + 对手进度差(W=0.05) [已验证 10:0 胜 v0，平均 80 步]
     已丢弃：中央要道(中性)、聚集(0:10)、连跳机会(太慢 0:10)、压制对手连跳(太慢)、
             终局加速(W=1，5:5 平 = 把 10:0 拖成五五开，sum 加权冷落最落后棋子)
+    查表版：合并为一次 81 格循环，与旧实现数值完全等价（同一张 _PROG/_BACK 表）。
     """
     opp = 3 - player
-    score = evaluate_v0(board, player)
+    prog = _PROG[player]
+    opp_prog = _PROG[opp]
+    back_zone = _BACK[player]
 
-    # 后排启动惩罚：还在起点区的棋子每个扣分
-    W_BACK = 3
-    if player == 1:
-        start_zone = set(range(0, 10))
-    else:
-        start_zone = set(range(71, 81))
-    back_count = 0
+    my_min = 17
+    my_sum = 0
+    back = 0
+    op_min = 17
+    op_sum = 0
     for pos in range(81):
-        if board[pos] == player and pos in start_zone:
-            back_count += 1
-    score -= back_count * W_BACK
-
-    # 对手进度差：对手越接近目标，我方扣分越多
-    W_OPP = 0.05
-    opp_progress = []
-    for pos in range(81):
-        if board[pos] == opp:
-            y = cc.POS_TO_XY[pos][1]
-            if opp == 1:
-                opp_progress.append(y)
+        piece = board[pos]
+        if piece:
+            if piece == player:
+                v = prog[pos]
+                if v < my_min:
+                    my_min = v
+                my_sum += v
+                if back_zone[pos]:
+                    back += 1
             else:
-                opp_progress.append(16 - y)
-    if opp_progress:
-        opp_v0 = min(opp_progress) * 100 + sum(opp_progress)
-        score -= opp_v0 * W_OPP
+                v = opp_prog[pos]
+                if v < op_min:
+                    op_min = v
+                op_sum += v
+
+    if my_min == 17:           # 我方已无棋子
+        score = 0
+    else:
+        score = my_min * 100 + my_sum - back * 3
+    if op_min < 17:            # 对手还有棋子
+        score -= (op_min * 100 + op_sum) * 0.05
 
     return score
 
@@ -384,7 +409,7 @@ def alphabeta(board, player, depth, root_player, alpha, beta):
         return evaluate(board, root_player)
 
     # 关卡 4：走法排序 —— 分数高的先搜，让 alpha/beta 尽早收敛，大幅提高剪枝率
-    moves = order_moves(moves, board, player, root_player, evaluate)
+    moves = order_moves(moves, board, player, root_player)
 
     # MAX 层：轮到 root_player 走 → 选子节点里分数最大的
     if player == root_player:
@@ -461,40 +486,124 @@ class AlphaBetaEngine(Engine):
 # 关卡 4.1：走法排序（启发式 Move Ordering）
 # ========================================
 
-def order_moves(moves, board, player, root_player, eval_fn):
+def order_moves(moves, board, player, root_player, tt_best=-1, killers=None, history=None):
     """
     给一个节点的所有子走法排序：「看起来更好」的走法放在前面先搜。
-    作用：让 alpha/beta 尽早收紧，大幅提高剪枝率（实测 7x→14x 加速）。
+    作用：让 alpha/beta 尽早收紧，大幅提高剪枝率。
 
-    排序策略（两个信号叠加，越靠上权重越大）：
-      1. 模拟走完一步后，eval_fn(new_board, root_player) 的分数 → 主要排序依据
-      2. 连跳额外加分：len(path)>=3 加 1000 → 经验规则：连跳 > 单跳 > 单步
+    排序优先级（IDS 系，带 TT/killer/history）：
+      1. TT 最优走法（上一轮搜索证明最好的那步）→ 最高优先
+      2. Killer 走法（本层刚剪过枝的强着）→ 次高
+      3. History 分数（累计的剪枝经验，越晚层越可信）+ 连跳奖励
+    均为查表，零 apply_move，是"隐性浪费"的根治方案。
+
+    回退分支：MinimaxEngine 等无辅助信息的调用点保持旧的「完整评估排序」行为。
     """
+    if history is None and tt_best < 0 and killers is None:
+        scored = []
+        for pos, path in moves:
+            new_board = cc.apply_move(board, path)
+            s = evaluate_v2(new_board, root_player)
+            if len(path) >= 3:
+                s += 1000
+            scored.append((s, pos, path))
+        scored.sort(reverse=True)
+        return [(pos, path) for (_, pos, path) in scored]
+
     scored = []
     for pos, path in moves:
-        new_board = cc.apply_move(board, path)
-        s = eval_fn(new_board, root_player)
-        bonus = 1000 if len(path) >= 3 else 0
-        scored.append((s + bonus, pos, path))
-    scored.sort(reverse=True)    # 分数高的放最前面
-    return [(pos, path) for (s, pos, path) in scored]
+        code = pos * 81 + path[-1]
+        if code == tt_best:
+            prio = 30
+        elif killers is not None and code in killers:
+            prio = 20
+        else:
+            prio = 10
+        s = history.get((player, code), 0) if history else 0
+        if len(path) >= 3:
+            s += 1000
+        scored.append((prio, s, pos, path))
+    scored.sort(key=lambda x: (x[0], x[1]), reverse=True)
+    return [(pos, path) for (_, _, pos, path) in scored]
 
 
 # ========================================
 # 关卡 4.2：AlphaBetaIDSEngine（迭代加深搜索 + 限时）
 # ========================================
 
-def _alphabeta_count(board, player, depth, root_player, alpha, beta, deadline, stats, eval_fn):
+# ---- Zobrist 哈希（置换表用）----
+# 每个 (位置, 棋子) 一个 64 位随机数 + 一个轮次翻转位。
+# 局面哈希 = 各子上随机数的异或（可增量更新：走一步只改起终点 2 个格子 + 翻转轮次位）。
+_ZOB = [[random.getrandbits(64) for _ in range(3)] for _ in range(81)]
+_ZOB_TURN = random.getrandbits(64)
+
+
+def _zobrist_init(board, player):
+    """初始局面哈希：P1 轮走不带轮次位，P2 轮走带轮次位"""
+    h = 0
+    for pos in range(81):
+        pc = board[pos]
+        if pc:
+            h ^= _ZOB[pos][pc]
+    if player == 2:
+        h ^= _ZOB_TURN
+    return h
+
+
+def _zobrist_move(h, path, player):
+    """走一步后的增量哈希：起点拿走、终点放入（中间被跳的棋子不动），轮次翻转"""
+    h ^= _ZOB[path[0]][player]
+    h ^= _ZOB[path[-1]][player]
+    return h ^ _ZOB_TURN
+
+
+# 置换表条目 flag：值是精确值 / 下界(fail-high) / 上界(fail-low)
+_EXACT, _LOWER, _UPPER = 0, 1, 2
+
+
+def _record_cut(killer_table, ply, player, pos, path, history, depth):
+    """记录"剪枝走法"：killer 两槽（本层强着）+ history 计数（全局累计，越深权重越大）。"""
+    code = pos * 81 + path[-1]
+    ks = killer_table[ply]
+    if ks[0] != code:
+        ks[1] = ks[0]
+        ks[0] = code
+    key = (player, code)
+    history[key] = history.get(key, 0) + depth * depth
+
+def _alphabeta_count(board, player, depth, root_player, alpha, beta, deadline, stats, eval_fn,
+                     tt, h, killer_table, history, ply):
     """
-    带「节点计数 + 超时中断 + 可切换 eval_fn」的 alphabeta。
+    带「节点计数 + 超时中断 + 可切换 eval_fn + Zobrist 置换表 + Killer/History」的 alphabeta。
     stats = [nodes, prunes, aborted]
     eval_fn = evaluate_v0 / evaluate_v1 / evaluate ... 传进来用哪个打分用哪个
+    tt     = 置换表 dict：hash -> (depth, score, flag, best_move)。一次 think 内 root 不变，
+             表格里所有分数都是 root_player 视角，可安全复用；拆表省 30~70% 节点。
+    h      = 当前局面的 Zobrist 哈希（增量 xorb，避免重算 81 格）
+    killer_table = 按层(ply)的杀手锏两槽表，history = 全局剪枝经验计数
+    ply    = 距根部的层数（0 起），Killer 表按它索引
     """
-    if stats[2] or (deadline is not None and time.time() >= deadline):
-        stats[2] = True
+    stats[0] += 1
+    if stats[2]:
         return eval_fn(board, root_player)
 
-    stats[0] += 1
+    # 置换表命中：同局面重复出现且存的深度足够，直接复用搜索结果（省整棵子树）
+    entry = tt.get(h)
+    if entry is not None:
+        _, e_score, e_flag, e_best = entry
+        if entry[0] >= depth:
+            if e_flag == _EXACT:
+                return e_score
+            if e_flag == _LOWER and e_score >= beta:
+                return e_score
+            if e_flag == _UPPER and e_score <= alpha:
+                return e_score
+    else:
+        e_best = -1
+
+    if deadline is not None and time.time() >= deadline:
+        stats[2] = True
+        return eval_fn(board, root_player)
 
     winner = cc.is_game_over(board)
     if winner is not None:
@@ -506,28 +615,49 @@ def _alphabeta_count(board, player, depth, root_player, alpha, beta, deadline, s
     if not moves:
         return eval_fn(board, root_player)
 
-    moves = order_moves(moves, board, player, root_player, eval_fn)
+    moves = order_moves(moves, board, player, root_player, e_best, killer_table[ply], history)
 
     if player == root_player:
         value = _NEG_INF
+        best_move = -1
         for pos, path in moves:
             new_board = cc.apply_move(board, path)
-            value = max(value, _alphabeta_count(new_board, 3 - player, depth - 1, root_player, alpha, beta, deadline, stats, eval_fn))
+            v = _alphabeta_count(new_board, 3 - player, depth - 1, root_player, alpha, beta,
+                                 deadline, stats, eval_fn, tt, _zobrist_move(h, path, player),
+                                 killer_table, history, ply + 1)
+            if v > value:
+                value = v
+                best_move = pos * 81 + path[-1]
             alpha = max(alpha, value)
             if alpha >= beta:
                 stats[1] += 1
+                _record_cut(killer_table, ply, player, pos, path, history, depth)
                 break
-        return value
     else:
         value = _INF
+        best_move = -1
         for pos, path in moves:
             new_board = cc.apply_move(board, path)
-            value = min(value, _alphabeta_count(new_board, 3 - player, depth - 1, root_player, alpha, beta, deadline, stats, eval_fn))
+            v = _alphabeta_count(new_board, 3 - player, depth - 1, root_player, alpha, beta,
+                                 deadline, stats, eval_fn, tt, _zobrist_move(h, path, player),
+                                 killer_table, history, ply + 1)
+            if v < value:
+                value = v
+                best_move = pos * 81 + path[-1]
             beta = min(beta, value)
             if alpha >= beta:
                 stats[1] += 1
+                _record_cut(killer_table, ply, player, pos, path, history, depth)
                 break
-        return value
+
+    # 存储：剪枝中断的返回值只是边界（非精确），按 flag 区分，查询时只作边界剪枝用
+    if value <= alpha:
+        tt[h] = (depth, value, _UPPER, best_move)
+    elif value >= beta:
+        tt[h] = (depth, value, _LOWER, best_move)
+    else:
+        tt[h] = (depth, value, _EXACT, best_move)
+    return value
 
 
 class AlphaBetaIDSEngine(Engine):
@@ -582,6 +712,13 @@ class AlphaBetaIDSEngine(Engine):
         deadline = time.time() + self.time_limit
         eval_fn = self._eval_fn
 
+        # 置换表：一次 think 内 root 不变（表里分数都是 root 视角），迭代加深各层共享复用
+        tt = {}
+        root_hash = _zobrist_init(board, player)
+        # killer 表按 ply 索引（深度 2 倍足够），history 全局累计剪枝经验
+        killer_table = [[-1, -1] for _ in range(2 * self.max_depth + 2)]
+        history = {}
+
         best_path_overall = None
         best_score_overall = _NEG_INF
         depth_reached = 0
@@ -597,7 +734,10 @@ class AlphaBetaIDSEngine(Engine):
             best_score_d = _NEG_INF
             stats = [0, 0, False]
 
-            sorted_root_moves = order_moves(moves_root, board, player, player, eval_fn)
+            root_entry = tt.get(root_hash)
+            root_best = root_entry[3] if root_entry is not None else -1
+            sorted_root_moves = order_moves(moves_root, board, player, player,
+                                            root_best, killer_table[0], history)
 
             for pos, path in sorted_root_moves:
                 if time.time() >= deadline:
@@ -608,7 +748,9 @@ class AlphaBetaIDSEngine(Engine):
 
                 score = _alphabeta_count(
                     new_board, 3 - player, depth - 1,
-                    player, alpha, beta, deadline, stats, eval_fn
+                    player, alpha, beta, deadline, stats, eval_fn,
+                    tt, _zobrist_move(root_hash, path, player),
+                    killer_table, history, 1
                 )
 
                 if score > best_score_d:

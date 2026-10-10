@@ -197,17 +197,22 @@ def get_all_moves(board, player):
 
 
 def is_game_over(board):
-    p1_target_zone = set(range(71, 81))
-    p2_target_zone = set(range(0, 10))
-
-    p1_pieces = [pos for pos in range(81) if board[pos] == 1]
-    if len(p1_pieces) == 10 and all(pos in p1_target_zone for pos in p1_pieces):
+    # 快速版：一次 81 扫描，数双方已进入对方目标区的棋子数。
+    # 跳棋无吃子（棋子守恒 10v10），某方 10 子全在对方三角 = 全进 = 获胜。
+    p1_in = 0   # P1 棋子位于 P2 起始区 pos 71-80
+    p2_in = 0   # P2 棋子位于 P1 起始区 pos 0-9
+    for pos in range(81):
+        pc = board[pos]
+        if pc == 1:
+            if pos >= 71:
+                p1_in += 1
+        elif pc == 2:
+            if pos < 10:
+                p2_in += 1
+    if p1_in == 10:
         return 1
-
-    p2_pieces = [pos for pos in range(81) if board[pos] == 2]
-    if len(p2_pieces) == 10 and all(pos in p2_target_zone for pos in p2_pieces):
+    if p2_in == 10:
         return 2
-
     return None
 
 
