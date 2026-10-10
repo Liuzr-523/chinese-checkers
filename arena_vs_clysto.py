@@ -167,9 +167,22 @@ def play_one_game(our_eng, opp_eng, our_player, max_moves=250):
     return (1 if s1 >= s2 else 2), move_count
 
 
-def main(n_games=10, our_time=1.0, cly_time=1):
-    our = AlphaBetaIDSEngine(time_limit_sec=our_time, max_depth=8, eval_version="v2")
-    our.name = "V2"
+def main(n_games=10, our_time=1.0, cly_time=1, our_engine="v2",
+         ckpt=None, n_simulations=32):
+    if our_engine == "nn":
+        from alphazero_nn import NetParams, NNEasyEngine
+        save_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "nn_checkpoints")
+        ckpt_path = ckpt or os.path.join(save_dir, "params_bc_latest.pkl")
+        params = NetParams.load(ckpt_path)
+        our = NNEasyEngine(params, use_mcts=(n_simulations > 0),
+                           n_simulations=max(n_simulations, 1))
+        our.name = f"NN({os.path.basename(ckpt_path)})"
+        print(f"[MATCH] 加载 NN 参数 {ckpt_path}")
+    else:
+        our = AlphaBetaIDSEngine(time_limit_sec=our_time, max_depth=8,
+                                 eval_version="v2")
+        our.name = "V2"
     cly = ClystoEngine(timelimit=cly_time)
 
     print(f"[MATCH] {our.name} vs {cly.name}: {n_games} 局, 双方各 {our_time}s/{cly_time}s, 交替先后手")
@@ -212,5 +225,12 @@ if __name__ == "__main__":
     parser.add_argument("--n_games", type=int, default=10)
     parser.add_argument("--our_time", type=float, default=1.0)
     parser.add_argument("--cly_time", type=int, default=1)
+    parser.add_argument("--our_engine", choices=["v2", "nn"], default="v2",
+                        help="我方引擎：v2=启发式搜索，nn=神经网络")
+    parser.add_argument("--ckpt", default=None,
+                        help="nn 模式下的参数文件路径，默认 nn_checkpoints/params_bc_latest.pkl")
+    parser.add_argument("--n_simulations", type=int, default=32,
+                        help="nn 模式 MCTS 模拟次数，0=纯 policy argmax")
     args = parser.parse_args()
-    main(args.n_games, args.our_time, args.cly_time)
+    main(args.n_games, args.our_time, args.cly_time, args.our_engine,
+         args.ckpt, args.n_simulations)
