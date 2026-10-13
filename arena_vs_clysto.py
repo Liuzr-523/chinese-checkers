@@ -98,7 +98,9 @@ class ClystoEngine:
             [CLI_PATH], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
             text=True, bufsize=1, cwd=CLYSTO_DIR,
         )
-        self._send(f"TIMELIMIT {timelimit}")
+        # clysto CLI 用 int 解析 TIMELIMIT，"0.5" 会被截断成 0（等于不搜索）。
+        # 这里强制至少 1 秒，保证棋力。
+        self._send(f"TIMELIMIT {max(1, int(round(timelimit)))}")
         resp = self.proc.stdout.readline().strip()
         if resp != "ok":
             raise RuntimeError(f"TIMELIMIT 响应异常: {resp}")

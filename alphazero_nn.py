@@ -62,19 +62,21 @@ def all_moves_indexed(board, player):
 
 # ---------- 网络参数 ----------
 class NetParams:
-    def __init__(self, seed=0):
+    def __init__(self, seed=0, filters=FILTERS):
         rng = np.random.default_rng(seed)
+        F = filters
+        self.filters = F
         # 两层 Conv 3x3
         def conv_he(ci, co):
             w = rng.standard_normal((co, ci, 3, 3)).astype(np.float32) * np.sqrt(2.0 / (ci * 9)).astype(np.float32)
             b = np.zeros((co,), dtype=np.float32)
             return w, b
 
-        self.w1, self.b1 = conv_he(CIN, FILTERS)
-        self.w2, self.b2 = conv_he(FILTERS, FILTERS)
+        self.w1, self.b1 = conv_he(CIN, F)
+        self.w2, self.b2 = conv_he(F, F)
 
-        # policy head: 2层 FC，17*9*FILTERS → 64 → 162
-        fc_in = H * W * FILTERS
+        # policy head: 2层 FC，17*9*F → 64 → 162
+        fc_in = H * W * F
         self.wp1 = (rng.standard_normal((fc_in, 64)) * np.sqrt(2.0 / fc_in)).astype(np.float32)
         self.bp1 = np.zeros((64,), dtype=np.float32)
         self.wp2 = (rng.standard_normal((64, 162)) * np.sqrt(2.0 / 64)).astype(np.float32)
@@ -547,6 +549,7 @@ def compute_loss_and_grads(params, batch, weight_decay=1e-4, label_sharpen=1.0):
             if s_pi > 1e-12:
                 pi = pi / s_pi
         z = rec["z"]
+        vw = rec.get("vw", 1.0)  # value loss 权重；开局样本设 0 只训 policy，避免 z=0 腐蚀 value head
 
         # policy CE
         lgs = np.array([pl[:81][s] + pl[81:][d] for (s, d, _) in moves], dtype=np.float64)
@@ -561,10 +564,10 @@ def compute_loss_and_grads(params, batch, weight_decay=1e-4, label_sharpen=1.0):
         ce = -float(np.sum(pi * np.log(probs_m + 1e-12)))
         # value MSE
         mse = float((v - z) ** 2)
-        total_loss += (ce + mse)
+        total_loss += (ce + vw * mse)
 
         # dL/dv
-        dv = 2.0 * (v - z)
+        dv = vw * 2.0 * (v - z)
         # dL/d(pl)  per logit = Σ π[p] - probs[p]：对 per-move logit 梯度是 probs - π
         dper = (probs_m - pi)  # (len(moves),)
         dsrc = np.zeros(81, dtype=np.float64)
@@ -674,15 +677,24 @@ class NNEasyEngine:
     name = "NN-easy"
 
     def __init__(self, params, use_mcts=True, n_simulations=32,
-                 temperature=0.0, seed=None):
+                 temperature=0.0, seed=None, use_book=False):
         # temperature=0 → argmax（确定性）；>0 → 按概率采样，越大越随机
+        # use_book=True → 开局阶段优先走 clysto 开局库走法（命中才用，否则照常走 NN）
         self.params = params
         self.use_mcts = use_mcts
         self.n_simulations = n_simulations
         self.temperature = temperature
         self.rng = np.random.default_rng(seed)
+        self.use_book = use_book
 
     def think(self, board, player):
+        if self.use_book:
+            import clysto_book
+            bm = clysto_book.book_move(board, player, cc.get_all_moves)
+            if bm is not None:
+                path = next(p for s, p in cc.get_all_moves(board, player)
+                            if s == bm[0] and p[-1] == bm[1])
+                return path, {"engine": self.name, "book": True}
         if self.use_mcts:
             _, _, (best_s, best_path) = mcts_think(
                 self.params, board, player, n_simulations=self.n_simulations)

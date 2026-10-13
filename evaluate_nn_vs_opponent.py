@@ -5,6 +5,7 @@ V2 = AlphaBetaIDSEngine(eval_version="v2", max_depth=6, time_limit=0.3s)
 import os
 import sys
 import time
+import random
 import argparse
 from pathlib import Path
 
@@ -16,9 +17,21 @@ from alphazero_nn import NetParams, NNEasyEngine
 cc = engine.cc
 
 
-def play_one_game(nn_engine, opp_engine, nn_first, max_moves=200):
+def play_one_game(nn_engine, opp_engine, nn_first, max_moves=200, n_opening=0, rng=None):
     board = cc.init_board()
     move_count = 0
+    # 随机开局：双方各走 n_opening 步随机合法走法，打破确定性对局的重复。
+    for _ in range(n_opening):
+        w = cc.is_game_over(board)
+        if w is not None:
+            break
+        player = 1 if (move_count % 2 == 0) else 2
+        moves = cc.get_all_moves(board, player)
+        if not moves:
+            break
+        m = rng.choice(moves)
+        board = cc.apply_move(board, m[1])
+        move_count += 1
     while True:
         w = cc.is_game_over(board)
         if w is not None:
@@ -39,7 +52,7 @@ def play_one_game(nn_engine, opp_engine, nn_first, max_moves=200):
     return (1 if s1 >= s2 else 2), move_count
 
 
-def main(n_games, use_mcts, n_simulations, max_moves, temperature, seed, opponent, ckpt_path=None):
+def main(n_games, use_mcts, n_simulations, max_moves, temperature, seed, opponent, ckpt_path=None, n_opening=0, use_book=0, backend="numpy"):
     save_dir = Path(__file__).parent / "nn_checkpoints"
     if ckpt_path:
         ckpt = Path(ckpt_path)
@@ -51,22 +64,39 @@ def main(n_games, use_mcts, n_simulations, max_moves, temperature, seed, opponen
         print(f"[EVAL] 参数文件未找到: {ckpt}")
         return
     print(f"[EVAL] 加载 NN 参数 {ckpt}")
-    params = NetParams.load(ckpt)
-    nn_engine = NNEasyEngine(params, use_mcts=use_mcts, n_simulations=n_simulations,
-                             temperature=temperature, seed=seed)
-    nn_engine.name = "NN(bc)" + ("+MCTS" if use_mcts else "")
+    if backend == "torch":
+        from nn_torch import NetTorch, NNEasyEngineTorch
+        pt = ckpt.with_suffix(".pt")
+        model = NetTorch.load(pt) if pt.exists() else NetTorch.from_numpy_params(NetParams.load(ckpt))
+        nn_engine = NNEasyEngineTorch(model, temperature=temperature, seed=seed,
+                                      use_book=bool(use_book))
+        nn_engine.name = "NN(torch)" + ("+book" if use_book else "")
+    else:
+        params = NetParams.load(ckpt)
+        nn_engine = NNEasyEngine(params, use_mcts=use_mcts, n_simulations=n_simulations,
+                                 temperature=temperature, seed=seed, use_book=bool(use_book))
+        nn_engine.name = "NN(bc)" + ("+MCTS" if use_mcts else "") + ("+book" if use_book else "")
     if temperature > 0:
         nn_engine.name += f"(T={temperature})"
 
     if opponent == "v2":
         opp_engine = AlphaBetaIDSEngine(time_limit_sec=0.3, max_depth=6, eval_version="v2")
         opp_engine.name = "V2"
+    elif opponent == "v0d4":
+        # 固定深度 V0：时间限制放到极大，等价于纯 depth-4 搜索。
+        # 结果不受 CPU 负载影响，可复现——限时搜索在并行跑评估时会被拖慢变弱。
+        opp_engine = AlphaBetaIDSEngine(time_limit_sec=3600, max_depth=4, eval_version="v0")
+        opp_engine.name = "V0d4"
+    elif opponent == "v0d5":
+        opp_engine = AlphaBetaIDSEngine(time_limit_sec=3600, max_depth=5, eval_version="v0")
+        opp_engine.name = "V0d5"
     else:
         opp_engine = AlphaBetaIDSEngine(time_limit_sec=0.5, max_depth=4, eval_version="v0")
         opp_engine.name = "V0"
 
     print(f"[EVAL] {nn_engine.name} vs {opp_engine.name}, {n_games} 局, 交替先后手")
-    print(f"[EVAL] use_mcts={use_mcts}, temperature={temperature}, max_moves={max_moves}")
+    print(f"[EVAL] use_mcts={use_mcts}, temperature={temperature}, max_moves={max_moves}, n_opening={n_opening}")
+    rng = random.Random(seed if seed is not None else 12345)
     t0 = time.time()
     nn_wins = 0
     opp_wins = 0
@@ -76,7 +106,8 @@ def main(n_games, use_mcts, n_simulations, max_moves, temperature, seed, opponen
         nn_first = (g % 2 == 0)
         side = "P1(先)" if nn_first else "P2(后)"
         t_game = time.time()
-        winner, moves = play_one_game(nn_engine, opp_engine, nn_first, max_moves=max_moves)
+        winner, moves = play_one_game(nn_engine, opp_engine, nn_first, max_moves=max_moves,
+                                       n_opening=n_opening, rng=rng)
         nn_player = 1 if nn_first else 2
         if winner == nn_player:
             result = "NN胜"
@@ -105,8 +136,12 @@ if __name__ == "__main__":
     parser.add_argument("--max_moves", type=int, default=200)
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--seed", type=int, default=None)
-    parser.add_argument("--opponent", type=str, default="v2", choices=["v0", "v2"])
+    parser.add_argument("--opponent", type=str, default="v2", choices=["v0", "v0d4", "v0d5", "v2"])
     parser.add_argument("--ckpt", type=str, default=None, help="ckpt 文件名或绝对路径；默认 params_bc_latest.pkl")
+    parser.add_argument("--n_opening", type=int, default=0, help="随机开局步数（双方各计），打破确定性对局重复")
+    parser.add_argument("--use_book", type=int, default=0, help="1=NN 开局优先走 clysto 开局库")
+    parser.add_argument("--backend", type=str, default="numpy", choices=["numpy", "torch"])
     args = parser.parse_args()
     main(args.n_games, args.use_mcts, args.n_simulations, args.max_moves,
-         args.temperature, args.seed, args.opponent, ckpt_path=args.ckpt)
+         args.temperature, args.seed, args.opponent, ckpt_path=args.ckpt,
+         n_opening=args.n_opening, use_book=args.use_book, backend=args.backend)
