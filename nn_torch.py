@@ -26,6 +26,26 @@ from alphazero_nn import (NetParams, encode_board, policy_logits_to_move_probs,
 cc = engine.cc
 FC_IN = H * W * FILTERS  # 4896
 
+# 180° 旋转映射：轴坐标 (x,y) -> (8-x, 16-y)。跳棋棋盘（含走法几何）在此旋转下对称。
+ROT81 = [cc.XY_TO_POS[(8 - x, 16 - y)] for (x, y) in cc.POS_TO_XY]
+
+
+def augment_rot(smp):
+    """返回样本的 180° 旋转孪生（同一玩家视角，z 不变，走法重映射，pi 顺序不变）。
+    与相对编码配合，强制 v(b,p)=v(rot(b),p)，消除方向/身份偏差。"""
+    s = smp["s"]
+    s2 = np.empty_like(s)
+    s2[0] = s[0][::-1, ::-1]   # 我方(旋转)
+    s2[1] = s[1][::-1, ::-1]   # 对方(旋转)
+    s2[2] = s[2][::-1, ::-1]   # 占位(旋转)
+    s2[3] = s[3]              # 轮次通道为常数，原样
+    moves2 = [(ROT81[a], ROT81[b], tuple(ROT81[p] for p in path))
+              for (a, b, path) in smp["moves"]]
+    out = dict(smp)
+    out["s"] = s2
+    out["moves"] = moves2
+    return out
+
 
 # ---------- 网络 ----------
 class NetTorch(nn.Module):
@@ -200,7 +220,7 @@ def train_bc_torch(samples, model, steps=800, lr=2e-4, bs=32, weight_decay=1e-4,
 
 
 # ---------- CLI 入口（被 train_torch.py 复用） ----------
-def load_samples(patterns, ckpt_dir):
+def load_samples(patterns, ckpt_dir, rot=1):
     from alphazero_nn import expand_game_records
     samples = []
     for pat in patterns:
@@ -213,6 +233,8 @@ def load_samples(patterns, ckpt_dir):
                 if smp.get("z", 1) == 0.0:
                     smp["vw"] = 0.0  # z=0 样本（开局库）只训 policy，防 value head 腐蚀
             samples += data
+    if rot:
+        samples += [augment_rot(s) for s in samples]
     return samples
 
 
@@ -225,14 +247,17 @@ if __name__ == "__main__":
     ap.add_argument("--bs", type=int, default=32)
     ap.add_argument("--seed", type=int, default=7)
     ap.add_argument("--tag", default="tt")
+    ap.add_argument("--rot", type=int, default=0, help="1=180°旋转对称增强（实验性，默认关）")
+    ap.add_argument("--filters", type=int, default=FILTERS, help="conv 通道数（扩容实验，默认32）")
     args = ap.parse_args()
     HERE = Path(__file__).parent / "nn_checkpoints"
-    samples = load_samples(args.data, HERE)
+    samples = load_samples(args.data, HERE, rot=args.rot)
     print(f"[TORCH-TRAIN] 样本 {len(samples)}", flush=True)
     if args.warm:
         model = convert_numpy_to_torch(HERE / args.warm if not os.path.isabs(args.warm) else args.warm)
+        assert model.filters == args.filters, "warm-start 权重 filters 与 --filters 不一致"
     else:
-        model = NetTorch()
+        model = NetTorch(filters=args.filters)
 
     def cb(step, m):
         if step % 200 == 0 or step == args.steps:

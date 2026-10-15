@@ -21,7 +21,8 @@ LOG = open("/tmp/night/az_loop.log", "a", buffering=1)
 RES = open("/tmp/night/az_results.txt", "a", buffering=1)
 DEADLINE = time.time() + 7.8 * 3600  # 8小时留余量
 N_SHARDS = 6
-GAMES_PER_SHARD = 40
+GAMES_PER_SHARD = 80
+EVAL_SEED = 999  # 每轮更新
 CHAMP = "params_az_champ.pkl"
 
 EXP = "replay_clysto_merged.pkl"
@@ -36,10 +37,10 @@ def run(cmd):
 
 
 def eval_game(ckpt, tag):
-    """串行评估 20 局，返回 NN 胜局数。"""
+    """串行评估 20 局，返回 NN 胜局数。seed 每轮轮换，防止在同一固定开局集上反复选最大导致过拟合虚高。"""
     out = subprocess.run(
         f"{PY} evaluate_nn_vs_opponent.py --ckpt {ckpt} --opponent v0d4 "
-        f"--n_games 20 --n_opening 10 --seed 999",
+        f"--n_games 20 --n_opening 10 --seed {EVAL_SEED}",
         shell=True, cwd=PROJ, capture_output=True, text=True)
     line = [l for l in out.stdout.splitlines() if "NN:V0d4 = " in l]
     score = line[-1] if line else "ERR " + out.stderr[-200:]
@@ -59,11 +60,13 @@ rnd = 0
 while time.time() < DEADLINE:
     rnd += 1
     t0 = time.time()
+    globals()["EVAL_SEED"] = 4321 + rnd * 17  # 每轮换开局集
     LOG.write(f"\n===== ROUND {rnd} start {time.strftime('%F %T')} champ={CHAMP} =====\n")
 
     # 1. 并行自对弈
     procs = [subprocess.Popen(
         [PY, "az_selfplay.py", "--ckpt", CHAMP, "--n_games", str(GAMES_PER_SHARD),
+         "--n_sim", "24",
          "--seed", str(rnd * 100 + i), "--out", f"az_r{rnd}_{i}.pkl"],
         cwd=PROJ, stdout=LOG, stderr=subprocess.STDOUT) for i in range(N_SHARDS)]
     for p in procs:
@@ -74,7 +77,7 @@ while time.time() < DEADLINE:
     rounds = [r for r in range(max(1, rnd - 2), rnd + 1)]
     az_globs = " ".join(f"az_r{r}_*.pkl" for r in rounds)
     for f in CKPT.glob("az_r*_*.pkl"):
-        r_old = int(f.stem.split("_")[0][4:])
+        r_old = int(f.stem.split("_")[1][1:])
         if r_old < rnd - 2:
             f.unlink()  # 滚动窗口：只保留最近3轮自对弈数据
 
@@ -82,7 +85,7 @@ while time.time() < DEADLINE:
     for seed in (7, 11, 23):
         tag = f"az{rnd}s{seed}"
         run(f"{PY} nn_torch.py --data {EXP} {BOOK} {BOOK} {BOOK} {az_globs} "
-            f"--warm {CHAMP} --steps 1000 --lr 2e-4 --seed {seed} --tag {tag}")
+            f"--warm {CHAMP} --steps 2000 --lr 2e-4 --seed {seed} --tag {tag}")
         wins[seed] = eval_game(f"params_{tag}_last.pkl", f"R{rnd}")
 
     # 3. 选冠军（实战胜率；同分保留旧冠军）

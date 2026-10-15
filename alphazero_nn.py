@@ -46,7 +46,7 @@ def encode_board(board, player):
             x[1, cy, cx] = 1.0
         if board[pos] != 0:
             x[2, cy, cx] = 1.0
-    x[3] = 1.0 if player == 1 else -1.0
+    x[3] = 1.0 if player == 1 else -1.0  # 历史模型均基于此编码训练，勿改（常数通道实验已证伪）
     return x
 
 
