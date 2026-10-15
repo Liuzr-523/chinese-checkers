@@ -255,7 +255,9 @@ if __name__ == "__main__":
     print(f"[TORCH-TRAIN] 样本 {len(samples)}", flush=True)
     if args.warm:
         model = convert_numpy_to_torch(HERE / args.warm if not os.path.isabs(args.warm) else args.warm)
-        assert model.filters == args.filters, "warm-start 权重 filters 与 --filters 不一致"
+        if model.filters != args.filters:
+            print(f"[TORCH-TRAIN] warm-start filters={model.filters}, 覆盖 --filters {args.filters}", flush=True)
+            args.filters = model.filters
     else:
         model = NetTorch(filters=args.filters)
 
