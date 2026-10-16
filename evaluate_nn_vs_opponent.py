@@ -66,8 +66,15 @@ def main(n_games, use_mcts, n_simulations, max_moves, temperature, seed, opponen
     print(f"[EVAL] 加载 NN 参数 {ckpt}")
     if backend == "torch":
         from nn_torch import NetTorch, NNEasyEngineTorch
-        pt = ckpt.with_suffix(".pt")
-        model = NetTorch.load(pt) if pt.exists() else NetTorch.from_numpy_params(NetParams.load(ckpt))
+        if ckpt.suffix == ".pt":
+            try:
+                model = NetTorch.load(ckpt)
+            except Exception:
+                from nn_resnet import NetResNet
+                model = NetResNet.load(ckpt)
+        else:
+            pt = ckpt.with_suffix(".pt")
+            model = NetTorch.load(pt) if pt.exists() else NetTorch.from_numpy_params(NetParams.load(ckpt))
         nn_engine = NNEasyEngineTorch(model, temperature=temperature, seed=seed,
                                       use_book=bool(use_book))
         nn_engine.name = "NN(torch)" + ("+book" if use_book else "")
