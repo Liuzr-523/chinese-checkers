@@ -165,6 +165,7 @@ if __name__ == "__main__":
     ap.add_argument("--filters", type=int, default=128)
     ap.add_argument("--blocks", type=int, default=4)
     ap.add_argument("--tag", type=str, required=True)
+    ap.add_argument("--warm", type=str, default=None, help="warm-start 权重 .pt 路径")
     ap.add_argument("--ckpt_dir", type=str, default="nn_checkpoints")
     args = ap.parse_args()
 
@@ -175,6 +176,10 @@ if __name__ == "__main__":
     print(f"[RESNET] 样本数={len(samples)}", flush=True)
 
     model = NetResNet(filters=args.filters, blocks=args.blocks)
+    if args.warm:
+        wp = ckpt_dir / args.warm if not os.path.isabs(args.warm) else Path(args.warm)
+        model = NetResNet.load(wp)
+        print(f"[RESNET] warm-start from {wp.name}", flush=True)
     n_params = sum(p.numel() for p in model.parameters())
     print(f"[RESNET] filters={args.filters} blocks={args.blocks} params={n_params/1e6:.2f}M",
           flush=True)
