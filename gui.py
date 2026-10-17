@@ -17,7 +17,8 @@ from alphazero_nn import NetParams, NNEasyEngine, train_iteration
 
 cc = engine.cc
 
-AI_AB = AlphaBetaIDSEngine(time_limit_sec=1.2, max_depth=8, eval_version="v2")
+# 4s：实测 1.2s→5s 使 v2 vs clysto 从 0:8 变 2:4，深度是当前最大棋力杠杆
+AI_AB = AlphaBetaIDSEngine(time_limit_sec=4.0, max_depth=12, eval_version="v2")
 AI_AB.name = "v2(AlphaBeta)"
 
 # ===== 引擎工厂：根据选择返回可 think() 的对象 =====
@@ -25,17 +26,22 @@ def make_engine(kind):
     """kind in {'v2', 'nn'}"""
     if kind == "v2":
         return AI_AB
-    # 神经网络
+    # 神经网络：ResNet 冠军（torch 直推，无 MCTS）
+    from nn_resnet import NetResNet
+    from nn_torch import NNEasyEngineTorch
     ckpt = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                        "nn_checkpoints", "params_latest.pkl")
+                        "nn_checkpoints", "params_resnet_champ.pt")
     if os.path.exists(ckpt):
-        params = NetParams.load(ckpt)
-        print(f"[gui] 载入神经网络参数 {ckpt}")
+        model = NetResNet.load(ckpt)
+        print(f"[gui] 载入 ResNet 冠军 {ckpt}")
     else:
-        params = NetParams(seed=7)
-        print(f"[gui] 神经网络参数未找到，使用随机初始化")
-    eng = NNEasyEngine(params, use_mcts=True, n_simulations=24)
-    eng.name = "NN(MCTS)"
+        from nn_torch import NetTorch
+        pkl = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           "nn_checkpoints", "params_az_champ.pkl")
+        model = NetTorch.from_numpy_params(NetParams.load(pkl))
+        print(f"[gui] ResNet 冠军缺失，回退旧模型 {pkl}")
+    eng = NNEasyEngineTorch(model, temperature=0.0, seed=42)
+    eng.name = "神经网络(ResNet)"
     return eng
 
 # ===== 窗口 =====
@@ -186,7 +192,7 @@ def draw_panel(screen, font, font_s, current_player, p1_is_ai, p2_is_ai,
     screen.blit(hs, (20, y + 68))
 
 
-_ENGINE_LABELS = {"v2": "v2 启发式(AlphaBeta)", "nn": "NN(MCTS+PUCT)"}
+_ENGINE_LABELS = {"v2": "v2 启发式(AlphaBeta)", "nn": "神经网络(ResNet)"}
 
 def draw_start_screen(screen, font, font_s, p1_is_ai, p2_is_ai, ai_kind):
     screen.fill(BG)
