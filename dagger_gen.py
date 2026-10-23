@@ -8,6 +8,7 @@
   python3 dagger_gen.py play --ckpt params_ft_v2_ckpt_01200.pkl --n_games 50 --out states_XX.pkl --seed S
   python3 dagger_gen.py label --in states_XX.pkl --out dgrad_XX.pkl --shard i --nshards k --cly_time 0.5
 """
+from checkpoint_paths import artifact_path, artifact_glob
 import argparse
 import os
 import pickle
@@ -32,7 +33,7 @@ def play_games(ckpt, n_games, out_path, seed, max_moves=200, temperature=0.7,
     if seed is not None:
         random.seed(seed)
         np.random.seed(seed)
-    params = NetParams.load(HERE / ckpt)
+    params = NetParams.load(artifact_path(HERE / ckpt))
     # 温度采样：argmax 确定性会导致多局轨迹完全重复，收集不到多样 on-policy 局面
     nn = NNEasyEngine(params, use_mcts=False, temperature=temperature, seed=seed)
     if opp == "v0d4":
@@ -149,7 +150,7 @@ if __name__ == "__main__":
     ap.add_argument("--opp", default="v0d4", choices=["v0", "v0d4"])
     a = ap.parse_args()
     if a.cmd == "play":
-        play_games(a.ckpt, a.n_games, HERE / a.out, a.seed,
+        play_games(a.ckpt, a.n_games, artifact_path(HERE / a.out), a.seed,
                    temperature=a.temperature, n_opening=a.n_opening, opp=a.opp)
     else:
-        label_states(HERE / a.inp, HERE / a.out, a.shard, a.nshards, a.cly_time)
+        label_states(artifact_path(HERE / a.inp), artifact_path(HERE / a.out), a.shard, a.nshards, a.cly_time)

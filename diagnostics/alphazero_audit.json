@@ -1,0 +1,170 @@
+{
+  "mcts_numpy": {
+    "simulations": 32,
+    "root_N": 32,
+    "root_children_N": [
+      33,
+      29
+    ],
+    "root_children_sum": 62,
+    "root_children_W": [
+      2.0,
+      0.0
+    ]
+  },
+  "mcts_resnet": {
+    "simulations": 32,
+    "root_N": 32,
+    "root_children_N": [
+      33,
+      29
+    ],
+    "root_children_sum": 62,
+    "root_children_W": [
+      2.0,
+      0.0
+    ]
+  },
+  "replay": [
+    {
+      "file": "replay.pkl",
+      "records": 50,
+      "format": "games",
+      "declared_winners": {
+        "1": 10,
+        "2": 40
+      },
+      "steps": 9344,
+      "actual_terminal_winners": {
+        "1": 2,
+        "2": 10,
+        "None": 38
+      },
+      "bad_pi": 0,
+      "sampled_illegal_moves": 0,
+      "bad_turn": 0,
+      "games_with_repeated_position": 26
+    },
+    {
+      "file": "replay_nn_mcts_b.pkl",
+      "records": 147,
+      "format": "games",
+      "declared_winners": {
+        "1": 91,
+        "2": 56
+      },
+      "steps": 19853,
+      "actual_terminal_winners": {
+        "1": 91,
+        "2": 56
+      },
+      "bad_pi": 0,
+      "sampled_illegal_moves": 0,
+      "bad_turn": 0,
+      "games_with_repeated_position": 30
+    },
+    {
+      "file": "replay_nn_mcts_test.pkl",
+      "records": 5,
+      "format": "games",
+      "declared_winners": {
+        "2": 2,
+        "1": 3
+      },
+      "steps": 681,
+      "actual_terminal_winners": {
+        "2": 2,
+        "1": 3
+      },
+      "bad_pi": 0,
+      "sampled_illegal_moves": 0,
+      "bad_turn": 0,
+      "games_with_repeated_position": 0
+    },
+    {
+      "file": "replay_clysto_merged.pkl",
+      "records": 326,
+      "format": "games",
+      "declared_winners": {
+        "1": 229,
+        "2": 97
+      },
+      "steps": 32297,
+      "actual_terminal_winners": {
+        "1": 229,
+        "2": 97
+      },
+      "bad_pi": 0,
+      "sampled_illegal_moves": 0,
+      "bad_turn": 0,
+      "games_with_repeated_position": 5
+    },
+    {
+      "file": "replay_book.pkl",
+      "records": 2317,
+      "format": "samples",
+      "z": {
+        "0.0": 2317
+      },
+      "explicit_vw_zero": 0
+    },
+    {
+      "file": "replay_v2_aug.pkl",
+      "records": 400,
+      "format": "games",
+      "declared_winners": {
+        "2": 200,
+        "1": 200
+      },
+      "steps": 57412,
+      "actual_terminal_winners": {
+        "2": 216,
+        "1": 184
+      },
+      "bad_pi": 0,
+      "sampled_illegal_moves": 1529,
+      "bad_turn": 28706,
+      "games_with_repeated_position": 20
+    },
+    {
+      "file": "replay_v2_argmax_230.pkl",
+      "records": 230,
+      "format": "games",
+      "declared_winners": {
+        "2": 145,
+        "1": 85
+      },
+      "steps": 23301,
+      "actual_terminal_winners": {
+        "2": 145,
+        "1": 85
+      },
+      "bad_pi": 0,
+      "sampled_illegal_moves": 0,
+      "bad_turn": 0,
+      "games_with_repeated_position": 0
+    },
+    {
+      "file": "az_r3_0.pkl",
+      "records": 15634,
+      "format": "samples",
+      "z": {
+        "0.0": 11800,
+        "-1.0": 1909,
+        "1.0": 1925
+      },
+      "explicit_vw_zero": 0
+    },
+    {
+      "file": "az_r3_1.pkl",
+      "records": 15305,
+      "format": "samples",
+      "z": {
+        "0.0": 9600,
+        "1.0": 2866,
+        "-1.0": 2839
+      },
+      "explicit_vw_zero": 0
+    }
+  ]
+}

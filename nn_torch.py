@@ -5,12 +5,12 @@
       policy: FC(→64)+ReLU → FC(→162)  [81 src + 81 dst]
       value : FC(→64)+ReLU → FC(→1)+tanh
 """
+from checkpoint_paths import artifact_path, artifact_glob
 import os
 import sys
 import time
 import pickle
 import argparse
-import glob as globmod
 from pathlib import Path
 
 import numpy as np
@@ -106,11 +106,11 @@ class NetTorch(nn.Module):
         return p
 
     def save(self, path):
-        torch.save({"state_dict": self.state_dict(), "filters": self.filters}, path)
+        torch.save({"state_dict": self.state_dict(), "filters": self.filters}, artifact_path(path))
 
     @staticmethod
     def load(path):
-        d = torch.load(path, map_location="cpu", weights_only=True)
+        d = torch.load(artifact_path(path), map_location="cpu", weights_only=True)
         m = NetTorch(filters=d["filters"])
         m.load_state_dict(d["state_dict"])
         return m
@@ -125,7 +125,11 @@ def convert_numpy_to_torch(pkl_path):
 class NNEasyEngineTorch:
     name = "NN-torch"
 
-    def __init__(self, model, temperature=0.0, seed=None, use_book=False):
+    def __init__(self, model, temperature=0.0, seed=None, use_book=False,
+                 use_mcts=False, n_simulations=32):
+        self.history = set()
+        self.use_mcts = use_mcts
+        self.n_simulations = n_simulations
         self.model = model.eval()
         self.temperature = temperature
         self.rng = np.random.default_rng(seed)
@@ -137,7 +141,14 @@ class NNEasyEngineTorch:
         pl, v = self.model(x)
         return pl[0].numpy(), float(v)
 
+    def reset_history(self):
+        self.history.clear()
+
+    def observe_position(self, board, player):
+        self.history.add((tuple(board), player))
+
     def think(self, board, player):
+        self.observe_position(board, player)
         if self.use_book:
             import clysto_book
             bm = clysto_book.book_move(board, player, cc.get_all_moves)
@@ -145,6 +156,14 @@ class NNEasyEngineTorch:
                 path = next(p for s, p in cc.get_all_moves(board, player)
                             if s == bm[0] and p[-1] == bm[1])
                 return path, {"engine": self.name, "book": True}
+        if self.use_mcts:
+            from self_play_resnet_mcts import mcts_think_resnet
+            _, (_, path) = mcts_think_resnet(
+                self.model, board, player, self.n_simulations, add_root_noise=False, history=self.history)
+            if path is not None:
+                self.observe_position(cc.apply_move(board, path), 3 - player)
+            return path, {"engine": self.name, "mcts": True,
+                          "n_simulations": self.n_simulations}
         moves = cc.get_all_moves(board, player)
         if not moves:
             return None, {}
@@ -224,14 +243,14 @@ def load_samples(patterns, ckpt_dir, rot=1):
     from alphazero_nn import expand_game_records
     samples = []
     for pat in patterns:
-        for fn in sorted(globmod.glob(str(Path(ckpt_dir) / pat))):
+        for fn in artifact_glob(ckpt_dir, pat):
             with open(fn, "rb") as f:
                 data = pickle.load(f)
             if data and isinstance(data, list) and "steps" in data[0]:
                 data = expand_game_records(data)  # 完整棋谱 → 训练样本
             for smp in data:
                 if smp.get("z", 1) == 0.0:
-                    smp["vw"] = 0.0  # z=0 样本（开局库）只训 policy，防 value head 腐蚀
+                    smp.setdefault("vw", 0.0)  # z=0 样本（开局库）只训 policy，防 value head 腐蚀
             samples += data
     if rot:
         samples += [augment_rot(s) for s in samples]
@@ -254,7 +273,7 @@ if __name__ == "__main__":
     samples = load_samples(args.data, HERE, rot=args.rot)
     print(f"[TORCH-TRAIN] 样本 {len(samples)}", flush=True)
     if args.warm:
-        model = convert_numpy_to_torch(HERE / args.warm if not os.path.isabs(args.warm) else args.warm)
+        model = convert_numpy_to_torch(artifact_path(HERE / args.warm) if not os.path.isabs(args.warm) else args.warm)
         if model.filters != args.filters:
             print(f"[TORCH-TRAIN] warm-start filters={model.filters}, 覆盖 --filters {args.filters}", flush=True)
             args.filters = model.filters
@@ -264,12 +283,12 @@ if __name__ == "__main__":
     def cb(step, m):
         if step % 200 == 0 or step == args.steps:
             np_p = m.to_numpy_params()
-            np_p.save(HERE / f"params_{args.tag}_ckpt_{step:04d}.pkl")
-            m.save(HERE / f"params_{args.tag}_ckpt_{step:04d}.pt")
+            np_p.save(artifact_path(HERE / f"params_{args.tag}_ckpt_{step:04d}.pkl"))
+            m.save(artifact_path(HERE / f"params_{args.tag}_ckpt_{step:04d}.pt"))
 
     train_bc_torch(samples, model, steps=args.steps, lr=args.lr, bs=args.bs,
                    seed=args.seed, ckpt_cb=cb)
     np_p = model.to_numpy_params()
-    np_p.save(HERE / f"params_{args.tag}_last.pkl")
-    model.save(HERE / f"params_{args.tag}_last.pt")
+    np_p.save(artifact_path(HERE / f"params_{args.tag}_last.pkl"))
+    model.save(artifact_path(HERE / f"params_{args.tag}_last.pt"))
     print(f"[TORCH-TRAIN] 完成 → params_{args.tag}_last.pkl/.pt", flush=True)

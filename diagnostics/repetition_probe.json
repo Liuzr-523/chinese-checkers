@@ -1,0 +1,41 @@
+[
+  {
+    "game": 1,
+    "ply": 89,
+    "old_move": [
+      68,
+      67
+    ],
+    "new_move": [
+      68,
+      63
+    ],
+    "new_repeats": false
+  },
+  {
+    "game": 2,
+    "ply": 95,
+    "old_move": [
+      63,
+      56
+    ],
+    "new_move": [
+      63,
+      61
+    ],
+    "new_repeats": false
+  },
+  {
+    "game": 4,
+    "ply": 95,
+    "old_move": [
+      63,
+      62
+    ],
+    "new_move": [
+      63,
+      57
+    ],
+    "new_repeats": false
+  }
+]

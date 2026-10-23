@@ -66,3 +66,22 @@ merge_replay.py / eval_ckpts.py / evaluate_nn_vs_opponent.py
 - 模型参数（`.pkl`）与训练棋谱不大入库，请自行训练或联系作者获取
 
 License: MIT
+## 模型与棋谱文件
+
+`nn_checkpoints/` 已按 `models/{champions,final,checkpoints}` 和 `data/{replays,selfplay,positions,dagger}` 分类。旧文件名参数和训练数据通配符仍可使用，详见 [目录说明](nn_checkpoints/README.md)。
+
+## C-PVS 与验证
+
+C 扩展需使用运行 GUI 的同一个 Python 编译；二进制不入库。macOS 示例：
+
+```sh
+PYH=$(python3 -c "import sysconfig; print(sysconfig.get_path('include'))")
+EXT=$(python3 -c "import sysconfig; print(sysconfig.get_config_var('EXT_SUFFIX'))")
+clang -O3 -fPIC -shared -I"$PYH" -undefined dynamic_lookup ccore.c -o "ccore$EXT"
+python3 verify_ccore.py
+python3 -m unittest discover -s tests -v
+```
+
+GUI 支持双方独立选择引擎、先后手、逐段跳跃动画、步数统计。游戏中 U 悔棋，R/Esc 返回设置，也可点击左侧按钮。人机悔棋回到人的上一手之前；AI 对战悔棋后可用空格继续。
+
+自对弈诊断与长跑结论见 [审计](ALPHAZERO_AUDIT.md)、[试验记录](SELFPLAY_TRIAL.md)、[长跑日志](SELFPLAY_LONGRUN.md)。实验产物只保存在本机 `nn_checkpoints/experiments/`，文档中的本机产物链接不包含在 Git 中。

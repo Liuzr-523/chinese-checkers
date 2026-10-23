@@ -25,8 +25,14 @@ class NNAlphaBetaIDSEngine(AlphaBetaIDSEngine):
     def __init__(self, nn_pt_path, time_limit_sec=1.5, max_depth=8, eval_version="v2"):
         super().__init__(time_limit_sec=time_limit_sec, max_depth=max_depth,
                          eval_version=eval_version)
-        from nn_torch import NetTorch
-        self.model = NetTorch.load(nn_pt_path).eval()
+        import torch as _t
+        d = _t.load(nn_pt_path, map_location="cpu", weights_only=True)
+        if "blocks" in d:
+            from nn_resnet import NetResNet
+            self.model = NetResNet.load(nn_pt_path).eval()
+        else:
+            from nn_torch import NetTorch
+            self.model = NetTorch.load(nn_pt_path).eval()
         self.name = f"NNord-{self.name}"
 
     @torch.no_grad()

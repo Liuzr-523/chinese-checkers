@@ -24,3 +24,12 @@ HANDOFF.md
 # IDE
 .vscode/
 .idea/
+
+# 本机编译产物、编辑器状态和预览
+*.so
+.trae/
+/previews/
+
+# 模型、实验快照与机器相关迁移清单，仅保留目录说明
+/nn_checkpoints/*
+!/nn_checkpoints/README.md

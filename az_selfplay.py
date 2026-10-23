@@ -6,6 +6,7 @@
 用法:
   python3 az_selfplay.py --ckpt params_xxx.pkl --n_games 25 --seed 1 --out az_r1_0.pkl
 """
+from checkpoint_paths import artifact_path, artifact_glob
 import argparse
 import os
 import pickle
@@ -26,6 +27,7 @@ def play_game(params, rng, n_sim=24, max_moves=200):
     """一局自对弈。返回 samples list + winner（None=超步数）。"""
     board = cc.init_board()
     steps = []
+    history = set()
     move_count = 0
     while move_count < max_moves:
         w = cc.is_game_over(board)
@@ -33,7 +35,9 @@ def play_game(params, rng, n_sim=24, max_moves=200):
             break
         player = 1 if move_count % 2 == 0 else 2
         v_est, (moves, pi_probs), (best_s, best_path) = mcts_think(
-            params, board, player, n_simulations=n_sim)
+            params, board, player, n_simulations=n_sim, add_root_noise=True, rng=rng, history=history)
+        if not moves:
+            break
         move_tuples = [(m[0], m[1], tuple(m[2])) for m in moves]
         p = np.asarray(pi_probs, dtype=np.float64)
         s_sum = p.sum()
@@ -50,7 +54,8 @@ def play_game(params, rng, n_sim=24, max_moves=200):
     for st in steps:
         z = 0.0 if w is None else (1.0 if st["player"] == w else -1.0)
         samples.append({"s": st["s"], "player": st["player"], "moves": st["moves"],
-                        "pi": st["pi"].astype(np.float32), "z": z})
+                        "pi": st["pi"].astype(np.float32), "z": z,
+                        "vw": 0.0 if w is None else 1.0})
     return samples, w
 
 
@@ -65,8 +70,8 @@ def main():
     a = ap.parse_args()
     np.random.seed(a.seed)  # mcts_think 的 Dirichlet 噪声用全局 np.random
     rng = np.random.default_rng(a.seed)
-    params = NetParams.load(HERE / a.ckpt)
-    out_path = HERE / a.out
+    params = NetParams.load(artifact_path(HERE / a.ckpt))
+    out_path = artifact_path(HERE / a.out)
     all_samples = []
     t0 = time.time()
     for g in range(a.n_games):

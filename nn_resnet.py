@@ -3,12 +3,12 @@
 对比原 2 层 conv：深度 10 层（stem + 4×2 conv），filters=128，参数量约 2 倍。
 残差连接缓解深层梯度消失，BN 加速收敛。
 """
+from checkpoint_paths import artifact_path, artifact_glob
 import os
 import sys
 import time
 import pickle
 import argparse
-import glob as globmod
 from pathlib import Path
 
 import numpy as np
@@ -74,11 +74,11 @@ class NetResNet(nn.Module):
 
     def save(self, path):
         torch.save({"state_dict": self.state_dict(),
-                    "filters": self.filters, "blocks": self.blocks}, path)
+                    "filters": self.filters, "blocks": self.blocks}, artifact_path(path))
 
     @staticmethod
     def load(path):
-        d = torch.load(path, map_location="cpu", weights_only=True)
+        d = torch.load(artifact_path(path), map_location="cpu", weights_only=True)
         m = NetResNet(filters=d["filters"], blocks=d["blocks"])
         m.load_state_dict(d["state_dict"])
         return m
@@ -88,14 +88,14 @@ def load_samples(patterns, ckpt_dir):
     from alphazero_nn import expand_game_records
     samples = []
     for pat in patterns:
-        for fn in sorted(globmod.glob(str(Path(ckpt_dir) / pat))):
+        for fn in artifact_glob(ckpt_dir, pat):
             with open(fn, "rb") as f:
                 data = pickle.load(f)
             if data and isinstance(data, list) and "steps" in data[0]:
                 data = expand_game_records(data)
             for smp in data:
                 if smp.get("z", 1) == 0.0:
-                    smp["vw"] = 0.0
+                    smp.setdefault("vw", 0.0)
             samples += data
     return samples
 
@@ -177,7 +177,7 @@ if __name__ == "__main__":
 
     model = NetResNet(filters=args.filters, blocks=args.blocks)
     if args.warm:
-        wp = ckpt_dir / args.warm if not os.path.isabs(args.warm) else Path(args.warm)
+        wp = artifact_path(ckpt_dir / args.warm) if not os.path.isabs(args.warm) else Path(args.warm)
         model = NetResNet.load(wp)
         print(f"[RESNET] warm-start from {wp.name}", flush=True)
     n_params = sum(p.numel() for p in model.parameters())
@@ -188,10 +188,10 @@ if __name__ == "__main__":
 
     def ckpt_cb(step, m):
         if step % 500 == 0:
-            m.save(ckpt_dir / f"params_resnet_{args.tag}_step{step}.pt")
+            m.save(artifact_path(ckpt_dir / f"params_resnet_{args.tag}_step{step}.pt"))
 
     loss = train(samples, model, steps=args.steps, lr=args.lr, bs=args.bs,
                  seed=args.seed, ckpt_cb=ckpt_cb)
-    out = ckpt_dir / f"params_resnet_{args.tag}_last.pt"
+    out = artifact_path(ckpt_dir / f"params_resnet_{args.tag}_last.pt")
     model.save(out)
     print(f"[RESNET] done loss={loss:.4f} -> {out}", flush=True)

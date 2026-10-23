@@ -8,6 +8,7 @@ BC 训练（train_iteration_bc / expand_replay）直接读这个格式。
 
 clysto 走法是确定性的（argmax），所以 pi 用"选中那步 pi_top + 其余均匀"的软标签。
 """
+from checkpoint_paths import artifact_path, artifact_glob
 import os
 import pickle
 import random
@@ -207,7 +208,7 @@ def main(n_games=30, cly_time=1, max_moves=250, pi_top=0.95, random_opening=6,
     save_dir.mkdir(parents=True, exist_ok=True)
     if out_filename is None:
         out_filename = "replay_clysto.pkl" if mode == "self" else "replay_clysto_vs_v2.pkl"
-    out_path = save_dir / out_filename
+    out_path = artifact_path(save_dir / out_filename)
 
     cly1 = ac.ClystoEngine(timelimit=cly_time)
 

@@ -8,6 +8,7 @@
 
 日志: /tmp/night/az_loop.log   结果汇总: /tmp/night/az_results.txt
 """
+from checkpoint_paths import artifact_path, artifact_glob
 import os
 import subprocess
 import sys
@@ -53,8 +54,8 @@ def eval_game(ckpt, tag):
 
 
 # 初始冠军 = torch 冒烟模型（8:12 实测）
-if not (CKPT / CHAMP).exists():
-    subprocess.run(["cp", str(CKPT / "params_tsmoke_last.pkl"), str(CKPT / CHAMP)])
+if not (artifact_path(CKPT / CHAMP)).exists():
+    subprocess.run(["cp", str(artifact_path(CKPT / "params_tsmoke_last.pkl")), str(artifact_path(CKPT / CHAMP))])
 
 rnd = 0
 while time.time() < DEADLINE:
@@ -76,7 +77,7 @@ while time.time() < DEADLINE:
     # 2. 训练数据 = 专家 + 开局×3 + 最近3轮自对弈
     rounds = [r for r in range(max(1, rnd - 2), rnd + 1)]
     az_globs = " ".join(f"az_r{r}_*.pkl" for r in rounds)
-    for f in CKPT.glob("az_r*_*.pkl"):
+    for f in artifact_glob(CKPT, "az_r*_*.pkl"):
         r_old = int(f.stem.split("_")[1][1:])
         if r_old < rnd - 2:
             f.unlink()  # 滚动窗口：只保留最近3轮自对弈数据
@@ -92,7 +93,7 @@ while time.time() < DEADLINE:
     best_seed = max(wins, key=lambda s: wins[s])
     best_ckpt = f"params_az{rnd}s{best_seed}_last.pkl"
     if wins[best_seed] > eval_game(CHAMP, f"R{rnd}-base"):
-        subprocess.run(["cp", str(CKPT / best_ckpt), str(CKPT / CHAMP)])
+        subprocess.run(["cp", str(artifact_path(CKPT / best_ckpt)), str(artifact_path(CKPT / CHAMP))])
         RES.write(f"ROUND {rnd}: NEW CHAMP {best_ckpt} ({wins[best_seed]} wins)\n")
         LOG.write(f"[R{rnd}] NEW CHAMP {best_ckpt} {wins[best_seed]}\n")
     else:

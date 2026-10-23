@@ -13,6 +13,7 @@ CNN:
 为了省空间，实际 policy logits 输出 81+81（src 权重和 dst 权重），
 合法走法 src→dst 的 logit = w_src[src] + w_dst[dst]。
 """
+from checkpoint_paths import artifact_path, artifact_glob
 import os
 import sys
 import time
@@ -94,12 +95,12 @@ class NetParams:
                 self.wv1, self.bv1, self.wv2, self.bv2]
 
     def save(self, path):
-        with open(path, "wb") as f:
+        with open(artifact_path(path), "wb") as f:
             pickle.dump(self, f)
 
     @staticmethod
     def load(path):
-        with open(path, "rb") as f:
+        with open(artifact_path(path), "rb") as f:
             return pickle.load(f)
 
 
@@ -263,25 +264,33 @@ def _backup(visited_nodes, v):
     # 上面是占位，具体在 traverse 函数内处理备份。
 
 
-def mcts_think(params, board, player, n_simulations=48, c_puct=1.25):
+from mcts_history import position_key, candidate_indices
+
+
+def mcts_think(params, board, player, n_simulations=48, c_puct=1.25, *, add_root_noise=False, rng=None, history=None, discount=1.0):
     """跑 MCTS。返回:
     pi: (src,dst) → prob 的 dict（只含合法走法）
     best_move: (src, path) — 按 π 采样或选 argmax
     """
+    if not 0 < discount <= 1:
+        raise ValueError("discount must be in (0, 1]")
+    history = set(history or ())
     root_board = list(board)
 
     # 1) 根结点先得到根合法走法的 priors 与 v
     moves_root = all_moves_indexed(root_board, player)
     if not moves_root:
-        return None, (None, None)
+        return None, ([], []), (None, None)
     enc = encode_board(root_board, player)
     cache = {}
     pl, root_v = forward(params, enc, cache)
     priors_root = policy_logits_to_move_probs(pl, moves_root)
     # 加 Dirichlet 噪声（探索）
-    alpha = 0.6 / max(1, len(moves_root))
-    noise = np.random.dirichlet([alpha] * len(moves_root)).astype(np.float32)
-    priors_root = 0.75 * priors_root + 0.25 * noise
+    if add_root_noise:
+        rng = rng if rng is not None else np.random
+        alpha = 0.6 / max(1, len(moves_root))
+        noise = rng.dirichlet([alpha] * len(moves_root)).astype(np.float32)
+        priors_root = 0.75 * priors_root + 0.25 * noise
 
     root = Node(root_board, player, priors_root)
     # 立即展开根
@@ -325,12 +334,24 @@ def mcts_think(params, board, player, n_simulations=48, c_puct=1.25):
         """一次模拟。沿树选到叶子，扩展并评估，然后回溯更新。"""
         path = []  # [(parent_node, child_index)]
         node = root
-        while node.expanded and node.children:
+        seen = set(history)
+        seen.discard(position_key(root.board, root.player))
+        repeated = False
+        while True:
+            key = position_key(node.board, node.player)
+            if key in seen and cc.is_game_over(node.board) is None:
+                repeated = True
+                break
+            if not (node.expanded and node.children):
+                break
+            seen.add(key)
+            eligible = candidate_indices(node.children, seen, cc.is_game_over)
             # PUCT 选择
             n_parent = node.N
             best_u = -1e9
             best_i = 0
-            for i, ch in enumerate(node.children):
+            for i in eligible:
+                ch = node.children[i]
                 c = ch[3]
                 N_i = c.N
                 P_i = node.P[i]
@@ -342,17 +363,17 @@ def mcts_think(params, board, player, n_simulations=48, c_puct=1.25):
             node = node.children[best_i][3]
 
         # 到叶子：评估
-        v = evaluate_node(node)
+        v = 0.0 if repeated else evaluate_node(node)
         # 回溯：沿 path 更新。注意对 node.player 视角 v 是“node 这一方”的价值，给父的 value 是 -v。
         # 所以从 path[-1] 的父（即 path[-1][0]）往 root 更新，对应它的第 path[-1][1] 个孩子的统计 += -v。
-        cur_v = -v
+        cur_v = -v * discount
         for parent, ci in reversed(path):
             child = parent.children[ci][3]
             child.N += 1
             child.W += cur_v
             child.Q = child.W / child.N
-            parent.N += 1
-            cur_v = -cur_v
+            cur_v = -cur_v * discount
+        root.N += 1  # Each traversed node is visited exactly once per simulation.
 
     # 模拟
     for _ in range(n_simulations):
@@ -392,14 +413,18 @@ def self_play_one_game_raw(params, n_simulations, max_moves=200):
     """
     board = cc.init_board()
     steps = []
+    history = set()
     move_count = 0
     while True:
         w = cc.is_game_over(board)
         if w is not None:
             break
         player = 1 if (move_count % 2 == 0) else 2
+        history.add((tuple(board), player))
         v_est, (moves, pi_probs), (best_s, best_path) = mcts_think(
-            params, board, player, n_simulations=n_simulations)
+            params, board, player, n_simulations=n_simulations, add_root_noise=True, history=history)
+        if not moves:
+            break
         move_tuples = [(m[0], m[1], tuple(m[2])) for m in moves]
         if move_count < 15:
             p = np.array(pi_probs, dtype=np.float64)
@@ -424,11 +449,7 @@ def self_play_one_game_raw(params, n_simulations, max_moves=200):
 
     # 决定 winner
     w = cc.is_game_over(board)
-    if w is None:
-        s1 = engine.evaluate_v2(board, 1)
-        s2 = engine.evaluate_v2(board, 2)
-        w = 1 if s1 >= s2 else 2
-    return {"winner": w, "steps": steps}
+    return {"winner": w, "steps": steps, "aborted": w is None}
 
 
 def expand_game_records(game_records):
@@ -443,13 +464,14 @@ def expand_game_records(game_records):
             player = step["player"]
             s = encode_board(board, player)
             pi = np.array(step["pi"], dtype=np.float32)
-            z = 1.0 if player == winner else -1.0
+            z = (1.0 if player == winner else -1.0) if winner in (1, 2) else 0.0
             samples.append({
                 "s": s,
                 "player": player,
                 "moves": step["moves"],
                 "pi": pi,
                 "z": z,
+                "vw": 1.0 if winner in (1, 2) else 0.0,
             })
             # 推进棋盘，保证下一步的 s 正确（这个 replay 存的每步都带着当时的 moves 和 pi，
             # 推进只为了校验一致性，若与 step.move_path 不一致说明文件损坏）
@@ -463,7 +485,7 @@ DEFAULT_REPLAY_CAP = 200  # 最多保留多少局完整棋谱（滑动窗口）
 
 
 def _replay_path(save_dir):
-    return Path(save_dir) / REPLAY_FILENAME
+    return artifact_path(Path(save_dir) / REPLAY_FILENAME)
 
 
 def load_replay(save_dir, cap=DEFAULT_REPLAY_CAP):
@@ -681,13 +703,21 @@ class NNEasyEngine:
         # temperature=0 → argmax（确定性）；>0 → 按概率采样，越大越随机
         # use_book=True → 开局阶段优先走 clysto 开局库走法（命中才用，否则照常走 NN）
         self.params = params
+        self.history = set()
         self.use_mcts = use_mcts
         self.n_simulations = n_simulations
         self.temperature = temperature
         self.rng = np.random.default_rng(seed)
         self.use_book = use_book
 
+    def reset_history(self):
+        self.history.clear()
+
+    def observe_position(self, board, player):
+        self.history.add((tuple(board), player))
+
     def think(self, board, player):
+        self.observe_position(board, player)
         if self.use_book:
             import clysto_book
             bm = clysto_book.book_move(board, player, cc.get_all_moves)
@@ -697,9 +727,10 @@ class NNEasyEngine:
                 return path, {"engine": self.name, "book": True}
         if self.use_mcts:
             _, _, (best_s, best_path) = mcts_think(
-                self.params, board, player, n_simulations=self.n_simulations)
+                self.params, board, player, n_simulations=self.n_simulations, history=self.history)
             if best_path is None:
                 return None, {}
+            self.observe_position(cc.apply_move(board, best_path), 3 - player)
             return best_path, {"engine": self.name, "mcts": True}
         else:
             moves = cc.get_all_moves(board, player)
@@ -749,8 +780,8 @@ def train_iteration(
         save_dir = Path(__file__).parent / "nn_checkpoints"
     save_dir = Path(save_dir)
     save_dir.mkdir(parents=True, exist_ok=True)
-    ckpt_path = save_dir / "params_latest.pkt"  # fallback 占位（稍后覆盖）
-    ckpt_path = save_dir / "params_latest.pkl"
+    ckpt_path = artifact_path(save_dir / "params_latest.pkt")  # fallback 占位（稍后覆盖）
+    ckpt_path = artifact_path(save_dir / "params_latest.pkl")
     replay_path = _replay_path(save_dir)
 
     if ckpt_path.exists():
@@ -759,7 +790,7 @@ def train_iteration(
     elif warm_start_path is not None:
         ws = Path(warm_start_path)
         if not ws.is_absolute():
-            ws = save_dir / ws
+            ws = artifact_path(save_dir / ws)
         if ws.exists():
             print(f"[AZ] 加载 warm start 参数 {ws}（BC 模型）", flush=True)
             params = NetParams.load(ws)
@@ -815,7 +846,7 @@ def train_iteration(
         params.save(ckpt_path)
         print(f"  [{it + 1}/{n_steps}] 保存 latest → {ckpt_path}", flush=True)
         if save_ckpt_every > 0 and ((it + 1) % save_ckpt_every == 0 or it == n_steps - 1):
-            it_ck = save_dir / f"params_az_it_{it + 1:03d}.pkl"
+            it_ck = artifact_path(save_dir / f"params_az_it_{it + 1:03d}.pkl")
             params.save(it_ck)
             print(f"  [{it + 1}/{n_steps}] 保存迭代 ckpt → {it_ck}", flush=True)
         print(f"  [{it + 1}/{n_steps}] 迭代总用时 {(time.time()-t_it)/60:.1f}min", flush=True)
@@ -854,8 +885,8 @@ def train_iteration_bc(
         save_dir = Path(__file__).parent / "nn_checkpoints"
     save_dir = Path(save_dir)
     save_dir.mkdir(parents=True, exist_ok=True)
-    ckpt_path = save_dir / ckpt_filename
-    replay_path = save_dir / replay_filename
+    ckpt_path = artifact_path(save_dir / ckpt_filename)
+    replay_path = artifact_path(save_dir / replay_filename)
 
     if not replay_path.exists():
         raise FileNotFoundError(f"棋谱文件未找到: {replay_path}")
@@ -909,7 +940,7 @@ def train_iteration_bc(
             train_step_sgd(params, grads, lr=lr, max_norm=max_norm, weight_decay=weight_decay)
 
         if save_ckpt_every > 0 and ((step + 1) % save_ckpt_every == 0 or step == n_steps - 1):
-            ck = Path(save_dir) / f"params_bc_ckpt_{step+1:05d}.pkl"
+            ck = artifact_path(Path(save_dir) / f"params_bc_ckpt_{step+1:05d}.pkl")
             params.save(ck)
 
         if step % eval_every == 0 or step == n_steps - 1:
@@ -921,7 +952,7 @@ def train_iteration_bc(
             elapsed = time.time() - t0
             if val_loss < best_val_loss:
                 best_val_loss = val_loss
-                params.save(Path(save_dir) / "params_bc_best.pkl")
+                params.save(artifact_path(Path(save_dir) / "params_bc_best.pkl"))
                 mark = " ★ 保存best"
             else:
                 mark = ""
@@ -932,7 +963,7 @@ def train_iteration_bc(
     # 注：实战发现 last 参数（5:5）反而比 best 参数（0:10）强，故评估用 last
     params.save(ckpt_path)
     print(f"[BC] 完成! 最后参数 → {ckpt_path}", flush=True)
-    print(f"[BC] best参数 → {Path(save_dir) / 'params_bc_best.pkl'}", flush=True)
+    print(f"[BC] best参数 → {artifact_path(Path(save_dir) / 'params_bc_best.pkl')}", flush=True)
     print(f"[BC] 总用时 {time.time()-t0:.1f}s, 最佳 val_loss={best_val_loss:.4f}", flush=True)
     return params
 

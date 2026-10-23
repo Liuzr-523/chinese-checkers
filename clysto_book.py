@@ -11,6 +11,7 @@
 """
 import os
 import re
+import random
 from pathlib import Path
 
 CLYSTO_DIR = os.environ.get("CLYSTO_DIR", "/Users/liuzirui/Desktop/py/clysto-cc")
@@ -38,13 +39,19 @@ def _load():
         h = int.from_bytes(raw[i:i + 8], "little")
         src = int.from_bytes(raw[i + 8:i + 12], "little", signed=True)
         dst = int.from_bytes(raw[i + 12:i + 16], "little", signed=True)
-        book[h] = (src, dst)
-    # 3) 坐标映射（他的 pos -> 我们的 pos）
-    import sys
-    sys.path.insert(0, str(Path(__file__).parent))
-    from arena_vs_clysto import MAP_H2O
-    _cache.update(zob=zob, book=book, map_h2o=MAP_H2O)
-    return zob, book, MAP_H2O
+        moves = book.setdefault(h, [])
+        if (src, dst) not in moves:
+            moves.append((src, dst))
+    # 与 arena 相同的坐标映射，读取开局库无需启动/导入擂台。
+    map_h2o = {}
+    for hp in range(81):
+        x, y = hp % 9, hp // 9
+        r = x + y
+        start = r * (r + 1) // 2 if r <= 8 else 81 - (17-r) * (18-r) // 2
+        map_h2o[hp] = start + x - max(0, r - 8)
+    _cache.update(zob=zob, book=book, map_h2o=map_h2o)
+    return zob, book, map_h2o
+
 
 
 def _hash(board, player, map_h2o, zob):
@@ -68,27 +75,34 @@ def _hash(board, player, map_h2o, zob):
     return h
 
 
-def book_move(board, player, get_all_moves=None):
-    """命中开局库返回 (our_src, our_dst)，否则 None。
+def book_moves(board, player, get_all_moves=None):
+    """保留同一 hash 的全部候选，仅返回当前方合法走法。
 
-    book 条目的 hash 轮次位约定不统一（实测部分条目总是带 GREEN 轮次位），
-    因此两种 hash 都查，返回走法属于当前玩家的那个命中。
-    传入 get_all_moves 时可顺便校验走法合法性（连跳路径由调用方匹配）。"""
+    数据库部分后手条目带 GREEN 轮次位；先查标准 hash，未命中合法候选
+    再查翻转轮次位，始终用当前方合法走法过滤（兼容现有数据）。
+    """
+    if get_all_moves is None:
+        from Chinese_Checker import get_all_moves
     zob, book, map_h2o = _load()
     h = _hash(board, player, map_h2o, zob)
-    for cand in (h, h ^ _TURN_GREEN_XOR):
-        hit = book.get(cand)
-        if hit is None:
-            continue
-        src, dst = map_h2o[hit[0]], map_h2o[hit[1]]
-        if board[src] != player:
-            continue
-        if get_all_moves is not None:
-            ok = any(s == src and p[-1] == dst for s, p in get_all_moves(board, player))
-            if not ok:
+    legal = {(s, path[-1]) for s, path in get_all_moves(board, player)}
+    result = []
+    for key in (h, h ^ _TURN_GREEN_XOR):
+        for hs, he in book.get(key, []):
+            if hs not in map_h2o or he not in map_h2o:
                 continue
-        return src, dst
-    return None
+            move = (map_h2o[hs], map_h2o[he])
+            if move in legal:
+                result.append(move)
+        if result:
+            break
+    return result
+
+
+def book_move(board, player, get_all_moves=None, rng=None):
+    """像 clysto 一样从命中的合法候选中随机选一步。"""
+    moves = book_moves(board, player, get_all_moves)
+    return (rng or random).choice(moves) if moves else None
 
 
 if __name__ == "__main__":

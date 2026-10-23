@@ -1,0 +1,47 @@
+{
+  "numpy_vs_torch": {
+    "loss_numpy": 5.831399378485359,
+    "loss_torch": 5.831399917602539,
+    "max_gradient_error": 9.5367431640625e-07
+  },
+  "counting": {
+    "mcts_think": {
+      "simulations": 32,
+      "root_N": 32,
+      "root_children_N": [
+        17,
+        15
+      ],
+      "root_children_sum": 32,
+      "root_children_W": [
+        2.0,
+        0.0
+      ]
+    },
+    "mcts_think_resnet": {
+      "simulations": 32,
+      "root_N": 32,
+      "root_children_N": [
+        17,
+        15
+      ],
+      "root_children_sum": 32,
+      "root_children_W": [
+        2.0,
+        0.0
+      ]
+    }
+  },
+  "perspective_numpy": {
+    "root_selected": 1,
+    "expected_root_selected": 1,
+    "opponent_Q_for_P1_loss": 1.0,
+    "opponent_Q_for_P1_win": 0.0
+  },
+  "perspective_resnet": {
+    "root_selected": 1,
+    "expected_root_selected": 1,
+    "opponent_Q_for_P1_loss": 1.0,
+    "opponent_Q_for_P1_win": 0.0
+  }
+}

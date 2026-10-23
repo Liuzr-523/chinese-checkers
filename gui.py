@@ -1,43 +1,74 @@
 """
 中国跳棋 GUI（pygame）
 支持四种身份模式：人 vs 人、人 vs AI、AI vs 人、AI vs AI
-AI 引擎可选：v2启发式(AlphaBeta) 或 神经网络(MCTS+PUCT)
+双方可独立选择：人 / C-PVS / PVS / 神经网络 / Clysto，并指定先手。
+走法沿真实跳链播放动画，路径连线随动画淡入淡出。
 点击棋子选中 → 绿色圆圈高亮合法目标 → 点击目标落子
 """
+from checkpoint_paths import artifact_path, artifact_glob
+import atexit
 import os
 import sys
 import pygame
-import threading
+from functools import lru_cache
+import math
+import time
+from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import engine
 from engine import AlphaBetaIDSEngine
+from engine_pvs import PVSIDSEngine
 import alphazero_nn as nn_module
 from alphazero_nn import NetParams, NNEasyEngine, train_iteration
 
 cc = engine.cc
 
-# 4s：实测 1.2s→5s 使 v2 vs clysto 从 0:8 变 2:4，深度是当前最大棋力杠杆
-AI_AB = AlphaBetaIDSEngine(time_limit_sec=4.0, max_depth=12, eval_version="v2")
-AI_AB.name = "v2(AlphaBeta)"
+# 默认引擎 = PVS（主变窗 + 空着裁剪）：实测 PVS@4s vs clysto@1s = 1:9，
+# 显著强于原版 IDS@4s 的 0:10。评估函数仍用 v2（竞速权重版 v8 尚未验证胜率）。
+AI_AB = PVSIDSEngine(time_limit_sec=4.0, max_depth=12, eval_version="v2")
+AI_AB.name = "PVS(AlphaBeta)"
 
 # ===== 引擎工厂：根据选择返回可 think() 的对象 =====
+def _quit_engine(eng):
+    try:
+        if hasattr(eng, "quit"):
+            eng.quit()
+    except Exception:
+        pass
+
 def make_engine(kind):
-    """kind in {'v2', 'nn'}"""
+    """为每位玩家创建独立引擎。"""
+    if kind == "c":
+        from engine_c import CESEngine
+        return CESEngine(time_limit_sec=4.0, max_depth=20, eval_version="v2")
     if kind == "v2":
-        return AI_AB
+        eng = PVSIDSEngine(time_limit_sec=4.0, max_depth=12, eval_version="v2")
+        eng.name = "PVS(AlphaBeta)"
+        return eng
+    if kind == "cly":
+        # clysto C++ 引擎 @1s ≈ 业余高手（妈妈）水平，作为陪练/强敌
+        try:
+            from arena_vs_clysto import ClystoEngine
+            eng = ClystoEngine(timelimit=1)
+        except Exception as e:
+            print(f"[gui] clysto 引擎启动失败({e})，回退 v2")
+            return make_engine("v2")
+        eng.name = "Clysto(1s)"
+        atexit.register(_quit_engine, eng)
+        return eng
     # 神经网络：ResNet 冠军（torch 直推，无 MCTS）
     from nn_resnet import NetResNet
     from nn_torch import NNEasyEngineTorch
-    ckpt = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                        "nn_checkpoints", "params_resnet_champ.pt")
+    ckpt = artifact_path(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                        "nn_checkpoints", "params_resnet_champ.pt"))
     if os.path.exists(ckpt):
         model = NetResNet.load(ckpt)
         print(f"[gui] 载入 ResNet 冠军 {ckpt}")
     else:
         from nn_torch import NetTorch
-        pkl = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                           "nn_checkpoints", "params_az_champ.pkl")
+        pkl = artifact_path(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           "nn_checkpoints", "params_az_champ.pkl"))
         model = NetTorch.from_numpy_params(NetParams.load(pkl))
         print(f"[gui] ResNet 冠军缺失，回退旧模型 {pkl}")
     eng = NNEasyEngineTorch(model, temperature=0.0, seed=42)
@@ -72,21 +103,21 @@ CENTER_X = WIN_W // 2
 MARGIN_Y = 60
 
 # ===== 颜色 =====
-BG       = (245, 235, 210)
-HOLE     = (205, 188, 158)
-HOLE_RIM = (180, 160, 130)
-RED      = (225, 70, 70)
-RED_DK   = (150, 30, 30)
-CYAN     = (70, 185, 205)
-CYAN_DK  = (30, 120, 140)
-GREEN    = (80, 200, 80)
-GOLD     = (255, 200, 0)
-TEXT     = (50, 40, 30)
-PANEL    = (255, 250, 240)
-PANEL_BD = (200, 180, 150)
-BTN_BG   = (255, 250, 240)
-BTN_HL   = (255, 230, 180)
-BTN_SEL  = (255, 200, 100)
+BG       = (238, 243, 248)
+HOLE     = (231, 229, 220)
+HOLE_RIM = (184, 190, 191)
+RED      = (229, 83, 92)
+RED_DK   = (158, 47, 65)
+CYAN     = (43, 168, 190)
+CYAN_DK  = (24, 106, 137)
+GREEN    = (44, 170, 113)
+GOLD     = (236, 170, 48)
+TEXT     = (47, 59, 75)
+PANEL    = (255, 255, 255)
+PANEL_BD = (211, 220, 228)
+BTN_BG   = (255, 255, 255)
+BTN_HL   = (229, 237, 246)
+BTN_SEL  = (217, 231, 248)
 
 
 # ===== 坐标转换 =====
@@ -118,34 +149,95 @@ def piece_colors(player):
 
 
 # ===== 绘制 =====
+@lru_cache(maxsize=128)
+def _circle_sprite(color, radius):
+    # 先放大绘制再缩小，避开 SDL_gfx 的圆周混色黑点。
+    scale = 4
+    size = 2 * (radius + 2)
+    sprite = pygame.Surface((size * scale, size * scale), pygame.SRCALPHA)
+    # 透明区保留同色 RGB，缩放边缘时也不会混入黑色。
+    sprite.fill((*color[:3], 0))
+    pygame.draw.circle(sprite, color, ((radius+2)*scale, (radius+2)*scale), radius*scale)
+    return pygame.transform.smoothscale(sprite, (size, size))
+
+
+def smooth_circle(screen, color, center, radius):
+    x, y = map(int, center)
+    screen.blit(_circle_sprite(tuple(color), radius), (x-radius-2, y-radius-2))
+
+
+def draw_piece(screen, player, center):
+    x, y = map(int, center)
+    color, dark, light = piece_colors(player)
+    smooth_circle(screen, (184, 190, 193), (x+1, y+3), R)
+    smooth_circle(screen, dark, (x,y), R)
+    smooth_circle(screen, color, (x,y-1), R-2)
+    glow = tuple(min(255, int(c*.75+255*.25)) for c in color)
+    smooth_circle(screen, glow, (x-3,y-5), R-8)
+    smooth_circle(screen, light, (x-6,y-8), 4)
+    smooth_circle(screen, (255,255,255), (x-7,y-9), 2)
+
+
 def draw_board(screen, board, selected, legal_dests):
     screen.fill(BG)
-
-    # 棋盘孔
+    # 棋盘底板与双方营地，中心区域保持中性色。
+    outline = [(440,28),(684,444),(440,860),(196,444)]
+    shadow = [(x,y+5) for x,y in outline]
+    pygame.draw.polygon(screen, (215,223,231), shadow)
+    pygame.draw.polygon(screen, (250,249,245), outline)
+    pygame.draw.aalines(screen, (206,215,222), True, outline)
+    pygame.draw.polygon(screen, (253,224,225), [(440,30),(326,225),(554,225)])
+    pygame.draw.polygon(screen, (215,241,246), [(326,663),(554,663),(440,858)])
+    # 邻接网格让可走方向更容易辨认。
+    for pos, neighbors in cc.NEIGHBORS_81.items():
+        for other in neighbors:
+            if other > pos:
+                pygame.draw.aaline(screen, (216,218,211), pos_to_px(pos), pos_to_px(other))
     for pos in range(81):
-        px, py = pos_to_px(pos)
-        pygame.draw.circle(screen, HOLE_RIM, (px, py), R)
-        pygame.draw.circle(screen, HOLE, (px, py), R - 2)
-
-    # 棋子
-    for pos in range(81):
-        px, py = pos_to_px(pos)
-        if board[pos] != 0:
-            c, dk, hl = piece_colors(board[pos])
-            pygame.draw.circle(screen, dk, (px, py), R)
-            pygame.draw.circle(screen, c, (px, py), R - 2)
-            pygame.draw.circle(screen, hl, (px - 5, py - 5), 4)
-
-    # 选中棋子高亮
+        center = pos_to_px(pos)
+        rim = (217,162,166) if pos < 10 else (139,194,204) if pos >= 71 else HOLE_RIM
+        fill = (248,211,213) if pos < 10 else (201,231,237) if pos >= 71 else HOLE
+        smooth_circle(screen, rim, center, R)
+        smooth_circle(screen, fill, center, R-2)
+        if board[pos]:
+            draw_piece(screen, board[pos], center)
     if selected is not None:
-        px, py = pos_to_px(selected)
-        pygame.draw.circle(screen, GOLD, (px, py), R + 4, 3)
-
-    # 合法目标高亮
+        pygame.draw.circle(screen, GOLD, pos_to_px(selected), R+5, 3)
     for dst in legal_dests:
-        px, py = pos_to_px(dst)
-        pygame.draw.circle(screen, GREEN, (px, py), R, 3)
-        pygame.draw.circle(screen, (200, 255, 200), (px, py), 7)
+        center = pos_to_px(dst)
+        pygame.draw.circle(screen, GREEN, center, R+2, 3)
+        smooth_circle(screen, (104,203,151), center, 6)
+
+
+def draw_game_status(screen, font, font_s, counts, current_player, first_player,
+                     is_ai, engines, winner):
+    """步数按整手统计，连跳无论几段都只算一步。"""
+    for player, x in ((1,24),(2,670)):
+        rect = pygame.Rect(x,88,186,168)
+        color, dark, _ = piece_colors(player)
+        active = current_player == player and not winner
+        pygame.draw.rect(screen, (219,227,235), rect.move(0,3), border_radius=14)
+        pygame.draw.rect(screen, PANEL, rect, border_radius=14)
+        pygame.draw.rect(screen, color if active else PANEL_BD, rect, 2, border_radius=14)
+        pygame.draw.rect(screen, color, (x+14,104,5,24), border_radius=2)
+        label = f"P{player} {'红方' if player == 1 else '青方'}"
+        screen.blit(font.render(label, True, dark), (x+28,103))
+        role = "先手" if player == first_player else "后手"
+        kind = getattr(engines.get(player), 'name', '人') if is_ai[player] else '人'
+        # 使用短名，避免引擎参数挤出侧栏。
+        if is_ai[player]:
+            kind = 'C-PVS' if kind.startswith('C-PVS') else 'PVS' if kind.startswith('PVS') else 'Clysto' if kind.startswith('Clysto') else 'NN'
+        screen.blit(font_s.render(f"{role} · {kind}", True, (112,125,141)), (x+16,138))
+        screen.blit(font.render(f"{counts[player]} 步", True, dark), (x+16,169))
+        target = "目标：下方青营 ↓" if player == 1 else "目标：上方红营 ↑"
+        screen.blit(font_s.render(target, True, TEXT), (x+16,207))
+        if active:
+            smooth_circle(screen, color, (x+161,115), 5)
+    total = sum(counts.values())
+    round_number = max(1, (total+1)//2) if winner else total//2+1
+    for text, y in ((f"第 {round_number} 回合",302),(f"共走 {total} 手",332)):
+        screen.blit(font_s.render(text, True, (103,119,137)), (40,y))
+    screen.blit(font_s.render("一手连跳计一步", True, (125,139,154)), (40,365))
 
 
 def draw_panel(screen, font, font_s, current_player, p1_is_ai, p2_is_ai,
@@ -180,93 +272,122 @@ def draw_panel(screen, font, font_s, current_player, p1_is_ai, p2_is_ai,
     # 上一手
     if last_move:
         path_str = " → ".join(str(p) for p in last_move)
-        n = len(last_move)
-        kind = "单步" if n == 2 else ("单跳" if n == 3 else f"连跳{n - 2}")
+        kind = step_kind(last_move)
         mtext = f"上一手: [{kind}] {path_str}"
         msurf = font_s.render(mtext, True, TEXT)
         screen.blit(msurf, (20, y + 42))
 
     # 操作提示
-    hint = "点击棋子选中 → 点击绿圈目标落子 | 右键取消 | R 重新开始 | ESC 退出"
+    hint = "点击棋子选中 → 点击绿圈目标落子 | 右键取消 | U 悔棋 | R 返回设置 | ESC 返回/退出"
     hs = font_s.render(hint, True, TEXT)
     screen.blit(hs, (20, y + 68))
 
 
-_ENGINE_LABELS = {"v2": "v2 启发式(AlphaBeta)", "nn": "神经网络(ResNet)"}
+_ENGINE_LABELS = {"c": "C-PVS 加速", "v2": "PVS 竞速(AlphaBeta)", "nn": "神经网络(ResNet)", "cly": "Clysto(强敌)"}
+_ENGINE_SHORT = {"c": "C-PVS", "v2": "PVS", "nn": "NN", "cly": "Clysto"}
 
-def draw_start_screen(screen, font, font_s, p1_is_ai, p2_is_ai, ai_kind):
+def draw_start_screen(screen, font, font_s, is_ai, ai_kinds, first_player, error=""):
     screen.fill(BG)
-    title = font.render("中国跳棋", True, TEXT)
-    screen.blit(title, (CENTER_X - title.get_width() // 2, 120))
-
-    sub = font_s.render("选择双方身份 + AI 引擎", True, TEXT)
-    screen.blit(sub, (CENTER_X - sub.get_width() // 2, 170))
-
-    # P1 行
-    p1_label = font.render("红方 (P1, 0-9)", True, RED_DK)
-    screen.blit(p1_label, (CENTER_X - 220, 240))
-
-    # P2 行
-    p2_label = font.render("青方 (P2, 71-80)", True, CYAN_DK)
-    screen.blit(p2_label, (CENTER_X - 220, 310))
-
-    # AI 引擎行
-    ai_label = font.render("AI 引擎", True, TEXT)
-    screen.blit(ai_label, (CENTER_X - 220, 380))
-
-    # 按钮
-    btn_w, btn_h = 110, 44
-    bx = CENTER_X + 20
-
+    screen.blit(font.render("中国跳棋 · 对局设置", True, TEXT), (80, 110))
+    screen.blit(font_s.render("双方独立选择身份和引擎，颜色与先后手互不绑定", True, TEXT), (80, 160))
     btns = []
-    # P1 人
-    btns.append({"key": "p1", "val": False, "rect": pygame.Rect(bx, 234, btn_w, btn_h)})
-    # P1 AI
-    btns.append({"key": "p1", "val": True, "rect": pygame.Rect(bx + 130, 234, btn_w, btn_h)})
-    # P2 人
-    btns.append({"key": "p2", "val": False, "rect": pygame.Rect(bx, 304, btn_w, btn_h)})
-    # P2 AI
-    btns.append({"key": "p2", "val": True, "rect": pygame.Rect(bx + 130, 304, btn_w, btn_h)})
-    # AI kind
-    btns.append({"key": "kind", "val": "v2", "rect": pygame.Rect(bx, 374, btn_w, btn_h)})
-    btns.append({"key": "kind", "val": "nn", "rect": pygame.Rect(bx + 130, 374, btn_w, btn_h)})
-    # 开始按钮
-    btns.append({"key": "start", "rect": pygame.Rect(CENTER_X - 90, 470, 180, 54)})
-
+    for player, y in ((1, 235), (2, 400)):
+        label = "P1 红方" if player == 1 else "P2 青方"
+        screen.blit(font.render(label, True, piece_colors(player)[1]), (80, y))
+        for j, value in enumerate((False, True)):
+            btns.append(dict(key="identity", player=player, val=value,
+                             label="AI" if value else "人", selected=is_ai[player] == value,
+                             rect=pygame.Rect(300+j*130, y-8, 115, 44)))
+        for j, kind in enumerate(("c", "v2", "nn", "cly")):
+            btns.append(dict(key="engine", player=player, val=kind,
+                             label=_ENGINE_SHORT[kind], selected=ai_kinds[player] == kind,
+                             disabled=not is_ai[player],
+                             rect=pygame.Rect(300+j*125, y+50, 115, 44)))
+    screen.blit(font.render("谁先走", True, TEXT), (80, 570))
+    for j, player in enumerate((1, 2)):
+        btns.append(dict(key="first", val=player, label=f"P{player} 先手",
+                         selected=first_player == player,
+                         rect=pygame.Rect(300+j*150, 560, 140, 44)))
+    btns.append(dict(key="start", label="开始对局", selected=True,
+                     rect=pygame.Rect(330, 675, 220, 54)))
     for btn in btns:
-        if btn["key"] == "start":
-            pygame.draw.rect(screen, BTN_SEL, btn["rect"], border_radius=8)
-            pygame.draw.rect(screen, PANEL_BD, btn["rect"], 2, border_radius=8)
-            t = font.render("开始对局", True, TEXT)
-            screen.blit(t, (btn["rect"].x + 38, btn["rect"].y + 14))
-        elif btn["key"] == "kind":
-            sel = (ai_kind == btn["val"])
-            bg_c = BTN_SEL if sel else BTN_BG
-            pygame.draw.rect(screen, bg_c, btn["rect"], border_radius=6)
-            pygame.draw.rect(screen, PANEL_BD, btn["rect"], 2, border_radius=6)
-            t = font_s.render(_ENGINE_LABELS[btn["val"]], True, TEXT)
-            # 如果太长就缩小
-            if t.get_width() > btn_w - 8:
-                t = font_s.render("NN" if btn["val"]=="nn" else "v2", True, TEXT)
-            screen.blit(t, (btn["rect"].x + 6, btn["rect"].y + 12))
-        else:
-            sel = (p1_is_ai if btn["key"] == "p1" else p2_is_ai) == btn["val"]
-            bg_c = BTN_SEL if sel else BTN_BG
-            pygame.draw.rect(screen, bg_c, btn["rect"], border_radius=6)
-            pygame.draw.rect(screen, PANEL_BD, btn["rect"], 2, border_radius=6)
-            label = "AI" if btn["val"] else "人"
-            t = font_s.render(label, True, TEXT)
-            screen.blit(t, (btn["rect"].x + 38, btn["rect"].y + 12))
-
+        disabled = btn.get("disabled", False)
+        color = (225, 220, 210) if disabled else BTN_SEL if btn.get("selected") else BTN_BG
+        pygame.draw.rect(screen, color, btn["rect"], border_radius=8)
+        pygame.draw.rect(screen, PANEL_BD, btn["rect"], 1, border_radius=8)
+        text = font_s.render(btn["label"], True, (145, 140, 130) if disabled else TEXT)
+        screen.blit(text, text.get_rect(center=btn["rect"].center))
+    if error:
+        screen.blit(font_s.render(error[:75], True, RED_DK), (70, 770))
     pygame.display.flip()
     return btns
 
 
 def step_kind(path):
-    n = len(path)
-    if n == 2: return "单步"
-    if n == 3: return "单跳"
-    return f"连跳{n - 2}"
+    if len(path) == 2 and path[-1] in cc.NEIGHBORS_81[path[0]]:
+        return "单步"
+    return "单跳" if len(path) == 2 else f"连跳{len(path)-1}次"
+
+
+def resolve_move_path(board, player, path):
+    """C 引擎只返回端点；从规则层补全用于演示的合法跳链。"""
+    if not path or len(path) < 2:
+        raise ValueError("引擎未返回有效走法")
+    paths = cc.get_all_legal_moves(path[0], board) if board[path[0]] == player else []
+    for candidate in paths:
+        if candidate == list(path):
+            return candidate
+    for candidate in paths:
+        if candidate[-1] == path[-1]:
+            return candidate
+    raise ValueError(f"非法走法: {path[0]} → {path[-1]}")
+
+
+class MoveAnimation:
+    """按真实路径逐段跳跃，停留展示落点后再交给下一方。"""
+    segment_seconds = 0.48
+    landing_seconds = 0.75
+    fade_in_seconds = 0.25
+    fade_out_seconds = 0.55
+
+    def __init__(self, board, player, path, now):
+        self.path = resolve_move_path(board, player, path)
+        self.player = player
+        self.started = now
+        self.board = board.copy()
+        self.board[self.path[0]] = 0
+        self.duration = (len(self.path)-1) * self.segment_seconds + self.landing_seconds
+
+    def done(self, now):
+        return now - self.started >= self.duration
+
+    def draw(self, screen, now):
+        points = [pos_to_px(pos) for pos in self.path]
+        layer = pygame.Surface((WIN_W, WIN_H), pygame.SRCALPHA)
+        pygame.draw.lines(layer, (255, 180, 35, 150), False, points, 6)
+        for i, point in enumerate(points):
+            pygame.draw.circle(layer, (255, 210, 60, 200), point, R+5, 2)
+            label = _load_font(14).render(str(i+1), True, TEXT)
+            layer.blit(label, (point[0]+18, point[1]-28))
+        elapsed = max(0.0, now - self.started)
+        opacity = min(1.0, elapsed / self.fade_in_seconds,
+                      max(0.0, (self.duration - elapsed) / self.fade_out_seconds))
+        # smoothstep：连线、落点圈及编号一起柔和淡入淡出。
+        opacity = opacity * opacity * (3 - 2 * opacity)
+        layer.set_alpha(round(255 * opacity))
+        screen.blit(layer, (0, 0))
+        progress = max(0, (now-self.started) / self.segment_seconds)
+        segment = min(int(progress), len(points)-2)
+        t = min(1.0, progress-segment)
+        t = t*t*(3-2*t)
+        a, b = points[segment], points[segment+1]
+        lift = 16 * math.sin(math.pi*t)
+        x = round(a[0]+(b[0]-a[0])*t)
+        ground_y = round(a[1]+(b[1]-a[1])*t)
+        y = round(ground_y-lift)
+        pygame.draw.ellipse(screen, (165, 147, 116), (x-17, ground_y+12, 34, 10))
+        pygame.draw.circle(screen, GOLD, (x, y), R+5, 3)
+        draw_piece(screen, self.player, (x,y))
 
 
 def get_legal_dests(board, player, piece_pos):
@@ -282,165 +403,247 @@ def get_legal_dests(board, player, piece_pos):
 
 
 # ===== 主循环 =====
+# Side-panel controls stay clear of the board and bottom status text.
+GAME_BUTTONS = {
+    "undo": pygame.Rect(24, 410, 186, 40),
+    "back": pygame.Rect(24, 462, 186, 40),
+    "resume": pygame.Rect(24, 514, 186, 40),
+}
+
+
+def draw_game_controls(screen, font, can_undo, paused):
+    for key, label in (("undo", "悔棋  U"), ("back", "返回对战设置  R"),
+                       ("resume", "继续 AI  空格")):
+        if key == "resume" and not paused:
+            continue
+        rect = GAME_BUTTONS[key]
+        enabled = key != "undo" or can_undo
+        pygame.draw.rect(screen, PANEL if enabled else (226,231,237), rect, border_radius=9)
+        pygame.draw.rect(screen, PANEL_BD, rect, 1, border_radius=9)
+        text = font.render(label, True, TEXT if enabled else (150,159,168))
+        screen.blit(text, text.get_rect(center=rect.center))
+
+
+def undo_index(history, is_ai, pending_player=None):
+    """Human vs AI rewinds to the human's last turn; other modes undo one move.
+    An uncommitted human/AI-vs-AI animation is simply cancelled first.
+    """
+    human_vs_ai = sum(is_ai.values()) == 1
+    if pending_player is not None and (not human_vs_ai or not is_ai[pending_player]):
+        return len(history)
+    if human_vs_ai:
+        return next((i for i in range(len(history)-1, -1, -1)
+                     if not is_ai[history[i]['player']]), None)
+    return len(history)-1 if history else None
+
+
 def main():
     pygame.init()
     screen = pygame.display.set_mode((WIN_W, WIN_H))
     pygame.display.set_caption("中国跳棋")
     clock = pygame.time.Clock()
-    font = _load_font(22)
-    font_s = _load_font(16)
-
-    # 模式：'menu' | 'playing'
+    font, font_s = _load_font(22), _load_font(16)
     mode = "menu"
-    p1_is_ai = False
-    p2_is_ai = True
-    ai_kind = "v2"   # 'v2' | 'nn'
-    ai_engine = None  # 运行时对弈的引擎对象，由 reset_game 时创建
-    btns = draw_start_screen(screen, font, font_s, p1_is_ai, p2_is_ai, ai_kind)
-
-    # 棋局运行时变量
-    board = None
-    is_ai = {1: False, 2: False}
+    is_ai = {1: False, 2: True}
+    ai_kinds = {1: "c", 2: "c"}
+    first_player = 1
+    engines = {}
+    executor = ThreadPoolExecutor(max_workers=1)
+    future = None
+    history = []
+    ai_paused = False
+    undo_at = None
+    board = cc.init_board()
     current_player = 1
-    selected = None
-    legal_dest_map = {}
-    ai_pending = False
-    last_move = None
-    winner = None
+    move_counts = {1: 0, 2: 0}
+    selected, legal_dest_map = None, {}
+    last_move, winner, animation = None, None, None
+    error = ""
+    running = True
 
-    def reset_game():
-        nonlocal board, current_player, selected, legal_dest_map, ai_pending, last_move, winner, ai_engine
-        ai_engine = make_engine(ai_kind)
-        print(f"[gui] 使用 AI 引擎: {getattr(ai_engine, 'name', ai_kind)}")
+    def close_engines():
+        for eng in engines.values():
+            _quit_engine(eng)
+        engines.clear()
+
+    def start_game():
+        nonlocal board, current_player, selected, legal_dest_map, last_move, winner, animation, error, ai_paused
+        close_engines()
+        try:
+            for player in (1, 2):
+                if is_ai[player]:
+                    engines[player] = make_engine(ai_kinds[player])
+        except Exception as exc:
+            close_engines()
+            error = f"引擎启动失败：{exc}"
+            return False
+        history.clear()
+        ai_paused = False
         board = cc.init_board()
-        is_ai[1] = p1_is_ai
-        is_ai[2] = p2_is_ai
-        current_player = 1
-        selected = None
-        legal_dest_map = {}
-        ai_pending = is_ai[1]
-        last_move = None
-        winner = None
+        current_player = first_player
+        move_counts.update({1: 0, 2: 0})
+        selected, legal_dest_map = None, {}
+        last_move, winner, animation = None, None, None
+        error = ""
+        return True
 
-    while True:
-        # ===== 菜单界面 =====
-        if mode == "menu":
-            btns = draw_start_screen(screen, font, font_s, p1_is_ai, p2_is_ai, ai_kind)
-            in_menu = True
-            while in_menu:
-                for ev in pygame.event.get():
-                    if ev.type == pygame.QUIT:
-                        pygame.quit(); return
-                    if ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE:
-                        pygame.quit(); return
+    def restore_undo():
+        nonlocal board, current_player, last_move, winner, selected, legal_dest_map, error, ai_paused
+        if undo_at is not None and undo_at < len(history):
+            snapshot = history[undo_at]
+            board = snapshot['board'].copy()
+            current_player = snapshot['player']
+            move_counts.update(snapshot['counts'])
+            last_move = snapshot['last_move']
+            winner = snapshot['winner']
+            del history[undo_at:]
+        selected, legal_dest_map = None, {}
+        error = ""
+        ai_paused = all(is_ai.values())
+        # Rebuild history-sensitive NN state from the retained game, after search has stopped.
+        for eng in engines.values():
+            if hasattr(eng, 'reset_history'):
+                eng.reset_history()
+                if hasattr(eng, 'observe_position'):
+                    for snapshot in history:
+                        eng.observe_position(snapshot['board'], snapshot['player'])
+                    eng.observe_position(board, current_player)
+
+    try:
+        while running:
+            now = time.monotonic()
+            if mode == "menu":
+                btns = draw_start_screen(screen, font, font_s, is_ai, ai_kinds, first_player, error)
+            for ev in pygame.event.get():
+                if ev.type == pygame.QUIT or (mode == "menu" and ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE):
+                    running = False
+                    break
+                if mode == "menu":
                     if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
                         for btn in btns:
-                            if btn["rect"].collidepoint(ev.pos):
-                                if btn["key"] == "p1":
-                                    p1_is_ai = btn["val"]
-                                    btns = draw_start_screen(screen, font, font_s, p1_is_ai, p2_is_ai, ai_kind)
-                                elif btn["key"] == "p2":
-                                    p2_is_ai = btn["val"]
-                                    btns = draw_start_screen(screen, font, font_s, p1_is_ai, p2_is_ai, ai_kind)
-                                elif btn["key"] == "kind":
-                                    ai_kind = btn["val"]
-                                    btns = draw_start_screen(screen, font, font_s, p1_is_ai, p2_is_ai, ai_kind)
-                                elif btn["key"] == "start":
-                                    reset_game()
-                                    mode = "playing"
-                                    in_menu = False
-                                break
-
-        # ===== 对弈界面 =====
-        if mode == "playing":
-            # ---- 事件处理 ----
-            for ev in pygame.event.get():
-                if ev.type == pygame.QUIT:
-                    pygame.quit(); return
-                elif ev.type == pygame.KEYDOWN:
-                    if ev.key == pygame.K_ESCAPE:
-                        pygame.quit(); return
-                    elif ev.key == pygame.K_r:
-                        mode = "menu"
-                        break
-                elif ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 3:
-                    selected = None
-                    legal_dest_map = {}
-                elif ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
-                    if winner is not None or ai_pending:
-                        continue
-                    if is_ai[current_player]:
-                        continue
-                    pos = px_to_pos(*ev.pos)
-                    if pos is None:
-                        continue
-
-                    if selected is None:
-                        if board[pos] == current_player:
-                            dest_map = get_legal_dests(board, current_player, pos)
-                            if dest_map:
-                                selected = pos
-                                legal_dest_map = dest_map
-                            else:
-                                selected = None
-                                legal_dest_map = {}
+                            if not btn["rect"].collidepoint(ev.pos) or btn.get("disabled"):
+                                continue
+                            if btn["key"] == "identity":
+                                is_ai[btn["player"]] = btn["val"]
+                            elif btn["key"] == "engine":
+                                ai_kinds[btn["player"]] = btn["val"]
+                            elif btn["key"] == "first":
+                                first_player = btn["val"]
+                            elif btn["key"] == "start" and start_game():
+                                mode = "playing"
+                            break
+                    continue
+                back = (ev.type == pygame.KEYDOWN and ev.key in (pygame.K_r, pygame.K_ESCAPE)) or (
+                    ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1 and GAME_BUTTONS['back'].collidepoint(ev.pos))
+                undo = (ev.type == pygame.KEYDOWN and ev.key == pygame.K_u) or (
+                    ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1 and GAME_BUTTONS['undo'].collidepoint(ev.pos))
+                resume = (ev.type == pygame.KEYDOWN and ev.key == pygame.K_SPACE) or (
+                    ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1 and GAME_BUTTONS['resume'].collidepoint(ev.pos))
+                if back:
+                    mode = "waiting_menu" if future is not None else "menu"
+                    animation = None
+                    error = ""
+                    if future is None:
+                        close_engines()
                     else:
-                        if pos in legal_dest_map:
-                            path = legal_dest_map[pos]
-                            board = cc.apply_move(board, path)
-                            last_move = path
-                            selected = None
-                            legal_dest_map = {}
-                            w = cc.is_game_over(board)
-                            if w:
-                                winner = w
-                            else:
-                                current_player = 3 - current_player
-                                if is_ai[current_player]:
-                                    ai_pending = True
-                        elif board[pos] == current_player:
-                            dest_map = get_legal_dests(board, current_player, pos)
-                            if dest_map:
-                                selected = pos
-                                legal_dest_map = dest_map
-                            else:
-                                selected = None
-                                legal_dest_map = {}
+                        future.cancel()
+                    break
+                if mode.startswith("waiting_"):
+                    continue
+                if undo:
+                    undo_at = undo_index(history, is_ai, current_player if animation or future is not None else None)
+                    if undo_at is not None:
+                        animation = None
+                        if future is not None:
+                            future.cancel()
+                            mode = "waiting_undo"
                         else:
-                            selected = None
-                            legal_dest_map = {}
-
-            if mode != "playing":
+                            restore_undo()
+                    break
+                if resume and ai_paused:
+                    ai_paused = False
+                    continue
+                if animation or future is not None or winner or is_ai[current_player]:
+                    continue
+                if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 3:
+                    selected, legal_dest_map = None, {}
+                elif ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                    pos = px_to_pos(*ev.pos)
+                    if pos in legal_dest_map:
+                        animation = MoveAnimation(board, current_player, legal_dest_map[pos], now)
+                        selected, legal_dest_map = None, {}
+                    elif pos is not None and board[pos] == current_player:
+                        selected = pos
+                        legal_dest_map = get_legal_dests(board, current_player, pos)
+                    else:
+                        selected, legal_dest_map = None, {}
+            if not running:
+                break
+            if mode in ("waiting_menu", "waiting_undo"):
+                if future.done():
+                    future = None  # Discard stale search result, including any exception.
+                    if mode == "waiting_menu":
+                        close_engines()
+                        mode = "menu"
+                    else:
+                        restore_undo()
+                        mode = "playing"
+                else:
+                    draw_board(screen, board, None, [])
+                    text = "正在结束思考，随后返回设置…" if mode == "waiting_menu" else "正在结束思考，随后悔棋…"
+                    screen.blit(font_s.render(text, True, TEXT), (240, 30))
+                    draw_game_controls(screen, font_s, False, False)
+                    pygame.display.flip()
                 clock.tick(FPS)
                 continue
-
-            # ---- 绘制 ----
-            draw_board(screen, board, selected, list(legal_dest_map.keys()))
-            draw_panel(screen, font, font_s, current_player, p1_is_ai, p2_is_ai,
-                       ai_pending, winner, last_move)
-            # 右上角显示当前引擎
-            eng_text = font_s.render(f"AI: {getattr(ai_engine,'name', ai_kind)}", True, TEXT)
-            screen.blit(eng_text, (WIN_W - eng_text.get_width() - 16, 10))
-            pygame.display.flip()
-
-            # ---- AI 思考（由引擎对象 think 决定）----
-            if ai_pending and winner is None:
-                path, info = ai_engine.think(board, current_player)
-                ai_pending = False
-                if path is None:
-                    winner = 3 - current_player
-                else:
-                    board = cc.apply_move(board, path)
-                    last_move = path
-                    w = cc.is_game_over(board)
-                    if w:
-                        winner = w
+            if mode == "menu":
+                clock.tick(FPS)
+                continue
+            if animation and animation.done(now):
+                history.append(dict(board=board.copy(), player=current_player,
+                                    counts=move_counts.copy(), last_move=last_move, winner=winner))
+                last_move = animation.path
+                board = cc.apply_move(board, last_move)
+                move_counts[current_player] += 1
+                animation = None
+                winner = cc.is_game_over(board)
+                if not winner:
+                    current_player = 3-current_player
+            if future is not None and future.done():
+                try:
+                    path, info = future.result()
+                    if path is None:
+                        winner = 3-current_player
                     else:
-                        current_player = 3 - current_player
-                        if is_ai[current_player]:
-                            ai_pending = True
-
-        clock.tick(FPS)
+                        animation = MoveAnimation(board, current_player, path, now)
+                except Exception as exc:
+                    error = f"AI 出错：{exc}（按 R 返回设置）"
+                    print(f"[gui] {error}")
+                future = None
+            if not animation and future is None and not winner and not error and not ai_paused and is_ai[current_player]:
+                future = executor.submit(engines[current_player].think, board.copy(), current_player)
+            draw_board(screen, animation.board if animation else board,
+                       selected, list(legal_dest_map))
+            if animation:
+                animation.draw(screen, now)
+            draw_panel(screen, font, font_s, current_player, is_ai[1], is_ai[2],
+                       future is not None, winner, animation.path if animation else last_move)
+            draw_game_status(screen, font, font_s, move_counts, current_player,
+                             first_player, is_ai, engines, winner)
+            can_undo = undo_index(history, is_ai, current_player if animation or future is not None else None) is not None
+            draw_game_controls(screen, font_s, can_undo, ai_paused)
+            if ai_paused:
+                screen.blit(font_s.render("已暂停 AI，可继续悔棋或恢复对弈", True, TEXT), (20, 35))
+            if animation:
+                screen.blit(font_s.render("走棋演示中…", True, TEXT), (20, 35))
+            if error:
+                screen.blit(font_s.render(error[:85], True, RED_DK), (20, 35))
+            pygame.display.flip()
+            clock.tick(FPS)
+    finally:
+        executor.shutdown(wait=True, cancel_futures=True)
+        close_engines()
+        pygame.quit()
 
 
 if __name__ == "__main__":

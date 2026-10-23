@@ -9,6 +9,7 @@ clysto 项目: /Users/liuzirui/Desktop/py/clysto-cc (C++, 已编译 cc_cli)
 
 CLI 协议: stdin 发 "SEARCH <81字符state><r|g>"，stdout 收 "<src> <dst>"
 """
+from checkpoint_paths import artifact_path, artifact_glob
 import os
 import re
 import sys
@@ -171,11 +172,14 @@ def play_one_game(our_eng, opp_eng, our_player, max_moves=250):
 
 def main(n_games=10, our_time=1.0, cly_time=1, our_engine="v2",
          ckpt=None, n_simulations=32):
-    if our_engine == "nn":
+    if our_engine == "c":
+        from engine_c import CESEngine
+        our = CESEngine(time_limit_sec=our_time, max_depth=20, eval_version="v2")
+    elif our_engine == "nn":
         from alphazero_nn import NetParams, NNEasyEngine
         save_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 "nn_checkpoints")
-        ckpt_path = ckpt or os.path.join(save_dir, "params_bc_latest.pkl")
+        ckpt_path = ckpt or artifact_path(os.path.join(save_dir, "params_bc_latest.pkl"))
         params = NetParams.load(ckpt_path)
         our = NNEasyEngine(params, use_mcts=(n_simulations > 0),
                            n_simulations=max(n_simulations, 1))
@@ -227,7 +231,7 @@ if __name__ == "__main__":
     parser.add_argument("--n_games", type=int, default=10)
     parser.add_argument("--our_time", type=float, default=1.0)
     parser.add_argument("--cly_time", type=int, default=1)
-    parser.add_argument("--our_engine", choices=["v2", "nn"], default="v2",
+    parser.add_argument("--our_engine", choices=["v2", "nn", "c"], default="v2",
                         help="我方引擎：v2=启发式搜索，nn=神经网络")
     parser.add_argument("--ckpt", default=None,
                         help="nn 模式下的参数文件路径，默认 nn_checkpoints/params_bc_latest.pkl")

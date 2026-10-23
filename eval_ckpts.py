@@ -1,6 +1,7 @@
 """批量评估所有 params_bc_ckpt_*.pkl vs V0，每个评 4 局。
 记录胜率，输出排名和最佳路径。
 """
+from checkpoint_paths import artifact_path, artifact_glob
 import os
 import sys
 import time
@@ -80,7 +81,7 @@ def eval_ckpt(ckpt_path, v0_eng, n_games=4, max_moves=200):
 
 def main():
     v0 = AlphaBetaIDSEngine(time_limit_sec=0.5, max_depth=4, eval_version="v0")
-    ckpts = sorted(HERE.glob("params_bc_ckpt_*.pkl"))
+    ckpts = sorted(artifact_glob(HERE, "params_bc_ckpt_*.pkl"))
     print(f"[EVAL-CKPT] 找到 {len(ckpts)} 个 ckpt, 每个评 4 局", flush=True)
     results = []
     t0 = time.time()
@@ -97,7 +98,7 @@ def main():
     for i, (st, w, l, mv, ck) in enumerate(results, 1):
         print(f"  #{i}: step {st}  {w}:{l}  {ck.name}", flush=True)
     best = results[0]
-    best_name = HERE / "params_bc_chosen_by_eval.pkl"
+    best_name = artifact_path(HERE / "params_bc_chosen_by_eval.pkl")
     if best_name.exists():
         best_name.unlink()
     import shutil

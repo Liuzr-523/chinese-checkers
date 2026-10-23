@@ -11,6 +11,7 @@ pi 用软标签 0.7（V2 选中的走法给 0.7，其余均匀分摊 0.3），NN
   python3 self_play_v2.py --n_games 100 --time_limit_sec 0.3
   python3 self_play_v2.py --n_games 100 --temperature 1.0   # 调探索强度
 """
+from checkpoint_paths import artifact_path, artifact_glob
 import os
 import sys
 import time
@@ -174,8 +175,8 @@ def augment_with_swap(records):
 def main(n_games, max_moves, time_limit_sec, save_dir, pi_top, temperature,
          use_explore=True, seed=0, do_augment=True):
     Path(save_dir).mkdir(parents=True, exist_ok=True)
-    replay_v2_path = Path(save_dir) / "replay_v2.pkl"
-    replay_aug_path = Path(save_dir) / "replay_v2_aug.pkl"
+    replay_v2_path = artifact_path(Path(save_dir) / "replay_v2.pkl")
+    replay_aug_path = artifact_path(Path(save_dir) / "replay_v2_aug.pkl")
 
     # 设随机种子
     if seed is not None:

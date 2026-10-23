@@ -261,6 +261,49 @@ def evaluate_v7(board, player):
     return score
 
 
+def evaluate_v8(board, player):
+    """
+    v8 = v2 + 竞速权重 0.05 → 1.0（单变量 AB 测试，对标 clysto evaluate()）
+    动机：跳棋是纯竞速游戏，胜负=谁先全部到家。v2 的对手项权重仅 0.05，
+    约等于无视对手推进；clysto 的评估是纯竞速差 own − opp（权重 1.0）。
+    与 v2 的唯一差异：对手进度项乘数 0.05 → 1.0，其余（min*100+sum、后排惩罚）完全一致。
+    """
+    opp = 3 - player
+    prog = _PROG[player]
+    opp_prog = _PROG[opp]
+    back_zone = _BACK[player]
+
+    my_min = 17
+    my_sum = 0
+    back = 0
+    op_min = 17
+    op_sum = 0
+    for pos in range(81):
+        piece = board[pos]
+        if piece:
+            if piece == player:
+                v = prog[pos]
+                if v < my_min:
+                    my_min = v
+                my_sum += v
+                if back_zone[pos]:
+                    back += 1
+            else:
+                v = opp_prog[pos]
+                if v < op_min:
+                    op_min = v
+                op_sum += v
+
+    if my_min == 17:           # 我方已无棋子
+        score = 0
+    else:
+        score = my_min * 100 + my_sum - back * 3
+    if op_min < 17:            # 对手还有棋子
+        score -= (op_min * 100 + op_sum) * 1.0
+
+    return score
+
+
 class RandomEngine(Engine):
     """Level-0 随机 AI：从所有合法走法中随机挑一个"""
 
@@ -701,6 +744,8 @@ class AlphaBetaIDSEngine(Engine):
             self._eval_fn = evaluate_v6
         elif eval_version == "v7":
             self._eval_fn = evaluate_v7
+        elif eval_version == "v8":
+            self._eval_fn = evaluate_v8
         else:
             self._eval_fn = evaluate
 

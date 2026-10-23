@@ -5,6 +5,7 @@ pi = book 推荐走法（平滑 0.95），z = 0（开局阶段胜负未知，取
 
 用法: python3 gen_book_data.py [--out replay_book.pkl]
 """
+from checkpoint_paths import artifact_path, artifact_glob
 import argparse
 import pickle
 import sys
@@ -77,4 +78,4 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="replay_book.pkl")
     a = ap.parse_args()
-    main(HERE / a.out)
+    main(artifact_path(HERE / a.out))

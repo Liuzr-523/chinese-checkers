@@ -2,6 +2,7 @@
 走法 = V2 argmax（能赢 V0 的水平），开局前 4 步随机打破固定序列保证局面多样。
 输出到 replay_v2_argmax.pkl（不覆盖原 replay_v2.pkl）。
 """
+from checkpoint_paths import artifact_path, artifact_glob
 import os
 import sys
 import time
@@ -21,7 +22,7 @@ def main(n_games=150, max_moves=200, time_limit_sec=0.3,
          random_opening=4, pi_top=0.95, out_filename="replay_v2_argmax.pkl"):
     save_dir = Path(__file__).parent / "nn_checkpoints"
     save_dir.mkdir(parents=True, exist_ok=True)
-    out_path = save_dir / out_filename
+    out_path = artifact_path(save_dir / out_filename)
 
     # 两个 V2 引擎，不设 seed 保证每局开局随机不同
     eng1 = AlphaBetaIDSEngine(time_limit_sec=time_limit_sec, max_depth=6, eval_version="v2")
