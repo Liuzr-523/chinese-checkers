@@ -1,0 +1,100 @@
+{
+  "games": 120,
+  "outcomes": {
+    "win": 61,
+    "loss": 54,
+    "draw": 5
+  },
+  "double_loss_pairs": [
+    2,
+    3,
+    11,
+    13,
+    15,
+    18,
+    29,
+    36,
+    44,
+    45,
+    54
+  ],
+  "stage_summary": {
+    "win": {
+      "20": {
+        "n": 61,
+        "mean_assignment_deficit": -1.1639344262295082,
+        "mean_goal_deficit": 0.06557377049180328
+      },
+      "40": {
+        "n": 61,
+        "mean_assignment_deficit": -4.786885245901639,
+        "mean_goal_deficit": -0.32786885245901637
+      },
+      "60": {
+        "n": 61,
+        "mean_assignment_deficit": -6.098360655737705,
+        "mean_goal_deficit": -0.47540983606557374
+      },
+      "80": {
+        "n": 61,
+        "mean_assignment_deficit": -6.0,
+        "mean_goal_deficit": -0.5901639344262295
+      }
+    },
+    "loss": {
+      "20": {
+        "n": 54,
+        "mean_assignment_deficit": 2.074074074074074,
+        "mean_goal_deficit": -0.018518518518518517
+      },
+      "40": {
+        "n": 54,
+        "mean_assignment_deficit": 5.722222222222222,
+        "mean_goal_deficit": 0.1111111111111111
+      },
+      "60": {
+        "n": 54,
+        "mean_assignment_deficit": 8.87037037037037,
+        "mean_goal_deficit": 0.8518518518518519
+      },
+      "80": {
+        "n": 52,
+        "mean_assignment_deficit": 8.75,
+        "mean_goal_deficit": 1.5576923076923077
+      }
+    },
+    "draw": {
+      "20": {
+        "n": 5,
+        "mean_assignment_deficit": 0.8,
+        "mean_goal_deficit": 0.0
+      },
+      "40": {
+        "n": 5,
+        "mean_assignment_deficit": -5.4,
+        "mean_goal_deficit": -0.8
+      },
+      "60": {
+        "n": 5,
+        "mean_assignment_deficit": -5.4,
+        "mean_goal_deficit": -0.6
+      },
+      "80": {
+        "n": 5,
+        "mean_assignment_deficit": -1.4,
+        "mean_goal_deficit": -0.4
+      }
+    }
+  },
+  "losing_final_goal_counts": {
+    "6": 8,
+    "9": 16,
+    "4": 1,
+    "7": 12,
+    "8": 14,
+    "5": 3
+  },
+  "losing_reached8": 30,
+  "selected_seeds": 24,
+  "definitions": "assignment为占用无关的邻接步数最小匹配，已入营棋子锁定；阶段：自身>=7子入营为收官，否则总手数<24为开局，其余中盘。正缺口表示候选落后。"
+}

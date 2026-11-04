@@ -1,0 +1,59 @@
+{
+  "root_checks": 24,
+  "verified_gap4": 10,
+  "by_phase": {
+    "opening": {
+      "checked": 8,
+      "gap4": 5
+    },
+    "middle": {
+      "checked": 8,
+      "gap4": 5
+    },
+    "endgame": {
+      "checked": 8,
+      "gap4": 0
+    }
+  },
+  "paired_continuations": 4,
+  "branches": 8,
+  "comparisons": [
+    {
+      "seed_id": 7,
+      "phase": "opening",
+      "actual_points": 1,
+      "expert_points": 1,
+      "improved": false,
+      "worse": false
+    },
+    {
+      "seed_id": 2,
+      "phase": "opening",
+      "actual_points": 1,
+      "expert_points": 0,
+      "improved": false,
+      "worse": true
+    },
+    {
+      "seed_id": 11,
+      "phase": "middle",
+      "actual_points": 0,
+      "expert_points": 0.5,
+      "improved": true,
+      "worse": false
+    },
+    {
+      "seed_id": 14,
+      "phase": "middle",
+      "actual_points": 1,
+      "expert_points": 1,
+      "improved": false,
+      "worse": false
+    }
+  ],
+  "improved": 1,
+  "worse": 1,
+  "seconds": 38.735836084000766,
+  "native_sha256": "712cfa63e0c80b3a5a2f02dca356246e190161157b66b64172e8f2efa2698ef5",
+  "scope": "根固定完成深度5/强制子4；两分支第一手不同，其余双方均固定深度4专家续弈，保留真实终局。"
+}

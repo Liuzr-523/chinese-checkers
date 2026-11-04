@@ -1,0 +1,14 @@
+{
+  "upstream_sha256": "13c18d4afe7f09ec317f9a4de80532dc5eb8c95f5cc2303b1829b463a4d428f7",
+  "scope": "Clysto positional evaluator derivative + our strict121 PVS. Not original Clysto; no opening book/TT/null pruning.",
+  "wing_rule": "x=4-q,y=r+4+q; clamp each table coordinate to [0,8]",
+  "root_depth": 5,
+  "continuation_depth": 4,
+  "source_sha256": {
+    "rules121.py": "98063b412f38012a3fc65468ab9a64972f01e515d2f1a291364ddac84d9d6734",
+    "clysto121_generated/core.c": "60ff97e5efc4706374cc049317ecf916fa3a276e2f1da6c3d8050aeb69c3688a",
+    "ccore121_tables.h": "d36dcc8e32da5e84cf6b91a126fbc51ec1c227e6f4fb460c385fb8de100bc824",
+    "diagnostics/analyze121_losses.py": "ff117d8a695139e85501d7a48733cd2fa90465dc2e664436a195f30764f18d04",
+    "diagnostics/probe121_loss_branches.py": "8d3fee5c6bdcf3546f47bf405ab46b8129a4daf405a5fd519cc28a22f1e46470"
+  }
+}
