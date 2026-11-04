@@ -1,0 +1,55 @@
+{
+  "profile": "CCZ-121-Strict-LG-v2",
+  "model": "nn_checkpoints/models/checkpoints/neural121_v3_expert_imitation.pt",
+  "model_sha256": "a0a40208061aaaa45931131f1760bb20ae114388c6ae6ad29181b204565395d9",
+  "registry_sha256": "d26f8ffd6b07f52e6c2c5929d8a86a7664cd58944b98562e71356368994c9b62",
+  "previous_model": "nn_checkpoints/experiments/opening121_ratios_20261104_fixed/book75_step2400.pt",
+  "previous_sha256": "f3e4cd9f9658f5073ed22886656679979823007c06974afc871abe166861c6ac",
+  "seed": 110413,
+  "steps": 2400,
+  "lr": 3e-05,
+  "root_batch": 4,
+  "root_ce_weight": 0.25,
+  "selection": {
+    "persistent_candidates": 192,
+    "eligible_mirror_orbits": 85,
+    "branches": 11,
+    "players": {
+      "1": 16,
+      "2": 16
+    },
+    "own_moves": {
+      "7": 8,
+      "10": 8,
+      "8": 8,
+      "9": 8
+    }
+  },
+  "scope": "同32难例/根序列/2400更新/初值。纯专项只算4根，mixed加12普通及原真实value/KL/函数保留；根暴露相同，计算量不同。无对战无部署。",
+  "interpretation": "高拟合>=31/32，基本拟合>=29/32；检查局部不可区分对。混合低于纯专项说明保护目标组合改变拟合；纯专项不优化value头参数但共享CNN仍影响价值输出。",
+  "max_seconds": 3600,
+  "source_sha256": {
+    "fit_opening121_hard32.py": "1900ff796f19cd8d2421fc6a3560e9512c417c897a2e4d1bc9eade77a0b13fb0",
+    "diagnostics/plot121_opening_hard32.py": "7db4505479c0e355025af28ded12048628ab3dffb2c925bb814d20171abea4ee",
+    "diagnostics/plot_style_zh.py": "81b3823147ce29c5ccbcbf6d08a9d54df7f93e4dd3f423169b69a072c2a0bd01",
+    "tests/test_opening121_hard32.py": "5b71e60e5e28e5f7af7b85c9fdf7ed9b1a32b5d6caacbf14df06923163b9f656",
+    "opening121_ratios.py": "9997187e681275d5842a13699efdf4753d4a2e39547c820419f56f53ca34d483",
+    "train_opening121.py": "a714eb93bed6d139d537158aeb392bdaa6caa3a8019d2c45ac879f8631c4162c",
+    "opening121.py": "7be5e4974de3a53c0bf8d95887634e34ca3eb6bf81a75178dde4dcb90c75cba2",
+    "opening121_book.json": "04c3cdbf5900f80936b9de3bb8cc55c39b4a27fd436b3979d610f3a6dfc4a8d5",
+    "az121.py": "4b8bf353e1baf39bc5526bb68e69a35f252ae3b17300adbd7df0c4c1dd456a6c",
+    "rules121.py": "98063b412f38012a3fc65468ab9a64972f01e515d2f1a291364ddac84d9d6734",
+    "curriculum121.py": "2451380d4eb6b33dc9a512535ac39f9404e54cde4bcbed88bbf179b1d6be46e0",
+    "canonical121_trial.py": "71ce4f9bd3f3065a2eab7fc528adf47ab396f563ad9703503990d43b0d397363",
+    "cycle121_targeted.py": "5c029a2ecf7947fbfc315eede39a2755fabc4c3eebff8c7058176957b20afbc5",
+    "generalization121_curve.py": "dd63987a9d0bfec19f12f0ff7faba7b08ccd1e10167f8972a8058356dc4046e2",
+    "unfreeze121_trial.py": "a3795600a4a81f4681bc091976ee06f84111c6728515a9f2dc74afee39bd7ec9",
+    "diagnostics/audit121_opening_visibility.py": "bf0929f7907c3808f39056dd22a3a9956ae441b8537de5d02116f7a1f3318b41"
+  },
+  "data_sha256": {
+    "old_teacher.jsonl": "c1b504ad07a4d8450464e9bb549bbf7415071275d1ae6c1253a93141dc98c29e",
+    "old_split.json": "f727a85b84d1bc77f1fbfd37ad370c94d6dbdf647b234b01c74f9711fe454d7c",
+    "normal_games.jsonl": "87d8c8d4d86af15bd0deccc2bdf74e14c4218b7f550331151a4fd09d55d5220b",
+    "fixed32.pt": "7eff28445f5e7e956e8d698b29fd11ad79d3285286e1a58fb9661b67fbb60d4a"
+  }
+}
