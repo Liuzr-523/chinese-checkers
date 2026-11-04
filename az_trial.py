@@ -53,14 +53,16 @@ def main():
     ap.add_argument('--games', type=int, default=6)
     ap.add_argument('--simulations', type=int, default=32)
     ap.add_argument('--steps', type=int, default=120)
+    ap.add_argument('--seed', type=int, default=20261022)
+    ap.add_argument('--eval-seed', type=int, default=9100)
     args = ap.parse_args()
     args.out.mkdir(parents=True, exist_ok=False)
     torch.set_num_threads(1)
-    torch.manual_seed(20261022)
+    torch.manual_seed(args.seed)
     checkpoint = artifact_path(ROOT / 'params_resnet_champ.pt')
     baseline = NetResNet.load(checkpoint).eval()
     baseline.save(args.out / 'baseline.pt')
-    config = dict(seed=20261022, games=args.games, simulations=args.simulations,
+    config = dict(seed=args.seed, eval_seed=args.eval_seed, games=args.games, simulations=args.simulations,
                   train_steps=args.steps, lr=2e-5, batch_size=16, max_moves=240,
                   baseline=str(checkpoint), sha256=hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
                   source='existing champion, fresh self-play only; no opening book', eval_pairs=2)
@@ -68,7 +70,7 @@ def main():
     started = time.monotonic()
     records = []
     for i in range(args.games):
-        rec = game([baseline, baseline], 20261022 + i, args.simulations, explore=True)
+        rec = game([baseline, baseline], args.seed + i, args.simulations, explore=True)
         records.append(rec)
         with (args.out / 'selfplay.pkl').open('wb') as f:
             pickle.dump(records, f)
@@ -79,14 +81,14 @@ def main():
     if samples:
         candidate = copy.deepcopy(baseline)
         result['last_train_loss'] = train(samples, candidate, steps=args.steps, lr=2e-5,
-                                          bs=16, seed=20261022, log_every=30)
+                                          bs=16, seed=args.seed, log_every=30)
         candidate.eval().save(args.out / 'candidate.pt')
         matches = []
         wins = losses = unfinished = 0
         for pair in range(2):
             for side in (1, 2):
                 models = [candidate, baseline] if side == 1 else [baseline, candidate]
-                rec = game(models, 9100+pair, args.simulations, opening=4)
+                rec = game(models, args.eval_seed+pair, args.simulations, opening=4)
                 rec['candidate_side'] = side
                 matches.append(rec)
                 wins += rec['winner'] == side
