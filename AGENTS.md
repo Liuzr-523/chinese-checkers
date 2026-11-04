@@ -12,4 +12,4 @@
 
 ## AI实验接续
 
-先读 `AUTONOMOUS_121.md` 和 `docs/TRAINING_121.md`，检查实际进程与最新状态，避免重复启动。坚持CNN与strict121规则，保留真实终局与独立验收流程。C内核改动后重编译并跑对应对拍。
+本机存在 `AUTONOMOUS_121.md` 和 `docs/TRAINING_121.md` 时先读取；新克隆使用 `docs/MIGRATION_121.md` 和 `docs/experiments/` 的公开记录。检查实际进程与最新状态，避免重复启动。坚持CNN与strict121规则，保留真实终局与独立验收流程。C内核改动后重编译并跑对应对拍。

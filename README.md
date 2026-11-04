@@ -27,7 +27,7 @@
 ```bash
 pip3 install pygame        # 仅 GUI 需要
 
-python3 gui.py             # 图形界面（人 vs AI / AI vs AI）
+python3 gui.py             # 121格星形棋盘（人 vs 人 / 人 vs AI / AI vs AI）
 python3 play_vs_ai.py      # 终端人机对战
 python3 test_logic.py      # 核心逻辑回归测试（20 个随机种子 × 500 步）
 ```
@@ -72,16 +72,16 @@ License: MIT
 
 ## C-PVS 与验证
 
-C 扩展需使用运行 GUI 的同一个 Python 编译；二进制不入库。macOS 示例：
+普通入口 `python3 gui.py` 直接进入121格对战设置；旧81格GUI已移除。双方可分别选择人类、Python参考搜索、C-PVS或已登记的121格神经网络。红方先手，支持逐跳动画、步数统计、悔棋和返回设置。
+
+121格C扩展需使用运行GUI的同一个Python编译；二进制不入库：
 
 ```sh
-PYH=$(python3 -c "import sysconfig; print(sysconfig.get_path('include'))")
-EXT=$(python3 -c "import sysconfig; print(sysconfig.get_config_var('EXT_SUFFIX'))")
-clang -O3 -fPIC -shared -I"$PYH" -undefined dynamic_lookup ccore.c -o "ccore$EXT"
-python3 verify_ccore.py
-python3 -m unittest discover -s tests -v
+python3 build_ccore121.py
+python3 verify_c121.py
+python3 gui.py
 ```
 
-GUI 支持双方独立选择引擎、先后手、逐段跳跃动画、步数统计。游戏中 U 悔棋，R/Esc 返回设置，也可点击左侧按钮。人机悔棋回到人的上一手之前；AI 对战悔棋后可用空格继续。
+游戏中点击「悔棋」「返回设置」，Esc也可返回设置。Clysto及旧81格神经网络尚未适配121格。新121格神经网络通过旧版本对照后独立登记，GUI中选「神经网络（已验收）」即可体验；目前仍明显弱于C-PVS。模型仅保存在本机，缺失或哈希不符会报错，不会静默换成其他引擎。历史81格终端工具和训练实验沿用各自原规则；它们不能直接用作121格棋力结论。迁移进度见 [121格记录](docs/MIGRATION_121.md)。
 
 自对弈诊断与长跑结论见 [审计](ALPHAZERO_AUDIT.md)、[试验记录](SELFPLAY_TRIAL.md)、[长跑日志](SELFPLAY_LONGRUN.md)。实验产物只保存在本机 `nn_checkpoints/experiments/`，文档中的本机产物链接不包含在 Git 中。

@@ -33,3 +33,10 @@ HANDOFF.md
 # 模型、实验快照与机器相关迁移清单，仅保留目录说明
 /nn_checkpoints/*
 !/nn_checkpoints/README.md
+
+# 本机自主任务接续、训练流水记录与生成溯源（公共结论见docs/experiments）
+/AUTONOMOUS_121.md
+/docs/AUTONOMOUS_121_history_20261030.md
+/docs/TRAINING_121.md
+/clysto121_generated/upstream_game.hpp
+/clysto121_generated/verification.json
