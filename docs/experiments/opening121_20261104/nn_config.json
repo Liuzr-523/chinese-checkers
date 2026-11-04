@@ -1,0 +1,34 @@
+{
+  "profile": "CCZ-121-Strict-LG-v2",
+  "model": "nn_checkpoints/models/checkpoints/neural121_v3_expert_imitation.pt",
+  "model_sha256": "a0a40208061aaaa45931131f1760bb20ae114388c6ae6ad29181b204565395d9",
+  "registry_sha256": "d26f8ffd6b07f52e6c2c5929d8a86a7664cd58944b98562e71356368994c9b62",
+  "book_sha256": "04c3cdbf5900f80936b9de3bb8cc55c39b4a27fd436b3979d610f3a6dfc4a8d5",
+  "seed": 110405,
+  "steps": 1200,
+  "lr": 3e-05,
+  "root_batch": 4,
+  "ordinary_batch": 12,
+  "arms": [
+    "prior_decisions",
+    "opening_book"
+  ],
+  "split_counts": {
+    "train": 565,
+    "validation": 128
+  },
+  "scope": "\u539f\u59cbNN\u5173\u95ed\u5916\u90e8\u5f00\u5c40\u5e93\uff1b\u955c\u50cf\u540c\u7ec4\uff0c\u524d6\u603b\u624b\u6570\u4f5c\u4e3a\u8bad\u7ec3\u56de\u5f52\uff0c\u5176\u4f59\u6309\u5c40\u9762\u955c\u50cf\u8f68\u9053\u7559\u51fa\u3002\u975e\u5b8c\u6574\u5bf9\u5c40\u9a8c\u6536\uff0c\u4e0d\u767b\u8bb0\u6a21\u578b\u3002",
+  "source_sha256": {
+    "train_opening121.py": "22486e16d1ddf8198e9147d19c3e1b39db21bd55244c8795fc6a26a77df79942",
+    "opening121.py": "7be5e4974de3a53c0bf8d95887634e34ca3eb6bf81a75178dde4dcb90c75cba2",
+    "opening121_book.json": "04c3cdbf5900f80936b9de3bb8cc55c39b4a27fd436b3979d610f3a6dfc4a8d5",
+    "az121.py": "4b8bf353e1baf39bc5526bb68e69a35f252ae3b17300adbd7df0c4c1dd456a6c",
+    "rules121.py": "98063b412f38012a3fc65468ab9a64972f01e515d2f1a291364ddac84d9d6734",
+    "curriculum121.py": "2451380d4eb6b33dc9a512535ac39f9404e54cde4bcbed88bbf179b1d6be46e0",
+    "canonical121_trial.py": "71ce4f9bd3f3065a2eab7fc528adf47ab396f563ad9703503990d43b0d397363",
+    "cycle121_targeted.py": "5c029a2ecf7947fbfc315eede39a2755fabc4c3eebff8c7058176957b20afbc5",
+    "diagnostics/fit121_objectives.py": "2336e57500abf0d0f96182ea29ad783f2cab34cecfd322d1cb1ed4ab751689fd",
+    "unfreeze121_trial.py": "a3795600a4a81f4681bc091976ee06f84111c6728515a9f2dc74afee39bd7ec9",
+    "generalization121_curve.py": "dd63987a9d0bfec19f12f0ff7faba7b08ccd1e10167f8972a8058356dc4046e2"
+  }
+}

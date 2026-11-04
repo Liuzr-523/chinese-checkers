@@ -1,0 +1,25 @@
+{
+  "standard": {
+    "games": 2,
+    "wins": 2,
+    "losses": 0,
+    "draws": 0,
+    "points": 2.0,
+    "reasons": {
+      "all_pieces_in_goal": 2
+    }
+  },
+  "branches": {
+    "games": 40,
+    "wins": 24,
+    "losses": 14,
+    "draws": 2,
+    "points": 25.0,
+    "reasons": {
+      "equal_turn_goal_draw": 2,
+      "all_pieces_in_goal": 38
+    }
+  },
+  "seconds": 67.13427766598761,
+  "unique_game_path_sequences": 39
+}

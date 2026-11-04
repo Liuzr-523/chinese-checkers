@@ -1,11 +1,13 @@
 """121-cell GUI used by the standard gui.py entry point."""
 import math
+import os
 import time
 from concurrent.futures import ThreadPoolExecutor
 import pygame
 import rules121 as rules
 from engine121 import Search121
 import gui_style as skin
+from opening121 import BookEngine
 
 W, H = 880, 960
 
@@ -61,6 +63,8 @@ def main():
     labels = ('人类', 'Python参考搜索', 'C-PVS 121格', '神经网络（已验收）')
     menu = True; running = True; future = None; animation = None
     selected = None; paths = []; error = ''; generation = 0; submitted = 0
+    use_book = os.environ.get('CC121_OPENING_BOOK','1') != '0'; last_source = ''
+    book_button = pygame.Rect(300, 570, 340, 34)
     buttons = {'back': pygame.Rect(20, 885, 150, 42), 'undo': pygame.Rect(190, 885, 140, 42)}
     pool = ThreadPoolExecutor(max_workers=1)
     try:
@@ -76,6 +80,7 @@ def main():
                     if menu:
                         for p, y in ((1, 260), (2, 360)):
                             if pygame.Rect(320, y, 300, 50).collidepoint(event.pos): ai[p] = (ai[p]+1)%len(labels)
+                        if book_button.collidepoint(event.pos): use_book = not use_book
                         if pygame.Rect(320, 500, 240, 55).collidepoint(event.pos):
                             try:
                                 chosen_engines = {}
@@ -87,17 +92,18 @@ def main():
                                     elif ai[p] == 3:
                                         from neural121_registry import load_registered
                                         chosen_engines[p] = load_registered()
+                                if use_book: chosen_engines = {p: BookEngine(e) for p,e in chosen_engines.items()}
                                 engines = chosen_engines
                             except Exception as exc:
                                 error = str(exc)
                                 continue
                             game = rules.Game(); menu = False; generation += 1
-                            animation = None; selected = None; paths = []; error = ''
+                            animation = None; selected = None; paths = []; error = ''; last_source = ''
                         if buttons['back'].collidepoint(event.pos): running = False
                     elif buttons['back'].collidepoint(event.pos):
                         menu = True; generation += 1; animation = None
                     elif buttons['undo'].collidepoint(event.pos):
-                        generation += 1; animation = None; game.undo()
+                        generation += 1; animation = None; game.undo(); last_source = ''
                         if any(ai.values()) and not all(ai.values()):
                             while game.history and ai[game.player]: game.undo()
                         selected = None; paths = []; error = ''
@@ -111,10 +117,11 @@ def main():
                         else: selected = None; paths = []
             if future is not None and future.done():
                 try:
-                    path, _ = future.result()
+                    path, info = future.result()
                     if submitted == generation and not menu and path:
                         if not rules.valid_path(game.board, game.player, path): raise ValueError('搜索返回非法走法')
                         animation = Animation(game.board, path)
+                        last_source = '上一AI步：开局库' if info.get('book_hit') else '上一AI步：引擎搜索'
                 except Exception as exc:
                     if submitted == generation: error = str(exc)
                 future = None
@@ -128,6 +135,8 @@ def main():
                 screen.blit(small.render('红方先手、青方后手；点击上方分别切换身份', True, skin.TEXT), (230, 440))
                 pygame.draw.rect(screen, skin.BTN_SEL, (320, 500, 240, 55), border_radius=8)
                 screen.blit(font.render('开始对局', True, skin.TEXT), (390, 514))
+                pygame.draw.rect(screen, skin.BTN_BG, book_button, border_radius=8)
+                screen.blit(small.render('Clysto开局库：'+('开' if use_book else '关')+'（点击切换）', True, skin.TEXT), (310,578))
                 screen.blit(small.render('进营后不可退出 · 堵营判胜 · 同轮完成判和 · 三次重复 / 240手判和', True, skin.TEXT), (130, 610))
                 hint = '神经网络已通过旧版对照，但目前仍弱于C-PVS' if 3 in ai.values() else '点击双方身份可选择：人类 / Python参考搜索 / C-PVS / 神经网络'
                 screen.blit(small.render(hint, True, skin.TEXT), (135, 650))
@@ -144,7 +153,7 @@ def main():
                 title = f'P{game.player} 行棋' if result is None else ('和棋' if result == 0 else f'P{result} 获胜')
                 screen.blit(font.render(title, True, skin.TEXT), (25, 25))
                 screen.blit(small.render(f'P1 {(game.ply+1)//2} 步 · P2 {game.ply//2} 步 · 共 {game.ply} 手', True, skin.TEXT), (25, 60))
-                screen.blit(small.render(error or reason or ('AI 思考中…' if future else rules.PROFILE), True, skin.TEXT), (25, 845))
+                screen.blit(small.render(error or reason or ('AI 思考中…' if future else rules.PROFILE+'  '+last_source), True, skin.TEXT), (25, 845))
             for key, rect in buttons.items():
                 if menu and key == 'undo': continue
                 pygame.draw.rect(screen, skin.BTN_BG, rect, border_radius=8)

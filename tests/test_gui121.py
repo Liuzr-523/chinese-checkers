@@ -8,6 +8,29 @@ import gui121
 import rules121 as r
 
 class Gui121Tests(unittest.TestCase):
+    def setUp(self):
+        env = patch.dict(os.environ, {"CC121_OPENING_BOOK":"0"}); env.start(); self.addCleanup(env.stop)
+    def test_book_toggle_controls_gui_engine_wrapper(self):
+        from opening121 import BookEngine
+        for toggle in (False, True):
+            frames=0; calls=[]
+            class Raw:
+                def think(self,board,player,ply,repetitions):
+                    calls.append('raw'); return r.get_all_moves(board,player)[0][1], {}
+            class RecordingBook(BookEngine):
+                def think(self,*args):
+                    path,info=super().think(*args);calls.append('book' if info['book_hit'] else 'miss');return path,info
+            def click(pos):return pygame.event.Event(pygame.MOUSEBUTTONDOWN,button=1,pos=pos)
+            def events():
+                nonlocal frames
+                frames+=1
+                if frames==1:
+                    return [click((400,280))]+([click((400,585))] if toggle else [])+[click((400,520))]
+                if frames>=5:return [pygame.event.Event(pygame.QUIT)]
+                return []
+            with patch.dict(os.environ,{'CC121_OPENING_BOOK':'1'}),patch.object(gui121,'Search121',Raw),patch.object(gui121,'BookEngine',RecordingBook),patch.object(pygame.event,'get',events):gui121.main()
+            self.assertIn('raw' if toggle else 'book',calls)
+
     def test_geometry_render_and_animation(self):
         pygame.init()
         screen = pygame.display.set_mode((880, 960))
