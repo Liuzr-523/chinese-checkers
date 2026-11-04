@@ -27,8 +27,8 @@ def finalize(folder):
  if digest(p/'candidate.pt')!=cfg['candidate_sha256'] or digest(cfg['model'])!=cfg['model_sha256']:raise ValueError('模型变化')
  atomic(p/'full_replay_audit.json',dict(games_verified=200,failures=0,termination_reasons=reasons,game_lengths=stages,model_and_source_hashes_verified=True))
  adoption=json.loads((p/'adoption.json').read_text());res['promoted']=adoption.get('adopted',False);atomic(p/'result.json',res)
- lines=['# 原配方微调模型：完整对局验收','',f'验收结论：{"通过，已登记新版本" if res["promoted"] else "未通过，保留v3"}。',
- '候选固定为dynamic121_actual_20261104/control_110401_step1600.pt。双方MCTS32，固定120局对v3与新旧各40局对C-PVS；C每手30毫秒、最大深度10。所有开局按组交换先后手，跑满预算。',
+ lines=['# 神经网络候选：完整对局验收','',f'验收结论：{"通过，已登记新版本" if res["promoted"] else "未通过，保留v3"}。',
+ '候选固定为'+cfg['candidate_source']+'。双方MCTS32，固定120局对v3与新旧各40局对C-PVS；C每手30毫秒、最大深度10。双方开局库配置：'+str(cfg.get('opening_book_for_both',False))+'。所有开局按组交换先后手，跑满预算。',
  '|对战|胜|负|和|积分|','|---|---:|---:|---:|---:|']
  for title,v in [('候选对v3',res['confirmation']),('v3对C-PVS',res['fixed_c']['control']),('候选对C-PVS',res['fixed_c']['candidate'])]:
   lines.append('|'+title+'|'+str(v['wins'])+'|'+str(v['losses'])+'|'+str(v['draws'])+'|'+str(v['points'])+'|')

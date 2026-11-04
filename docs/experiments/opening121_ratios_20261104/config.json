@@ -1,0 +1,47 @@
+{
+  "profile": "CCZ-121-Strict-LG-v2",
+  "model": "nn_checkpoints/models/checkpoints/neural121_v3_expert_imitation.pt",
+  "model_sha256": "a0a40208061aaaa45931131f1760bb20ae114388c6ae6ad29181b204565395d9",
+  "registry_sha256": "d26f8ffd6b07f52e6c2c5929d8a86a7664cd58944b98562e71356368994c9b62",
+  "seed": 110408,
+  "steps": 2400,
+  "lr": 3e-05,
+  "batch_size": 16,
+  "root_counts": [
+    4,
+    8,
+    12
+  ],
+  "opening_weights": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "max_seconds": 10800,
+  "weights": "策略损失随真实样本份额25/50/75%变化；真实value MSE、KL .1、value保留 .1保持原定义，根无胜负标签。",
+  "selection": "固定最终2400；训练>=90%、验证较v3至少+10pp、标准前6总手全命中、旧CE<=v3+.05且value<=v3+.05、新普通CE<=v3+.05。达标者按验证首选命中最高选一次，同分优先低份额。",
+  "arena": "达标后只选一次，候选/v3双方开同一开局库，MCTS32；120对v3、新旧各40对同样开库C30ms。配对p<=.01且C积分不降，完整审计后登记。",
+  "source_sha256": {
+    "opening121_ratios.py": "9997187e681275d5842a13699efdf4753d4a2e39547c820419f56f53ca34d483",
+    "train_opening121.py": "a714eb93bed6d139d537158aeb392bdaa6caa3a8019d2c45ac879f8631c4162c",
+    "opening121.py": "7be5e4974de3a53c0bf8d95887634e34ca3eb6bf81a75178dde4dcb90c75cba2",
+    "opening121_book.json": "04c3cdbf5900f80936b9de3bb8cc55c39b4a27fd436b3979d610f3a6dfc4a8d5",
+    "az121.py": "4b8bf353e1baf39bc5526bb68e69a35f252ae3b17300adbd7df0c4c1dd456a6c",
+    "rules121.py": "98063b412f38012a3fc65468ab9a64972f01e515d2f1a291364ddac84d9d6734",
+    "curriculum121.py": "2451380d4eb6b33dc9a512535ac39f9404e54cde4bcbed88bbf179b1d6be46e0",
+    "canonical121_trial.py": "71ce4f9bd3f3065a2eab7fc528adf47ab396f563ad9703503990d43b0d397363",
+    "cycle121_targeted.py": "5c029a2ecf7947fbfc315eede39a2755fabc4c3eebff8c7058176957b20afbc5",
+    "generalization121_curve.py": "dd63987a9d0bfec19f12f0ff7faba7b08ccd1e10167f8972a8058356dc4046e2",
+    "unfreeze121_trial.py": "a3795600a4a81f4681bc091976ee06f84111c6728515a9f2dc74afee39bd7ec9",
+    "confirm121_policy_20261104.py": "ff3ed0f9385e5cf72cb5d07a14ca7c4afb316c1e46e697bb3db09816d1a52738",
+    "diagnostics/report121_policy_confirmation.py": "b600d8f1a8662a51dfe6d6c0f8365df92d52f0c6cc778dddecf1a23f2b98adf0",
+    "diagnostics/plot121_opening_ratios.py": "a399c1a021ea3088e109115a546e51f4362505ed92cc48ed794819304ecb142a",
+    "diagnostics/plot_style_zh.py": "81b3823147ce29c5ccbcbf6d08a9d54df7f93e4dd3f423169b69a072c2a0bd01",
+    "tests/test_opening121_ratios.py": "aa031cd3c881488a11d35a6d4e61807c8986eeffad16b4618918c15cfde88858"
+  },
+  "data_sha256": {
+    "old_teacher.jsonl": "c1b504ad07a4d8450464e9bb549bbf7415071275d1ae6c1253a93141dc98c29e",
+    "old_split.json": "f727a85b84d1bc77f1fbfd37ad370c94d6dbdf647b234b01c74f9711fe454d7c",
+    "normal_games.jsonl": "87d8c8d4d86af15bd0deccc2bdf74e14c4218b7f550331151a4fd09d55d5220b"
+  }
+}

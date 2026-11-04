@@ -56,3 +56,7 @@ python train_opening121.py --out nn_checkpoints/experiments/your_opening_imitati
 
 GUI只需安装pygame；NN与实验另需本机v3权重、登记与历史回放数据。提取原库需设置CLYSTO_DIR，再运行export_opening121.py。上游book.hpp/constants.hpp哈希记录在opening121_book.json中。
 本次不修改C内核，不修改冠军登记。完整配对棋谱、训练结果、数据配置和中文图表随报告保存。
+
+## 后续标签修正
+
+首次1200步模仿结果为历史运行记录。后续检查发现12/565训练局面的镜像推荐集合与运行时查库不一致，已修复并补回归；128个留出标签没有变化。修正版2400步份额对照见[后续报告](../opening121_ratios_20261104/README.md)。

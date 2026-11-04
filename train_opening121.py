@@ -24,7 +24,7 @@ def book_samples(book):
   for b,paths in [(board,entry['moves']),(reflected,[[MIRROR[i] for i in path] for path in entry['moves']])]:
    identity=key(b,p)
    if identity in seen:continue
-   seen.add(identity);actions=[action_id(s,path[-1],p,True) for s,path in r.get_all_moves(b,p)];positive=list(dict.fromkeys(action_id(path[0],path[-1],p,True) for path in paths))
+   seen.add(identity);actions=[action_id(s,path[-1],p,True) for s,path in r.get_all_moves(b,p)];positive=list(dict.fromkeys(action_id(path[0],path[-1],p,True) for path in book.moves(b,p,entry['depth'])))
    sets[part].append(dict(x=encode(b,p,entry['depth'],canonical=True),actions=actions,target=actions.index(positive[0]),positive=positive,z=0.,value_weight=0.,decision_id=identity))
  return sets,groups
 

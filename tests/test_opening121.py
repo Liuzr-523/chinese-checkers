@@ -31,6 +31,15 @@ class BookTrainingTests(unittest.TestCase):
     orbit=min(s['decision_id'],key(ref,int(p)))
     if orbit in orbits:self.assertEqual(orbits[orbit],part)
     orbits[orbit]=part
+ def test_every_training_target_matches_runtime_book(self):
+  from train_opening121 import book_samples
+  from az121 import action_id
+  book=OpeningBook();sets,_=book_samples(book)
+  for samples in sets.values():
+   for s in samples:
+    raw,p=s['decision_id'].split(':');p=int(p);board=list(map(int,raw));ply=round(float(s['x'][4].max())*240)
+    expected={action_id(path[0],path[-1],p,True) for path in book.moves(board,p,ply)}
+    self.assertEqual(set(s['positive']),expected)
  def test_set_loss_accepts_any_recommended_move(self):
   import torch
   from train_opening121 import set_ce

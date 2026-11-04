@@ -40,11 +40,15 @@ def seen_openings(root):
 
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--out',type=Path,required=True);ap.add_argument('--seed',type=int,default=110403);args=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('--out',type=Path,required=True);ap.add_argument('--seed',type=int,default=110403);ap.add_argument('--parent',type=Path);ap.add_argument('--candidate',type=Path);ap.add_argument('--version',default='v4_policy_confirmed_20261104');ap.add_argument('--with-book',action='store_true');args=ap.parse_args()
     torch.set_num_threads(1)
     saved_path=Path('nn_checkpoints/saves/v3_before_unfreeze_20261030');saved=verify(saved_path)
     if digest(REGISTRY)!=saved['registry_sha256']:raise ValueError('registry changed; preserve current champion')
-    parent=Path('nn_checkpoints/experiments/dynamic121_actual_20261104');candidate_source=parent/'control_110401_step1600.pt'
+    parent=args.parent or Path('nn_checkpoints/experiments/dynamic121_actual_20261104');candidate_source=args.candidate or parent/'control_110401_step1600.pt'
+    def wrap(engine):
+        if not args.with_book:return engine
+        from opening121 import BookEngine
+        return BookEngine(engine)
     baseline_path=saved_path/'model.pt';baseline=Net121.load(baseline_path);candidate=Net121.load(candidate_source)
     args.out.mkdir(parents=True,exist_ok=False);lock=(args.out/'run.lock').open('w');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);start=time.monotonic()
     def update(stage,**kw):
@@ -55,9 +59,10 @@ def main():
     names=['confirm121_policy_20261104.py','diagnostics/report121_policy_confirmation.py','diagnostics/plot121_policy_confirmation.py','diagnostics/plot_style_zh.py','az121.py','rules121.py','curriculum121.py','engine_c121.py','iterate121.py','checkpoint121_save.py','neural121_registry.py']
     import ccore121
     names.append(Path(ccore121.__file__).name)
+    if args.with_book:names+=['opening121.py','opening121_book.json']
     config=dict(model=str(baseline_path.resolve()),model_sha256=digest(baseline_path),candidate_source=str(candidate_source.resolve()),candidate_sha256=digest(candidate_source),
-       profile=r.PROFILE,encoding=baseline.encoding,seed=args.seed,simulations=32,value_scale=1.,root_safety=False,heuristic_mix=0.,fpu_mode='zero',policy_temperature=1.,
-       training='原160根配方微调，固定种子110401最终1600步；CNN专家蒸馏及真实终局回放。用户批准新120+40+40完整验收。',
+       profile=r.PROFILE,encoding=baseline.encoding,seed=args.seed,opening_book_for_both=args.with_book,simulations=32,value_scale=1.,root_safety=False,heuristic_mix=0.,fpu_mode='zero',policy_temperature=1.,
+       training='固定候选'+str(candidate_source)+'；CNN专家蒸馏及真实终局回放。新120+40+40完整验收。',
        confirmation_games=120,fixed_c_games_per_model=40,independent_gate_p=.01,c_seconds=.03,c_max_depth=10,
        rule='Exactly one new fixed 120+40+40 run. Never pool original 60 or stop early on significance. No retraining or configuration selection. C candidate points must not decrease.',
        save=str(saved_path.resolve()),save_manifest_sha256=digest(saved_path/'manifest.json'),source_sha256={p:digest(p) for p in names})
@@ -82,7 +87,7 @@ def main():
         for pair,prefix in enumerate(schedule['confirmation']):
             for side in (1,2):
                 update('independent_confirmation',completed=len(matches),total=120)
-                row=finish(replay(prefix),{side:Neural121(candidate,32),3-side:Neural121(baseline,32)})
+                row=finish(replay(prefix),{side:wrap(Neural121(candidate,32)),3-side:wrap(Neural121(baseline,32))})
                 row.update(pair=pair,side=side,opening=prefix);matches.append(row);record('confirmation',row)
                 with (args.out/'中文日志.md').open('a') as stream:stream.write('候选对v3 '+str(len(matches))+'/120：'+json.dumps(summary(matches),ensure_ascii=False)+'\n')
         fixed={}
@@ -91,7 +96,7 @@ def main():
             for pair,prefix in enumerate(schedule['fixed_c']):
                 for side in (1,2):
                     update('fixed_c_'+name,completed=len(rows),total=40)
-                    row=finish(replay(prefix),{side:Neural121(model,32),3-side:CSearch121(seconds=.03,max_depth=10)})
+                    row=finish(replay(prefix),{side:wrap(Neural121(model,32)),3-side:wrap(CSearch121(seconds=.03,max_depth=10))})
                     row.update(pair=pair,side=side,opening=prefix);rows.append(row);record('fixed_c_'+name,row)
                     with (args.out/'中文日志.md').open('a') as stream:stream.write(name+'对C '+str(len(rows))+'/40：'+json.dumps(summary(rows),ensure_ascii=False)+'\n')
             fixed[name]=summary(rows)
@@ -105,14 +110,14 @@ def main():
         if qualified:
             from neural121_registry import register,load_registered
             try:
-                entry=register(args.out,'v4_policy_confirmed_20261104');engine=load_registered()
+                entry=register(args.out,args.version);engine=load_registered()
                 for p in (1,2):
                     path,info=engine.think(r.init_board(),p)
                     if not r.valid_path(r.init_board(),p,path) or info['root_visits']!=32:raise ValueError('registered engine smoke check failed')
                 atomic(args.out/'adoption.json',dict(adopted=True,version=entry['version'],save_preserved=True))
             except BaseException:
                 active=json.loads(REGISTRY.read_text())
-                if active.get('version')=='v4_policy_confirmed_20261104' and active.get('sha256')==config['candidate_sha256']:
+                if active.get('version')==args.version and active.get('sha256')==config['candidate_sha256']:
                     restore(saved_path);atomic(args.out/'adoption.json',dict(adopted=False,rolled_back=True))
                 raise
         else:atomic(args.out/'adoption.json',dict(adopted=False,retained_version=saved['version'],save_verified=True))

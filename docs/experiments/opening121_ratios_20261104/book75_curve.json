@@ -1,0 +1,951 @@
+[
+  {
+    "step": 0,
+    "book_train": {
+      "n": 565,
+      "top1_in_book": 0.40707964601769914,
+      "book_probability": 0.2508851173745141,
+      "set_ce": 2.2741044316671593
+    },
+    "book_validation": {
+      "n": 128,
+      "top1_in_book": 0.375,
+      "book_probability": 0.24803639960191504,
+      "set_ce": 2.4461820498108864
+    },
+    "train_stages": {
+      "moves1_3": {
+        "n": 73,
+        "top1_in_book": 0.5616438356164384,
+        "book_probability": 0.31728673854536593,
+        "set_ce": 1.4190485330477154
+      },
+      "moves4_6": {
+        "n": 144,
+        "top1_in_book": 0.4166666666666667,
+        "book_probability": 0.21446722060661866,
+        "set_ce": 2.280948011411561
+      },
+      "moves7_10": {
+        "n": 348,
+        "top1_in_book": 0.3706896551724138,
+        "book_probability": 0.252025513838712,
+        "set_ce": 2.45063779956993
+      }
+    },
+    "validation_stages": {
+      "moves1_3": {
+        "n": 0,
+        "top1_in_book": null
+      },
+      "moves4_6": {
+        "n": 24,
+        "top1_in_book": 0.2916666666666667,
+        "book_probability": 0.1952827158772076,
+        "set_ce": 3.114498625199
+      },
+      "moves7_10": {
+        "n": 104,
+        "top1_in_book": 0.3942307692307692,
+        "book_probability": 0.26021033105252384,
+        "set_ce": 2.291955136335813
+      }
+    },
+    "standard_first6": {
+      "n": 6,
+      "top1_in_book": 0.8333333333333334,
+      "book_probability": 0.4469081535935402,
+      "set_ce": 0.8829981684684753
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.117033172712574,
+      "policy_accuracy": 0.4058192955589586,
+      "value_mse": 1.0095422140124382,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3978754107658315,
+      "policy_accuracy": 0.3626062322946176,
+      "value_mse": 1.04286296340629,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 200,
+    "book_train": {
+      "n": 565,
+      "top1_in_book": 0.44424778761061945,
+      "book_probability": 0.25769163541427803,
+      "set_ce": 2.0587871657008616
+    },
+    "book_validation": {
+      "n": 128,
+      "top1_in_book": 0.359375,
+      "book_probability": 0.23192072093024763,
+      "set_ce": 2.3232549782842398
+    },
+    "train_stages": {
+      "moves1_3": {
+        "n": 73,
+        "top1_in_book": 0.6438356164383562,
+        "book_probability": 0.351237889213411,
+        "set_ce": 1.2332579534347743
+      },
+      "moves4_6": {
+        "n": 144,
+        "top1_in_book": 0.4583333333333333,
+        "book_probability": 0.24933375115829726,
+        "set_ce": 1.8581786586178675
+      },
+      "moves7_10": {
+        "n": 348,
+        "top1_in_book": 0.39655172413793105,
+        "book_probability": 0.2415268525322993,
+        "set_ce": 2.3149689716854316
+      }
+    },
+    "validation_stages": {
+      "moves1_3": {
+        "n": 0,
+        "top1_in_book": null
+      },
+      "moves4_6": {
+        "n": 24,
+        "top1_in_book": 0.3333333333333333,
+        "book_probability": 0.20450743433320895,
+        "set_ce": 2.5215265452861786
+      },
+      "moves7_10": {
+        "n": 104,
+        "top1_in_book": 0.36538461538461536,
+        "book_probability": 0.2382468617736147,
+        "set_ce": 2.2775000035762787
+      }
+    },
+    "standard_first6": {
+      "n": 6,
+      "top1_in_book": 0.8333333333333334,
+      "book_probability": 0.4653071661790212,
+      "set_ce": 0.8407262961069742
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.1578524532580996,
+      "policy_accuracy": 0.40735068912710565,
+      "value_mse": 1.0450234697934861,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.4068436849725146,
+      "policy_accuracy": 0.35410764872521244,
+      "value_mse": 1.1403964334101582,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 400,
+    "book_train": {
+      "n": 565,
+      "top1_in_book": 0.45132743362831856,
+      "book_probability": 0.26730558060344506,
+      "set_ce": 1.9936630865113925
+    },
+    "book_validation": {
+      "n": 128,
+      "top1_in_book": 0.375,
+      "book_probability": 0.24207440542977565,
+      "set_ce": 2.2395616937428713
+    },
+    "train_stages": {
+      "moves1_3": {
+        "n": 73,
+        "top1_in_book": 0.6301369863013698,
+        "book_probability": 0.36653824728492596,
+        "set_ce": 1.1590357382003575
+      },
+      "moves4_6": {
+        "n": 144,
+        "top1_in_book": 0.4861111111111111,
+        "book_probability": 0.2640221116469345,
+        "set_ce": 1.754938981599278
+      },
+      "moves7_10": {
+        "n": 348,
+        "top1_in_book": 0.3994252873563218,
+        "book_probability": 0.24784820116741915,
+        "set_ce": 2.2675253783149283
+      }
+    },
+    "validation_stages": {
+      "moves1_3": {
+        "n": 0,
+        "top1_in_book": null
+      },
+      "moves4_6": {
+        "n": 24,
+        "top1_in_book": 0.2916666666666667,
+        "book_probability": 0.22294004094631723,
+        "set_ce": 2.4470158517360687
+      },
+      "moves7_10": {
+        "n": 104,
+        "top1_in_book": 0.3942307692307692,
+        "book_probability": 0.24649002078737026,
+        "set_ce": 2.1916877306424656
+      }
+    },
+    "standard_first6": {
+      "n": 6,
+      "top1_in_book": 0.8333333333333334,
+      "book_probability": 0.4833945358792941,
+      "set_ce": 0.7893606026967367
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.166456743915085,
+      "policy_accuracy": 0.4165390505359878,
+      "value_mse": 1.0441311665369941,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3852287961470844,
+      "policy_accuracy": 0.3597733711048159,
+      "value_mse": 1.1508099938249452,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 600,
+    "book_train": {
+      "n": 565,
+      "top1_in_book": 0.4654867256637168,
+      "book_probability": 0.2699769514954888,
+      "set_ce": 1.9294036173187525
+    },
+    "book_validation": {
+      "n": 128,
+      "top1_in_book": 0.40625,
+      "book_probability": 0.2339840767062924,
+      "set_ce": 2.204216942191124
+    },
+    "train_stages": {
+      "moves1_3": {
+        "n": 73,
+        "top1_in_book": 0.7123287671232876,
+        "book_probability": 0.38042896557344147,
+        "set_ce": 1.1059609602575433
+      },
+      "moves4_6": {
+        "n": 144,
+        "top1_in_book": 0.5138888888888888,
+        "book_probability": 0.2786556485807523,
+        "set_ce": 1.6431485778755612
+      },
+      "moves7_10": {
+        "n": 348,
+        "top1_in_book": 0.3936781609195402,
+        "book_probability": 0.24321624371236533,
+        "set_ce": 2.220587610513314
+      }
+    },
+    "validation_stages": {
+      "moves1_3": {
+        "n": 0,
+        "top1_in_book": null
+      },
+      "moves4_6": {
+        "n": 24,
+        "top1_in_book": 0.4166666666666667,
+        "book_probability": 0.22755773788473257,
+        "set_ce": 2.3181455930074057
+      },
+      "moves7_10": {
+        "n": 104,
+        "top1_in_book": 0.40384615384615385,
+        "book_probability": 0.2354670779884775,
+        "set_ce": 2.1779256669374614
+      }
+    },
+    "standard_first6": {
+      "n": 6,
+      "top1_in_book": 0.8333333333333334,
+      "book_probability": 0.4812397360801697,
+      "set_ce": 0.7927300532658895
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.1826944468032345,
+      "policy_accuracy": 0.41960183767228176,
+      "value_mse": 1.0677988481740674,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3774636874117863,
+      "policy_accuracy": 0.37110481586402266,
+      "value_mse": 1.1865047189399136,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 800,
+    "book_train": {
+      "n": 565,
+      "top1_in_book": 0.4814159292035398,
+      "book_probability": 0.2930315794025556,
+      "set_ce": 1.8899736585870253
+    },
+    "book_validation": {
+      "n": 128,
+      "top1_in_book": 0.4140625,
+      "book_probability": 0.2520033367563883,
+      "set_ce": 2.1759913004934788
+    },
+    "train_stages": {
+      "moves1_3": {
+        "n": 73,
+        "top1_in_book": 0.7945205479452054,
+        "book_probability": 0.41700369844289675,
+        "set_ce": 1.0111518722690949
+      },
+      "moves4_6": {
+        "n": 144,
+        "top1_in_book": 0.5069444444444444,
+        "book_probability": 0.299495542609495,
+        "set_ce": 1.585227327214347
+      },
+      "moves7_10": {
+        "n": 348,
+        "top1_in_book": 0.4051724137931034,
+        "book_probability": 0.26435118563568233,
+        "set_ce": 2.2004261482721086
+      }
+    },
+    "validation_stages": {
+      "moves1_3": {
+        "n": 0,
+        "top1_in_book": null
+      },
+      "moves4_6": {
+        "n": 24,
+        "top1_in_book": 0.4166666666666667,
+        "book_probability": 0.24774679225326204,
+        "set_ce": 2.377762943506241
+      },
+      "moves7_10": {
+        "n": 104,
+        "top1_in_book": 0.41346153846153844,
+        "book_probability": 0.2529856216558703,
+        "set_ce": 2.1294285632096805
+      }
+    },
+    "standard_first6": {
+      "n": 6,
+      "top1_in_book": 0.8333333333333334,
+      "book_probability": 0.5195271571477255,
+      "set_ce": 0.7164479891459147
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.1542911062196786,
+      "policy_accuracy": 0.40735068912710565,
+      "value_mse": 1.061830570285207,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3790117335049357,
+      "policy_accuracy": 0.37110481586402266,
+      "value_mse": 1.17888007218034,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 1000,
+    "book_train": {
+      "n": 565,
+      "top1_in_book": 0.48849557522123893,
+      "book_probability": 0.2968340110394329,
+      "set_ce": 1.8405715621678176
+    },
+    "book_validation": {
+      "n": 128,
+      "top1_in_book": 0.4140625,
+      "book_probability": 0.24842355258715543,
+      "set_ce": 2.147368859499693
+    },
+    "train_stages": {
+      "moves1_3": {
+        "n": 73,
+        "top1_in_book": 0.7945205479452054,
+        "book_probability": 0.42932769258136616,
+        "set_ce": 0.9786474214841242
+      },
+      "moves4_6": {
+        "n": 144,
+        "top1_in_book": 0.5625,
+        "book_probability": 0.31946634191748063,
+        "set_ce": 1.4778182059526443
+      },
+      "moves7_10": {
+        "n": 348,
+        "top1_in_book": 0.3936781609195402,
+        "book_probability": 0.25967571229892034,
+        "set_ce": 2.1714822855489007
+      }
+    },
+    "validation_stages": {
+      "moves1_3": {
+        "n": 0,
+        "top1_in_book": null
+      },
+      "moves4_6": {
+        "n": 24,
+        "top1_in_book": 0.4583333333333333,
+        "book_probability": 0.2538079682465953,
+        "set_ce": 2.247316360473633
+      },
+      "moves7_10": {
+        "n": 104,
+        "top1_in_book": 0.40384615384615385,
+        "book_probability": 0.24718099459669945,
+        "set_ce": 2.1243039782230673
+      }
+    },
+    "standard_first6": {
+      "n": 6,
+      "top1_in_book": 0.8333333333333334,
+      "book_probability": 0.5218229641517004,
+      "set_ce": 0.7082881927490234
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.1771838084479387,
+      "policy_accuracy": 0.4165390505359878,
+      "value_mse": 1.0521674630835447,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3864536829102816,
+      "policy_accuracy": 0.3597733711048159,
+      "value_mse": 1.172790492560303,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 1200,
+    "book_train": {
+      "n": 565,
+      "top1_in_book": 0.5026548672566372,
+      "book_probability": 0.30278464392985555,
+      "set_ce": 1.8177364353585033
+    },
+    "book_validation": {
+      "n": 128,
+      "top1_in_book": 0.40625,
+      "book_probability": 0.2563287784823842,
+      "set_ce": 2.120783533900976
+    },
+    "train_stages": {
+      "moves1_3": {
+        "n": 73,
+        "top1_in_book": 0.8082191780821918,
+        "book_probability": 0.4292395797443308,
+        "set_ce": 0.962255500767329
+      },
+      "moves4_6": {
+        "n": 144,
+        "top1_in_book": 0.5763888888888888,
+        "book_probability": 0.3232736470656366,
+        "set_ce": 1.4525618304808934
+      },
+      "moves7_10": {
+        "n": 348,
+        "top1_in_book": 0.40804597701149425,
+        "book_probability": 0.26777997017127525,
+        "set_ce": 2.1482975037618615
+      }
+    },
+    "validation_stages": {
+      "moves1_3": {
+        "n": 0,
+        "top1_in_book": null
+      },
+      "moves4_6": {
+        "n": 24,
+        "top1_in_book": 0.4166666666666667,
+        "book_probability": 0.25942046506679617,
+        "set_ce": 2.255605240662893
+      },
+      "moves7_10": {
+        "n": 104,
+        "top1_in_book": 0.40384615384615385,
+        "book_probability": 0.2556153182813432,
+        "set_ce": 2.089670793368266
+      }
+    },
+    "standard_first6": {
+      "n": 6,
+      "top1_in_book": 0.8333333333333334,
+      "book_probability": 0.5126279344161352,
+      "set_ce": 0.7189992268880209
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.150992016697368,
+      "policy_accuracy": 0.41347626339969373,
+      "value_mse": 1.0612588213559861,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.360650540580155,
+      "policy_accuracy": 0.36827195467422097,
+      "value_mse": 1.1939482305610485,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 1400,
+    "book_train": {
+      "n": 565,
+      "top1_in_book": 0.49380530973451325,
+      "book_probability": 0.32215299179831075,
+      "set_ce": 1.7851288922065127
+    },
+    "book_validation": {
+      "n": 128,
+      "top1_in_book": 0.421875,
+      "book_probability": 0.26483294123408996,
+      "set_ce": 2.1233160458505154
+    },
+    "train_stages": {
+      "moves1_3": {
+        "n": 73,
+        "top1_in_book": 0.8082191780821918,
+        "book_probability": 0.47720008208225034,
+        "set_ce": 0.8664374710762337
+      },
+      "moves4_6": {
+        "n": 144,
+        "top1_in_book": 0.5763888888888888,
+        "book_probability": 0.34706749345706256,
+        "set_ce": 1.4147562848197088
+      },
+      "moves7_10": {
+        "n": 348,
+        "top1_in_book": 0.3936781609195402,
+        "book_probability": 0.27931930476447686,
+        "set_ce": 2.131100511413881
+      }
+    },
+    "validation_stages": {
+      "moves1_3": {
+        "n": 0,
+        "top1_in_book": null
+      },
+      "moves4_6": {
+        "n": 24,
+        "top1_in_book": 0.4583333333333333,
+        "book_probability": 0.2799969197367318,
+        "set_ce": 2.272382696469625
+      },
+      "moves7_10": {
+        "n": 104,
+        "top1_in_book": 0.41346153846153844,
+        "book_probability": 0.26133356015802395,
+        "set_ce": 2.088916072478661
+      }
+    },
+    "standard_first6": {
+      "n": 6,
+      "top1_in_book": 0.8333333333333334,
+      "book_probability": 0.5484185367822647,
+      "set_ce": 0.653217077255249
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.1576926711872564,
+      "policy_accuracy": 0.4119448698315467,
+      "value_mse": 1.071141402170085,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3837793888181196,
+      "policy_accuracy": 0.36827195467422097,
+      "value_mse": 1.2202794068933547,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 1600,
+    "book_train": {
+      "n": 565,
+      "top1_in_book": 0.5026548672566372,
+      "book_probability": 0.3189320295899736,
+      "set_ce": 1.751251411859968
+    },
+    "book_validation": {
+      "n": 128,
+      "top1_in_book": 0.40625,
+      "book_probability": 0.255958713639302,
+      "set_ce": 2.113092701882124
+    },
+    "train_stages": {
+      "moves1_3": {
+        "n": 73,
+        "top1_in_book": 0.8082191780821918,
+        "book_probability": 0.4744872374791805,
+        "set_ce": 0.865212473150802
+      },
+      "moves4_6": {
+        "n": 144,
+        "top1_in_book": 0.5833333333333334,
+        "book_probability": 0.3652078451963866,
+        "set_ce": 1.3323659118678834
+      },
+      "moves7_10": {
+        "n": 348,
+        "top1_in_book": 0.4051724137931034,
+        "book_probability": 0.2671525740897987,
+        "set_ce": 2.110447841129084
+      }
+    },
+    "validation_stages": {
+      "moves1_3": {
+        "n": 0,
+        "top1_in_book": null
+      },
+      "moves4_6": {
+        "n": 24,
+        "top1_in_book": 0.4166666666666667,
+        "book_probability": 0.2743582115508616,
+        "set_ce": 2.152251899242401
+      },
+      "moves7_10": {
+        "n": 104,
+        "top1_in_book": 0.40384615384615385,
+        "book_probability": 0.2517126672598981,
+        "set_ce": 2.104055996124561
+      }
+    },
+    "standard_first6": {
+      "n": 6,
+      "top1_in_book": 0.8333333333333334,
+      "book_probability": 0.5382556021213531,
+      "set_ce": 0.6733546257019043
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.205694705384796,
+      "policy_accuracy": 0.39663093415007655,
+      "value_mse": 1.0738284795974333,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.4136344653688813,
+      "policy_accuracy": 0.34844192634560905,
+      "value_mse": 1.2269921012370513,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 1800,
+    "book_train": {
+      "n": 565,
+      "top1_in_book": 0.5150442477876106,
+      "book_probability": 0.3184786924183682,
+      "set_ce": 1.7285270910347457
+    },
+    "book_validation": {
+      "n": 128,
+      "top1_in_book": 0.40625,
+      "book_probability": 0.258157206249507,
+      "set_ce": 2.0731599498540163
+    },
+    "train_stages": {
+      "moves1_3": {
+        "n": 73,
+        "top1_in_book": 0.8904109589041096,
+        "book_probability": 0.4777947100364182,
+        "set_ce": 0.846600839536484
+      },
+      "moves4_6": {
+        "n": 144,
+        "top1_in_book": 0.5763888888888888,
+        "book_probability": 0.3635828973783646,
+        "set_ce": 1.316193915075726
+      },
+      "moves7_10": {
+        "n": 348,
+        "top1_in_book": 0.4109195402298851,
+        "book_probability": 0.2663951361770661,
+        "set_ce": 2.084149503159797
+      }
+    },
+    "validation_stages": {
+      "moves1_3": {
+        "n": 0,
+        "top1_in_book": null
+      },
+      "moves4_6": {
+        "n": 24,
+        "top1_in_book": 0.4166666666666667,
+        "book_probability": 0.275583646997499,
+        "set_ce": 2.1434296568234763
+      },
+      "moves7_10": {
+        "n": 104,
+        "top1_in_book": 0.40384615384615385,
+        "book_probability": 0.25413572854785554,
+        "set_ce": 2.056943801733164
+      }
+    },
+    "standard_first6": {
+      "n": 6,
+      "top1_in_book": 1.0,
+      "book_probability": 0.5413478364547094,
+      "set_ce": 0.6530716816584269
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.1829109118871997,
+      "policy_accuracy": 0.3996937212863706,
+      "value_mse": 1.0723692877916975,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3852323732700293,
+      "policy_accuracy": 0.35410764872521244,
+      "value_mse": 1.2159582373103068,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 2000,
+    "book_train": {
+      "n": 565,
+      "top1_in_book": 0.5097345132743363,
+      "book_probability": 0.3279377757624694,
+      "set_ce": 1.7211258993739575
+    },
+    "book_validation": {
+      "n": 128,
+      "top1_in_book": 0.3984375,
+      "book_probability": 0.26735636758530745,
+      "set_ce": 2.057040696963668
+    },
+    "train_stages": {
+      "moves1_3": {
+        "n": 73,
+        "top1_in_book": 0.8904109589041096,
+        "book_probability": 0.4940274797175845,
+        "set_ce": 0.809393536554624
+      },
+      "moves4_6": {
+        "n": 144,
+        "top1_in_book": 0.5555555555555556,
+        "book_probability": 0.3553913661712108,
+        "set_ce": 1.3458841625187132
+      },
+      "moves7_10": {
+        "n": 348,
+        "top1_in_book": 0.4109195402298851,
+        "book_probability": 0.28173700341981256,
+        "set_ce": 2.0676525639391494
+      }
+    },
+    "validation_stages": {
+      "moves1_3": {
+        "n": 0,
+        "top1_in_book": null
+      },
+      "moves4_6": {
+        "n": 24,
+        "top1_in_book": 0.4166666666666667,
+        "book_probability": 0.28124257789265056,
+        "set_ce": 2.22066464026769
+      },
+      "moves7_10": {
+        "n": 104,
+        "top1_in_book": 0.3942307692307692,
+        "book_probability": 0.26415186423960574,
+        "set_ce": 2.0192812910446754
+      }
+    },
+    "standard_first6": {
+      "n": 6,
+      "top1_in_book": 1.0,
+      "book_probability": 0.5591386506954829,
+      "set_ce": 0.6127672990163168
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.139518296736853,
+      "policy_accuracy": 0.4165390505359878,
+      "value_mse": 1.075817852984161,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.373497862822611,
+      "policy_accuracy": 0.3597733711048159,
+      "value_mse": 1.2227896386097916,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 2200,
+    "book_train": {
+      "n": 565,
+      "top1_in_book": 0.5203539823008849,
+      "book_probability": 0.34318862341878015,
+      "set_ce": 1.6905956935038609
+    },
+    "book_validation": {
+      "n": 128,
+      "top1_in_book": 0.3984375,
+      "book_probability": 0.27192735631615506,
+      "set_ce": 2.0685837622731924
+    },
+    "train_stages": {
+      "moves1_3": {
+        "n": 73,
+        "top1_in_book": 0.8904109589041096,
+        "book_probability": 0.5225613374926456,
+        "set_ce": 0.7536715644679658
+      },
+      "moves4_6": {
+        "n": 144,
+        "top1_in_book": 0.5763888888888888,
+        "book_probability": 0.3803397220617626,
+        "set_ce": 1.2853697621160083
+      },
+      "moves7_10": {
+        "n": 348,
+        "top1_in_book": 0.41954022988505746,
+        "book_probability": 0.2901887059499089,
+        "set_ce": 2.054814100265503
+      }
+    },
+    "validation_stages": {
+      "moves1_3": {
+        "n": 0,
+        "top1_in_book": null
+      },
+      "moves4_6": {
+        "n": 24,
+        "top1_in_book": 0.4166666666666667,
+        "book_probability": 0.29725422570481896,
+        "set_ce": 2.245664815107981
+      },
+      "moves7_10": {
+        "n": 104,
+        "top1_in_book": 0.3942307692307692,
+        "book_probability": 0.26608268905413124,
+        "set_ce": 2.027718974993779
+      }
+    },
+    "standard_first6": {
+      "n": 6,
+      "top1_in_book": 1.0,
+      "book_probability": 0.5827309588591257,
+      "set_ce": 0.5766645669937134
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.1534897496105154,
+      "policy_accuracy": 0.4119448698315467,
+      "value_mse": 1.0768067708972038,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3899106856108387,
+      "policy_accuracy": 0.3597733711048159,
+      "value_mse": 1.216207021356642,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 2400,
+    "book_train": {
+      "n": 565,
+      "top1_in_book": 0.5168141592920354,
+      "book_probability": 0.33744715178772744,
+      "set_ce": 1.6547900474176997
+    },
+    "book_validation": {
+      "n": 128,
+      "top1_in_book": 0.40625,
+      "book_probability": 0.2608522273467315,
+      "set_ce": 2.058528769761324
+    },
+    "train_stages": {
+      "moves1_3": {
+        "n": 73,
+        "top1_in_book": 0.8904109589041096,
+        "book_probability": 0.5207203351063271,
+        "set_ce": 0.7497023621650591
+      },
+      "moves4_6": {
+        "n": 144,
+        "top1_in_book": 0.5833333333333334,
+        "book_probability": 0.39321185307603124,
+        "set_ce": 1.2284660935401917
+      },
+      "moves7_10": {
+        "n": 348,
+        "top1_in_book": 0.4109195402298851,
+        "book_probability": 0.2759268606816226,
+        "set_ce": 2.0210603194675225
+      }
+    },
+    "validation_stages": {
+      "moves1_3": {
+        "n": 0,
+        "top1_in_book": null
+      },
+      "moves4_6": {
+        "n": 24,
+        "top1_in_book": 0.4583333333333333,
+        "book_probability": 0.3018610375196052,
+        "set_ce": 2.1070808370908103
+      },
+      "moves7_10": {
+        "n": 104,
+        "top1_in_book": 0.3942307692307692,
+        "book_probability": 0.2513886419351016,
+        "set_ce": 2.047324478626251
+      }
+    },
+    "standard_first6": {
+      "n": 6,
+      "top1_in_book": 1.0,
+      "book_probability": 0.5668662488460541,
+      "set_ce": 0.5962074597676595
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.1937930091051743,
+      "policy_accuracy": 0.38284839203675347,
+      "value_mse": 1.0710230180351876,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3890538200440554,
+      "policy_accuracy": 0.3626062322946176,
+      "value_mse": 1.218660019612515,
+      "genuine_value_samples": 353.0
+    }
+  }
+]

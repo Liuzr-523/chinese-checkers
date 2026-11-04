@@ -1,0 +1,23 @@
+{
+  "book25": {
+    "master_sequence_sha256": "34f4cc4af5f0494b680a7ee5732af7caf21830204943943aa989ba386653b030",
+    "opening_exposures": 9600,
+    "ordinary_exposures": 28800,
+    "total_examples": 38400,
+    "updates": 2400
+  },
+  "book50": {
+    "master_sequence_sha256": "34f4cc4af5f0494b680a7ee5732af7caf21830204943943aa989ba386653b030",
+    "opening_exposures": 19200,
+    "ordinary_exposures": 19200,
+    "total_examples": 38400,
+    "updates": 2400
+  },
+  "book75": {
+    "master_sequence_sha256": "34f4cc4af5f0494b680a7ee5732af7caf21830204943943aa989ba386653b030",
+    "opening_exposures": 28800,
+    "ordinary_exposures": 9600,
+    "total_examples": 38400,
+    "updates": 2400
+  }
+}
