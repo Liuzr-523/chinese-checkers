@@ -1,0 +1,155 @@
+{
+  "baseline": {
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.0,
+      "book_probability": 0.05381402910552424,
+      "set_ce": 4.081822149455547
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.375,
+      "book_probability": 0.24803639960191504,
+      "set_ce": 2.4461820498108864
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.117033172712574,
+      "policy_accuracy": 0.4058192955589586,
+      "value_mse": 1.0095422140124382,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3978754107658315,
+      "policy_accuracy": 0.3626062322946176,
+      "value_mse": 1.04286296340629,
+      "genuine_value_samples": 353.0
+    }
+  },
+  "final": {
+    "root_only": {
+      "step": 2400,
+      "fixed32": {
+        "n": 32,
+        "top1_in_book": 1.0,
+        "book_probability": 0.9898842610418797,
+        "set_ce": 0.01059103012084961
+      },
+      "validation": {
+        "n": 128,
+        "top1_in_book": 0.15625,
+        "book_probability": 0.15133681389383172,
+        "set_ce": 18.246941477060318
+      },
+      "retention": {
+        "samples": 653,
+        "policy_ce": 32.95045043571437,
+        "policy_accuracy": 0.16539050535987748,
+        "value_mse": 1.6712965213138877,
+        "genuine_value_samples": 653.0
+      },
+      "normal": {
+        "samples": 353,
+        "policy_ce": 32.29290974482092,
+        "policy_accuracy": 0.16147308781869688,
+        "value_mse": 1.6990522837487945,
+        "genuine_value_samples": 353.0
+      }
+    },
+    "with_replay": {
+      "step": 2400,
+      "fixed32": {
+        "n": 32,
+        "top1_in_book": 0.1875,
+        "book_probability": 0.1488426999130752,
+        "set_ce": 2.219417303800583
+      },
+      "validation": {
+        "n": 128,
+        "top1_in_book": 0.3359375,
+        "book_probability": 0.18732523921880784,
+        "set_ce": 2.3815829753875732
+      },
+      "retention": {
+        "samples": 653,
+        "policy_ce": 2.2456700177506685,
+        "policy_accuracy": 0.37978560490045943,
+        "value_mse": 1.0834082242723264,
+        "genuine_value_samples": 653.0
+      },
+      "normal": {
+        "samples": 353,
+        "policy_ce": 2.3664272236756494,
+        "policy_accuracy": 0.37110481586402266,
+        "value_mse": 1.1767669654432842,
+        "genuine_value_samples": 353.0
+      }
+    },
+    "with_aux": {
+      "step": 2400,
+      "fixed32": {
+        "n": 32,
+        "top1_in_book": 0.90625,
+        "book_probability": 0.5673157195560634,
+        "set_ce": 0.6567431539297104
+      },
+      "validation": {
+        "n": 128,
+        "top1_in_book": 0.3125,
+        "book_probability": 0.21783348622467713,
+        "set_ce": 3.332156725227833
+      },
+      "retention": {
+        "samples": 653,
+        "policy_ce": 3.274815191353627,
+        "policy_accuracy": 0.2542113323124043,
+        "value_mse": 1.069000331767668,
+        "genuine_value_samples": 653.0
+      },
+      "normal": {
+        "samples": 353,
+        "policy_ce": 3.3635601505594956,
+        "policy_accuracy": 0.2747875354107649,
+        "value_mse": 1.2057304887190756,
+        "genuine_value_samples": 353.0
+      }
+    },
+    "full": {
+      "step": 2400,
+      "fixed32": {
+        "n": 32,
+        "top1_in_book": 0.15625,
+        "book_probability": 0.13718024572881404,
+        "set_ce": 2.3354798182845116
+      },
+      "validation": {
+        "n": 128,
+        "top1_in_book": 0.34375,
+        "book_probability": 0.19430963815648283,
+        "set_ce": 2.3447614666074514
+      },
+      "retention": {
+        "samples": 653,
+        "policy_ce": 2.2184050269367868,
+        "policy_accuracy": 0.3905053598774885,
+        "value_mse": 1.066061224360561,
+        "genuine_value_samples": 653.0
+      },
+      "normal": {
+        "samples": 353,
+        "policy_ce": 2.355487880431559,
+        "policy_accuracy": 0.3597733711048159,
+        "value_mse": 1.2049837919537811,
+        "genuine_value_samples": 353.0
+      }
+    }
+  },
+  "reproduction_top1_difference": {
+    "root_only": 0.0,
+    "full": 0.0
+  },
+  "seconds": 348.71256912499666,
+  "promoted": false,
+  "arena_run": false
+}

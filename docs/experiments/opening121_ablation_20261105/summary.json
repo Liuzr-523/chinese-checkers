@@ -1,0 +1,86 @@
+{
+  "root_only": {
+    "correct": 32,
+    "val": 0.15625,
+    "old_ce": 32.95045043571437,
+    "old_value": 1.6712965213138877,
+    "normal_ce": 32.29290974482092,
+    "clipping": {
+      "sequence_sha256": "a3c586afc904d80b4482d5054ed0ef5e3463a02169592143cae8ef2aee238251",
+      "root_exposures": 9600,
+      "ordinary_loss_exposures": 0,
+      "ordinary_aux_exposures": 0,
+      "clipped_updates": 2006,
+      "mean_preclip_norm": 4.012860280191138
+    },
+    "gradient_samples": 12,
+    "mean_replay_root_norm_ratio": 91.97958353020857,
+    "mean_aux_root_norm_ratio": 11.392185845034126,
+    "negative_replay": 5,
+    "mean_replay_cosine": -0.0659004384263729,
+    "negative_aux": 8
+  },
+  "with_replay": {
+    "correct": 6,
+    "val": 0.3359375,
+    "old_ce": 2.2456700177506685,
+    "old_value": 1.0834082242723264,
+    "normal_ce": 2.3664272236756494,
+    "clipping": {
+      "sequence_sha256": "a3c586afc904d80b4482d5054ed0ef5e3463a02169592143cae8ef2aee238251",
+      "root_exposures": 9600,
+      "ordinary_loss_exposures": 28800,
+      "ordinary_aux_exposures": 0,
+      "clipped_updates": 2400,
+      "mean_preclip_norm": 7.584741933743159
+    },
+    "gradient_samples": 12,
+    "mean_replay_root_norm_ratio": 1.8774720541763248,
+    "mean_aux_root_norm_ratio": 1.1202192575069398,
+    "negative_replay": 10,
+    "mean_replay_cosine": -0.2872023719052474,
+    "negative_aux": 8
+  },
+  "with_aux": {
+    "correct": 29,
+    "val": 0.3125,
+    "old_ce": 3.274815191353627,
+    "old_value": 1.069000331767668,
+    "normal_ce": 3.3635601505594956,
+    "clipping": {
+      "sequence_sha256": "a3c586afc904d80b4482d5054ed0ef5e3463a02169592143cae8ef2aee238251",
+      "root_exposures": 9600,
+      "ordinary_loss_exposures": 0,
+      "ordinary_aux_exposures": 28800,
+      "clipped_updates": 2400,
+      "mean_preclip_norm": 7.520835170199474
+    },
+    "gradient_samples": 12,
+    "mean_replay_root_norm_ratio": 3.997692081751175,
+    "mean_aux_root_norm_ratio": 1.3646605717372557,
+    "negative_replay": 11,
+    "mean_replay_cosine": -0.4259467936741809,
+    "negative_aux": 12
+  },
+  "full": {
+    "correct": 5,
+    "val": 0.34375,
+    "old_ce": 2.2184050269367868,
+    "old_value": 1.066061224360561,
+    "normal_ce": 2.355487880431559,
+    "clipping": {
+      "sequence_sha256": "a3c586afc904d80b4482d5054ed0ef5e3463a02169592143cae8ef2aee238251",
+      "root_exposures": 9600,
+      "ordinary_loss_exposures": 28800,
+      "ordinary_aux_exposures": 28800,
+      "clipped_updates": 2400,
+      "mean_preclip_norm": 9.454507905642192
+    },
+    "gradient_samples": 12,
+    "mean_replay_root_norm_ratio": 1.783511931494057,
+    "mean_aux_root_norm_ratio": 1.1311991232973029,
+    "negative_replay": 10,
+    "mean_replay_cosine": -0.2819036246898274,
+    "negative_aux": 8
+  }
+}

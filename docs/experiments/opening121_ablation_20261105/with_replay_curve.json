@@ -1,0 +1,727 @@
+[
+  {
+    "step": 0,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.0,
+      "book_probability": 0.05381402910552424,
+      "set_ce": 4.081822149455547
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.375,
+      "book_probability": 0.24803639960191504,
+      "set_ce": 2.4461820498108864
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.117033172712574,
+      "policy_accuracy": 0.4058192955589586,
+      "value_mse": 1.0095422140124382,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3978754107658315,
+      "policy_accuracy": 0.3626062322946176,
+      "value_mse": 1.04286296340629,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 100,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.0,
+      "book_probability": 0.06786258111606003,
+      "set_ce": 3.161194458603859
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.328125,
+      "book_probability": 0.17310967515550146,
+      "set_ce": 2.3957873471081257
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2293435165381905,
+      "policy_accuracy": 0.3905053598774885,
+      "value_mse": 1.016953395300218,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.382128709436476,
+      "policy_accuracy": 0.34277620396600567,
+      "value_mse": 1.0646825458105158,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 200,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.0625,
+      "book_probability": 0.07291763489774894,
+      "set_ce": 3.0587583854794502
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.34375,
+      "book_probability": 0.16944929759119987,
+      "set_ce": 2.3965996615588665
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.241552707794797,
+      "policy_accuracy": 0.39203675344563554,
+      "value_mse": 1.0172814242142447,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.384661898481272,
+      "policy_accuracy": 0.35410764872521244,
+      "value_mse": 1.0643901956655486,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 300,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.0625,
+      "book_probability": 0.07796685915673152,
+      "set_ce": 2.9920830577611923
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.3125,
+      "book_probability": 0.1749985325805028,
+      "set_ce": 2.3969101049005985
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2422003329804263,
+      "policy_accuracy": 0.40428790199081166,
+      "value_mse": 1.0284032193661465,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3835281581530827,
+      "policy_accuracy": 0.3654390934844193,
+      "value_mse": 1.081634913220284,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 400,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.0625,
+      "book_probability": 0.08323266881416203,
+      "set_ce": 2.933450326323509
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.296875,
+      "book_probability": 0.18294035354119842,
+      "set_ce": 2.3866548873484135
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2362723167968563,
+      "policy_accuracy": 0.40275650842266464,
+      "value_mse": 1.0243770313116893,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.38698816624478,
+      "policy_accuracy": 0.3654390934844193,
+      "value_mse": 1.0810514352476968,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 500,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.09375,
+      "book_probability": 0.0855739613471087,
+      "set_ce": 2.8868175968527794
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.3203125,
+      "book_probability": 0.17572630274844414,
+      "set_ce": 2.387701967731118
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2328398267854044,
+      "policy_accuracy": 0.4012251148545176,
+      "value_mse": 1.0311994391962727,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.383819726810239,
+      "policy_accuracy": 0.35410764872521244,
+      "value_mse": 1.0955667721988798,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 600,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.09375,
+      "book_probability": 0.08608939828991424,
+      "set_ce": 2.8944684490561485
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.3359375,
+      "book_probability": 0.18023906569214887,
+      "set_ce": 2.364091010764241
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2173331393582165,
+      "policy_accuracy": 0.4104134762633997,
+      "value_mse": 1.0335162748421498,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.370091715885627,
+      "policy_accuracy": 0.35410764872521244,
+      "value_mse": 1.1008889737615504,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 700,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.09375,
+      "book_probability": 0.09020620022783987,
+      "set_ce": 2.8029736429452896
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.3046875,
+      "book_probability": 0.17040915915276855,
+      "set_ce": 2.410975646227598
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.232498867040754,
+      "policy_accuracy": 0.40888208269525267,
+      "value_mse": 1.0345916543583775,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3805153473325222,
+      "policy_accuracy": 0.34560906515580736,
+      "value_mse": 1.10640011512524,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 800,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.09375,
+      "book_probability": 0.0953146559841116,
+      "set_ce": 2.7843654602766037
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.3203125,
+      "book_probability": 0.18489556588428968,
+      "set_ce": 2.3744977489113808
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2268456770121414,
+      "policy_accuracy": 0.38591117917304746,
+      "value_mse": 1.038682693726801,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.371780768247907,
+      "policy_accuracy": 0.35694050991501414,
+      "value_mse": 1.1129242453629167,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 900,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.09375,
+      "book_probability": 0.09731533638114342,
+      "set_ce": 2.7084578573703766
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.328125,
+      "book_probability": 0.1695501682588656,
+      "set_ce": 2.401335144415498
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2385045149424907,
+      "policy_accuracy": 0.38131699846860645,
+      "value_mse": 1.0372202086047047,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3762150340141046,
+      "policy_accuracy": 0.35127478753541075,
+      "value_mse": 1.1149300728573677,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 1000,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.09375,
+      "book_probability": 0.09811990299203899,
+      "set_ce": 2.7237598299980164
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.3359375,
+      "book_probability": 0.18113273228664184,
+      "set_ce": 2.364295769482851
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2107921793121292,
+      "policy_accuracy": 0.40735068912710565,
+      "value_mse": 1.0433481546492525,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3550775875113166,
+      "policy_accuracy": 0.34277620396600567,
+      "value_mse": 1.1257656937618095,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 1100,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.09375,
+      "book_probability": 0.10230255589704029,
+      "set_ce": 2.6758458241820335
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.3359375,
+      "book_probability": 0.1781916548625304,
+      "set_ce": 2.382504165172577
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2185614324455787,
+      "policy_accuracy": 0.39509954058192953,
+      "value_mse": 1.0443315111659752,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.358871492042758,
+      "policy_accuracy": 0.35127478753541075,
+      "value_mse": 1.124879876040872,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 1200,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.09375,
+      "book_probability": 0.10546894517028704,
+      "set_ce": 2.6632848381996155
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.3359375,
+      "book_probability": 0.1858490958056791,
+      "set_ce": 2.35636068508029
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2117130825749585,
+      "policy_accuracy": 0.3996937212863706,
+      "value_mse": 1.0499045005436147,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.357570824263454,
+      "policy_accuracy": 0.35410764872521244,
+      "value_mse": 1.1277259708126273,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 1300,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.09375,
+      "book_probability": 0.10724233836663188,
+      "set_ce": 2.615269124507904
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.328125,
+      "book_probability": 0.18114455412614916,
+      "set_ce": 2.374033285304904
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2195534523559384,
+      "policy_accuracy": 0.39509954058192953,
+      "value_mse": 1.042972332485602,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3626305861108365,
+      "policy_accuracy": 0.33994334277620397,
+      "value_mse": 1.1266102714849262,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 1400,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.09375,
+      "book_probability": 0.10904576386383269,
+      "set_ce": 2.5918191000819206
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.3125,
+      "book_probability": 0.18539561104626046,
+      "set_ce": 2.3748473059386015
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2154457740725273,
+      "policy_accuracy": 0.3996937212863706,
+      "value_mse": 1.0593797017750295,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.361394183704941,
+      "policy_accuracy": 0.35410764872521244,
+      "value_mse": 1.1461251084257456,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 1500,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.125,
+      "book_probability": 0.11388032196555287,
+      "set_ce": 2.5041350349783897
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.3125,
+      "book_probability": 0.17360420794102538,
+      "set_ce": 2.4137083385139704
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2454189414452266,
+      "policy_accuracy": 0.3905053598774885,
+      "value_mse": 1.0463482650826939,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.370100949835507,
+      "policy_accuracy": 0.34277620396600567,
+      "value_mse": 1.1266871326030483,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 1600,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.125,
+      "book_probability": 0.1201174613161129,
+      "set_ce": 2.4851827323436737
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.34375,
+      "book_probability": 0.19188475800456217,
+      "set_ce": 2.3758572582155466
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2300932067824357,
+      "policy_accuracy": 0.39356814701378257,
+      "value_mse": 1.0517634147889399,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3642371824966273,
+      "policy_accuracy": 0.3626062322946176,
+      "value_mse": 1.134826847075065,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 1700,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.125,
+      "book_probability": 0.11750002042390406,
+      "set_ce": 2.5099179297685623
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.3125,
+      "book_probability": 0.1906435327446161,
+      "set_ce": 2.352354845032096
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2116570640669115,
+      "policy_accuracy": 0.39356814701378257,
+      "value_mse": 1.0595038123371772,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.353643896179564,
+      "policy_accuracy": 0.3597733711048159,
+      "value_mse": 1.1443029618465868,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 1800,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.125,
+      "book_probability": 0.12278586620959686,
+      "set_ce": 2.4492204263806343
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.328125,
+      "book_probability": 0.18796127512723615,
+      "set_ce": 2.356118006631732
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.231982752521042,
+      "policy_accuracy": 0.39509954058192953,
+      "value_mse": 1.068609643676197,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.343360866264311,
+      "policy_accuracy": 0.3626062322946176,
+      "value_mse": 1.1591932565902516,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 1900,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.125,
+      "book_probability": 0.132006956373516,
+      "set_ce": 2.3760788664221764
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.359375,
+      "book_probability": 0.19034872017891757,
+      "set_ce": 2.395279686897993
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.242791790692036,
+      "policy_accuracy": 0.3905053598774885,
+      "value_mse": 1.0592659107576285,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3596429707477182,
+      "policy_accuracy": 0.3654390934844193,
+      "value_mse": 1.1497846279536024,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 2000,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.125,
+      "book_probability": 0.13386669325700495,
+      "set_ce": 2.360852614045143
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.34375,
+      "book_probability": 0.19062531071904232,
+      "set_ce": 2.3602667823433876
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2502214408395482,
+      "policy_accuracy": 0.38284839203675347,
+      "value_mse": 1.075290954496375,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.353905757324554,
+      "policy_accuracy": 0.35694050991501414,
+      "value_mse": 1.1656383587517076,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 2100,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.15625,
+      "book_probability": 0.12793355772737414,
+      "set_ce": 2.393376298248768
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.34375,
+      "book_probability": 0.18814949840179906,
+      "set_ce": 2.344521589577198
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2148937806601183,
+      "policy_accuracy": 0.39663093415007655,
+      "value_mse": 1.0753187089017486,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3401652361786063,
+      "policy_accuracy": 0.3654390934844193,
+      "value_mse": 1.1683501320081122,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 2200,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.125,
+      "book_probability": 0.13273564967676066,
+      "set_ce": 2.3773462772369385
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.34375,
+      "book_probability": 0.19662049517955893,
+      "set_ce": 2.337947830557823
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2062265956931237,
+      "policy_accuracy": 0.39663093415007655,
+      "value_mse": 1.0737213496957403,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3513157238745825,
+      "policy_accuracy": 0.3626062322946176,
+      "value_mse": 1.1656253999758712,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 2300,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.15625,
+      "book_probability": 0.1377079675294226,
+      "set_ce": 2.3153824880719185
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.328125,
+      "book_probability": 0.18967635143417283,
+      "set_ce": 2.352094018831849
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2246369862812037,
+      "policy_accuracy": 0.38437978560490044,
+      "value_mse": 1.080099193462004,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3504823451761485,
+      "policy_accuracy": 0.37677053824362605,
+      "value_mse": 1.1726790518834975,
+      "genuine_value_samples": 353.0
+    }
+  },
+  {
+    "step": 2400,
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.1875,
+      "book_probability": 0.1488426999130752,
+      "set_ce": 2.219417303800583
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.3359375,
+      "book_probability": 0.18732523921880784,
+      "set_ce": 2.3815829753875732
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.2456700177506685,
+      "policy_accuracy": 0.37978560490045943,
+      "value_mse": 1.0834082242723264,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3664272236756494,
+      "policy_accuracy": 0.37110481586402266,
+      "value_mse": 1.1767669654432842,
+      "genuine_value_samples": 353.0
+    }
+  }
+]

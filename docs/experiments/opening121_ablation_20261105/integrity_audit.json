@@ -1,0 +1,23 @@
+{
+  "old_teacher.jsonl": true,
+  "old_split.json": true,
+  "normal_games.jsonl": true,
+  "fixed32.pt": true,
+  "source:ablate_opening121_hard32.py": true,
+  "source:fit_opening121_hard32.py": true,
+  "source:opening121_ratios.py": true,
+  "source:train_opening121.py": true,
+  "source:az121.py": true,
+  "source:curriculum121.py": true,
+  "source:canonical121_trial.py": true,
+  "source:cycle121_targeted.py": true,
+  "source:generalization121_curve.py": true,
+  "source:opening121.py": true,
+  "source:opening121_book.json": true,
+  "source:rules121.py": true,
+  "source:unfreeze121_trial.py": true,
+  "source:checkpoint121_save.py": true,
+  "source:tests/test_opening121_loss_ablation.py": true,
+  "source:diagnostics/plot121_opening_ablation.py": true,
+  "source:diagnostics/plot_style_zh.py": true
+}
