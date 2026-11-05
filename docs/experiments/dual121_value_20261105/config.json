@@ -1,0 +1,74 @@
+{
+  "roadmap_step": 3,
+  "profile": "CCZ-121-Strict-LG-v2",
+  "parent": "nn_checkpoints/models/checkpoints/neural121_v3_expert_imitation.pt",
+  "model_sha256": "a0a40208061aaaa45931131f1760bb20ae114388c6ae6ad29181b204565395d9",
+  "registry_sha256": "d26f8ffd6b07f52e6c2c5929d8a86a7664cd58944b98562e71356368994c9b62",
+  "source_sha256": {
+    "train121_dual_value.py": "89cfc4728981c2bc0073d4a842733f551a386249e6b73953a69a42b09f9e8f54",
+    "dual121_data.py": "acab92a3a82235793818638a69a2df66b8bebb7b67b4364487126f6daa6aff6b",
+    "value121_metrics.py": "d3cee043bc68d74f5a6568237e750c68712906824926370e33a23cbc4072e4bc",
+    "az121.py": "4b8bf353e1baf39bc5526bb68e69a35f252ae3b17300adbd7df0c4c1dd456a6c",
+    "rules121.py": "98063b412f38012a3fc65468ab9a64972f01e515d2f1a291364ddac84d9d6734",
+    "curriculum121.py": "2451380d4eb6b33dc9a512535ac39f9404e54cde4bcbed88bbf179b1d6be46e0",
+    "cap_opening121_replay.py": "fd3ef3a83c24945fb65a0fe5a96de17b4c09f53bd4baf60007d56336ade749e1",
+    "canonical121_trial.py": "71ce4f9bd3f3065a2eab7fc528adf47ab396f563ad9703503990d43b0d397363",
+    "cycle121_targeted.py": "5c029a2ecf7947fbfc315eede39a2755fabc4c3eebff8c7058176957b20afbc5",
+    "generalization121_curve.py": "dd63987a9d0bfec19f12f0ff7faba7b08ccd1e10167f8972a8058356dc4046e2",
+    "train_opening121.py": "a714eb93bed6d139d537158aeb392bdaa6caa3a8019d2c45ac879f8631c4162c",
+    "opening121.py": "7be5e4974de3a53c0bf8d95887634e34ca3eb6bf81a75178dde4dcb90c75cba2",
+    "opening121_book.json": "04c3cdbf5900f80936b9de3bb8cc55c39b4a27fd436b3979d610f3a6dfc4a8d5",
+    "unfreeze121_trial.py": "a3795600a4a81f4681bc091976ee06f84111c6728515a9f2dc74afee39bd7ec9",
+    "history121_exclusions.py": "44a85f71555ce072b2a4014e2b7be22ecf570fb8fc93b4278f846356e5941e5a",
+    "opening121_split_audit.py": "4fd408b84b0cfcbe88e2e5adac1dc71e01dbb2be870571ca6342b13eb1bd0554",
+    "tests/test_dual121_data.py": "e473609b85c5b325d70d3797c813423cac10ec92955b1128d0eda65ed9161215",
+    "tests/test_value121_metrics.py": "3815cdac48c3b4d8f137175204fb234b5cd69d0dfe8d2a1e34a715f959f0168a",
+    "tests/test_train121_dual_value.py": "b8db57d870c1c6206013370652739bcedfe62cf105b9b5b9d17905e08474eb55",
+    "diagnostics/plot121_dual_value.py": "2d42fd2d771ec77aae73e1a16aa83e075a2351c29372b80cc79d012634ec3841"
+  },
+  "data_sha256": {
+    "nn_checkpoints/experiments/expert121_pilot48_20261105/dataset.pt": "a68336186e57d78ac1a39a4da413468e515452fd606da8734c93d8b523b0ef8d",
+    "nn_checkpoints/experiments/expert121_pilot48_20261105/result.json": "b13ec0aeb866edd7236ac77cb668847f06461aa2c1caa0466049c108ae4c0049",
+    "nn_checkpoints/experiments/expert121_pilot48_20261105/schedule.json": "b682cb5a54319ecfab823dbb97a8973134afc68de3e7140592e2d37c726ff941",
+    "nn_checkpoints/experiments/expert121_pilot48_20261105/sample_metadata.json": "2d07807712f461f9bb4da34f255c1dda6ab3852ff19d1e22bc0fe7e5374e00a3",
+    "nn_checkpoints/experiments/expert121_pilot48_20261105/policy_probes.json": "a7078db03c9885ae099e26597c354c53d6b78caa5659e54f0d7503d29bd20feb",
+    "nn_checkpoints/experiments/fresh121_projection_20261105/data_sources/old_teacher.jsonl": "c1b504ad07a4d8450464e9bb549bbf7415071275d1ae6c1253a93141dc98c29e",
+    "nn_checkpoints/experiments/fresh121_projection_20261105/data_sources/old_split.json": "f727a85b84d1bc77f1fbfd37ad370c94d6dbdf647b234b01c74f9711fe454d7c",
+    "nn_checkpoints/experiments/fresh121_projection_20261105/data_sources/normal_games.jsonl": "87d8c8d4d86af15bd0deccc2bdf74e14c4218b7f550331151a4fd09d55d5220b"
+  },
+  "arms": [
+    "head_only",
+    "joint"
+  ],
+  "steps": 2000,
+  "lr": 0.0001,
+  "weight_decay": 0.0001,
+  "clip_norm": 1,
+  "policy_weight": 0.25,
+  "kl_weight": 0.1,
+  "new_seed": 111071,
+  "old_seed": 111072,
+  "max_seconds": 3600,
+  "sampling": "\u6309train\u5f00\u5c40\u7ec4\u5747\u5300\u518d\u7ec4\u5185\u6709\u653e\u56de\u62bd\u6837\uff1a8\u771f\u5b9e\u672b16\u624bvalue+8\u5168\u7a0bvalue\uff1b\u53e616derived policy\u3002\u53e6\u4e00\u5934\u7f6e0\u524d\u5148\u6309\u539fmask\u7b5b\u9009\u3002KL\u65e7train8+\u666e\u901atrain8\uff0c\u4e24\u7ec4\u5e8f\u5217\u4e00\u81f4\uff0c\u8bb0\u5f55\u91cd\u590d\u7387\u3002",
+  "objectives": "head_only\u4ec5value.*\u8bad\u7ec3\u771f\u5b9eMSE\uff1bjoint\u5168\u7f51\u7edcvalueMSE+.25\u72ec\u7acb\u5f52\u4e00\u7b56\u7565CE+.1\u65e7\u5408\u6cd5\u7b56\u7565KL\u3002\u4e24\u7ec4\u540c\u521d\u503c/\u4f18\u5316\u5668/\u66f4\u65b0/\u6570\u636e\u5e8f\u5217\uff1b\u53c2\u6570\u8303\u56f4\u548c\u76ee\u6807\u8303\u56f4\u4e0d\u540c\u3002",
+  "acceptance": "\u65b0\u5f00\u53d18\u7ec4macro MSE\u8f83v3\u81f3\u5c11-.05\u4e14\u4f18\u4e8e\u96f6\u503c/\u8bad\u7ec3\u73a9\u5bb6\u5148\u9a8c\uff1b\u672b16\u624b\u53cc\u65b9macro\u5404\u4e0d\u52a3v3\uff0c\u5408\u8ba1\u4f18\u4e8e\u96f6/\u5148\u9a8c\uff1b\u65e7\u7b56\u7565CE\u3001\u65e7\u4ef7\u503cMSE\u3001\u666e\u901aCE\u5404<=v3+.05\uff1b\u65b0\u7b56\u7565CE<=v3+.05\uff1bhead_only\u975evalue\u72b6\u6001\u53ca\u7b56\u7565logits\u9010\u503c\u4e0d\u53d8\u3002\u4e24\u7ec4\u901a\u8fc7\u6309macro\u8f83\u4f4e\u9009\u4e00\u6b21\uff0c\u5dee<=1e-6\u4f18\u5148head_only\uff0c\u53ea\u51c6\u5907\u6b65\u9aa44\uff0c\u4e0d\u664b\u5347\u3002",
+  "development": "\u5f00\u53d1\u4e0d\u8fdb\u5165optimizer\uff0c\u4e0d\u4f5c\u4e2d\u9014\u8bc4\u4f30\uff1bv3\u57fa\u7ebf\u548c\u56fa\u5b9a\u6700\u7ec82000\u5404\u7ec4\u4ec5\u8bc4\u4e00\u6b21\u3002\u81ea\u7136\u80dc\u8d1f\u5206\u5e03\u7ffb\u8f6c\u4fdd\u7559\uff0c\u4e3a\u538b\u529b\u8bca\u65ad\uff0c\u975e\u72ec\u7acb\u68cb\u529b\u9a8c\u6536\u3002",
+  "pool_counts": {
+    "train": {
+      "actual": 2471,
+      "excluded_dual_zero": 0,
+      "probes": 32,
+      "metadata_excluded_dual_zero": 23,
+      "value": 2471,
+      "policy": 1267
+    },
+    "development": {
+      "actual": 1218,
+      "excluded_dual_zero": 0,
+      "probes": 16,
+      "metadata_excluded_dual_zero": 11,
+      "value": 1218,
+      "policy": 624
+    }
+  }
+}

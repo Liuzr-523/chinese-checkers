@@ -1,0 +1,8 @@
+{
+  "original_experiment_result_preserved": true,
+  "postrun_correction": "policy_metrics统一requires_grad=False计算严格策略指纹，finally恢复原flag。原执行source保存在executed_source，原指标/门槛未重算。",
+  "training_seconds": 252.512700124993,
+  "local_tests_before_correction": 176,
+  "clean_archive_tests_before_correction": 176,
+  "clean_archive_optional_skipped": 4
+}

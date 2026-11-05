@@ -1,0 +1,385 @@
+{
+  "roadmap_step": 3,
+  "scope": "独立只读工件审计；未训练、未查询教师、未重新开发评测。先核对已存logits SHA，再仅用固定seed合成随机x做额外数值见证，不使用开发局面。checkpoint参数直接torch.equal逐张量核验。",
+  "experiment": "nn_checkpoints/experiments/dual121_value_20261105",
+  "checks": {
+    "source_snapshots": true,
+    "current_source": false,
+    "data_unchanged": true,
+    "v3_unchanged": true,
+    "registry_unchanged": true,
+    "initial_checkpoints_exact_v3": true,
+    "head_nonvalue_unchanged_all_checkpoints": true,
+    "head_development_policy_logits_sha_equal": false,
+    "common_trace_2000": true,
+    "sampling_audit_matches": true,
+    "status_complete": true,
+    "no_candidate_selected": true,
+    "not_ready_for_step4": true,
+    "current_source_changes_limited_to_declared_post_run_fix": true
+  },
+  "config_sha256": "47d0f9f4970ec41344a2e0aa8e5aca05a70cf457b0aa9bacfc9a1d6ff07e2a9c",
+  "result_sha256": "d948289a24395841afd8431e9dd94d14749cf7854aaa6b74d2746c06fa98d6e6",
+  "source_checks": {
+    "train121_dual_value.py": {
+      "recorded": "89cfc4728981c2bc0073d4a842733f551a386249e6b73953a69a42b09f9e8f54",
+      "snapshot_matches": true,
+      "current_matches": false
+    },
+    "dual121_data.py": {
+      "recorded": "acab92a3a82235793818638a69a2df66b8bebb7b67b4364487126f6daa6aff6b",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "value121_metrics.py": {
+      "recorded": "d3cee043bc68d74f5a6568237e750c68712906824926370e33a23cbc4072e4bc",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "az121.py": {
+      "recorded": "4b8bf353e1baf39bc5526bb68e69a35f252ae3b17300adbd7df0c4c1dd456a6c",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "rules121.py": {
+      "recorded": "98063b412f38012a3fc65468ab9a64972f01e515d2f1a291364ddac84d9d6734",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "curriculum121.py": {
+      "recorded": "2451380d4eb6b33dc9a512535ac39f9404e54cde4bcbed88bbf179b1d6be46e0",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "cap_opening121_replay.py": {
+      "recorded": "fd3ef3a83c24945fb65a0fe5a96de17b4c09f53bd4baf60007d56336ade749e1",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "canonical121_trial.py": {
+      "recorded": "71ce4f9bd3f3065a2eab7fc528adf47ab396f563ad9703503990d43b0d397363",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "cycle121_targeted.py": {
+      "recorded": "5c029a2ecf7947fbfc315eede39a2755fabc4c3eebff8c7058176957b20afbc5",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "generalization121_curve.py": {
+      "recorded": "dd63987a9d0bfec19f12f0ff7faba7b08ccd1e10167f8972a8058356dc4046e2",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "train_opening121.py": {
+      "recorded": "a714eb93bed6d139d537158aeb392bdaa6caa3a8019d2c45ac879f8631c4162c",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "opening121.py": {
+      "recorded": "7be5e4974de3a53c0bf8d95887634e34ca3eb6bf81a75178dde4dcb90c75cba2",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "opening121_book.json": {
+      "recorded": "04c3cdbf5900f80936b9de3bb8cc55c39b4a27fd436b3979d610f3a6dfc4a8d5",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "unfreeze121_trial.py": {
+      "recorded": "a3795600a4a81f4681bc091976ee06f84111c6728515a9f2dc74afee39bd7ec9",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "history121_exclusions.py": {
+      "recorded": "44a85f71555ce072b2a4014e2b7be22ecf570fb8fc93b4278f846356e5941e5a",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "opening121_split_audit.py": {
+      "recorded": "4fd408b84b0cfcbe88e2e5adac1dc71e01dbb2be870571ca6342b13eb1bd0554",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "tests/test_dual121_data.py": {
+      "recorded": "e473609b85c5b325d70d3797c813423cac10ec92955b1128d0eda65ed9161215",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "tests/test_value121_metrics.py": {
+      "recorded": "3815cdac48c3b4d8f137175204fb234b5cd69d0dfe8d2a1e34a715f959f0168a",
+      "snapshot_matches": true,
+      "current_matches": true
+    },
+    "tests/test_train121_dual_value.py": {
+      "recorded": "b8db57d870c1c6206013370652739bcedfe62cf105b9b5b9d17905e08474eb55",
+      "snapshot_matches": true,
+      "current_matches": false
+    },
+    "diagnostics/plot121_dual_value.py": {
+      "recorded": "2d42fd2d771ec77aae73e1a16aa83e075a2351c29372b80cc79d012634ec3841",
+      "snapshot_matches": true,
+      "current_matches": true
+    }
+  },
+  "data_checks": {
+    "nn_checkpoints/experiments/expert121_pilot48_20261105/dataset.pt": {
+      "recorded": "a68336186e57d78ac1a39a4da413468e515452fd606da8734c93d8b523b0ef8d",
+      "matches": true
+    },
+    "nn_checkpoints/experiments/expert121_pilot48_20261105/result.json": {
+      "recorded": "b13ec0aeb866edd7236ac77cb668847f06461aa2c1caa0466049c108ae4c0049",
+      "matches": true
+    },
+    "nn_checkpoints/experiments/expert121_pilot48_20261105/schedule.json": {
+      "recorded": "b682cb5a54319ecfab823dbb97a8973134afc68de3e7140592e2d37c726ff941",
+      "matches": true
+    },
+    "nn_checkpoints/experiments/expert121_pilot48_20261105/sample_metadata.json": {
+      "recorded": "2d07807712f461f9bb4da34f255c1dda6ab3852ff19d1e22bc0fe7e5374e00a3",
+      "matches": true
+    },
+    "nn_checkpoints/experiments/expert121_pilot48_20261105/policy_probes.json": {
+      "recorded": "a7078db03c9885ae099e26597c354c53d6b78caa5659e54f0d7503d29bd20feb",
+      "matches": true
+    },
+    "nn_checkpoints/experiments/fresh121_projection_20261105/data_sources/old_teacher.jsonl": {
+      "recorded": "c1b504ad07a4d8450464e9bb549bbf7415071275d1ae6c1253a93141dc98c29e",
+      "matches": true
+    },
+    "nn_checkpoints/experiments/fresh121_projection_20261105/data_sources/old_split.json": {
+      "recorded": "f727a85b84d1bc77f1fbfd37ad370c94d6dbdf647b234b01c74f9711fe454d7c",
+      "matches": true
+    },
+    "nn_checkpoints/experiments/fresh121_projection_20261105/data_sources/normal_games.jsonl": {
+      "recorded": "87d8c8d4d86af15bd0deccc2bdf74e14c4218b7f550331151a4fd09d55d5220b",
+      "matches": true
+    }
+  },
+  "model_checkpoints": {
+    "head_only_step0.pt": {
+      "sha256": "dbaf5ec2a3f3326e373687ac36fc9ae7e4aa6c889946f900e31a7c580e835082",
+      "nonvalue_tensor_count": 18,
+      "nonvalue_changed": [],
+      "value_changed": []
+    },
+    "head_only_step1000.pt": {
+      "sha256": "54ef187bcefcf08a8486e4ba12e2d99133669f2be5ae557c1c8ac2402db2bc8d",
+      "nonvalue_tensor_count": 18,
+      "nonvalue_changed": [],
+      "value_changed": [
+        "value.0.weight",
+        "value.0.bias",
+        "value.2.weight",
+        "value.2.bias"
+      ]
+    },
+    "head_only_step2000.pt": {
+      "sha256": "4a621d5245419c91ced7ec4c25a55d848399d67df351a9ddf05ddf79ad322500",
+      "nonvalue_tensor_count": 18,
+      "nonvalue_changed": [],
+      "value_changed": [
+        "value.0.weight",
+        "value.0.bias",
+        "value.2.weight",
+        "value.2.bias"
+      ]
+    },
+    "joint_step0.pt": {
+      "sha256": "82a7da724161fa7fa160e9018fc7f6aa793858f227c7474ea7eae2e7bd7c2b13",
+      "nonvalue_tensor_count": 18,
+      "nonvalue_changed": [],
+      "value_changed": []
+    },
+    "joint_step1000.pt": {
+      "sha256": "18f38b23e8eba1d06617b36ed72a0d8cc18ec1dd8781f2257418740df4becd5b",
+      "nonvalue_tensor_count": 18,
+      "nonvalue_changed": [
+        "stem.weight",
+        "stem.bias",
+        "blocks.0.0.weight",
+        "blocks.0.0.bias",
+        "blocks.0.2.weight",
+        "blocks.0.2.bias",
+        "blocks.1.0.weight",
+        "blocks.1.0.bias",
+        "blocks.1.2.weight",
+        "blocks.1.2.bias",
+        "src.weight",
+        "src.bias",
+        "dst.weight",
+        "dst.bias",
+        "bias.weight",
+        "bias.bias"
+      ],
+      "value_changed": [
+        "value.0.weight",
+        "value.0.bias",
+        "value.2.weight",
+        "value.2.bias"
+      ]
+    },
+    "joint_step2000.pt": {
+      "sha256": "d43328b3bcb291e48db15c67e3778f946caa9afb27b616c09008474d851e37d1",
+      "nonvalue_tensor_count": 18,
+      "nonvalue_changed": [
+        "stem.weight",
+        "stem.bias",
+        "blocks.0.0.weight",
+        "blocks.0.0.bias",
+        "blocks.0.2.weight",
+        "blocks.0.2.bias",
+        "blocks.1.0.weight",
+        "blocks.1.0.bias",
+        "blocks.1.2.weight",
+        "blocks.1.2.bias",
+        "src.weight",
+        "src.bias",
+        "dst.weight",
+        "dst.bias",
+        "bias.weight",
+        "bias.bias"
+      ],
+      "value_changed": [
+        "value.0.weight",
+        "value.0.bias",
+        "value.2.weight",
+        "value.2.bias"
+      ]
+    }
+  },
+  "head_nonvalue_checks": {
+    "0": true,
+    "1000": true,
+    "2000": true
+  },
+  "step0_matches_parent": {
+    "head_only": true,
+    "joint": true
+  },
+  "common_sequence": {
+    "n": 2000,
+    "sha256": "8f6bc93f71ec1c78a9a069f784715b7615c9b00e0d9519b4d066702fbf8d2c63",
+    "value_draws": 32000,
+    "policy_draws": 32000,
+    "value_duplicates": 175,
+    "policy_duplicates": 198,
+    "all_ids_from_train_pool": true,
+    "first8_value_each_step_late16": true
+  },
+  "sampling_crosschecks": {
+    "head_only": {
+      "sequence_matches": true,
+      "value_exposure_matches": true,
+      "policy_exposure_matches": true,
+      "value_duplicates_match": true,
+      "policy_duplicates_match": true,
+      "final_checkpoint_matches": true
+    },
+    "joint": {
+      "sequence_matches": true,
+      "value_exposure_matches": true,
+      "policy_exposure_matches": true,
+      "value_duplicates_match": true,
+      "policy_duplicates_match": true,
+      "final_checkpoint_matches": true
+    }
+  },
+  "synthetic_witness": {
+    "seed": 111079,
+    "torch_threads": 1,
+    "inputs": "torch.randn，非棋谱或开发集；只比较policy logits，不重新开发评测。",
+    "rows": [
+      {
+        "batch": 1,
+        "state": "both_frozen",
+        "equal": true,
+        "max_abs": 0.0,
+        "changed_elements": 0,
+        "argmax_equal": true
+      },
+      {
+        "batch": 1,
+        "state": "both_trainable",
+        "equal": true,
+        "max_abs": 0.0,
+        "changed_elements": 0,
+        "argmax_equal": true
+      },
+      {
+        "batch": 1,
+        "state": "baseline_frozen_head_trainable",
+        "equal": true,
+        "max_abs": 0.0,
+        "changed_elements": 0,
+        "argmax_equal": true
+      },
+      {
+        "batch": 2,
+        "state": "both_frozen",
+        "equal": true,
+        "max_abs": 0.0,
+        "changed_elements": 0,
+        "argmax_equal": true
+      },
+      {
+        "batch": 2,
+        "state": "both_trainable",
+        "equal": true,
+        "max_abs": 0.0,
+        "changed_elements": 0,
+        "argmax_equal": true
+      },
+      {
+        "batch": 2,
+        "state": "baseline_frozen_head_trainable",
+        "equal": false,
+        "max_abs": 1.9073486328125e-06,
+        "changed_elements": 63,
+        "argmax_equal": true
+      },
+      {
+        "batch": 32,
+        "state": "both_frozen",
+        "equal": true,
+        "max_abs": 0.0,
+        "changed_elements": 0,
+        "argmax_equal": true
+      },
+      {
+        "batch": 32,
+        "state": "both_trainable",
+        "equal": true,
+        "max_abs": 0.0,
+        "changed_elements": 0,
+        "argmax_equal": true
+      },
+      {
+        "batch": 32,
+        "state": "baseline_frozen_head_trainable",
+        "equal": false,
+        "max_abs": 3.814697265625e-06,
+        "changed_elements": 587,
+        "argmax_equal": true
+      }
+    ]
+  },
+  "post_run_correction": {
+    "status": "implemented_after_run",
+    "scope": "只修未来policy_metrics指纹的数值执行状态，统一requires_grad=False并finally恢复每个参数原状态和training状态；补合成回归测试。",
+    "preserved": "本轮source快照/config/模型/开发结果/gates均不修改，不重训、不重评开发。",
+    "source_provenance": "source_checks.snapshot_matches验证实际执行时版本；current_matches仅记录独立审计当时状态，后续源码修复可与执行快照不同。",
+    "interpretation": "已存head_only policy SHA失败不是实际策略参数改动证据；其非value状态全相同，合成同状态输入logits精确相同。两组仍同时未过多个价值门槛。",
+    "files": {
+      "train121_dual_value.py": {
+        "executed_sha256": "89cfc4728981c2bc0073d4a842733f551a386249e6b73953a69a42b09f9e8f54",
+        "post_run_corrected_sha256": "36e2575fac5047e26871c946c5dd21bd233811b69eceb5911c3534dd3651d441"
+      },
+      "tests/test_train121_dual_value.py": {
+        "executed_sha256": "b8db57d870c1c6206013370652739bcedfe62cf105b9b5b9d17905e08474eb55",
+        "post_run_corrected_sha256": "f7ba44bffa9c33947a1d8376429f25d75717a5e05e20e06fac738b28ebd814fe"
+      }
+    },
+    "tests": "主代理报告3项训练器测试通过；独立审计未重新开发评测。"
+  }
+}

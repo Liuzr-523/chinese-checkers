@@ -1,0 +1,25 @@
+{
+  "local": {
+    "tests": 177,
+    "failed": 0,
+    "skipped": 0,
+    "log_sha256": "660d452ebdeb8ea89293f1114a0e0b1eb3ba8c21abfb2f4f8b6f2e88fdbe1680"
+  },
+  "clean_archive": {
+    "tests": 177,
+    "failed": 0,
+    "skipped": 4,
+    "optional_dependencies_only": true,
+    "ccore121_rebuilt": true,
+    "analysis_expert_rebuilt": true,
+    "log_sha256": "6d10cb04a025cb8f537cd19fc25a3d347b2631a0cf115f4857524796a1402bed"
+  },
+  "c_kernel_modified": false,
+  "training_process_remaining": false,
+  "champion_unchanged": true,
+  "independent_reviews": [
+    "training_audit",
+    "sampling_audit_review",
+    "evaluation_audit"
+  ]
+}

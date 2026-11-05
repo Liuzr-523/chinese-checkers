@@ -1,0 +1,167 @@
+{
+  "passed": true,
+  "steps": 2000,
+  "recomputed_sequence_sha256": "8f6bc93f71ec1c78a9a069f784715b7615c9b00e0d9519b4d066702fbf8d2c63",
+  "arms": [
+    "head_only",
+    "joint"
+  ],
+  "checked_new_sample_draws": 64000,
+  "old_kl_pool_sizes": {
+    "old_train": 4476,
+    "normal_train": 1045
+  },
+  "old_kl_unique_indices": {
+    "old": 4351,
+    "normal": 1045
+  },
+  "draws": {
+    "value": 32000,
+    "policy": 32000,
+    "old": 16000,
+    "normal": 16000
+  },
+  "sample_id_duplicate_draws": {
+    "value": 175,
+    "policy": 198
+  },
+  "board_turn_duplicate_draws": {
+    "value": 179,
+    "policy": 204,
+    "combined32": 580
+  },
+  "unique_sample_ids": {
+    "value": 2462,
+    "value_pool": 2471,
+    "policy": 1267,
+    "policy_pool": 1267,
+    "late_only_draws": 489,
+    "late_pool": 489
+  },
+  "unique_board_turn": {
+    "value": 2422,
+    "policy": 1236
+  },
+  "group_exposure": {
+    "value": {
+      "11": 1967,
+      "7": 2015,
+      "14": 2002,
+      "5": 1970,
+      "6": 1995,
+      "15": 1987,
+      "8": 2004,
+      "9": 1990,
+      "4": 2026,
+      "12": 2014,
+      "0": 2031,
+      "1": 1975,
+      "2": 2024,
+      "10": 2039,
+      "3": 2037,
+      "13": 1924
+    },
+    "policy": {
+      "6": 1984,
+      "3": 1989,
+      "5": 2021,
+      "10": 2002,
+      "15": 2076,
+      "1": 2009,
+      "11": 1964,
+      "7": 2032,
+      "4": 1939,
+      "9": 1974,
+      "13": 2052,
+      "0": 1969,
+      "14": 2020,
+      "12": 2029,
+      "2": 1971,
+      "8": 1969
+    }
+  },
+  "source_sha256": {
+    "nn_checkpoints/experiments/dual121_value_20261105/common_sample_sequence.json": "ddb67609df211859660c1bbfb5f60d19c37d674d049475c71ecd5bdd436c5da1",
+    "nn_checkpoints/experiments/dual121_value_20261105/sampling_audit.json": "2dc2f62c9cfdcbc028eb3013a160337fc629f17c266801a2eccae6fb7e0bc9ce",
+    "nn_checkpoints/experiments/dual121_value_20261105/config.json": "47d0f9f4970ec41344a2e0aa8e5aca05a70cf457b0aa9bacfc9a1d6ff07e2a9c",
+    "dual121_data.py": "acab92a3a82235793818638a69a2df66b8bebb7b67b4364487126f6daa6aff6b",
+    "train121_dual_value.py": "89cfc4728981c2bc0073d4a842733f551a386249e6b73953a69a42b09f9e8f54"
+  },
+  "scope": "只读重建loader与RNG序列，逐2000步重算并核对两组hash；不训练、不模型推理、不教师查询。",
+  "input_hash_checks": {
+    "nn_checkpoints/experiments/expert121_pilot48_20261105/dataset.pt": true,
+    "nn_checkpoints/experiments/expert121_pilot48_20261105/result.json": true,
+    "nn_checkpoints/experiments/expert121_pilot48_20261105/schedule.json": true,
+    "nn_checkpoints/experiments/expert121_pilot48_20261105/sample_metadata.json": true,
+    "nn_checkpoints/experiments/expert121_pilot48_20261105/policy_probes.json": true,
+    "nn_checkpoints/experiments/fresh121_projection_20261105/data_sources/old_teacher.jsonl": true,
+    "nn_checkpoints/experiments/fresh121_projection_20261105/data_sources/old_split.json": true,
+    "nn_checkpoints/experiments/fresh121_projection_20261105/data_sources/normal_games.jsonl": true
+  },
+  "effective_value_target_distribution": {
+    "train_full_pool": {
+      "1": {
+        "n": 1243,
+        "mean_z": -0.14802896218825423,
+        "wins": 489,
+        "losses": 673,
+        "draws": 81
+      },
+      "2": {
+        "n": 1228,
+        "mean_z": 0.15879478827361562,
+        "wins": 671,
+        "losses": 476,
+        "draws": 81
+      }
+    },
+    "sampled_late_first8": {
+      "1": {
+        "n": 8066,
+        "mean_z": -0.19637986610463676,
+        "wins": 3025,
+        "losses": 4609,
+        "draws": 432
+      },
+      "2": {
+        "n": 7934,
+        "mean_z": 0.17683387950592389,
+        "wins": 4421,
+        "losses": 3018,
+        "draws": 495
+      }
+    },
+    "sampled_all_last8": {
+      "1": {
+        "n": 8074,
+        "mean_z": -0.19853851870200645,
+        "wins": 3000,
+        "losses": 4603,
+        "draws": 471
+      },
+      "2": {
+        "n": 7926,
+        "mean_z": 0.18748422911935403,
+        "wins": 4468,
+        "losses": 2982,
+        "draws": 476
+      }
+    },
+    "sampled_total": {
+      "1": {
+        "n": 16140,
+        "mean_z": -0.19745972738537795,
+        "wins": 6025,
+        "losses": 9212,
+        "draws": 903
+      },
+      "2": {
+        "n": 15860,
+        "mean_z": 0.182156368221942,
+        "wins": 8889,
+        "losses": 6000,
+        "draws": 971
+      }
+    }
+  }
+}
