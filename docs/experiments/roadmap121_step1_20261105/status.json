@@ -1,0 +1,9 @@
+{
+  "roadmap_step": 1,
+  "status": "complete",
+  "next_step": 2,
+  "training_started": false,
+  "new_games": 0,
+  "new_teacher_queries": 0,
+  "champion_changed": false
+}
