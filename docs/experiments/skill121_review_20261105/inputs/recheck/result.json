@@ -1,0 +1,155 @@
+{
+  "seeds": 13,
+  "games": 52,
+  "prior_positive": 4,
+  "fixed_positive": 3,
+  "fixed_negative": 5,
+  "sign_unchanged": 9,
+  "details": [
+    {
+      "seed_id": 9,
+      "player": 1,
+      "prior_point_difference": 1.0,
+      "fixed_point_difference": 1.0,
+      "original_expert_winner": 1,
+      "original_played_winner": 2,
+      "fixed_expert_winner": 1,
+      "fixed_played_winner": 2,
+      "repeated_paths_identical": true
+    },
+    {
+      "seed_id": 12,
+      "player": 2,
+      "prior_point_difference": -1.0,
+      "fixed_point_difference": -1.0,
+      "original_expert_winner": 1,
+      "original_played_winner": 2,
+      "fixed_expert_winner": 1,
+      "fixed_played_winner": 2,
+      "repeated_paths_identical": true
+    },
+    {
+      "seed_id": 13,
+      "player": 1,
+      "prior_point_difference": 1.0,
+      "fixed_point_difference": 1.0,
+      "original_expert_winner": 1,
+      "original_played_winner": 2,
+      "fixed_expert_winner": 1,
+      "fixed_played_winner": 2,
+      "repeated_paths_identical": true
+    },
+    {
+      "seed_id": 17,
+      "player": 1,
+      "prior_point_difference": -1.0,
+      "fixed_point_difference": 0.0,
+      "original_expert_winner": 2,
+      "original_played_winner": 1,
+      "fixed_expert_winner": 2,
+      "fixed_played_winner": 2,
+      "repeated_paths_identical": true
+    },
+    {
+      "seed_id": 18,
+      "player": 2,
+      "prior_point_difference": 0.5,
+      "fixed_point_difference": -0.5,
+      "original_expert_winner": 0,
+      "original_played_winner": 1,
+      "fixed_expert_winner": 1,
+      "fixed_played_winner": 0,
+      "repeated_paths_identical": true
+    },
+    {
+      "seed_id": 31,
+      "player": 1,
+      "prior_point_difference": -0.5,
+      "fixed_point_difference": -1.0,
+      "original_expert_winner": 2,
+      "original_played_winner": 0,
+      "fixed_expert_winner": 2,
+      "fixed_played_winner": 1,
+      "repeated_paths_identical": true
+    },
+    {
+      "seed_id": 36,
+      "player": 2,
+      "prior_point_difference": -0.5,
+      "fixed_point_difference": 0.0,
+      "original_expert_winner": 1,
+      "original_played_winner": 0,
+      "fixed_expert_winner": 1,
+      "fixed_played_winner": 1,
+      "repeated_paths_identical": true
+    },
+    {
+      "seed_id": 39,
+      "player": 1,
+      "prior_point_difference": -1.0,
+      "fixed_point_difference": 0.0,
+      "original_expert_winner": 2,
+      "original_played_winner": 1,
+      "fixed_expert_winner": 2,
+      "fixed_played_winner": 2,
+      "repeated_paths_identical": true
+    },
+    {
+      "seed_id": 40,
+      "player": 2,
+      "prior_point_difference": -1.0,
+      "fixed_point_difference": -1.0,
+      "original_expert_winner": 1,
+      "original_played_winner": 2,
+      "fixed_expert_winner": 1,
+      "fixed_played_winner": 2,
+      "repeated_paths_identical": true
+    },
+    {
+      "seed_id": 44,
+      "player": 2,
+      "prior_point_difference": -0.5,
+      "fixed_point_difference": -0.5,
+      "original_expert_winner": 1,
+      "original_played_winner": 0,
+      "fixed_expert_winner": 1,
+      "fixed_played_winner": 0,
+      "repeated_paths_identical": true
+    },
+    {
+      "seed_id": 47,
+      "player": 2,
+      "prior_point_difference": 0.5,
+      "fixed_point_difference": 1.0,
+      "original_expert_winner": 2,
+      "original_played_winner": 0,
+      "fixed_expert_winner": 2,
+      "fixed_played_winner": 1,
+      "repeated_paths_identical": true
+    },
+    {
+      "seed_id": 11,
+      "player": 2,
+      "prior_point_difference": 0.0,
+      "fixed_point_difference": 0.0,
+      "original_expert_winner": 1,
+      "original_played_winner": 1,
+      "fixed_expert_winner": 1,
+      "fixed_played_winner": 1,
+      "repeated_paths_identical": true
+    },
+    {
+      "seed_id": 35,
+      "player": 1,
+      "prior_point_difference": 0.0,
+      "fixed_point_difference": 0.0,
+      "original_expert_winner": 0,
+      "original_played_winner": 0,
+      "fixed_expert_winner": 1,
+      "fixed_played_winner": 1,
+      "repeated_paths_identical": true
+    }
+  ],
+  "seconds": 69.40800345802563,
+  "note": "Changing continuation policy/depth changes outcomes; this cannot alone isolate timing noise in prior run or prove an optimal move."
+}

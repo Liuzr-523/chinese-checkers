@@ -1,0 +1,14 @@
+{
+  "inputs": {
+    "docs/experiments/skill121_review_20261105/inputs/targeted/seeds.json": "356658e4102e744b3617b434b7f89766e53d80d5b36863a232dcb1add8a5094e",
+    "docs/experiments/skill121_review_20261105/inputs/targeted/data_sources/dev_games.jsonl": "3a971e8cd70cef8775938984088d43c551bd9c8eaf64311515d43f6d6fda0739",
+    "docs/experiments/skill121_review_20261105/inputs/targeted/data_sources/dev_annotations.jsonl": "72071c7c2455ff25c530d1e9c61105b25022264985410052a101b823611ca699",
+    "docs/experiments/skill121_review_20261105/inputs/recheck/config.json": "780af70b159519ae11eb50820f28b8035c87602817b03bece4dee6a5fe0332d4",
+    "docs/experiments/skill121_review_20261105/inputs/recheck/result.json": "62f2d4475e4efa7673a68801ff6b2535cad7eee0e621db86881496096b00bbd0",
+    "docs/experiments/skill121_review_20261105/inputs/recheck/games.jsonl": "51355cd70a2c0083f0aee1c580772eadc55e0ad32b9067e421bf21eb3da1b66b",
+    "/Users/liuzirui/Desktop/py/chinese-checkers/nn_checkpoints/models/champions/neural121.json": "d26f8ffd6b07f52e6c2c5929d8a86a7664cd58944b98562e71356368994c9b62",
+    "nn_checkpoints/models/checkpoints/neural121_v3_expert_imitation.pt": "a0a40208061aaaa45931131f1760bb20ae114388c6ae6ad29181b204565395d9"
+  },
+  "source_sha256": "6952340b034c39f880d16ed2994b6bad4d76a347978b33edcba8e235b46ec91e",
+  "model_unchanged": true
+}

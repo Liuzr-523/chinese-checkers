@@ -1,0 +1,15 @@
+{
+  "README.md": "2dd14b70574b98e3bd527cf4ed7fb5289ee1eabe20bdd27ea8a9c5b70681aed1",
+  "continuation_review.md": "2a197612bd69c713b37c6f4c49a75b434e722705368396f743ba4e7c83425c32",
+  "inputs/recheck/config.json": "780af70b159519ae11eb50820f28b8035c87602817b03bece4dee6a5fe0332d4",
+  "inputs/recheck/games.jsonl": "51355cd70a2c0083f0aee1c580772eadc55e0ad32b9067e421bf21eb3da1b66b",
+  "inputs/recheck/result.json": "62f2d4475e4efa7673a68801ff6b2535cad7eee0e621db86881496096b00bbd0",
+  "inputs/targeted/data_sources/dev_annotations.jsonl": "72071c7c2455ff25c530d1e9c61105b25022264985410052a101b823611ca699",
+  "inputs/targeted/data_sources/dev_games.jsonl": "3a971e8cd70cef8775938984088d43c551bd9c8eaf64311515d43f6d6fda0739",
+  "inputs/targeted/seeds.json": "356658e4102e744b3617b434b7f89766e53d80d5b36863a232dcb1add8a5094e",
+  "provenance.json": "07e168901330c83b767dab639740ec3d70f7d506c3a5e9df5f86d37aa21f9fa7",
+  "result.json": "30c575ea265c87d9bd65d9662ab6808a16e44a9109132266aa4339670e3b8480",
+  "validation.json": "a32747bde9389381758ad7e3efcdda7d4afc7aeab69069b9b9a457d520a69303",
+  "历史回归案例.json": "008fca2e3a5f0cfd6e57d67f20f6728e24bf1ab543bc0e585db62bb58eee34c7",
+  "落子次序正反例.png": "8c73fcc7f4d121706311e1c4548c1ad7c0667ccdfc55f2ccd4f9c333cf4a068a"
+}

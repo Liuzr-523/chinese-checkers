@@ -1,0 +1,12 @@
+{
+  "archived_continuations_replayed": 52,
+  "archived_original_games_replayed": 40,
+  "repeated_branches_identical": 26,
+  "public_input_reproduction_exact": true,
+  "model_or_registry_changed": false,
+  "new_training": false,
+  "new_search": false,
+  "new_games": false,
+  "policy_and_value_forwards_only_on_historical_roots": 13,
+  "diagnostic_and_plot_compile": true
+}

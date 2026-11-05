@@ -1,0 +1,26 @@
+{
+  "seed_ids": [
+    9,
+    12,
+    13,
+    17,
+    18,
+    31,
+    36,
+    39,
+    40,
+    44,
+    47,
+    11,
+    35
+  ],
+  "changed_outcomes": 11,
+  "same_root_controls": [
+    11,
+    35
+  ],
+  "depth": 4,
+  "repeats": 2,
+  "maximum_games": 52,
+  "scope": "Fixed forced root moves, new constant-depth continuation policy. Diagnostic robustness only; not a new label of optimal play."
+}
