@@ -1,0 +1,7 @@
+{
+  "schedule_sha256": "9ee2e25a27a515b13de48199c848fdd979dcd8daa5b739a8ea9257558053d5e4",
+  "labels_sha256": "c5a7031f81c1c8c6f9677890e5f894c0ad62150f5f7f5d4a9ebe5067ff678af8",
+  "roots": 64,
+  "groups": 32,
+  "labels_used_in_training": false
+}

@@ -1,0 +1,12 @@
+{
+  "groups": 32,
+  "roots": 64,
+  "rejected": {
+    "old_or_duplicate_branch": 1
+  },
+  "historical_orbits": 281785,
+  "excluded_orbits": 281785,
+  "root_overlap": 0,
+  "anchor_overlap": 0,
+  "schedule_sha256": "9ee2e25a27a515b13de48199c848fdd979dcd8daa5b739a8ea9257558053d5e4"
+}

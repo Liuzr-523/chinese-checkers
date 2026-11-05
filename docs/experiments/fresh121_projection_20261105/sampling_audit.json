@@ -1,0 +1,14 @@
+{
+  "control": {
+    "sequence_sha256": "4fae6d19114768cdacb02b3aa6ffd957b2fe01cc36003427ce20adc09be10ede",
+    "root_exposures": 9600,
+    "ordinary_exposures": 28800,
+    "projection_active": 0
+  },
+  "projected": {
+    "sequence_sha256": "4fae6d19114768cdacb02b3aa6ffd957b2fe01cc36003427ce20adc09be10ede",
+    "root_exposures": 9600,
+    "ordinary_exposures": 28800,
+    "projection_active": 1287
+  }
+}

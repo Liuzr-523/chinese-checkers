@@ -1,0 +1,74 @@
+[
+  {
+    "step": 0,
+    "adam_update_norm": 0.0058297934010624886,
+    "root_descent_dot": 0.004031836986541748,
+    "root_descent_cosine": 0.2707136869430542
+  },
+  {
+    "step": 200,
+    "adam_update_norm": 0.0013957507908344269,
+    "root_descent_dot": 0.000410414271755144,
+    "root_descent_cosine": 0.11669623106718063
+  },
+  {
+    "step": 400,
+    "adam_update_norm": 0.0019147413549944758,
+    "root_descent_dot": 0.0013469828991219401,
+    "root_descent_cosine": 0.26737475395202637
+  },
+  {
+    "step": 600,
+    "adam_update_norm": 0.0016440714243799448,
+    "root_descent_dot": 0.000789994781371206,
+    "root_descent_cosine": 0.24506500363349915
+  },
+  {
+    "step": 800,
+    "adam_update_norm": 0.0014655385166406631,
+    "root_descent_dot": 0.0015941144665703177,
+    "root_descent_cosine": 0.13953401148319244
+  },
+  {
+    "step": 1000,
+    "adam_update_norm": 0.0014810928842052817,
+    "root_descent_dot": 0.00011688622180372477,
+    "root_descent_cosine": 0.03220512717962265
+  },
+  {
+    "step": 1200,
+    "adam_update_norm": 0.0014313403517007828,
+    "root_descent_dot": 0.0014459752710536122,
+    "root_descent_cosine": 0.2836838364601135
+  },
+  {
+    "step": 1400,
+    "adam_update_norm": 0.001287501072511077,
+    "root_descent_dot": 0.002276807324960828,
+    "root_descent_cosine": 0.32397040724754333
+  },
+  {
+    "step": 1600,
+    "adam_update_norm": 0.001187445130199194,
+    "root_descent_dot": 0.0004425442893989384,
+    "root_descent_cosine": 0.19631327688694
+  },
+  {
+    "step": 1800,
+    "adam_update_norm": 0.001457942882552743,
+    "root_descent_dot": 0.0008063330897130072,
+    "root_descent_cosine": 0.1462550312280655
+  },
+  {
+    "step": 2000,
+    "adam_update_norm": 0.0012472596717998385,
+    "root_descent_dot": -3.947213372157421e-06,
+    "root_descent_cosine": -0.0014285919023677707
+  },
+  {
+    "step": 2200,
+    "adam_update_norm": 0.0011283211642876267,
+    "root_descent_dot": 0.0003097321023233235,
+    "root_descent_cosine": 0.06518141180276871
+  }
+]

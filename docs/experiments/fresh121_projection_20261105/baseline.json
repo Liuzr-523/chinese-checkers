@@ -1,0 +1,34 @@
+{
+  "book_train": {
+    "n": 565,
+    "top1_in_book": 0.40707964601769914,
+    "book_probability": 0.2508851173745141,
+    "set_ce": 2.2741044316671593
+  },
+  "old_book_validation": {
+    "n": 128,
+    "top1_in_book": 0.375,
+    "book_probability": 0.24803639960191504,
+    "set_ce": 2.4461820498108864
+  },
+  "old_fixed32": {
+    "n": 32,
+    "top1_in_book": 0.0,
+    "book_probability": 0.05381402910552424,
+    "set_ce": 4.081822149455547
+  },
+  "retention": {
+    "samples": 653,
+    "policy_ce": 2.117033172712574,
+    "policy_accuracy": 0.4058192955589586,
+    "value_mse": 1.0095422140124382,
+    "genuine_value_samples": 653.0
+  },
+  "normal": {
+    "samples": 353,
+    "policy_ce": 2.3978754107658315,
+    "policy_accuracy": 0.3626062322946176,
+    "value_mse": 1.04286296340629,
+    "genuine_value_samples": 353.0
+  }
+}

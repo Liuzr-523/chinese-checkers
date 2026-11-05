@@ -1,0 +1,75 @@
+{
+  "checks": {
+    "schedule_sha": true,
+    "labels_sha": true,
+    "frozen_not_training": true,
+    "root_count": true,
+    "root_unique": true,
+    "anchor_count": true,
+    "anchor_unique": true,
+    "root_history_overlap": true,
+    "anchor_history_overlap": true,
+    "root_book_overlap": true,
+    "anchor_book_overlap": true,
+    "history_incomplete_zero": true
+  },
+  "roots": 64,
+  "unique_anchors": 32,
+  "players": {
+    "1": 32,
+    "2": 32
+  },
+  "own_moves": {
+    "7": 16,
+    "8": 16,
+    "9": 16,
+    "10": 16
+  },
+  "labels_matching_schedule": 64,
+  "legal_prefixes": 64,
+  "encoding_roundtrips": 64,
+  "legal_depth5_teacher_paths": 64,
+  "teacher_queries_per_frozen_config": 128,
+  "history": {
+    "orbits": 281785,
+    "sources": 1134,
+    "coverage": {
+      "parsed_files": 977,
+      "safe_tensor_files_loaded": 417,
+      "model_state_dict_records": 208,
+      "identity_occurrences": 703430,
+      "replayed_records": 9396,
+      "decoded_tensor_samples": 31680,
+      "conservative_multi_orientation_samples": 135,
+      "source_or_cache_files_skipped": 453,
+      "duplicate_content_files_skipped": 157,
+      "suffix_without_prefix_records": 20,
+      "binary_files_not_parsed": 418,
+      "non121_or_unclassified_binary_skipped": 418,
+      "legacy_endgame_records_resolved": 20
+    },
+    "incomplete": 0,
+    "legacy_resolved_records": 20,
+    "legacy_resolution_added_orbits": 180,
+    "binary_81_excluded_by_directory": {
+      "search_budget_20261022": 300,
+      "selfplay_20261022_a": 2,
+      "jumpstar_distill_20261028": 4,
+      "jumpstar_followup_selfplay_20261028": 2,
+      "value_ablation_80_20261027": 80,
+      "longrun_20261022": 18,
+      "jumpstar_followup_newseeds_20261028": 2,
+      "value_ablation_20261027": 8,
+      "selfplay_20261022_b": 2
+    }
+  },
+  "source_sha256": {
+    "history_exclusions.json": "a9432e3457653fe8fc7f9e68ee39da4f4b90604bbfd79491eedfbb96395a28fd",
+    "schedule.json": "9ee2e25a27a515b13de48199c848fdd979dcd8daa5b739a8ea9257558053d5e4",
+    "development.json": "c5a7031f81c1c8c6f9677890e5f894c0ad62150f5f7f5d4a9ebe5067ff678af8",
+    "development_freeze.json": "9bc102b7941adbdb540f03f6242479f85fceaaea2999ec6bb6220ff908959911",
+    "generation_audit.json": "2f062847cd6fde79bb99629fbf02885f8911f5e497221e94ef7d81a924175a92",
+    "config.json": "b1e8f2f5eda2b8d9cf4daf02f95a0c59c719613030b1a27695bda8b869132151"
+  },
+  "scope": "独立只读数据审计，不运行模型开发评测、不查询教师。教师数值一致性核对冻结记录的root/forced字段；未重新计算教师分数。"
+}

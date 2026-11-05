@@ -1,0 +1,152 @@
+{
+  "baseline": {
+    "book_train": {
+      "n": 565,
+      "top1_in_book": 0.40707964601769914,
+      "book_probability": 0.2508851173745141,
+      "set_ce": 2.2741044316671593
+    },
+    "old_book_validation": {
+      "n": 128,
+      "top1_in_book": 0.375,
+      "book_probability": 0.24803639960191504,
+      "set_ce": 2.4461820498108864
+    },
+    "old_fixed32": {
+      "n": 32,
+      "top1_in_book": 0.0,
+      "book_probability": 0.05381402910552424,
+      "set_ce": 4.081822149455547
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.117033172712574,
+      "policy_accuracy": 0.4058192955589586,
+      "value_mse": 1.0095422140124382,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3978754107658315,
+      "policy_accuracy": 0.3626062322946176,
+      "value_mse": 1.04286296340629,
+      "genuine_value_samples": 353.0
+    }
+  },
+  "final": {
+    "control": {
+      "step": 2400,
+      "book_train": {
+        "n": 565,
+        "top1_in_book": 0.45309734513274336,
+        "book_probability": 0.27323296338528913,
+        "set_ce": 1.9075527414811395
+      },
+      "old_book_validation": {
+        "n": 128,
+        "top1_in_book": 0.4140625,
+        "book_probability": 0.2396984301522025,
+        "set_ce": 2.1526922564953566
+      },
+      "old_fixed32": {
+        "n": 32,
+        "top1_in_book": 0.03125,
+        "book_probability": 0.06279991765950399,
+        "set_ce": 3.6447911337018013
+      },
+      "retention": {
+        "samples": 653,
+        "policy_ce": 2.090341562151361,
+        "policy_accuracy": 0.41500765696784075,
+        "value_mse": 1.0593093241155604,
+        "genuine_value_samples": 653.0
+      },
+      "normal": {
+        "samples": 353,
+        "policy_ce": 2.279606004612304,
+        "policy_accuracy": 0.38243626062322944,
+        "value_mse": 1.1908532330402233,
+        "genuine_value_samples": 353.0
+      }
+    },
+    "projected": {
+      "step": 2400,
+      "book_train": {
+        "n": 565,
+        "top1_in_book": 0.4743362831858407,
+        "book_probability": 0.2782620632671236,
+        "set_ce": 1.8652623383344802
+      },
+      "old_book_validation": {
+        "n": 128,
+        "top1_in_book": 0.4140625,
+        "book_probability": 0.23853996969955915,
+        "set_ce": 2.1332094836980104
+      },
+      "old_fixed32": {
+        "n": 32,
+        "top1_in_book": 0.03125,
+        "book_probability": 0.06430149626976345,
+        "set_ce": 3.5653375163674355
+      },
+      "retention": {
+        "samples": 653,
+        "policy_ce": 2.1013833815617,
+        "policy_accuracy": 0.40735068912710565,
+        "value_mse": 1.0599820807370803,
+        "genuine_value_samples": 653.0
+      },
+      "normal": {
+        "samples": 353,
+        "policy_ce": 2.2831458473847204,
+        "policy_accuracy": 0.37960339943342775,
+        "value_mse": 1.1935050517911614,
+        "genuine_value_samples": 353.0
+      }
+    }
+  },
+  "new_development": {
+    "v3": {
+      "n": 64,
+      "bad": 29,
+      "equal": 21,
+      "mean_gap": 4.984375,
+      "median_gap": 3.0
+    },
+    "control": {
+      "n": 64,
+      "bad": 27,
+      "equal": 23,
+      "mean_gap": 4.671875,
+      "median_gap": 3.0
+    },
+    "projected": {
+      "n": 64,
+      "bad": 27,
+      "equal": 25,
+      "mean_gap": 4.671875,
+      "median_gap": 3.0
+    }
+  },
+  "gates": {
+    "new_bad_gain": false,
+    "new_bad_vs_v3": true,
+    "new_mean_gap": true,
+    "old_policy": true,
+    "old_value": false,
+    "normal_policy": true
+  },
+  "development_pass": false,
+  "all_development_actions_nonterminal": true,
+  "promoted": false,
+  "arena_run": false,
+  "expert_queries": 197,
+  "seconds": 332.41030020907056,
+  "freeze": {
+    "schedule_sha256": "9ee2e25a27a515b13de48199c848fdd979dcd8daa5b739a8ea9257558053d5e4",
+    "labels_sha256": "c5a7031f81c1c8c6f9677890e5f894c0ad62150f5f7f5d4a9ebe5067ff678af8",
+    "roots": 64,
+    "groups": 32,
+    "labels_used_in_training": false
+  }
+}
