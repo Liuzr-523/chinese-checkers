@@ -1,0 +1,21 @@
+{
+  "source/az121.py": "4b8bf353e1baf39bc5526bb68e69a35f252ae3b17300adbd7df0c4c1dd456a6c",
+  "source/ccore121.c": "7012e191e5e3326718ed6bca80498431df6e029bc5b96c22a780b4a0f813c39c",
+  "source/ccore121.cpython-311-darwin.so": "5d7b21d0aed811805d32d73651ac223c33ef0ea5197944ae4bd307c785b4968f",
+  "source/clysto121_generated/core.c": "60ff97e5efc4706374cc049317ecf916fa3a276e2f1da6c3d8050aeb69c3688a",
+  "source/clysto121_native.cpython-311-darwin.so": "712cfa63e0c80b3a5a2f02dca356246e190161157b66b64172e8f2efa2698ef5",
+  "source/corrected121_decisions.py": "b19dba18008d5c877bc3695e79de72073143786f201179e2943e6a9f4b076223",
+  "source/curriculum121.py": "2451380d4eb6b33dc9a512535ac39f9404e54cde4bcbed88bbf179b1d6be46e0",
+  "source/engine_c121.py": "9801d7884c718dd75dae7d5270b6669812d32cb942c1d9e3011ecd1eda10db2f",
+  "source/engine_clysto121.py": "e95c05b8f877e77f777e84e0c14dc3c5d6814d989eac485eb85d2db1d4a7a585",
+  "source/expert121_pilot48.py": "81983ea9f0bda5f549cb63cbb3cb1fbe7d9f78cfe56709cc46cef7ae96dd3fb4",
+  "source/history121_exclusions.py": "44a85f71555ce072b2a4014e2b7be22ecf570fb8fc93b4278f846356e5941e5a",
+  "source/opening121.py": "7be5e4974de3a53c0bf8d95887634e34ca3eb6bf81a75178dde4dcb90c75cba2",
+  "source/opening121_book.json": "04c3cdbf5900f80936b9de3bb8cc55c39b4a27fd436b3979d610f3a6dfc4a8d5",
+  "source/opening121_split_audit.py": "4fd408b84b0cfcbe88e2e5adac1dc71e01dbb2be870571ca6342b13eb1bd0554",
+  "source/rules121.py": "98063b412f38012a3fc65468ab9a64972f01e515d2f1a291364ddac84d9d6734",
+  "source/tests/test_expert121_pilot48.py": "b9cec192e3e9ebba29b3290a887d70a4afb85bf729032ea20053114565ae1c34",
+  "dataset.pt": "a68336186e57d78ac1a39a4da413468e515452fd606da8734c93d8b523b0ef8d",
+  "independent_auditor": "58ccf1d03c22907c95654ee7512d246140c1eff667a28794b742f1b985242d78",
+  "plotter": "c129043ed48b98da948545bab42cf85d134f8ed76587a32666d1dbcf2b446755"
+}

@@ -1,0 +1,41 @@
+{
+  "roadmap_step": 2,
+  "audit_pass": true,
+  "games_replayed": 48,
+  "groups_checked": 24,
+  "raw_sample_records": 3723,
+  "exported_samples": {
+    "train": 2471,
+    "development": 1218
+  },
+  "valid_policy_probes": 48,
+  "exported_policy_probes": 48,
+  "raw_cross_split_orbits": 0,
+  "exported_cross_split_orbits": 0,
+  "exported_historical_orbits": 0,
+  "terminal_outcomes": {
+    "train": {
+      "2:all_pieces_in_goal": 18,
+      "1:all_pieces_in_goal": 12,
+      "0:equal_turn_goal_draw": 2
+    },
+    "development": {
+      "1:all_pieces_in_goal": 15,
+      "2:all_pieces_in_goal": 1
+    }
+  },
+  "dataset_sha256": "a68336186e57d78ac1a39a4da413468e515452fd606da8734c93d8b523b0ef8d",
+  "source_sha256": {
+    "diagnostics/audit121_pilot48.py": "58ccf1d03c22907c95654ee7512d246140c1eff667a28794b742f1b985242d78"
+  },
+  "input_sha256": {
+    "config.json": "99a8aa393b2083b5418d98759bdb2124b7e2f01393cb3e7cc48d2b850c6fea53",
+    "schedule.json": "b682cb5a54319ecfab823dbb97a8973134afc68de3e7140592e2d37c726ff941",
+    "games.jsonl": "1012b114cb32c69bdd8fa3cf2d560ded18a1676d350ab83ae13fd317ed2558e5",
+    "sample_metadata.json": "2d07807712f461f9bb4da34f255c1dda6ab3852ff19d1e22bc0fe7e5374e00a3",
+    "policy_probes.json": "a7078db03c9885ae099e26597c354c53d6b78caa5659e54f0d7503d29bd20feb",
+    "result.json": "b13ec0aeb866edd7236ac77cb668847f06461aa2c1caa0466049c108ae4c0049"
+  },
+  "champion_sha256": "a0a40208061aaaa45931131f1760bb20ae114388c6ae6ad29181b204565395d9",
+  "scope": "主代理独立程序重放；本轮子代理用量受限，非三代理复核。没有训练/搜索或新对局。"
+}

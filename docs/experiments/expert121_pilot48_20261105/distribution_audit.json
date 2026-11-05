@@ -1,0 +1,56 @@
+{
+  "train": {
+    "root_groups": 16,
+    "mean_p1_forward_advantage": -0.25625,
+    "by_bucket": {
+      "near_book": {
+        "2": 6,
+        "1": 5,
+        "0": 1
+      },
+      "off_book": {
+        "2": 9,
+        "1": 1
+      },
+      "lagged": {
+        "1": 6,
+        "0": 1,
+        "2": 3
+      }
+    },
+    "effective_policy": 1235.0,
+    "historical_excluded": 23,
+    "root_pair_same_outcome": 11,
+    "zero_value_mse": 0.934439498178875,
+    "train_player_prior_mse": 0.9108853448984233,
+    "train_player_target_means": {
+      "1": -0.14802896218825423,
+      "2": 0.15879478827361562
+    }
+  },
+  "development": {
+    "root_groups": 8,
+    "mean_p1_forward_advantage": 0.22499999999999992,
+    "by_bucket": {
+      "near_book": {
+        "1": 4
+      },
+      "off_book": {
+        "1": 5,
+        "2": 1
+      },
+      "lagged": {
+        "1": 6
+      }
+    },
+    "effective_policy": 608.0,
+    "historical_excluded": 11,
+    "root_pair_same_outcome": 7,
+    "zero_value_mse": 1.0,
+    "train_player_prior_mse": 1.2939704714584535,
+    "train_player_target_means": {
+      "1": -0.14802896218825423,
+      "2": 0.15879478827361562
+    }
+  }
+}

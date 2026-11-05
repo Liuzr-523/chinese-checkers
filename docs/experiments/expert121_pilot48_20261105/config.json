@@ -1,0 +1,65 @@
+{
+  "roadmap_step": 2,
+  "profile": "CCZ-121-Strict-LG-v2",
+  "seed": 111061,
+  "groups": 24,
+  "train_groups": 16,
+  "development_groups": 8,
+  "games": 48,
+  "max_ply": 240,
+  "max_seconds": 3600,
+  "max_attempts_per_group": 96,
+  "engines": {
+    "derived5": {
+      "depth": 5,
+      "safety_seconds": 120,
+      "opening_book": false
+    },
+    "tip5": {
+      "depth": 5,
+      "safety_seconds": 120,
+      "opening_book": false
+    }
+  },
+  "buckets": {
+    "near_book": {
+      "groups": 8,
+      "root_ply": 14,
+      "min_mean_exited": 4.5
+    },
+    "off_book": {
+      "groups": 8,
+      "root_ply": 24,
+      "min_mean_exited": 6.0
+    },
+    "lagged": {
+      "groups": 8,
+      "root_ply": 14,
+      "max_mean_exited": 4.0
+    }
+  },
+  "split": "group<16 train，其余development；near/off/lag轮流，训练6/5/5组、开发2/3/3组；同组两局交换derived所在阵营，P1始终先手。",
+  "labels": "真实胜负side-to-move；真规则和0权重1；max_ply0权重0。实际derived走法policy1，tip实际走法policy0；每局tip首次行动前额外查询derived建议并forced-child核验，probe value0。",
+  "dedup": "从采集root后导出；历史/跨split保守几何轨道在双方监督均排除，完整棋谱全部保留，不改split、不补局、不按胜负筛选。",
+  "gates": "48局全部合法可重放/搜索depth5完整；train>=12组、development>=6组有真实终局；过滤后train>=512/development>=256条有效value、终局前16手>=128/64；双方与三个开局桶都有有效value；有效probe>=40/48。不要求挑选胜负平衡。",
+  "training_started": false,
+  "registry_sha256": "d26f8ffd6b07f52e6c2c5929d8a86a7664cd58944b98562e71356368994c9b62",
+  "source_sha256": {
+    "expert121_pilot48.py": "81983ea9f0bda5f549cb63cbb3cb1fbe7d9f78cfe56709cc46cef7ae96dd3fb4",
+    "history121_exclusions.py": "44a85f71555ce072b2a4014e2b7be22ecf570fb8fc93b4278f846356e5941e5a",
+    "opening121_split_audit.py": "4fd408b84b0cfcbe88e2e5adac1dc71e01dbb2be870571ca6342b13eb1bd0554",
+    "rules121.py": "98063b412f38012a3fc65468ab9a64972f01e515d2f1a291364ddac84d9d6734",
+    "az121.py": "4b8bf353e1baf39bc5526bb68e69a35f252ae3b17300adbd7df0c4c1dd456a6c",
+    "curriculum121.py": "2451380d4eb6b33dc9a512535ac39f9404e54cde4bcbed88bbf179b1d6be46e0",
+    "corrected121_decisions.py": "b19dba18008d5c877bc3695e79de72073143786f201179e2943e6a9f4b076223",
+    "engine_c121.py": "9801d7884c718dd75dae7d5270b6669812d32cb942c1d9e3011ecd1eda10db2f",
+    "engine_clysto121.py": "e95c05b8f877e77f777e84e0c14dc3c5d6814d989eac485eb85d2db1d4a7a585",
+    "opening121.py": "7be5e4974de3a53c0bf8d95887634e34ca3eb6bf81a75178dde4dcb90c75cba2",
+    "opening121_book.json": "04c3cdbf5900f80936b9de3bb8cc55c39b4a27fd436b3979d610f3a6dfc4a8d5",
+    "tests/test_expert121_pilot48.py": "b9cec192e3e9ebba29b3290a887d70a4afb85bf729032ea20053114565ae1c34",
+    "ccore121.cpython-311-darwin.so": "5d7b21d0aed811805d32d73651ac223c33ef0ea5197944ae4bd307c785b4968f",
+    "clysto121_native.cpython-311-darwin.so": "712cfa63e0c80b3a5a2f02dca356246e190161157b66b64172e8f2efa2698ef5",
+    "ccore121.c": "7012e191e5e3326718ed6bca80498431df6e029bc5b96c22a780b4a0f813c39c",
+    "clysto121_generated/core.c": "60ff97e5efc4706374cc049317ecf916fa3a276e2f1da6c3d8050aeb69c3688a"
+  }
+}

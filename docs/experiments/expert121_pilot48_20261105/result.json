@@ -1,0 +1,84 @@
+{
+  "roadmap_step": 2,
+  "complete_games": 48,
+  "summary": {
+    "train": {
+      "games": 32,
+      "terminal_games": 32,
+      "terminal_groups": 16,
+      "effective_value_samples": 2471,
+      "effective_groups": 16,
+      "endgame16_samples": 489,
+      "player_labels": {
+        "1": {
+          "-1.0": 673,
+          "1.0": 489,
+          "0.0": 81
+        },
+        "2": {
+          "1.0": 671,
+          "-1.0": 476,
+          "0.0": 81
+        }
+      },
+      "buckets": {
+        "near_book": 911,
+        "off_book": 666,
+        "lagged": 894
+      },
+      "outcomes": {
+        "2:all_pieces_in_goal": 18,
+        "1:all_pieces_in_goal": 12,
+        "0:equal_turn_goal_draw": 2
+      }
+    },
+    "development": {
+      "games": 16,
+      "terminal_games": 16,
+      "terminal_groups": 8,
+      "effective_value_samples": 1218,
+      "effective_groups": 8,
+      "endgame16_samples": 245,
+      "player_labels": {
+        "1": {
+          "1.0": 580,
+          "-1.0": 36
+        },
+        "2": {
+          "-1.0": 566,
+          "1.0": 36
+        }
+      },
+      "buckets": {
+        "off_book": 431,
+        "lagged": 502,
+        "near_book": 285
+      },
+      "outcomes": {
+        "1:all_pieces_in_goal": 15,
+        "2:all_pieces_in_goal": 1
+      }
+    }
+  },
+  "gates": {
+    "all_48": true,
+    "train_terminal_groups": true,
+    "development_terminal_groups": true,
+    "train_value": true,
+    "development_value": true,
+    "train_endgame": true,
+    "development_endgame": true,
+    "valid_probes": true,
+    "bucket_coverage": true,
+    "player_coverage": true
+  },
+  "data_quality_pass": true,
+  "cross_split_raw_orbits": 0,
+  "excluded_records": 34,
+  "valid_policy_probes": 48,
+  "exported_policy_probes": 48,
+  "dataset_sha256": "a68336186e57d78ac1a39a4da413468e515452fd606da8734c93d8b523b0ef8d",
+  "seconds": 1743.7508081248961,
+  "training_started": false,
+  "champion_changed": false
+}
