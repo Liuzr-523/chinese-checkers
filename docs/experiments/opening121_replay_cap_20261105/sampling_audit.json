@@ -1,0 +1,18 @@
+{
+  "control": {
+    "sequence_sha256": "a3c586afc904d80b4482d5054ed0ef5e3463a02169592143cae8ef2aee238251",
+    "root_exposures": 9600,
+    "ordinary_exposures": 28800,
+    "clipped_updates": 2400,
+    "cap_active": 0,
+    "mean_weight": 1.0
+  },
+  "capped": {
+    "sequence_sha256": "a3c586afc904d80b4482d5054ed0ef5e3463a02169592143cae8ef2aee238251",
+    "root_exposures": 9600,
+    "ordinary_exposures": 28800,
+    "clipped_updates": 2400,
+    "cap_active": 2350,
+    "mean_weight": 0.48666163930048545
+  }
+}

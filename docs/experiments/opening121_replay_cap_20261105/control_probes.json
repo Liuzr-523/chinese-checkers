@@ -1,0 +1,110 @@
+[
+  {
+    "step": 0,
+    "aux_norm": 4.665435314178467,
+    "root_aux_cosine": -0.1376013606786728,
+    "postclip_total_norm": 0.9999998807907104,
+    "actual_adam_update_norm": 0.0058292667381465435,
+    "actual_root_descent_dot": 0.014450304210186005,
+    "actual_update_root_descent_cosine": 0.3542258143424988
+  },
+  {
+    "step": 200,
+    "aux_norm": 7.194087505340576,
+    "root_aux_cosine": 0.03670588880777359,
+    "postclip_total_norm": 0.9999998807907104,
+    "actual_adam_update_norm": 0.0011172585655003786,
+    "actual_root_descent_dot": 0.00035528119769878685,
+    "actual_update_root_descent_cosine": 0.11699189245700836
+  },
+  {
+    "step": 400,
+    "aux_norm": 1.9480602741241455,
+    "root_aux_cosine": -0.26083287596702576,
+    "postclip_total_norm": 0.9999999403953552,
+    "actual_adam_update_norm": 0.0013504225062206388,
+    "actual_root_descent_dot": 0.0005729878321290016,
+    "actual_update_root_descent_cosine": 0.10677693039178848
+  },
+  {
+    "step": 600,
+    "aux_norm": 1.548938274383545,
+    "root_aux_cosine": 0.1651713252067566,
+    "postclip_total_norm": 0.9999999403953552,
+    "actual_adam_update_norm": 0.0012767951702699065,
+    "actual_root_descent_dot": 0.001136430655606091,
+    "actual_update_root_descent_cosine": 0.2540004253387451
+  },
+  {
+    "step": 800,
+    "aux_norm": 2.7193193435668945,
+    "root_aux_cosine": -0.29044172167778015,
+    "postclip_total_norm": 0.9999997615814209,
+    "actual_adam_update_norm": 0.0012960926396772265,
+    "actual_root_descent_dot": 4.0444308979203925e-05,
+    "actual_update_root_descent_cosine": 0.008916699327528477
+  },
+  {
+    "step": 1000,
+    "aux_norm": 4.605112552642822,
+    "root_aux_cosine": 0.24600213766098022,
+    "postclip_total_norm": 0.9999999403953552,
+    "actual_adam_update_norm": 0.0013581261737272143,
+    "actual_root_descent_dot": -0.0009950937237590551,
+    "actual_update_root_descent_cosine": -0.15042223036289215
+  },
+  {
+    "step": 1200,
+    "aux_norm": 5.144933223724365,
+    "root_aux_cosine": -0.053575508296489716,
+    "postclip_total_norm": 0.9999999403953552,
+    "actual_adam_update_norm": 0.0013821865431964397,
+    "actual_root_descent_dot": 0.0003603282093536109,
+    "actual_update_root_descent_cosine": 0.049997687339782715
+  },
+  {
+    "step": 1400,
+    "aux_norm": 8.326982498168945,
+    "root_aux_cosine": 0.22029195725917816,
+    "postclip_total_norm": 0.9999998211860657,
+    "actual_adam_update_norm": 0.0012743397383019328,
+    "actual_root_descent_dot": 0.0011152183869853616,
+    "actual_update_root_descent_cosine": 0.25830698013305664
+  },
+  {
+    "step": 1600,
+    "aux_norm": 6.126438140869141,
+    "root_aux_cosine": -0.027347426861524582,
+    "postclip_total_norm": 0.9999998807907104,
+    "actual_adam_update_norm": 0.0012373424833640456,
+    "actual_root_descent_dot": -0.00017758349713403732,
+    "actual_update_root_descent_cosine": -0.03714056685566902
+  },
+  {
+    "step": 1800,
+    "aux_norm": 4.6035542488098145,
+    "root_aux_cosine": -0.3620785176753998,
+    "postclip_total_norm": 1.0,
+    "actual_adam_update_norm": 0.0013663945719599724,
+    "actual_root_descent_dot": -0.0009560397011227906,
+    "actual_update_root_descent_cosine": -0.13144803047180176
+  },
+  {
+    "step": 2000,
+    "aux_norm": 1.8165606260299683,
+    "root_aux_cosine": -0.25247853994369507,
+    "postclip_total_norm": 0.9999997615814209,
+    "actual_adam_update_norm": 0.0014585591852664948,
+    "actual_root_descent_dot": 0.0005091600469313562,
+    "actual_update_root_descent_cosine": 0.16059546172618866
+  },
+  {
+    "step": 2200,
+    "aux_norm": 5.449116230010986,
+    "root_aux_cosine": -0.3483894467353821,
+    "postclip_total_norm": 0.9999998807907104,
+    "actual_adam_update_norm": 0.0011674194829538465,
+    "actual_root_descent_dot": 0.00012164151121396571,
+    "actual_update_root_descent_cosine": 0.01674535684287548
+  }
+]

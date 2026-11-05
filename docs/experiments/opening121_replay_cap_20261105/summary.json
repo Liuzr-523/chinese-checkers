@@ -1,0 +1,36 @@
+{
+  "control": {
+    "correct": 5,
+    "validation": 0.34375,
+    "old_ce": 2.2184050269367868,
+    "old_value": 1.066061224360561,
+    "normal_ce": 2.355487880431559,
+    "steps": 2400,
+    "active": 0,
+    "mean_weight": 1.0,
+    "min_weight": 1.0,
+    "negative_root_replay": 1711,
+    "negative_total_root": 430,
+    "clipped": 2400,
+    "probe_count": 12,
+    "actual_step_root_descent_positive": 9,
+    "mean_actual_step_descent_cos": 0.08396220168409248
+  },
+  "capped": {
+    "correct": 13,
+    "validation": 0.3359375,
+    "old_ce": 2.3627727911629317,
+    "old_value": 1.065751366374321,
+    "normal_ce": 2.4928681561063772,
+    "steps": 2400,
+    "active": 2350,
+    "mean_weight": 0.48666163930048545,
+    "min_weight": 0.08130835741758347,
+    "negative_root_replay": 1824,
+    "negative_total_root": 52,
+    "clipped": 2400,
+    "probe_count": 12,
+    "actual_step_root_descent_positive": 11,
+    "mean_actual_step_descent_cos": 0.16806065687948527
+  }
+}

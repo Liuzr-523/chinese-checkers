@@ -1,0 +1,105 @@
+{
+  "baseline": {
+    "fixed32": {
+      "n": 32,
+      "top1_in_book": 0.0,
+      "book_probability": 0.05381402910552424,
+      "set_ce": 4.081822149455547
+    },
+    "validation": {
+      "n": 128,
+      "top1_in_book": 0.375,
+      "book_probability": 0.24803639960191504,
+      "set_ce": 2.4461820498108864
+    },
+    "retention": {
+      "samples": 653,
+      "policy_ce": 2.117033172712574,
+      "policy_accuracy": 0.4058192955589586,
+      "value_mse": 1.0095422140124382,
+      "genuine_value_samples": 653.0
+    },
+    "normal": {
+      "samples": 353,
+      "policy_ce": 2.3978754107658315,
+      "policy_accuracy": 0.3626062322946176,
+      "value_mse": 1.04286296340629,
+      "genuine_value_samples": 353.0
+    }
+  },
+  "final": {
+    "control": {
+      "step": 2400,
+      "fixed32": {
+        "n": 32,
+        "top1_in_book": 0.15625,
+        "book_probability": 0.13718024572881404,
+        "set_ce": 2.3354798182845116
+      },
+      "validation": {
+        "n": 128,
+        "top1_in_book": 0.34375,
+        "book_probability": 0.19430963815648283,
+        "set_ce": 2.3447614666074514
+      },
+      "retention": {
+        "samples": 653,
+        "policy_ce": 2.2184050269367868,
+        "policy_accuracy": 0.3905053598774885,
+        "value_mse": 1.066061224360561,
+        "genuine_value_samples": 653.0
+      },
+      "normal": {
+        "samples": 353,
+        "policy_ce": 2.355487880431559,
+        "policy_accuracy": 0.3597733711048159,
+        "value_mse": 1.2049837919537811,
+        "genuine_value_samples": 353.0
+      }
+    },
+    "capped": {
+      "step": 2400,
+      "fixed32": {
+        "n": 32,
+        "top1_in_book": 0.40625,
+        "book_probability": 0.2433826384076383,
+        "set_ce": 1.6664857119321823
+      },
+      "validation": {
+        "n": 128,
+        "top1_in_book": 0.3359375,
+        "book_probability": 0.20216715337483038,
+        "set_ce": 2.5066494196653366
+      },
+      "retention": {
+        "samples": 653,
+        "policy_ce": 2.3627727911629317,
+        "policy_accuracy": 0.35222052067381315,
+        "value_mse": 1.065751366374321,
+        "genuine_value_samples": 653.0
+      },
+      "normal": {
+        "samples": 353,
+        "policy_ce": 2.4928681561063772,
+        "policy_accuracy": 0.3371104815864023,
+        "value_mse": 1.2024373197690623,
+        "genuine_value_samples": 353.0
+      }
+    }
+  },
+  "control_reproduction": {
+    "policy_ce": true,
+    "value_mse": true,
+    "fixed32": true
+  },
+  "gates": {
+    "fit": false,
+    "old_policy": false,
+    "old_value": false,
+    "normal_policy": false
+  },
+  "diagnostic_pass": false,
+  "arena_run": false,
+  "promoted": false,
+  "seconds": 332.0199641250074
+}
