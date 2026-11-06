@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-06",
+  "stage": "prepared_not_started",
+  "local_tests": {
+    "run": 211,
+    "failed": 0,
+    "skipped": 0,
+    "log_sha256": "9a1c70aecdaf2d69281032d6c7a657ea9172be6b67342b30e5e67136e3dde597"
+  },
+  "experiment_directory_exists": false,
+  "training_started": false,
+  "collection_started": false,
+  "champion_version": "v3_expert_imitation",
+  "champion_sha256": "a0a40208061aaaa45931131f1760bb20ae114388c6ae6ad29181b204565395d9",
+  "source_sha256": {
+    "train121_relay_returns.py": "4a270578deaeb8de438f23812f286edd255630ee432a3c494e385cff95fbf7a9",
+    "collect121_relay_returns.py": "21d3dee48a5985d74617c6c8d9b198ed9ab40588e8db613a1d3d363678d2826f",
+    "relay121_targets.py": "5424b3b5e3123acfb3e2518a1bbccc340c2bb035ee191d82b4c7bee5dc71031e",
+    "relay121_metrics.py": "f9dd928e628e7f82e6bf63b69cbac1c396a5719c7fe7c5c99cfc8eaa74724c19",
+    "tests/test_relay121_collection.py": "a1ea0e0f1eecaf1e87f219aa023dba86f9286173cc8548610caa865c508c1d76",
+    "tests/test_relay121_targets.py": "a0d83e8684ee641fa6ef386d122f5d41d5dae4277322549068e68febe34ca8b2",
+    "tests/test_relay121_metrics.py": "3cc96de912b6b05875148b7caab9b0a19a0ba4a8d477c208ed31f9458331e54f",
+    "diagnostics/relay121_historical_regression.py": "0f54b3b8ef965e14b4d98643c5ac42147e45a1bb9e6737bfe5bbe0ef8c77d117",
+    "docs/experiments/relay121_returns_20261106/protocol.md": "0a94d961f0b97e0d5cab713d16ac8e9d4e40ebdc093a362347c09e851ad0aae3"
+  },
+  "clean_archive_tests": {
+    "run": 211,
+    "failed": 0,
+    "skipped": 4,
+    "optional_data_only": true,
+    "rebuilt_ccore121": true,
+    "rebuilt_analysis_expert": true,
+    "log_sha256": "59d4c0c49f34daecd66bc11bd47589e467a82f7e2a63dc46ae2f58648e694431"
+  }
+}
