@@ -105,7 +105,7 @@ class Node:
     def q(self): return self.total/self.visits if self.visits else 0.
 
 @torch.no_grad()
-def search(model,board,player,ply=0,repetitions=None,simulations=16,rng=None,noise=False,value_scale=1.,root_safety=False,heuristic_mix=0.,fpu_mode="zero",policy_temperature=1.,time_limit=None):
+def search(model,board,player,ply=0,repetitions=None,simulations=16,rng=None,noise=False,value_scale=1.,root_safety=False,heuristic_mix=0.,fpu_mode="zero",policy_temperature=1.,time_limit=None,leaf_value_fn=None):
     started=time.monotonic()
     if time_limit is not None and (not math.isfinite(time_limit) or time_limit<=0):raise ValueError('invalid search time limit')
     if simulations<1: raise ValueError('simulations must be positive')
@@ -131,7 +131,9 @@ def search(model,board,player,ply=0,repetitions=None,simulations=16,rng=None,noi
         logits,value=model(torch.from_numpy(encode(b,p,n,counts,canonical=getattr(model,'canonical',False))).unsqueeze(0))
         probabilities=(logits[0,ids]/policy_temperature).softmax(0).cpu().numpy()
         node.children=[(path,Node(float(prior))) for (_,path),prior in zip(moves,probabilities)]
-        estimate=float(value[0])*value_scale
+        leaf_value=float(value[0]) if leaf_value_fn is None else float(leaf_value_fn(b,p))
+        if not math.isfinite(leaf_value) or not -1<=leaf_value<=1:raise ValueError('invalid leaf value')
+        estimate=leaf_value*value_scale
         if heuristic_mix:
             import ccore121
             heuristic=math.tanh(ccore121.evaluate(b,p)/40.)

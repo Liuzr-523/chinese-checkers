@@ -1,0 +1,55 @@
+{
+  "roadmap_step": 3,
+  "seed": 111102,
+  "arms": [
+    "nn",
+    "zero",
+    "hand"
+  ],
+  "arena_arms": [
+    "nn",
+    "zero",
+    "hand",
+    "pure"
+  ],
+  "simulations": [
+    32,
+    128,
+    512
+  ],
+  "hand_scale": 40,
+  "arena_groups": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "arena_games_per_arm": 12,
+  "arena_seconds": 0.1,
+  "max_seconds": 1800,
+  "model": "nn_checkpoints/models/checkpoints/neural121_v3_expert_imitation.pt",
+  "model_sha256": "a0a40208061aaaa45931131f1760bb20ae114388c6ae6ad29181b204565395d9",
+  "registry_sha256": "d26f8ffd6b07f52e6c2c5929d8a86a7664cd58944b98562e71356368994c9b62",
+  "source_sha256": {
+    "diagnostics/leaf121_ablation.py": "de76b621303fa8278c3a3257e58e0a8aadccb7b70497cc46a973c1c6770a5b2c",
+    "diagnostics/search121_diagnostic.py": "d53569dcaa2930479fa9df3656b890f301c2ba84165673881e7193e2356feb58",
+    "tests/test_leaf121_ablation.py": "0811aca5ff84f86d64bd073d1b162cbd70e1ffcbf8c288772871aae374fc9ea5",
+    "az121.py": "e12ea31de09036e0f83cb77937bf22321612e137b57eb515f953494249958530",
+    "rules121.py": "98063b412f38012a3fc65468ab9a64972f01e515d2f1a291364ddac84d9d6734",
+    "curriculum121.py": "2451380d4eb6b33dc9a512535ac39f9404e54cde4bcbed88bbf179b1d6be46e0",
+    "engine_clysto121.py": "e95c05b8f877e77f777e84e0c14dc3c5d6814d989eac485eb85d2db1d4a7a585",
+    "engine_c121.py": "9801d7884c718dd75dae7d5270b6669812d32cb942c1d9e3011ecd1eda10db2f",
+    "docs/experiments/leaf121_ablation_20261107/protocol.md": "280fbbcb84d32ec120e8942be22f10fceb123cde1049956e30125e1822216e0b"
+  },
+  "native_sha256": {
+    "/Users/liuzirui/Desktop/py/chinese-checkers/ccore121.cpython-311-darwin.so": "5d7b21d0aed811805d32d73651ac223c33ef0ea5197944ae4bd307c785b4968f",
+    "/Users/liuzirui/Desktop/py/chinese-checkers/clysto121_native.cpython-311-darwin.so": "712cfa63e0c80b3a5a2f02dca356246e190161157b66b64172e8f2efa2698ef5"
+  },
+  "input_sha256": {
+    "nn_checkpoints/experiments/relay121_returns_20261106_resume1/collection/dataset.json": "9c463b93948174d2f63f35d4d71846be9d04f9654251e371fbae29773bf944a1",
+    "nn_checkpoints/experiments/relay121_returns_20261106_resume1/collection/schedule.json": "9470a38b5aac1ad6306d255c42b25ec3046445592e4d824066cfd38afd52bc48"
+  },
+  "scope": "\u65e7\u8bca\u65ad\u5c40\u9762\uff0c\u7eaf\u7b56\u7565\u4e0d\u9650\u65f6\u5bf9\u7167\uff0c\u5176\u4f59\u540c\u8f6f\u9884\u7b97\uff1b\u65e0\u8bad\u7ec3/\u664b\u5347\u3002"
+}

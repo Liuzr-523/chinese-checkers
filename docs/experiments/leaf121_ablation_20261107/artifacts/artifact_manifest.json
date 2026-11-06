@@ -1,0 +1,20 @@
+{
+  "case_summary.json": "368437e9bd1bcdf0b0b398e27d2f9b435c01a6a4453c353ed28e3419c13fdb2e",
+  "cases.jsonl": "448af53277b228371a985196e9958ec2b444374ca693f7b16107283eeeacb080",
+  "config.json": "50fa13aa1f1397456a1f58bebd263d688c01b111a03da5f5c597b4c39edf7681",
+  "current_game.json": "1f4142544381ea3cdbec7de6788fbb4622266f177410710f3ca7dfaf706c1098",
+  "games.jsonl": "c5f4d9e2e842f227c6db32773758013afa253ce1bbf3ee4bc3af053f1c751a02",
+  "independent_audit.json": "8d999303cc508af693a5d8ef7a21ee897042e9f77b57c3c211a2ebe6a577ab02",
+  "pure_policy.jsonl": "bdb9e8b3a3c50f10b5f3d12632e65206b069083ddebbf1c57fe70839d813068e",
+  "result.json": "05141521c99da8dc44ff932517256d8b19a18872e6e0eef900c1ed0c52a71aa6",
+  "source/az121.py": "e12ea31de09036e0f83cb77937bf22321612e137b57eb515f953494249958530",
+  "source/curriculum121.py": "2451380d4eb6b33dc9a512535ac39f9404e54cde4bcbed88bbf179b1d6be46e0",
+  "source/diagnostics/leaf121_ablation.py": "de76b621303fa8278c3a3257e58e0a8aadccb7b70497cc46a973c1c6770a5b2c",
+  "source/diagnostics/search121_diagnostic.py": "d53569dcaa2930479fa9df3656b890f301c2ba84165673881e7193e2356feb58",
+  "source/docs/experiments/leaf121_ablation_20261107/protocol.md": "280fbbcb84d32ec120e8942be22f10fceb123cde1049956e30125e1822216e0b",
+  "source/engine_c121.py": "9801d7884c718dd75dae7d5270b6669812d32cb942c1d9e3011ecd1eda10db2f",
+  "source/engine_clysto121.py": "e95c05b8f877e77f777e84e0c14dc3c5d6814d989eac485eb85d2db1d4a7a585",
+  "source/rules121.py": "98063b412f38012a3fc65468ab9a64972f01e515d2f1a291364ddac84d9d6734",
+  "source/tests/test_leaf121_ablation.py": "0811aca5ff84f86d64bd073d1b162cbd70e1ffcbf8c288772871aae374fc9ea5",
+  "status.json": "ed1faebcd65274b62b2e5b1bedc155263c18ed41cc712d8c1228bf8575953fa8"
+}

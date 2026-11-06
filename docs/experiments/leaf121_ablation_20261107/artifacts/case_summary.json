@@ -1,0 +1,434 @@
+[
+  {
+    "arm": "nn",
+    "simulations": 32,
+    "split": "all",
+    "n": 48,
+    "changed_from_policy": 2,
+    "eligible": 11,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 3,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 4,
+      "\u5019\u9009\u5916\u672a\u77e5": 4
+    },
+    "mean_coverage": 0.1343948960148009,
+    "mean_seconds": 0.025023482594406232,
+    "mean_depth": 2.30859375
+  },
+  {
+    "arm": "nn",
+    "simulations": 32,
+    "split": "train",
+    "n": 24,
+    "changed_from_policy": 1,
+    "eligible": 7,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 2,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 3,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.1359408865990319,
+    "mean_seconds": 0.025967473945153568,
+    "mean_depth": 2.3567708333333335
+  },
+  {
+    "arm": "nn",
+    "simulations": 32,
+    "split": "development",
+    "n": 24,
+    "changed_from_policy": 1,
+    "eligible": 4,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 1,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 1,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.13284890543056993,
+    "mean_seconds": 0.024079491243658897,
+    "mean_depth": 2.2604166666666665
+  },
+  {
+    "arm": "nn",
+    "simulations": 128,
+    "split": "all",
+    "n": 48,
+    "changed_from_policy": 2,
+    "eligible": 11,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 3,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 4,
+      "\u5019\u9009\u5916\u672a\u77e5": 4
+    },
+    "mean_coverage": 0.27517509201008733,
+    "mean_seconds": 0.08819238460758545,
+    "mean_depth": 2.8131510416666665
+  },
+  {
+    "arm": "nn",
+    "simulations": 128,
+    "split": "train",
+    "n": 24,
+    "changed_from_policy": 1,
+    "eligible": 7,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 2,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 3,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.2723218296823619,
+    "mean_seconds": 0.08913499834792067,
+    "mean_depth": 2.8717447916666665
+  },
+  {
+    "arm": "nn",
+    "simulations": 128,
+    "split": "development",
+    "n": 24,
+    "changed_from_policy": 1,
+    "eligible": 4,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 1,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 1,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.2780283543378128,
+    "mean_seconds": 0.08724977086725023,
+    "mean_depth": 2.7545572916666665
+  },
+  {
+    "arm": "nn",
+    "simulations": 512,
+    "split": "all",
+    "n": 48,
+    "changed_from_policy": 0,
+    "eligible": 11,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 3,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 4,
+      "\u5019\u9009\u5916\u672a\u77e5": 4
+    },
+    "mean_coverage": 0.49886112411873457,
+    "mean_seconds": 0.3834250399838008,
+    "mean_depth": 3.328369140625
+  },
+  {
+    "arm": "nn",
+    "simulations": 512,
+    "split": "train",
+    "n": 24,
+    "changed_from_policy": 0,
+    "eligible": 7,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 2,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 3,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.4850730290091915,
+    "mean_seconds": 0.383341760423112,
+    "mean_depth": 3.3904622395833335
+  },
+  {
+    "arm": "nn",
+    "simulations": 512,
+    "split": "development",
+    "n": 24,
+    "changed_from_policy": 0,
+    "eligible": 4,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 1,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 1,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.5126492192282776,
+    "mean_seconds": 0.3835083195444895,
+    "mean_depth": 3.2662760416666665
+  },
+  {
+    "arm": "zero",
+    "simulations": 32,
+    "split": "all",
+    "n": 48,
+    "changed_from_policy": 4,
+    "eligible": 11,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 3,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 4,
+      "\u5019\u9009\u5916\u672a\u77e5": 4
+    },
+    "mean_coverage": 0.13421492417531303,
+    "mean_seconds": 0.027307951376618195,
+    "mean_depth": 2.3059895833333335
+  },
+  {
+    "arm": "zero",
+    "simulations": 32,
+    "split": "train",
+    "n": 24,
+    "changed_from_policy": 2,
+    "eligible": 7,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 2,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 3,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.1340309453640186,
+    "mean_seconds": 0.030396989663131535,
+    "mean_depth": 2.38671875
+  },
+  {
+    "arm": "zero",
+    "simulations": 32,
+    "split": "development",
+    "n": 24,
+    "changed_from_policy": 2,
+    "eligible": 4,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 1,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 1,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.13439890298660745,
+    "mean_seconds": 0.02421891309010486,
+    "mean_depth": 2.2252604166666665
+  },
+  {
+    "arm": "zero",
+    "simulations": 128,
+    "split": "all",
+    "n": 48,
+    "changed_from_policy": 0,
+    "eligible": 11,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 3,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 4,
+      "\u5019\u9009\u5916\u672a\u77e5": 4
+    },
+    "mean_coverage": 0.27792986206836506,
+    "mean_seconds": 0.0910671336920738,
+    "mean_depth": 2.8172200520833335
+  },
+  {
+    "arm": "zero",
+    "simulations": 128,
+    "split": "train",
+    "n": 24,
+    "changed_from_policy": 0,
+    "eligible": 7,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 2,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 3,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.27399152229297336,
+    "mean_seconds": 0.0933519912941847,
+    "mean_depth": 2.8802083333333335
+  },
+  {
+    "arm": "zero",
+    "simulations": 128,
+    "split": "development",
+    "n": 24,
+    "changed_from_policy": 0,
+    "eligible": 4,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 1,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 1,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.2818682018437567,
+    "mean_seconds": 0.08878227608996288,
+    "mean_depth": 2.7542317708333335
+  },
+  {
+    "arm": "zero",
+    "simulations": 512,
+    "split": "all",
+    "n": 48,
+    "changed_from_policy": 0,
+    "eligible": 11,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 3,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 4,
+      "\u5019\u9009\u5916\u672a\u77e5": 4
+    },
+    "mean_coverage": 0.47076003534953675,
+    "mean_seconds": 0.3757013976113133,
+    "mean_depth": 3.3497721354166665
+  },
+  {
+    "arm": "zero",
+    "simulations": 512,
+    "split": "train",
+    "n": 24,
+    "changed_from_policy": 0,
+    "eligible": 7,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 2,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 3,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.4584873703807156,
+    "mean_seconds": 0.3780960209260229,
+    "mean_depth": 3.4217122395833335
+  },
+  {
+    "arm": "zero",
+    "simulations": 512,
+    "split": "development",
+    "n": 24,
+    "changed_from_policy": 0,
+    "eligible": 4,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 1,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 1,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.48303270031835804,
+    "mean_seconds": 0.3733067742966038,
+    "mean_depth": 3.27783203125
+  },
+  {
+    "arm": "hand",
+    "simulations": 32,
+    "split": "all",
+    "n": 48,
+    "changed_from_policy": 5,
+    "eligible": 11,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 3,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 4,
+      "\u5019\u9009\u5916\u672a\u77e5": 4
+    },
+    "mean_coverage": 0.1909455343182954,
+    "mean_seconds": 0.021848314167679444,
+    "mean_depth": 2.0436197916666665
+  },
+  {
+    "arm": "hand",
+    "simulations": 32,
+    "split": "train",
+    "n": 24,
+    "changed_from_policy": 1,
+    "eligible": 7,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 2,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 3,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.18226856351749718,
+    "mean_seconds": 0.021476223875652067,
+    "mean_depth": 2.1002604166666665
+  },
+  {
+    "arm": "hand",
+    "simulations": 32,
+    "split": "development",
+    "n": 24,
+    "changed_from_policy": 4,
+    "eligible": 4,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 1,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 1,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.19962250511909363,
+    "mean_seconds": 0.022220404459706817,
+    "mean_depth": 1.9869791666666667
+  },
+  {
+    "arm": "hand",
+    "simulations": 128,
+    "split": "all",
+    "n": 48,
+    "changed_from_policy": 9,
+    "eligible": 11,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 3,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 4,
+      "\u5019\u9009\u5916\u672a\u77e5": 4
+    },
+    "mean_coverage": 0.49133608664537354,
+    "mean_seconds": 0.09490328128110075,
+    "mean_depth": 2.4290364583333335
+  },
+  {
+    "arm": "hand",
+    "simulations": 128,
+    "split": "train",
+    "n": 24,
+    "changed_from_policy": 3,
+    "eligible": 7,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 2,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 3,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.5011155961632753,
+    "mean_seconds": 0.09283605214053144,
+    "mean_depth": 2.4046223958333335
+  },
+  {
+    "arm": "hand",
+    "simulations": 128,
+    "split": "development",
+    "n": 24,
+    "changed_from_policy": 6,
+    "eligible": 4,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 1,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 1,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.4815565771274719,
+    "mean_seconds": 0.09697051042167004,
+    "mean_depth": 2.4534505208333335
+  },
+  {
+    "arm": "hand",
+    "simulations": 512,
+    "split": "all",
+    "n": 48,
+    "changed_from_policy": 19,
+    "eligible": 11,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 3,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 5,
+      "\u5019\u9009\u5916\u672a\u77e5": 3
+    },
+    "mean_coverage": 0.5854262573241553,
+    "mean_seconds": 0.37677202249809244,
+    "mean_depth": 3.3131510416666665
+  },
+  {
+    "arm": "hand",
+    "simulations": 512,
+    "split": "train",
+    "n": 24,
+    "changed_from_policy": 10,
+    "eligible": 7,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 1,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 4,
+      "\u5019\u9009\u5916\u672a\u77e5": 2
+    },
+    "mean_coverage": 0.5687652376864571,
+    "mean_seconds": 0.37676937313032494,
+    "mean_depth": 3.317138671875
+  },
+  {
+    "arm": "hand",
+    "simulations": 512,
+    "split": "development",
+    "n": 24,
+    "changed_from_policy": 9,
+    "eligible": 4,
+    "quality": {
+      "\u7a33\u5b9a\u504f\u597d\u65b9": 2,
+      "\u7a33\u5b9a\u975e\u504f\u597d\u65b9": 1,
+      "\u5019\u9009\u5916\u672a\u77e5": 1
+    },
+    "mean_coverage": 0.6020872769618534,
+    "mean_seconds": 0.37677467186586,
+    "mean_depth": 3.3091634114583335
+  }
+]

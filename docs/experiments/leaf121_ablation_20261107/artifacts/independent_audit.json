@@ -1,0 +1,132 @@
+{
+  "roadmap_step": 3,
+  "passed": true,
+  "roots": 48,
+  "cases": 432,
+  "games": 48,
+  "replayed_steps": 2480,
+  "pure_root_forwards": 48,
+  "pure_game_forwards": 300,
+  "repeated_mcts_searches": 0,
+  "hash_entries": 13,
+  "model_registry_unchanged": true,
+  "terminal_reasons": {
+    "all_pieces_in_goal": 45,
+    "equal_turn_goal_draw": 3
+  },
+  "arena": {
+    "nn": {
+      "games": 12,
+      "nn_wins": 0,
+      "nn_losses": 12,
+      "true_draws": 0,
+      "truncated": 0,
+      "timings": {
+        "NN": {
+          "moves": 306,
+          "mean_seconds": 0.10478701730627031,
+          "max_seconds": 0.16652262501884252,
+          "mean_cpu_seconds": 0.10427589215686325,
+          "over_110ms": 31
+        },
+        "Clysto派生": {
+          "moves": 312,
+          "mean_seconds": 0.09983392359908276,
+          "max_seconds": 0.10060937504749745,
+          "mean_cpu_seconds": 0.09955170833333304,
+          "over_110ms": 0
+        }
+      }
+    },
+    "zero": {
+      "games": 12,
+      "nn_wins": 0,
+      "nn_losses": 11,
+      "true_draws": 1,
+      "truncated": 0,
+      "timings": {
+        "NN": {
+          "moves": 309,
+          "mean_seconds": 0.10444070183118943,
+          "max_seconds": 0.16558287490624934,
+          "mean_cpu_seconds": 0.10387287378640789,
+          "over_110ms": 30
+        },
+        "Clysto派生": {
+          "moves": 314,
+          "mean_seconds": 0.09998332670998053,
+          "max_seconds": 0.10180920793209225,
+          "mean_cpu_seconds": 0.09959835987261194,
+          "over_110ms": 0
+        }
+      }
+    },
+    "hand": {
+      "games": 12,
+      "nn_wins": 1,
+      "nn_losses": 9,
+      "true_draws": 2,
+      "truncated": 0,
+      "timings": {
+        "NN": {
+          "moves": 314,
+          "mean_seconds": 0.1043673426266552,
+          "max_seconds": 0.1613643750315532,
+          "mean_cpu_seconds": 0.10371327388534968,
+          "over_110ms": 27
+        },
+        "Clysto派生": {
+          "moves": 319,
+          "mean_seconds": 0.09882124805593787,
+          "max_seconds": 0.10064654203597456,
+          "mean_cpu_seconds": 0.09836819749216415,
+          "over_110ms": 0
+        }
+      }
+    },
+    "pure": {
+      "games": 12,
+      "nn_wins": 0,
+      "nn_losses": 12,
+      "true_draws": 0,
+      "truncated": 0,
+      "timings": {
+        "NN": {
+          "moves": 300,
+          "mean_seconds": 0.0011305855571602781,
+          "max_seconds": 0.005483499960973859,
+          "mean_cpu_seconds": 0.0011107466666663867,
+          "over_110ms": 0
+        },
+        "Clysto派生": {
+          "moves": 306,
+          "mean_seconds": 0.09988614202635301,
+          "max_seconds": 0.10116633295547217,
+          "mean_cpu_seconds": 0.09902785620915015,
+          "over_110ms": 0
+        }
+      }
+    }
+  },
+  "actual_simulations": {
+    "nn": {
+      "moves": 306,
+      "mean": 278.25816993464053,
+      "min": 42,
+      "max": 4627
+    },
+    "zero": {
+      "moves": 309,
+      "mean": 259.084142394822,
+      "min": 44,
+      "max": 4305
+    },
+    "hand": {
+      "moves": 314,
+      "mean": 275.27070063694265,
+      "min": 33,
+      "max": 7404
+    }
+  },
+  "scope": "独立重放全部归档、重算根纯策略及pure实战选招、静态根值、访问与摘要；不重复MCTS，不证明内部树所有叶值，具体叶值使用由冻结源码和单元测试约束。"
+}
