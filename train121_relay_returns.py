@@ -1,5 +1,5 @@
 """路线图第3步：真实续弈动作偏好固定训练；不自动晋升/竞技验收。"""
-import argparse,copy,fcntl,hashlib,json,os,shutil,subprocess,sys,time,traceback
+import argparse,copy,fcntl,hashlib,json,math,os,shutil,subprocess,sys,time,traceback
 from collections import Counter
 from pathlib import Path
 import numpy as np
@@ -20,7 +20,13 @@ def freeze_collection(folder):
 
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--out',type=Path,required=True);a=ap.parse_args();a.out.mkdir(parents=True,exist_ok=False);lock=(a.out/'run.lock').open('w');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);started=time.monotonic();torch.set_num_threads(1);torch.manual_seed(111092)
+    ap=argparse.ArgumentParser();ap.add_argument('--out',type=Path,required=True);ap.add_argument('--resume-from',type=Path);a=ap.parse_args();prior_seconds=0.
+    if a.resume_from:
+        prior_status=json.loads((a.resume_from/'status.json').read_text())
+        if prior_status['stage']!='failed' or any((a.resume_from/n).exists() for n in ('baseline.json','dataset_freeze.json','candidate_step0.pt')):raise ValueError('只允许在训练与开发评测前失败的采集恢复')
+        prior_seconds=float(prior_status['seconds'])
+        if not math.isfinite(prior_seconds) or not 0<=prior_seconds<3600:raise ValueError('原预算时间非法或已耗尽')
+    a.out.mkdir(parents=True,exist_ok=False);lock=(a.out/'run.lock').open('w');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);started=time.monotonic()-prior_seconds;torch.set_num_threads(1);torch.manual_seed(111092)
     import ccore121,clysto121_native
     native={str(Path(m.__file__)):digest(m.__file__) for m in (ccore121,clysto121_native)};registry=digest(REGISTRY);entry=json.loads(REGISTRY.read_text());parent=Path(entry['checkpoint']);parent_sha=digest(parent)
     if parent_sha!=entry['sha256']:raise ValueError('冠军检查点SHA错误')
@@ -30,7 +36,7 @@ def main():
         if stage not in ('failed','complete') and time.monotonic()-started>5400:raise TimeoutError('90分钟总预算耗尽')
     def log(message):
         with (a.out/'中文日志.md').open('a') as f:f.write(f'\n- {time.monotonic()-started:.1f}秒：{message}\n')
-    names=['train121_relay_returns.py','collect121_relay_returns.py','collect121_order_pairs.py','relay121_targets.py','relay121_metrics.py','order121_learning.py','az121.py','rules121.py','curriculum121.py','corrected121_decisions.py','engine_clysto121.py','engine_c121.py','expert121_pilot48.py','history121_exclusions.py','opening121_split_audit.py','opening121.py','opening121_book.json','cap_opening121_replay.py','canonical121_trial.py','cycle121_targeted.py','generalization121_curve.py','train_opening121.py','unfreeze121_trial.py','checkpoint121_save.py','tests/test_relay121_collection.py','tests/test_relay121_targets.py','tests/test_relay121_metrics.py','docs/experiments/relay121_returns_20261106/protocol.md','diagnostics/relay121_historical_regression.py']
+    names=['tests/test_relay121_resume.py','docs/experiments/relay121_returns_20261106/recovery.md','train121_relay_returns.py','collect121_relay_returns.py','collect121_order_pairs.py','relay121_targets.py','relay121_metrics.py','order121_learning.py','az121.py','rules121.py','curriculum121.py','corrected121_decisions.py','engine_clysto121.py','engine_c121.py','expert121_pilot48.py','history121_exclusions.py','opening121_split_audit.py','opening121.py','opening121_book.json','cap_opening121_replay.py','canonical121_trial.py','cycle121_targeted.py','generalization121_curve.py','train_opening121.py','unfreeze121_trial.py','checkpoint121_save.py','tests/test_relay121_collection.py','tests/test_relay121_targets.py','tests/test_relay121_metrics.py','docs/experiments/relay121_returns_20261106/protocol.md','diagnostics/relay121_historical_regression.py']
     for name in names:
         dest=a.out/'source'/name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(name,dest)
     cfg=dict(roadmap_step=3,profile=r.PROFILE,model=str(parent),model_sha256=parent_sha,registry_sha256=registry,native_sha256=native,source_sha256={n:digest(n) for n in names},old_data_sha256={str(OLD/n):digest(OLD/n) for n in ('old_teacher.jsonl','old_split.json','normal_games.jsonl')},new_seed=111092,old_seed=111093,steps=2000,lr=1e-4,weight_decay=1e-4,clip=1,collection_max_seconds=3600,training_max_seconds=1800,total_max_seconds=5400,
@@ -39,6 +45,14 @@ def main():
         evaluation='新开发v3基线一次与固定最终候选一次；开发覆盖不足不阻止train就绪后的训练，但验收失败。只准备后续搜索诊断，不自动晋升或竞技验收；历史7例仅固定final后回归，不进入训练或选择。',
         acceptance='relay_gate按执行源码冻结专项开发覆盖、balanced accuracy、双方向准确率、pair CE与两续弈配置的point及适用tempo regret均不劣门槛（无适用tempo记N/A）；另旧策略CE/旧valueMSE/普通CE各<=v3+.05，value头参数哈希必须不变。',
         readiness='仅训练覆盖决定可否启动：有效train>=8，正负方向各>=2；开发覆盖独立影响验收，不据开发结果补根、重分或重训。')
+
+    if a.resume_from:
+        old_cfg=json.loads((a.resume_from/'config.json').read_text())
+        for name in cfg:
+            if name!='source_sha256' and old_cfg.get(name)!=cfg[name]:raise ValueError('恢复配置不一致：'+name)
+        for name,sha in old_cfg['source_sha256'].items():
+            if name not in ('train121_relay_returns.py','collect121_relay_returns.py') and digest(name)!=sha:raise ValueError('恢复依赖变化：'+name)
+        cfg['resume']=dict(source=str(a.resume_from),prior_seconds=prior_seconds,source_config_sha256=digest(a.resume_from/'config.json'),source_status_sha256=digest(a.resume_from/'status.json'),scope='新目录恢复采集，复用已接受根与历史排除；不重置原预算，不改训练及开发门槛。')
     atomic(a.out/'config.json',cfg)
     def guards(collection_hashes=None):
         if digest(REGISTRY)!=registry or digest(parent)!=parent_sha:raise ValueError('冠军/注册表变化')
@@ -47,7 +61,9 @@ def main():
     try:
         guards();status('收集相对后排接力标签');log('配置与代码哈希冻结，先收集48根（24train/24development），尚未训练。')
         with (a.out/'collection.log').open('w') as stream:
-            subprocess.run([sys.executable,'-u','collect121_relay_returns.py','--out',str(a.out/'collection'),'--exclude-parent'],stdout=stream,stderr=subprocess.STDOUT,check=True,timeout=3700)
+            command=[sys.executable,'-u','collect121_relay_returns.py','--out',str(a.out/'collection'),'--exclude-parent']
+            if a.resume_from:command+=['--resume-from',str(a.resume_from/'collection')]
+            subprocess.run(command,stdout=stream,stderr=subprocess.STDOUT,check=True,timeout=3700-prior_seconds)
         collection=a.out/'collection';raw=json.loads((collection/'dataset.json').read_text());collection_hashes=freeze_collection(collection);atomic(a.out/'collection_manifest.json',collection_hashes);guards(collection_hashes)
         if raw['profile']!=r.PROFILE:raise ValueError('收集数据规则不匹配')
         prepared=prepare_rows(raw['rows']);train=[s for s in prepared if s['split']=='train'];dev=[s for s in prepared if s['split']=='development']

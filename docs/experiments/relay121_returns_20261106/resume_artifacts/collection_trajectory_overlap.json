@@ -1,0 +1,8 @@
+{
+  "masked_groups": [],
+  "input_collisions": [],
+  "trajectory_orbits": 9377,
+  "historical_trajectory_orbits": 202,
+  "cross_split_trajectory_orbits": 60,
+  "scope": "\u4ec5\u8f93\u5165root/child\u78b0\u53e6\u4e00split\u7eed\u5f08\u65f6\u53cc\u65b9\u6574\u7ec4mask\uff1b\u5b8c\u6574\u539f\u59cb\u56db\u5c40\u4fdd\u7559\u3002\u7eed\u5f08\u672c\u8eab\u5171\u4eab/\u5386\u53f2\u72b6\u6001\u53ea\u7edf\u8ba1\uff0c\u4e0d\u58f0\u79f0\u8f68\u8ff9\u5b8c\u5168\u72ec\u7acb\u3002"
+}

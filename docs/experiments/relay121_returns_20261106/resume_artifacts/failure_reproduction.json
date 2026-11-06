@@ -1,0 +1,20 @@
+{
+  "path": [
+    50,
+    40
+  ],
+  "info": {
+    "engine": "Clysto评估派生121（候选，非原版）",
+    "score": -48,
+    "depth_reached": 3,
+    "nodes_searched": 5174,
+    "nodes": 5174,
+    "nodes_pruned": 311,
+    "aborted": false,
+    "eval_version": "clysto-table-clamped-wings-121-v1",
+    "rule_profile": "CCZ-121-Strict-LG-v2",
+    "original_clysto": false
+  },
+  "seconds": 0.012560333008877933,
+  "cpu_seconds": 0.012031999999999994
+}

@@ -84,13 +84,55 @@ def readiness(rows):
     return dict(training=all(gates['train'].values()),development=all(gates['development'].values())),gates,counts
 
 
+
+def resume_inputs(source,cfg):
+    """只恢复冻结前的已接收根；旧目录只读，旧预算计入新运行。"""
+    source=source.resolve()
+    with (source/'run.lock').open('r') as lock:
+        fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        previous=json.loads((source/'config.json').read_text())
+        state=json.loads((source/'status.json').read_text())
+        if state['stage']!='failed':raise ValueError('仅允许恢复已结束的失败采集')
+        if any((source/n).exists() for n in ('schedule.json','schedule_freeze.json','games.jsonl','dataset.json','raw_rows.json')):raise ValueError('仅支持根冻结前恢复，不重复任何续弈')
+        for name in ('profile','seed','groups','train','development','root_plies','max_attempts_per_group','max_seconds','advance_depth','continuation_depths','query_safety_seconds','max_ply','labels','scope'):
+            if previous[name]!=cfg[name]:raise ValueError('恢复配置不一致：'+name)
+        if set(previous['source_sha256'])!=set(cfg['source_sha256']):raise ValueError('恢复源码集合不一致')
+        for name,sha in previous['source_sha256'].items():
+            if digest(source/'source'/name)!=sha:raise ValueError('旧执行源码快照不一致：'+name)
+            if name!='collect121_relay_returns.py' and cfg['source_sha256'][name]!=sha:raise ValueError('恢复依赖源码变化：'+name)
+        elapsed=float(state['seconds'])
+        if not 0<=elapsed<cfg['max_seconds']:raise ValueError('恢复剩余预算不足')
+        history=json.loads((source/'history_exclusions.json').read_text())
+        schedule=json.loads((source/'schedule_partial.json').read_text())
+        if not 0<len(schedule)<48:raise ValueError('恢复partial根数量无效')
+        used=set(history['orbits'])
+        for index,row in enumerate(schedule):
+            target=cfg['root_plies'][index%4]
+            if row['group']!=index or row['split']!=('train' if index<24 else 'development') or row['ply']!=target or row['bucket']!=('ply40_41' if target<50 else 'ply56_57'):raise ValueError('恢复根顺序/split/阶段不一致')
+            g=replay(row['opening'])
+            if (g.board,g.player,g.ply)!=(row['board'],row['player'],row['ply']) or g.result()[0] is not None:raise ValueError('恢复根前缀不一致')
+            pair=relay_candidates(g)
+            if pair is None or pair!=(row['rear_path'],row['front_path'],row['mechanism_witness']):raise ValueError('恢复机制或确定性候选不一致')
+            identity=decision_key(g.board,g.player);rid=orbit(identity);children=[]
+            for path in (row['rear_path'],row['front_path']):
+                child=copy.deepcopy(g);child.play(path)
+                if child.result()[0] is not None:raise ValueError('恢复子局面已终局')
+                children.append(orbit(decision_key(child.board,child.player)))
+            anchor=replay(row['opening'][:8]);anchor=orbit(decision_key(anchor.board,anchor.player));ids=[rid]+children+[anchor]
+            if row['root_id']!=identity or row['decision_id']!=identity or row['orbit']!=rid or row['child_orbits']!=children or row['anchor']!=anchor:raise ValueError('恢复轨道元数据不一致')
+            if len(set(ids))!=4 or set(ids)&used:raise ValueError('恢复历史或跨组输入重叠')
+            used.update(ids)
+        provenance=dict(source=str(source),source_status_sha256=digest(source/'status.json'),source_config_sha256=digest(source/'config.json'),history_sha256=digest(source/'history_exclusions.json'),partial_schedule_sha256=digest(source/'schedule_partial.json'),source_sha256=previous['source_sha256'],previous_seconds=elapsed,reused_roots=len(schedule),restart_group=len(schedule),restart_attempt=0,generation_queries_before_resume=None,scope='只读复用历史与已接收根；未完成组从固定attempt0重放，不改变候选上限或监督目标；旧查询次数未归档，不能填0冒充累计值。')
+        return history,schedule,used,elapsed,provenance
+
+
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--out',type=Path,required=True);parser.add_argument('--exclude-parent',action='store_true');args=parser.parse_args();args.out.mkdir(parents=True,exist_ok=False);lock=(args.out/'run.lock').open('w');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);started=time.monotonic()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--out',type=Path,required=True);parser.add_argument('--exclude-parent',action='store_true');parser.add_argument('--resume-from',type=Path);args=parser.parse_args();args.out.mkdir(parents=True,exist_ok=False);lock=(args.out/'run.lock').open('w');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);started=time.monotonic();previous_seconds=0.
     def status(stage,**kwargs):
-        atomic(args.out/'status.json',dict(stage=stage,pid=os.getpid(),seconds=time.monotonic()-started,**kwargs))
-        if stage not in ('complete','failed') and time.monotonic()-started>=3600:raise TimeoutError('一小时机制续弈采集预算耗尽')
+        atomic(args.out/'status.json',dict(stage=stage,pid=os.getpid(),seconds=previous_seconds+time.monotonic()-started,**kwargs))
+        if stage not in ('complete','failed') and previous_seconds+time.monotonic()-started>=3600:raise TimeoutError('一小时机制续弈采集预算耗尽')
     def log(message):
-        with (args.out/'中文日志.md').open('a') as f:f.write(f'\n- {time.monotonic()-started:.1f}秒：{message}\n')
+        with (args.out/'中文日志.md').open('a') as f:f.write(f'\n- {previous_seconds+time.monotonic()-started:.1f}秒：{message}\n')
     from relay121_targets import stable_preference
     import ccore121,clysto121_native
     sources=['collect121_relay_returns.py','tests/test_relay121_collection.py','relay121_targets.py','collect121_order_pairs.py','expert121_pilot48.py','history121_exclusions.py','opening121_split_audit.py','corrected121_decisions.py','rules121.py','curriculum121.py','engine_clysto121.py','engine_c121.py','ccore121.c','clysto121_generated/core.c',Path(ccore121.__file__).name,Path(clysto121_native.__file__).name]
@@ -99,8 +141,16 @@ def main():
         target=args.out/'source'/n;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(n,target)
     atomic(args.out/'config.json',cfg)
     try:
-        status('机制历史覆盖');history=build_history(args.out,args.exclude_parent);atomic(args.out/'history_exclusions.json',history);historical=set(history['orbits']);used=set(historical);schedule=[];expert=ConsistentExpert(3);ConsistentExpert.failure_dir=args.out;generation_queries=0
-        for group in range(48):
+        if args.resume_from:
+            history,schedule,used,previous_seconds,provenance=resume_inputs(args.resume_from,cfg)
+            cfg['resume']=provenance;atomic(args.out/'config.json',cfg);atomic(args.out/'resume_provenance.json',provenance)
+            shutil.copyfile(args.resume_from/'history_exclusions.json',args.out/'history_exclusions.json')
+            shutil.copyfile(args.resume_from/'schedule_partial.json',args.out/'schedule_partial.json')
+            log(f'只读复用历史与{len(schedule)}个已核验根；累计预算扣除原采集{previous_seconds:.3f}秒，未完成组从attempt0继续。')
+        else:
+            status('机制历史覆盖');history=build_history(args.out,args.exclude_parent);atomic(args.out/'history_exclusions.json',history);used=set(history['orbits']);schedule=[]
+        historical=set(history['orbits']);expert=ConsistentExpert(3);ConsistentExpert.failure_dir=args.out;generation_queries=0
+        for group in range(len(schedule),48):
             target=(40,41,56,57)[group%4];accepted=None
             for attempt in range(128):
                 status('冻结接力机制根',group=group,attempt=attempt);rng=random.Random(SEED+group*100003+attempt*10000019);g=r.Game();prefix=[]
@@ -124,7 +174,7 @@ def main():
                 accepted=dict(group=group,split='train' if group<24 else 'development',bucket='ply40_41' if target<50 else 'ply56_57',board=g.board,player=g.player,ply=g.ply,opening=prefix,root_id=identity,decision_id=identity,orbit=rid,anchor=anchor,child_orbits=children,rear_path=rear,front_path=front,mechanism_witness=witness);break
             if accepted is None:raise ValueError(f'组{group}在128候选内未找到机制根；停止不放宽条件')
             schedule.append(accepted);used.update(new);atomic(args.out/'schedule_partial.json',schedule)
-        atomic(args.out/'schedule.json',schedule);freeze=dict(schedule_sha256=digest(args.out/'schedule.json'),roots=48,generation_queries=generation_queries);atomic(args.out/'schedule_freeze.json',freeze);log('48个机制根先冻结，后192局真实续弈。')
+        atomic(args.out/'schedule.json',schedule);freeze=dict(schedule_sha256=digest(args.out/'schedule.json'),roots=48,generation_queries=generation_queries,generation_queries_scope='本次运行查询次数；恢复前未归档次数不计入' if args.resume_from else '完整运行查询次数');atomic(args.out/'schedule_freeze.json',freeze);log('48个机制根先冻结，后192局真实续弈。')
         rows=[]
         for row in schedule:
             returns={}

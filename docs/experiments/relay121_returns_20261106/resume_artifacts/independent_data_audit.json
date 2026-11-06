@@ -1,0 +1,45 @@
+{
+  "roadmap_step": 3,
+  "passed": true,
+  "resume": {
+    "reused_roots": 22,
+    "prefix_exact": true,
+    "history_byte_identical": true,
+    "prior_budget_seconds": 211.1236108749872
+  },
+  "roots": 48,
+  "games": 192,
+  "search_moves": 9792,
+  "hash_entries_verified": 52,
+  "terminal_reasons": {
+    "all_pieces_in_goal": 170,
+    "equal_turn_goal_draw": 22
+  },
+  "per_configuration_label_kinds": {
+    "tempo": 19,
+    "point": 43,
+    "none": 34
+  },
+  "effective_directions": {
+    "train": {
+      "1": 5,
+      "-1": 2
+    },
+    "development": {
+      "-1": 1,
+      "1": 3
+    }
+  },
+  "readiness": {
+    "train": false,
+    "development": false
+  },
+  "trajectory_overlap": {
+    "total": 9377,
+    "historical": 202,
+    "cross_split": 60
+  },
+  "masked_groups": [],
+  "historical_input_overlap": 0,
+  "scope": "独立重放所有归档、机制、标签、深度、冻结根与输入隔离；不重新搜索，深度依据逐步归档审计，未证明搜索最优。"
+}

@@ -1,0 +1,2260 @@
+[
+  {
+    "group": 0,
+    "split": "train",
+    "player": 1,
+    "ply": 40,
+    "rear_path": [
+      28,
+      39
+    ],
+    "front_path": [
+      41,
+      39,
+      58,
+      79
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": -1,
+          "direction": -1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 35,
+          "own_moves_front": 28,
+          "reason": "both_win_own_moves_gap_at_least2"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 0.5,
+          "own_moves_rear": 34,
+          "own_moves_front": 31,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 1,
+    "split": "train",
+    "player": 2,
+    "ply": 41,
+    "rear_path": [
+      105,
+      93
+    ],
+    "front_path": [
+      70,
+      52,
+      31
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 28,
+          "own_moves_front": 26,
+          "reason": "same_outcome_no_tempo_preference"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 1.0,
+          "own_moves_rear": 32,
+          "own_moves_front": 31,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 2,
+    "split": "train",
+    "player": 1,
+    "ply": 56,
+    "rear_path": [
+      40,
+      50
+    ],
+    "front_path": [
+      60,
+      79,
+      102,
+      115
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -0.5,
+          "own_moves_rear": 23,
+          "own_moves_front": 29,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 0.5,
+          "own_moves_rear": 27,
+          "own_moves_front": 25,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 3,
+    "split": "train",
+    "player": 2,
+    "ply": 57,
+    "rear_path": [
+      92,
+      81
+    ],
+    "front_path": [
+      60,
+      41,
+      18,
+      5
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 24,
+          "own_moves_front": 25,
+          "reason": "same_outcome_no_tempo_preference"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 21,
+          "own_moves_front": 20,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 4,
+    "split": "train",
+    "player": 1,
+    "ply": 40,
+    "rear_path": [
+      6,
+      15
+    ],
+    "front_path": [
+      49,
+      67,
+      69,
+      92
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 33,
+          "own_moves_front": 30,
+          "reason": "same_outcome_no_tempo_preference"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 36,
+          "own_moves_front": 33,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 5,
+    "split": "train",
+    "player": 2,
+    "ply": 41,
+    "rear_path": [
+      103,
+      90
+    ],
+    "front_path": [
+      92,
+      69,
+      67,
+      49
+    ],
+    "raw_label": 1,
+    "label": 1,
+    "eligible": true,
+    "preference_audit": {
+      "label": 1,
+      "direction": 1,
+      "eligible": true,
+      "kind": "mixed",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 32,
+          "own_moves_front": 34,
+          "reason": "both_win_own_moves_gap_at_least2"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 0.5,
+          "own_moves_rear": 28,
+          "own_moves_front": 28,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "stable_nonzero_direction"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 6,
+    "split": "train",
+    "player": 1,
+    "ply": 56,
+    "rear_path": [
+      51,
+      61
+    ],
+    "front_path": [
+      58,
+      79,
+      102
+    ],
+    "raw_label": -1,
+    "label": -1,
+    "eligible": true,
+    "preference_audit": {
+      "label": -1,
+      "direction": -1,
+      "eligible": true,
+      "kind": "tempo",
+      "per_depth": {
+        "3": {
+          "label": -1,
+          "direction": -1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 16,
+          "own_moves_front": 13,
+          "reason": "both_win_own_moves_gap_at_least2"
+        },
+        "4": {
+          "label": -1,
+          "direction": -1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 18,
+          "own_moves_front": 15,
+          "reason": "both_win_own_moves_gap_at_least2"
+        }
+      },
+      "reason": "stable_nonzero_direction"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 7,
+    "split": "train",
+    "player": 2,
+    "ply": 57,
+    "rear_path": [
+      113,
+      104
+    ],
+    "front_path": [
+      60,
+      39,
+      16,
+      5,
+      3
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 21,
+          "own_moves_front": 23,
+          "reason": "same_outcome_no_tempo_preference"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 18,
+          "own_moves_front": 17,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 8,
+    "split": "train",
+    "player": 1,
+    "ply": 40,
+    "rear_path": [
+      7,
+      15
+    ],
+    "front_path": [
+      70,
+      68,
+      91,
+      111,
+      113,
+      118
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 0.5,
+          "own_moves_rear": 25,
+          "own_moves_front": 25,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 25,
+          "own_moves_front": 24,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 9,
+    "split": "train",
+    "player": 2,
+    "ply": 41,
+    "rear_path": [
+      112,
+      104
+    ],
+    "front_path": [
+      79,
+      81,
+      62,
+      41,
+      16,
+      3
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 31,
+          "own_moves_front": 30,
+          "reason": "same_outcome_no_tempo_preference"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 1.0,
+          "own_moves_rear": 34,
+          "own_moves_front": 35,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 10,
+    "split": "train",
+    "player": 1,
+    "ply": 56,
+    "rear_path": [
+      17,
+      29
+    ],
+    "front_path": [
+      40,
+      61,
+      59,
+      78
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -0.5,
+          "own_moves_rear": 17,
+          "own_moves_front": 18,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 13,
+          "own_moves_front": 16,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 11,
+    "split": "train",
+    "player": 2,
+    "ply": 57,
+    "rear_path": [
+      92,
+      80
+    ],
+    "front_path": [
+      60,
+      39,
+      14,
+      3
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -0.5,
+          "own_moves_rear": 27,
+          "own_moves_front": 25,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 1.0,
+          "own_moves_rear": 21,
+          "own_moves_front": 19,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 12,
+    "split": "train",
+    "player": 1,
+    "ply": 40,
+    "rear_path": [
+      7,
+      15
+    ],
+    "front_path": [
+      30,
+      28,
+      49
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 35,
+          "own_moves_front": 32,
+          "reason": "same_outcome_no_tempo_preference"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 1.0,
+          "own_moves_rear": 34,
+          "own_moves_front": 35,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 13,
+    "split": "train",
+    "player": 2,
+    "ply": 41,
+    "rear_path": [
+      113,
+      105
+    ],
+    "front_path": [
+      103,
+      80,
+      59,
+      40,
+      15,
+      4
+    ],
+    "raw_label": -1,
+    "label": -1,
+    "eligible": true,
+    "preference_audit": {
+      "label": -1,
+      "direction": -1,
+      "eligible": true,
+      "kind": "point",
+      "per_depth": {
+        "3": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -1.0,
+          "own_moves_rear": 27,
+          "own_moves_front": 33,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -1.0,
+          "own_moves_rear": 33,
+          "own_moves_front": 32,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "stable_nonzero_direction"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 14,
+    "split": "train",
+    "player": 1,
+    "ply": 56,
+    "rear_path": [
+      40,
+      50
+    ],
+    "front_path": [
+      103,
+      105,
+      116
+    ],
+    "raw_label": 1,
+    "label": 1,
+    "eligible": true,
+    "preference_audit": {
+      "label": 1,
+      "direction": 1,
+      "eligible": true,
+      "kind": "tempo",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 17,
+          "own_moves_front": 26,
+          "reason": "both_win_own_moves_gap_at_least2"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 21,
+          "own_moves_front": 28,
+          "reason": "both_win_own_moves_gap_at_least2"
+        }
+      },
+      "reason": "stable_nonzero_direction"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 15,
+    "split": "train",
+    "player": 2,
+    "ply": 57,
+    "rear_path": [
+      90,
+      79
+    ],
+    "front_path": [
+      70,
+      52,
+      29
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -1.0,
+          "own_moves_rear": 19,
+          "own_moves_front": 27,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 24,
+          "own_moves_front": 20,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 16,
+    "split": "train",
+    "player": 1,
+    "ply": 40,
+    "rear_path": [
+      17,
+      30
+    ],
+    "front_path": [
+      41,
+      62,
+      81,
+      106,
+      117
+    ],
+    "raw_label": 1,
+    "label": 1,
+    "eligible": true,
+    "preference_audit": {
+      "label": 1,
+      "direction": 1,
+      "eligible": true,
+      "kind": "mixed",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 1.0,
+          "own_moves_rear": 25,
+          "own_moves_front": 28,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 27,
+          "own_moves_front": 31,
+          "reason": "both_win_own_moves_gap_at_least2"
+        }
+      },
+      "reason": "stable_nonzero_direction"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 17,
+    "split": "train",
+    "player": 2,
+    "ply": 41,
+    "rear_path": [
+      104,
+      92
+    ],
+    "front_path": [
+      79,
+      58,
+      60,
+      39,
+      16,
+      14
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 28,
+          "own_moves_front": 31,
+          "reason": "both_win_own_moves_gap_at_least2"
+        },
+        "4": {
+          "label": -1,
+          "direction": -1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 35,
+          "own_moves_front": 27,
+          "reason": "both_win_own_moves_gap_at_least2"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 18,
+    "split": "train",
+    "player": 1,
+    "ply": 56,
+    "rear_path": [
+      39,
+      50
+    ],
+    "front_path": [
+      69,
+      90,
+      112,
+      114
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 14,
+          "own_moves_front": 17,
+          "reason": "both_win_own_moves_gap_at_least2"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 15,
+          "own_moves_front": 14,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 19,
+    "split": "train",
+    "player": 2,
+    "ply": 57,
+    "rear_path": [
+      91,
+      79
+    ],
+    "front_path": [
+      29,
+      27,
+      7
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -1.0,
+          "own_moves_rear": 25,
+          "own_moves_front": 26,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 26,
+          "own_moves_front": 31,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 20,
+    "split": "train",
+    "player": 1,
+    "ply": 40,
+    "rear_path": [
+      29,
+      41
+    ],
+    "front_path": [
+      60,
+      62,
+      81,
+      106,
+      117
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 26,
+          "own_moves_front": 34,
+          "reason": "both_win_own_moves_gap_at_least2"
+        },
+        "4": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -0.5,
+          "own_moves_rear": 34,
+          "own_moves_front": 29,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 21,
+    "split": "train",
+    "player": 2,
+    "ply": 41,
+    "rear_path": [
+      114,
+      105
+    ],
+    "front_path": [
+      68,
+      48,
+      50,
+      52,
+      29,
+      31
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 30,
+          "own_moves_front": 28,
+          "reason": "same_outcome_no_tempo_preference"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 0.5,
+          "own_moves_rear": 33,
+          "own_moves_front": 32,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 22,
+    "split": "train",
+    "player": 1,
+    "ply": 56,
+    "rear_path": [
+      27,
+      38
+    ],
+    "front_path": [
+      60,
+      81,
+      104,
+      106
+    ],
+    "raw_label": 1,
+    "label": 1,
+    "eligible": true,
+    "preference_audit": {
+      "label": 1,
+      "direction": 1,
+      "eligible": true,
+      "kind": "point",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 1.0,
+          "own_moves_rear": 19,
+          "own_moves_front": 24,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 0.5,
+          "own_moves_rear": 24,
+          "own_moves_front": 25,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "stable_nonzero_direction"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 23,
+    "split": "train",
+    "player": 2,
+    "ply": 57,
+    "rear_path": [
+      79,
+      68
+    ],
+    "front_path": [
+      16,
+      3,
+      5
+    ],
+    "raw_label": 1,
+    "label": 1,
+    "eligible": true,
+    "preference_audit": {
+      "label": 1,
+      "direction": 1,
+      "eligible": true,
+      "kind": "mixed",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 0.5,
+          "own_moves_rear": 21,
+          "own_moves_front": 17,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 21,
+          "own_moves_front": 23,
+          "reason": "both_win_own_moves_gap_at_least2"
+        }
+      },
+      "reason": "stable_nonzero_direction"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 24,
+    "split": "development",
+    "player": 1,
+    "ply": 40,
+    "rear_path": [
+      7,
+      16
+    ],
+    "front_path": [
+      61,
+      82,
+      105
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 0.5,
+          "own_moves_rear": 26,
+          "own_moves_front": 24,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -1.0,
+          "own_moves_rear": 22,
+          "own_moves_front": 30,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 25,
+    "split": "development",
+    "player": 2,
+    "ply": 41,
+    "rear_path": [
+      113,
+      104
+    ],
+    "front_path": [
+      60,
+      58,
+      39,
+      16
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 1.0,
+          "own_moves_rear": 41,
+          "own_moves_front": 35,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 40,
+          "own_moves_front": 39,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 26,
+    "split": "development",
+    "player": 1,
+    "ply": 56,
+    "rear_path": [
+      28,
+      39
+    ],
+    "front_path": [
+      68,
+      91,
+      111,
+      118
+    ],
+    "raw_label": -1,
+    "label": -1,
+    "eligible": true,
+    "preference_audit": {
+      "label": -1,
+      "direction": -1,
+      "eligible": true,
+      "kind": "point",
+      "per_depth": {
+        "3": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -0.5,
+          "own_moves_rear": 15,
+          "own_moves_front": 18,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -0.5,
+          "own_moves_rear": 17,
+          "own_moves_front": 19,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "stable_nonzero_direction"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 27,
+    "split": "development",
+    "player": 2,
+    "ply": 57,
+    "rear_path": [
+      92,
+      80
+    ],
+    "front_path": [
+      42,
+      17,
+      15
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -1.0,
+          "own_moves_rear": 24,
+          "own_moves_front": 22,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 1.0,
+          "own_moves_rear": 31,
+          "own_moves_front": 25,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 28,
+    "split": "development",
+    "player": 1,
+    "ply": 40,
+    "rear_path": [
+      9,
+      17
+    ],
+    "front_path": [
+      30,
+      28,
+      49
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -1.0,
+          "own_moves_rear": 29,
+          "own_moves_front": 30,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 33,
+          "own_moves_front": 33,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 29,
+    "split": "development",
+    "player": 2,
+    "ply": 41,
+    "rear_path": [
+      104,
+      92
+    ],
+    "front_path": [
+      51,
+      28,
+      26
+    ],
+    "raw_label": 1,
+    "label": 1,
+    "eligible": true,
+    "preference_audit": {
+      "label": 1,
+      "direction": 1,
+      "eligible": true,
+      "kind": "mixed",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 1.0,
+          "own_moves_rear": 30,
+          "own_moves_front": 42,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 32,
+          "own_moves_front": 35,
+          "reason": "both_win_own_moves_gap_at_least2"
+        }
+      },
+      "reason": "stable_nonzero_direction"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 30,
+    "split": "development",
+    "player": 1,
+    "ply": 56,
+    "rear_path": [
+      29,
+      40
+    ],
+    "front_path": [
+      69,
+      92,
+      112,
+      119
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 14,
+          "own_moves_front": 14,
+          "reason": "same_outcome_no_tempo_preference"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 15,
+          "own_moves_front": 15,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 31,
+    "split": "development",
+    "player": 2,
+    "ply": 57,
+    "rear_path": [
+      105,
+      93
+    ],
+    "front_path": [
+      91,
+      68,
+      70,
+      50,
+      29,
+      31
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 26,
+          "own_moves_front": 19,
+          "reason": "same_outcome_no_tempo_preference"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 29,
+          "own_moves_front": 20,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 32,
+    "split": "development",
+    "player": 1,
+    "ply": 40,
+    "rear_path": [
+      29,
+      41
+    ],
+    "front_path": [
+      80,
+      105,
+      103,
+      116
+    ],
+    "raw_label": 1,
+    "label": 1,
+    "eligible": true,
+    "preference_audit": {
+      "label": 1,
+      "direction": 1,
+      "eligible": true,
+      "kind": "tempo",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 27,
+          "own_moves_front": 30,
+          "reason": "both_win_own_moves_gap_at_least2"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 25,
+          "own_moves_front": 29,
+          "reason": "both_win_own_moves_gap_at_least2"
+        }
+      },
+      "reason": "stable_nonzero_direction"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 33,
+    "split": "development",
+    "player": 2,
+    "ply": 41,
+    "rear_path": [
+      114,
+      106
+    ],
+    "front_path": [
+      68,
+      50,
+      52
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 1.0,
+          "own_moves_rear": 36,
+          "own_moves_front": 27,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 28,
+          "own_moves_front": 37,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 34,
+    "split": "development",
+    "player": 1,
+    "ply": 56,
+    "rear_path": [
+      40,
+      51
+    ],
+    "front_path": [
+      60,
+      81,
+      106
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": -1,
+          "direction": -1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 24,
+          "own_moves_front": 18,
+          "reason": "both_win_own_moves_gap_at_least2"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 20,
+          "own_moves_front": 21,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 35,
+    "split": "development",
+    "player": 2,
+    "ply": 57,
+    "rear_path": [
+      90,
+      79
+    ],
+    "front_path": [
+      80,
+      61,
+      42,
+      17,
+      15
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 0.5,
+          "own_moves_rear": 20,
+          "own_moves_front": 24,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -1.0,
+          "own_moves_rear": 41,
+          "own_moves_front": 18,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 36,
+    "split": "development",
+    "player": 1,
+    "ply": 40,
+    "rear_path": [
+      7,
+      16
+    ],
+    "front_path": [
+      29,
+      27,
+      48
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 1.0,
+          "own_moves_rear": 31,
+          "own_moves_front": 27,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -0.5,
+          "own_moves_rear": 34,
+          "own_moves_front": 39,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 37,
+    "split": "development",
+    "player": 2,
+    "ply": 41,
+    "rear_path": [
+      113,
+      104
+    ],
+    "front_path": [
+      81,
+      62,
+      41,
+      16,
+      5
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -1.0,
+          "own_moves_rear": 25,
+          "own_moves_front": 27,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 24,
+          "own_moves_front": 29,
+          "reason": "both_win_own_moves_gap_at_least2"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 38,
+    "split": "development",
+    "player": 1,
+    "ply": 56,
+    "rear_path": [
+      28,
+      39
+    ],
+    "front_path": [
+      104,
+      115,
+      120
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 24,
+          "own_moves_front": 24,
+          "reason": "same_outcome_no_tempo_preference"
+        },
+        "4": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -0.5,
+          "own_moves_rear": 25,
+          "own_moves_front": 21,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 39,
+    "split": "development",
+    "player": 2,
+    "ply": 57,
+    "rear_path": [
+      91,
+      79
+    ],
+    "front_path": [
+      81,
+      60,
+      41,
+      16,
+      14
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 1.0,
+          "own_moves_rear": 21,
+          "own_moves_front": 20,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -1.0,
+          "own_moves_rear": 27,
+          "own_moves_front": 24,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 40,
+    "split": "development",
+    "player": 1,
+    "ply": 40,
+    "rear_path": [
+      15,
+      28
+    ],
+    "front_path": [
+      42,
+      61,
+      82,
+      105,
+      103,
+      116
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 26,
+          "own_moves_front": 25,
+          "reason": "same_outcome_no_tempo_preference"
+        },
+        "4": {
+          "label": -1,
+          "direction": -1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 27,
+          "own_moves_front": 25,
+          "reason": "both_win_own_moves_gap_at_least2"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 41,
+    "split": "development",
+    "player": 2,
+    "ply": 41,
+    "rear_path": [
+      114,
+      106
+    ],
+    "front_path": [
+      70,
+      50,
+      27
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 34,
+          "own_moves_front": 32,
+          "reason": "same_outcome_no_tempo_preference"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 0.5,
+          "own_moves_rear": 39,
+          "own_moves_front": 36,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 42,
+    "split": "development",
+    "player": 1,
+    "ply": 56,
+    "rear_path": [
+      28,
+      40
+    ],
+    "front_path": [
+      60,
+      81,
+      106
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 1.0,
+          "own_moves_rear": 20,
+          "own_moves_front": 29,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 25,
+          "own_moves_front": 25,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 43,
+    "split": "development",
+    "player": 2,
+    "ply": 57,
+    "rear_path": [
+      104,
+      92
+    ],
+    "front_path": [
+      16,
+      5,
+      0
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 17,
+          "own_moves_front": 21,
+          "reason": "same_outcome_no_tempo_preference"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 26,
+          "own_moves_front": 25,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 44,
+    "split": "development",
+    "player": 1,
+    "ply": 40,
+    "rear_path": [
+      8,
+      16
+    ],
+    "front_path": [
+      39,
+      41,
+      62
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 31,
+          "own_moves_front": 30,
+          "reason": "same_outcome_no_tempo_preference"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 37,
+          "own_moves_front": 37,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 45,
+    "split": "development",
+    "player": 2,
+    "ply": 41,
+    "rear_path": [
+      112,
+      103
+    ],
+    "front_path": [
+      81,
+      62,
+      41,
+      39,
+      14,
+      3
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": -1,
+          "direction": -1,
+          "kind": "point",
+          "point_difference": -1.0,
+          "own_moves_rear": 24,
+          "own_moves_front": 26,
+          "reason": "genuine_terminal_points"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 25,
+          "own_moves_front": 29,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 46,
+    "split": "development",
+    "player": 1,
+    "ply": 56,
+    "rear_path": [
+      29,
+      41
+    ],
+    "front_path": [
+      60,
+      81,
+      106
+    ],
+    "raw_label": 1,
+    "label": 1,
+    "eligible": true,
+    "preference_audit": {
+      "label": 1,
+      "direction": 1,
+      "eligible": true,
+      "kind": "mixed",
+      "per_depth": {
+        "3": {
+          "label": 1,
+          "direction": 1,
+          "kind": "tempo",
+          "point_difference": 0.0,
+          "own_moves_rear": 25,
+          "own_moves_front": 27,
+          "reason": "both_win_own_moves_gap_at_least2"
+        },
+        "4": {
+          "label": 1,
+          "direction": 1,
+          "kind": "point",
+          "point_difference": 1.0,
+          "own_moves_rear": 27,
+          "own_moves_front": 23,
+          "reason": "genuine_terminal_points"
+        }
+      },
+      "reason": "stable_nonzero_direction"
+    },
+    "exclusion_reasons": []
+  },
+  {
+    "group": 47,
+    "split": "development",
+    "player": 2,
+    "ply": 57,
+    "rear_path": [
+      79,
+      69
+    ],
+    "front_path": [
+      59,
+      40,
+      15,
+      4
+    ],
+    "raw_label": 0,
+    "label": 0,
+    "eligible": false,
+    "preference_audit": {
+      "label": 0,
+      "direction": 0,
+      "eligible": false,
+      "kind": "none",
+      "per_depth": {
+        "3": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 18,
+          "own_moves_front": 47,
+          "reason": "same_outcome_no_tempo_preference"
+        },
+        "4": {
+          "label": 0,
+          "direction": 0,
+          "kind": "none",
+          "point_difference": 0.0,
+          "own_moves_rear": 15,
+          "own_moves_front": 20,
+          "reason": "same_outcome_no_tempo_preference"
+        }
+      },
+      "reason": "depths_tie_or_disagree_or_invalid"
+    },
+    "exclusion_reasons": []
+  }
+]

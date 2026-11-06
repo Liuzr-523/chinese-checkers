@@ -1,0 +1,14 @@
+{
+  "roadmap_step": 3,
+  "training_started": false,
+  "readiness": {
+    "training": false,
+    "development": false
+  },
+  "development_pass": false,
+  "promoted": false,
+  "arena_run": false,
+  "ready_for_search_probe": false,
+  "reason": "train\u8986\u76d6\u4e0d\u8db3\uff0c\u56fa\u5b9a\u6570\u636e\u6536\u96c6\u7ed3\u675f\uff0c\u4e0d\u8ffd\u52a0\u6839\u6216\u91cd\u5206\u3002",
+  "seconds": 460.11305449996144
+}

@@ -55,6 +55,15 @@ def main():
     if args.partial:return audit_partial(e,args.out)
     data=load(c/'dataset.json');rows=data['rows'];schedule=load(c/'schedule.json');assert len(rows)==len(schedule)==48
     assert sha(c/'schedule.json')==load(c/'schedule_freeze.json')['schedule_sha256']==data['schedule_sha256']
+    resume_audit=None
+    if (c/'resume_provenance.json').exists():
+        provenance=load(c/'resume_provenance.json');source=Path(provenance['source']);prior=load(source/'schedule_partial.json')
+        assert schedule[:len(prior)]==prior and len(prior)==provenance['reused_roots']==22
+        assert sha(source/'history_exclusions.json')==sha(c/'history_exclusions.json')==provenance['history_sha256']
+        assert sha(source/'schedule_partial.json')==provenance['partial_schedule_sha256']
+        assert float(load(c/'status.json')['seconds'])>=provenance['previous_seconds']
+        for field,file in (('source_status_sha256','status.json'),('source_config_sha256','config.json')):assert sha(source/file)==provenance[field]
+        resume_audit=dict(reused_roots=len(prior),prefix_exact=True,history_byte_identical=True,prior_budget_seconds=provenance['previous_seconds'])
     historical=set(load(c/'history_exclusions.json')['orbits']);used=set(historical);trajectory=defaultdict(set);inputs={};games=[];counts=Counter();kinds=Counter();search_moves=0
     for row,frozen in zip(rows,schedule):
         for k,v in frozen.items():assert row[k]==v,(row['group'],k)
@@ -94,10 +103,17 @@ def main():
     assert sorted(masked)==load(c/'trajectory_overlap.json')['masked_groups']
     for row in rows:assert row['label']==(0 if row['group'] in masked else row['raw_label'])
     effective={part:dict(Counter(str(row['label']) for row in rows if row['split']==part and row['eligible'])) for part in ('train','development')}
+    independent_readiness={part:sum(count.values())>=8 and min(count.get('1',0),count.get('-1',0))>=2 for part,count in effective.items()}
+    assert data['readiness']==dict(training=independent_readiness['train'],development=independent_readiness['development'])
+    for name,digest in load(e/'collection_manifest.json').items():assert sha(name)==digest,name
+    overlap=load(c/'trajectory_overlap.json')
+    assert overlap['trajectory_orbits']==len(trajectory)
+    assert overlap['historical_trajectory_orbits']==len(set(trajectory)&historical)
+    assert overlap['cross_split_trajectory_orbits']==sum(len({group<24 for group in groups})>1 for groups in trajectory.values())
     hashes=0
     for config in (load(e/'config.json'),load(c/'config.json')):
         for field in ('source_sha256','native_sha256','old_data_sha256'):
             for name,digest in config.get(field,{}).items():assert sha(name)==digest,name;hashes+=1
-    result=dict(roadmap_step=3,passed=True,roots=48,games=192,search_moves=search_moves,hash_entries_verified=hashes,terminal_reasons=dict(counts),per_configuration_label_kinds=dict(kinds),effective_directions=effective,masked_groups=sorted(masked),historical_input_overlap=0,scope='独立重放所有归档、机制、标签、深度、冻结根与输入隔离；不重新搜索，深度依据逐步归档审计，未证明搜索最优。')
+    result=dict(roadmap_step=3,passed=True,resume=resume_audit,roots=48,games=192,search_moves=search_moves,hash_entries_verified=hashes,terminal_reasons=dict(counts),per_configuration_label_kinds=dict(kinds),effective_directions=effective,readiness=independent_readiness,trajectory_overlap=dict(total=overlap['trajectory_orbits'],historical=overlap['historical_trajectory_orbits'],cross_split=overlap['cross_split_trajectory_orbits']),masked_groups=sorted(masked),historical_input_overlap=0,scope='独立重放所有归档、机制、标签、深度、冻结根与输入隔离；不重新搜索，深度依据逐步归档审计，未证明搜索最优。')
     args.out.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');print(json.dumps(result,ensure_ascii=False))
 if __name__=='__main__':main()
