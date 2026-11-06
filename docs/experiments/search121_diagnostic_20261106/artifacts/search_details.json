@@ -1,0 +1,37 @@
+{
+  "root_cases": [
+    {
+      "simulations": 32,
+      "visited_actions_mean": 8.520833333333334,
+      "visited_child_q_spread_median": 0.01189423295048376,
+      "root_value_min": -0.08917323499917984,
+      "root_value_max": 0.0479426234960556
+    },
+    {
+      "simulations": 128,
+      "visited_actions_mean": 17.479166666666668,
+      "visited_child_q_spread_median": 0.013851845486775285,
+      "root_value_min": -0.08917323499917984,
+      "root_value_max": 0.0479426234960556
+    },
+    {
+      "simulations": 512,
+      "visited_actions_mean": 31.9375,
+      "visited_child_q_spread_median": 0.017409542368402982,
+      "root_value_min": -0.08917323499917984,
+      "root_value_max": 0.0479426234960556
+    }
+  ],
+  "arena": {
+    "NN": {
+      "median_nodes": 151.0,
+      "node_semantics": "完成模拟次数，不是全部NN调用次数",
+      "median_max_or_completed_depth": 5.0
+    },
+    "Clysto派生": {
+      "median_nodes": 43856.5,
+      "node_semantics": "原生搜索节点数，不能与NN模拟量等同",
+      "median_max_or_completed_depth": 4.0
+    }
+  }
+}

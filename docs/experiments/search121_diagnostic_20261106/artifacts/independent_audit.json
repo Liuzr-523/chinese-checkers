@@ -1,0 +1,37 @@
+{
+  "roadmap_step": 3,
+  "passed": true,
+  "cases": 288,
+  "roots": 48,
+  "pure_forward_rechecked": 48,
+  "mcts_searches_repeated": 0,
+  "stable_pair_labels": 11,
+  "games": 12,
+  "replayed_game_steps": 610,
+  "hash_entries_verified": 12,
+  "registry_model_unchanged": true,
+  "arena": {
+    "games": 12,
+    "nn_wins": 0,
+    "nn_losses": 12,
+    "true_draws": 0,
+    "truncated": 0,
+    "timings": {
+      "NN": {
+        "moves": 302,
+        "mean_seconds": 0.10349667740990377,
+        "max_seconds": 0.1555067499866709,
+        "mean_cpu_seconds": 0.1031474006622515,
+        "over_110ms": 23
+      },
+      "Clysto派生": {
+        "moves": 308,
+        "mean_seconds": 0.09983762046329786,
+        "max_seconds": 0.10046691703610122,
+        "mean_cpu_seconds": 0.09956452922077959,
+        "over_110ms": 0
+      }
+    }
+  },
+  "scope": "独立重算纯策略与归档访问/选择/覆盖/摘要、逐步重放12局；不重复MCTS，不将候选外动作贴质量标签。最大深度依据归档范围核验，未重新搜索证明内部树深。"
+}

@@ -6,6 +6,7 @@ are labelled explicitly as C search imitation; later MCTS games are self-play.
 from collections import Counter
 from pathlib import Path
 import math
+import time
 import numpy as np
 import torch
 from torch import nn
@@ -104,7 +105,9 @@ class Node:
     def q(self): return self.total/self.visits if self.visits else 0.
 
 @torch.no_grad()
-def search(model,board,player,ply=0,repetitions=None,simulations=16,rng=None,noise=False,value_scale=1.,root_safety=False,heuristic_mix=0.,fpu_mode="zero",policy_temperature=1.):
+def search(model,board,player,ply=0,repetitions=None,simulations=16,rng=None,noise=False,value_scale=1.,root_safety=False,heuristic_mix=0.,fpu_mode="zero",policy_temperature=1.,time_limit=None):
+    started=time.monotonic()
+    if time_limit is not None and (not math.isfinite(time_limit) or time_limit<=0):raise ValueError('invalid search time limit')
     if simulations<1: raise ValueError('simulations must be positive')
     if not math.isfinite(policy_temperature) or policy_temperature<=0: raise ValueError('invalid policy temperature')
     if fpu_mode not in ('zero','parent'): raise ValueError('unknown first-play baseline')
@@ -139,7 +142,10 @@ def search(model,board,player,ply=0,repetitions=None,simulations=16,rng=None,noi
     if noise:
         perturb=rng.dirichlet(np.full(len(root.children),.3))
         for (_,child),extra in zip(root.children,perturb): child.prior=.75*child.prior+.25*float(extra)
+    completed=0;depths=[]
     for _ in range(simulations):
+        # Always complete one simulation; a single expansion can exceed the deadline.
+        if completed and time_limit is not None and time.monotonic()-started>=time_limit:break
         node=root;b=board;p=player;n=ply;counts=history.copy();trace=[root]
         while node.children:
             path,child=max(node.children,key=lambda edge:(-edge[1].q if edge[1].visits else (node.q if fpu_mode=='parent' else 0.))+1.5*edge[1].prior*math.sqrt(node.visits+1)/(1+edge[1].visits))
@@ -148,10 +154,15 @@ def search(model,board,player,ply=0,repetitions=None,simulations=16,rng=None,noi
         value=expand(node,b,p,n,counts)
         for visited in reversed(trace):
             visited.visits+=1;visited.total+=value;value=-value
+        completed+=1;depths.append(len(trace)-1)
     visits=np.array([child.visits for _,child in root.children],dtype=np.float64)
     policy=visits/visits.sum()
     index=int(np.argmax(visits))
-    return root.children[index][0],dict(nodes=simulations,root_visits=root.visits,
+    return root.children[index][0],dict(nodes=completed,root_visits=root.visits,
+        **({'elapsed_seconds':time.monotonic()-started} if time_limit is not None else {}),
+        time_limit=time_limit,root_visited_actions=int((visits>0).sum()),
+        max_depth=max(depths),mean_depth=float(np.mean(depths)),visits=visits.tolist(),
+        child_q=[child.q for _,child in root.children],
         child_visits=int(visits.sum()),root_safety=guard,root_q=root.q,priors=[child.prior for _,child in root.children],policy=policy.tolist(),paths=[path for path,_ in root.children])
 
 def train(model,samples,steps=100,seed=0):

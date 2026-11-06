@@ -1,0 +1,19 @@
+{
+  "case_summary.json": "5c9baa00d25a9c18f8cfd5c594d35495af6e9131a0e540758e44fa0fc79f53f2",
+  "cases.jsonl": "aa812c739f7189595aaa1bf41db76ff233dfa188ac649be7451318b9d53450b7",
+  "config.json": "75050923778aca279e2dffd71959e89f7296241c465619a416f89be3685bee90",
+  "current_game.json": "bddca7eb2873690f005f2c0b0ab94aa624b3b290f93c6f23719c3c0ccc4d4ff3",
+  "games.jsonl": "0100c9d1804fff51b1c459baba7c75203f17d111ab81bf4607ce351fca633ddc",
+  "independent_audit.json": "3d063fb8728d6a614b28450b0957d905a9b5283bda9358ca70e2bd36413fe413",
+  "pure_policy.jsonl": "6cbc650e4784cc5a2900c2828af78f0c2d629003296034103ae99337e53fce14",
+  "result.json": "98d5c2d812872ff1ef67608bc3c6788d76a68cad6ebf410ac5db144b04f47e9d",
+  "source/az121.py": "11bf9c8388967bff749f266dc14325e9d10354ab8b93c1c1b0e1a58bedb54ddf",
+  "source/curriculum121.py": "2451380d4eb6b33dc9a512535ac39f9404e54cde4bcbed88bbf179b1d6be46e0",
+  "source/diagnostics/search121_diagnostic.py": "d53569dcaa2930479fa9df3656b890f301c2ba84165673881e7193e2356feb58",
+  "source/docs/experiments/search121_diagnostic_20261106/protocol.md": "6e78bfef2b3d805c2c292485fbf2966a4de63e42dc51520ced0004be81d37a39",
+  "source/engine_c121.py": "9801d7884c718dd75dae7d5270b6669812d32cb942c1d9e3011ecd1eda10db2f",
+  "source/engine_clysto121.py": "e95c05b8f877e77f777e84e0c14dc3c5d6814d989eac485eb85d2db1d4a7a585",
+  "source/rules121.py": "98063b412f38012a3fc65468ab9a64972f01e515d2f1a291364ddac84d9d6734",
+  "source/tests/test_mcts121_diagnostics.py": "81daa6068feaf3b30d133c85ecc5bd2f17230668fa475ac693779d964d12f082",
+  "status.json": "47665e7ceedd5fc140aa12a745acd2b8ecb6b6450cf557314281a4b0d5d77287"
+}
