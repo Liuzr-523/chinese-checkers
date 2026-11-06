@@ -1,0 +1,564 @@
+{
+  "roadmap_step": 3,
+  "scope": "只读实际48根及标签，不调用模型或教师；数据门槛失败，无法做不存在的baseline/final策略比较。",
+  "summary": {
+    "train": {
+      "generated": 32,
+      "eligible": 24,
+      "rear_preferred": 8,
+      "front_preferred": 16,
+      "players": {
+        "1": {
+          "eligible": 12,
+          "rear_preferred": 6,
+          "front_preferred": 6
+        },
+        "2": {
+          "eligible": 12,
+          "rear_preferred": 2,
+          "front_preferred": 10
+        }
+      }
+    },
+    "development": {
+      "generated": 16,
+      "eligible": 9,
+      "rear_preferred": 1,
+      "front_preferred": 8,
+      "players": {
+        "1": {
+          "eligible": 6,
+          "rear_preferred": 1,
+          "front_preferred": 5
+        },
+        "2": {
+          "eligible": 3,
+          "rear_preferred": 0,
+          "front_preferred": 3
+        }
+      }
+    }
+  },
+  "reasons": {
+    "train": {
+      "eligible": 24,
+      "depth5_gap_below2": 5,
+      "direction_flip": 1,
+      "depth4_tie": 2
+    },
+    "development": {
+      "eligible": 9,
+      "direction_flip": 3,
+      "depth5_gap_below2": 2,
+      "depth5_tie": 1,
+      "depth4_tie": 1
+    }
+  },
+  "gates_recomputed": {
+    "train_total": true,
+    "development_total": true,
+    "train_both": true,
+    "development_both": false
+  },
+  "training_started": false,
+  "pair_baseline": null,
+  "pair_final": null,
+  "model_checks": null,
+  "details": [
+    {
+      "group": 0,
+      "split": "train",
+      "player": 1,
+      "delta4": -9,
+      "delta5": -2,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 1,
+      "split": "train",
+      "player": 2,
+      "delta4": 4,
+      "delta5": 1,
+      "label": 0,
+      "eligible": false,
+      "reason": "depth5_gap_below2"
+    },
+    {
+      "group": 2,
+      "split": "train",
+      "player": 1,
+      "delta4": -1,
+      "delta5": -1,
+      "label": 0,
+      "eligible": false,
+      "reason": "depth5_gap_below2"
+    },
+    {
+      "group": 3,
+      "split": "train",
+      "player": 2,
+      "delta4": -4,
+      "delta5": -1,
+      "label": 0,
+      "eligible": false,
+      "reason": "depth5_gap_below2"
+    },
+    {
+      "group": 4,
+      "split": "train",
+      "player": 1,
+      "delta4": 10,
+      "delta5": 8,
+      "label": 1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 5,
+      "split": "train",
+      "player": 2,
+      "delta4": -11,
+      "delta5": -7,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 6,
+      "split": "train",
+      "player": 1,
+      "delta4": 1,
+      "delta5": 3,
+      "label": 1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 7,
+      "split": "train",
+      "player": 2,
+      "delta4": -5,
+      "delta5": -6,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 8,
+      "split": "train",
+      "player": 1,
+      "delta4": -3,
+      "delta5": -2,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 9,
+      "split": "train",
+      "player": 2,
+      "delta4": -7,
+      "delta5": -10,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 10,
+      "split": "train",
+      "player": 1,
+      "delta4": -4,
+      "delta5": -10,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 11,
+      "split": "train",
+      "player": 2,
+      "delta4": -4,
+      "delta5": -3,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 12,
+      "split": "train",
+      "player": 1,
+      "delta4": 24,
+      "delta5": 15,
+      "label": 1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 13,
+      "split": "train",
+      "player": 2,
+      "delta4": -4,
+      "delta5": -1,
+      "label": 0,
+      "eligible": false,
+      "reason": "depth5_gap_below2"
+    },
+    {
+      "group": 14,
+      "split": "train",
+      "player": 1,
+      "delta4": -1,
+      "delta5": -9,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 15,
+      "split": "train",
+      "player": 2,
+      "delta4": 1,
+      "delta5": 2,
+      "label": 1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 16,
+      "split": "train",
+      "player": 1,
+      "delta4": -9,
+      "delta5": -9,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 17,
+      "split": "train",
+      "player": 2,
+      "delta4": -12,
+      "delta5": -8,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 18,
+      "split": "train",
+      "player": 1,
+      "delta4": -4,
+      "delta5": -1,
+      "label": 0,
+      "eligible": false,
+      "reason": "depth5_gap_below2"
+    },
+    {
+      "group": 19,
+      "split": "train",
+      "player": 2,
+      "delta4": -5,
+      "delta5": 1,
+      "label": 0,
+      "eligible": false,
+      "reason": "direction_flip"
+    },
+    {
+      "group": 20,
+      "split": "train",
+      "player": 1,
+      "delta4": -4,
+      "delta5": -6,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 21,
+      "split": "train",
+      "player": 2,
+      "delta4": -2,
+      "delta5": -3,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 22,
+      "split": "train",
+      "player": 1,
+      "delta4": 1,
+      "delta5": 5,
+      "label": 1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 23,
+      "split": "train",
+      "player": 2,
+      "delta4": -6,
+      "delta5": -10,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 24,
+      "split": "train",
+      "player": 1,
+      "delta4": 0,
+      "delta5": -2,
+      "label": 0,
+      "eligible": false,
+      "reason": "depth4_tie"
+    },
+    {
+      "group": 25,
+      "split": "train",
+      "player": 2,
+      "delta4": -4,
+      "delta5": -8,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 26,
+      "split": "train",
+      "player": 1,
+      "delta4": 11,
+      "delta5": 10,
+      "label": 1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 27,
+      "split": "train",
+      "player": 2,
+      "delta4": -3,
+      "delta5": -8,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 28,
+      "split": "train",
+      "player": 1,
+      "delta4": 14,
+      "delta5": 9,
+      "label": 1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 29,
+      "split": "train",
+      "player": 2,
+      "delta4": 2,
+      "delta5": 2,
+      "label": 1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 30,
+      "split": "train",
+      "player": 1,
+      "delta4": 0,
+      "delta5": -4,
+      "label": 0,
+      "eligible": false,
+      "reason": "depth4_tie"
+    },
+    {
+      "group": 31,
+      "split": "train",
+      "player": 2,
+      "delta4": -12,
+      "delta5": -5,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 32,
+      "split": "development",
+      "player": 1,
+      "delta4": -12,
+      "delta5": -10,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 33,
+      "split": "development",
+      "player": 2,
+      "delta4": -2,
+      "delta5": 1,
+      "label": 0,
+      "eligible": false,
+      "reason": "direction_flip"
+    },
+    {
+      "group": 34,
+      "split": "development",
+      "player": 1,
+      "delta4": -4,
+      "delta5": -6,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 35,
+      "split": "development",
+      "player": 2,
+      "delta4": -1,
+      "delta5": -3,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 36,
+      "split": "development",
+      "player": 1,
+      "delta4": 1,
+      "delta5": 4,
+      "label": 1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 37,
+      "split": "development",
+      "player": 2,
+      "delta4": -2,
+      "delta5": -2,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 38,
+      "split": "development",
+      "player": 1,
+      "delta4": 1,
+      "delta5": -2,
+      "label": 0,
+      "eligible": false,
+      "reason": "direction_flip"
+    },
+    {
+      "group": 39,
+      "split": "development",
+      "player": 2,
+      "delta4": 3,
+      "delta5": 1,
+      "label": 0,
+      "eligible": false,
+      "reason": "depth5_gap_below2"
+    },
+    {
+      "group": 40,
+      "split": "development",
+      "player": 1,
+      "delta4": -6,
+      "delta5": -4,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 41,
+      "split": "development",
+      "player": 2,
+      "delta4": -1,
+      "delta5": -1,
+      "label": 0,
+      "eligible": false,
+      "reason": "depth5_gap_below2"
+    },
+    {
+      "group": 42,
+      "split": "development",
+      "player": 1,
+      "delta4": -3,
+      "delta5": -2,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 43,
+      "split": "development",
+      "player": 2,
+      "delta4": -7,
+      "delta5": -7,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 44,
+      "split": "development",
+      "player": 1,
+      "delta4": -2,
+      "delta5": 0,
+      "label": 0,
+      "eligible": false,
+      "reason": "depth5_tie"
+    },
+    {
+      "group": 45,
+      "split": "development",
+      "player": 2,
+      "delta4": -2,
+      "delta5": 1,
+      "label": 0,
+      "eligible": false,
+      "reason": "direction_flip"
+    },
+    {
+      "group": 46,
+      "split": "development",
+      "player": 1,
+      "delta4": -3,
+      "delta5": -2,
+      "label": -1,
+      "eligible": true,
+      "reason": "eligible"
+    },
+    {
+      "group": 47,
+      "split": "development",
+      "player": 2,
+      "delta4": 0,
+      "delta5": 3,
+      "label": 0,
+      "eligible": false,
+      "reason": "depth4_tie"
+    }
+  ],
+  "schedule_sha256": "44aea0751315a9b7d559ba979300a85368e7205e89c1b0c1415e90ff89d968ed",
+  "input_sha256": {
+    "nn_checkpoints/experiments/order121_trial_20261106/collection/dataset.json": "2a2fc930c5dc186c527a749451a075b4349fa95894945ba521e6c0be6ca58601",
+    "nn_checkpoints/experiments/order121_trial_20261106/result.json": "a8386b8e48ed4ce7c64d2b5e78eeec5b7a20807145173a221b09d8f61d77402d"
+  },
+  "champion_and_execution_audit": {
+    "registry_unchanged": true,
+    "champion_checkpoint_unchanged": true,
+    "no_candidate_checkpoint": true,
+    "no_baseline_final": true
+  },
+  "current_protected_sha256": {
+    "/Users/liuzirui/Desktop/py/chinese-checkers/nn_checkpoints/models/champions/neural121.json": "d26f8ffd6b07f52e6c2c5929d8a86a7664cd58944b98562e71356368994c9b62",
+    "nn_checkpoints/models/checkpoints/neural121_v3_expert_imitation.pt": "a0a40208061aaaa45931131f1760bb20ae114388c6ae6ad29181b204565395d9"
+  }
+}

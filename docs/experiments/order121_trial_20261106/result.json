@@ -1,0 +1,14 @@
+{
+  "roadmap_step": 3,
+  "data_quality_pass": false,
+  "data_gates": {
+    "train_total": true,
+    "development_total": true,
+    "train_both": true,
+    "development_both": false
+  },
+  "training_started": false,
+  "promoted": false,
+  "reason": "\u56fa\u5b9a\u6570\u636e\u8986\u76d6\u95e8\u69db\u672a\u8fc7\uff0c\u4e0d\u8ffd\u52a0\u6839\u3001\u4e0d\u91cd\u5206\u3001\u4e0d\u8bad\u7ec3",
+  "seconds": 213.54208499996457
+}

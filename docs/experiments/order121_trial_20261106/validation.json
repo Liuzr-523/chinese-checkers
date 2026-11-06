@@ -1,0 +1,29 @@
+{
+  "local_tests": {
+    "run": 193,
+    "failed": 0,
+    "skipped": 0,
+    "log_sha256": "60681dfe81b7446509079d6823198a123d9bd4e39903c88638de75382ad4a900"
+  },
+  "clean_tests": {
+    "run": 193,
+    "failed": 0,
+    "skipped": 4,
+    "optional_data_only": true,
+    "rebuilt_ccore121": true,
+    "rebuilt_analysis_expert": true,
+    "log_sha256": "290720f88fa87bcb433131757500568fcbc22deb06a5cb61b3afbe897bc05e62"
+  },
+  "data_audit_pass": true,
+  "data_quality_pass": false,
+  "training_started": false,
+  "source_snapshots_match": true,
+  "current_source_difference": [
+    "train121_order_trial.py"
+  ],
+  "current_difference_reason": "执行后仅改sampling描述文字，原snapshot/config/result保留",
+  "old_data_native_champion_registry_unchanged": true,
+  "diagnostics_compile_pass": true,
+  "historical_teacher_queries": 42,
+  "historical_teacher_audits_pass": true
+}

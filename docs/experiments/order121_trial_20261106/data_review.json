@@ -1,0 +1,2797 @@
+{
+  "summary": {
+    "train": {
+      "n": 32,
+      "label_counts": {
+        "-1": 16,
+        "0": 8,
+        "1": 8
+      },
+      "label0_reasons": {
+        "stable_but_depth5_gap_lt2": 5,
+        "depth_sign_flip": 1,
+        "depth4_tie": 2
+      },
+      "all_reason_counts": {
+        "eligible_front": 16,
+        "stable_but_depth5_gap_lt2": 5,
+        "eligible_rear": 8,
+        "depth_sign_flip": 1,
+        "depth4_tie": 2
+      },
+      "by_ply": {
+        "36": {
+          "-1": 4,
+          "1": 3,
+          "0": 1
+        },
+        "49": {
+          "0": 2,
+          "-1": 5,
+          "1": 1
+        },
+        "60": {
+          "0": 3,
+          "1": 3,
+          "-1": 2
+        },
+        "73": {
+          "0": 2,
+          "-1": 5,
+          "1": 1
+        }
+      },
+      "by_player": {
+        "1": {
+          "-1": 6,
+          "0": 4,
+          "1": 6
+        },
+        "2": {
+          "0": 4,
+          "-1": 10,
+          "1": 2
+        }
+      },
+      "geometry": {
+        "rear": {
+          "advance": {
+            "mean": 2.15625,
+            "min": 1,
+            "max": 10
+          },
+          "hops": {
+            "mean": 0.9375,
+            "min": 0,
+            "max": 5
+          },
+          "farthest_reduction": {
+            "mean": 1.03125,
+            "min": 1,
+            "max": 2
+          }
+        },
+        "front": {
+          "advance": {
+            "mean": 4.1875,
+            "min": 2,
+            "max": 8
+          },
+          "hops": {
+            "mean": 2.71875,
+            "min": 2,
+            "max": 5
+          },
+          "farthest_reduction": {
+            "mean": 0,
+            "min": 0,
+            "max": 0
+          }
+        }
+      }
+    },
+    "development": {
+      "n": 16,
+      "label_counts": {
+        "-1": 8,
+        "0": 7,
+        "1": 1
+      },
+      "label0_reasons": {
+        "depth_sign_flip": 3,
+        "stable_but_depth5_gap_lt2": 2,
+        "depth5_tie": 1,
+        "depth4_tie": 1
+      },
+      "all_reason_counts": {
+        "eligible_front": 8,
+        "depth_sign_flip": 3,
+        "eligible_rear": 1,
+        "stable_but_depth5_gap_lt2": 2,
+        "depth5_tie": 1,
+        "depth4_tie": 1
+      },
+      "by_ply": {
+        "36": {
+          "-1": 2,
+          "1": 1,
+          "0": 1
+        },
+        "49": {
+          "0": 3,
+          "-1": 1
+        },
+        "60": {
+          "-1": 3,
+          "0": 1
+        },
+        "73": {
+          "-1": 2,
+          "0": 2
+        }
+      },
+      "by_player": {
+        "1": {
+          "-1": 5,
+          "1": 1,
+          "0": 2
+        },
+        "2": {
+          "0": 5,
+          "-1": 3
+        }
+      },
+      "geometry": {
+        "rear": {
+          "advance": {
+            "mean": 1.375,
+            "min": 1,
+            "max": 4
+          },
+          "hops": {
+            "mean": 0.4375,
+            "min": 0,
+            "max": 3
+          },
+          "farthest_reduction": {
+            "mean": 1,
+            "min": 1,
+            "max": 1
+          }
+        },
+        "front": {
+          "advance": {
+            "mean": 4.125,
+            "min": 2,
+            "max": 8
+          },
+          "hops": {
+            "mean": 2.75,
+            "min": 2,
+            "max": 5
+          },
+          "farthest_reduction": {
+            "mean": 0,
+            "min": 0,
+            "max": 0
+          }
+        }
+      }
+    },
+    "all": {
+      "n": 48,
+      "label_counts": {
+        "-1": 24,
+        "0": 15,
+        "1": 9
+      },
+      "label0_reasons": {
+        "stable_but_depth5_gap_lt2": 7,
+        "depth_sign_flip": 4,
+        "depth4_tie": 3,
+        "depth5_tie": 1
+      },
+      "all_reason_counts": {
+        "eligible_front": 24,
+        "stable_but_depth5_gap_lt2": 7,
+        "eligible_rear": 9,
+        "depth_sign_flip": 4,
+        "depth4_tie": 3,
+        "depth5_tie": 1
+      },
+      "by_ply": {
+        "36": {
+          "-1": 6,
+          "1": 4,
+          "0": 2
+        },
+        "49": {
+          "0": 5,
+          "-1": 6,
+          "1": 1
+        },
+        "60": {
+          "0": 4,
+          "1": 3,
+          "-1": 5
+        },
+        "73": {
+          "0": 4,
+          "-1": 7,
+          "1": 1
+        }
+      },
+      "by_player": {
+        "1": {
+          "-1": 11,
+          "0": 6,
+          "1": 7
+        },
+        "2": {
+          "0": 9,
+          "-1": 13,
+          "1": 2
+        }
+      },
+      "geometry": {
+        "rear": {
+          "advance": {
+            "mean": 1.8958333333333333,
+            "min": 1,
+            "max": 10
+          },
+          "hops": {
+            "mean": 0.7708333333333334,
+            "min": 0,
+            "max": 5
+          },
+          "farthest_reduction": {
+            "mean": 1.0208333333333333,
+            "min": 1,
+            "max": 2
+          }
+        },
+        "front": {
+          "advance": {
+            "mean": 4.166666666666667,
+            "min": 2,
+            "max": 8
+          },
+          "hops": {
+            "mean": 2.7291666666666665,
+            "min": 2,
+            "max": 5
+          },
+          "farthest_reduction": {
+            "mean": 0,
+            "min": 0,
+            "max": 0
+          }
+        }
+      }
+    }
+  },
+  "cases": [
+    {
+      "group": 0,
+      "split": "train",
+      "player": 1,
+      "ply": 36,
+      "label": -1,
+      "gap4": -9,
+      "gap5": -2,
+      "depth_change": 7,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -18,
+        "score4_front": -9,
+        "score5_rear": 1,
+        "score5_front": 3
+      }
+    },
+    {
+      "group": 1,
+      "split": "train",
+      "player": 2,
+      "ply": 49,
+      "label": 0,
+      "gap4": 4,
+      "gap5": 1,
+      "depth_change": -3,
+      "reason": "stable_but_depth5_gap_lt2",
+      "geometry": {
+        "rear": {
+          "advance": 2,
+          "hops": 1,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -37,
+        "score4_front": -41,
+        "score5_rear": -27,
+        "score5_front": -28
+      }
+    },
+    {
+      "group": 2,
+      "split": "train",
+      "player": 1,
+      "ply": 60,
+      "label": 0,
+      "gap4": -1,
+      "gap5": -1,
+      "depth_change": 0,
+      "reason": "stable_but_depth5_gap_lt2",
+      "geometry": {
+        "rear": {
+          "advance": 2,
+          "hops": 1,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -8,
+        "score4_front": -7,
+        "score5_rear": -1,
+        "score5_front": 0
+      }
+    },
+    {
+      "group": 3,
+      "split": "train",
+      "player": 2,
+      "ply": 73,
+      "label": 0,
+      "gap4": -4,
+      "gap5": -1,
+      "depth_change": 3,
+      "reason": "stable_but_depth5_gap_lt2",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -30,
+        "score4_front": -26,
+        "score5_rear": -23,
+        "score5_front": -22
+      }
+    },
+    {
+      "group": 4,
+      "split": "train",
+      "player": 1,
+      "ply": 36,
+      "label": 1,
+      "gap4": 10,
+      "gap5": 8,
+      "depth_change": -2,
+      "reason": "eligible_rear",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 2,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -24,
+        "score4_front": -34,
+        "score5_rear": -16,
+        "score5_front": -24
+      }
+    },
+    {
+      "group": 5,
+      "split": "train",
+      "player": 2,
+      "ply": 49,
+      "label": -1,
+      "gap4": -11,
+      "gap5": -7,
+      "depth_change": 4,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -18,
+        "score4_front": -7,
+        "score5_rear": -9,
+        "score5_front": -2
+      }
+    },
+    {
+      "group": 6,
+      "split": "train",
+      "player": 1,
+      "ply": 60,
+      "label": 1,
+      "gap4": 1,
+      "gap5": 3,
+      "depth_change": 2,
+      "reason": "eligible_rear",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 2,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -9,
+        "score4_front": -10,
+        "score5_rear": -2,
+        "score5_front": -5
+      }
+    },
+    {
+      "group": 7,
+      "split": "train",
+      "player": 2,
+      "ply": 73,
+      "label": -1,
+      "gap4": -5,
+      "gap5": -6,
+      "depth_change": -1,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 2,
+          "hops": 1,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 12,
+        "score4_front": 17,
+        "score5_rear": 15,
+        "score5_front": 21
+      }
+    },
+    {
+      "group": 8,
+      "split": "train",
+      "player": 1,
+      "ply": 36,
+      "label": -1,
+      "gap4": -3,
+      "gap5": -2,
+      "depth_change": 1,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -10,
+        "score4_front": -7,
+        "score5_rear": -3,
+        "score5_front": -1
+      }
+    },
+    {
+      "group": 9,
+      "split": "train",
+      "player": 2,
+      "ply": 49,
+      "label": -1,
+      "gap4": -7,
+      "gap5": -10,
+      "depth_change": -3,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 6,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -39,
+        "score4_front": -32,
+        "score5_rear": -30,
+        "score5_front": -20
+      }
+    },
+    {
+      "group": 10,
+      "split": "train",
+      "player": 1,
+      "ply": 60,
+      "label": -1,
+      "gap4": -4,
+      "gap5": -10,
+      "depth_change": -6,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 8,
+          "hops": 5,
+          "segments": 5,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -28,
+        "score4_front": -24,
+        "score5_rear": -22,
+        "score5_front": -12
+      }
+    },
+    {
+      "group": 11,
+      "split": "train",
+      "player": 2,
+      "ply": 73,
+      "label": -1,
+      "gap4": -4,
+      "gap5": -3,
+      "depth_change": 1,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -2,
+        "score4_front": 2,
+        "score5_rear": 5,
+        "score5_front": 8
+      }
+    },
+    {
+      "group": 12,
+      "split": "train",
+      "player": 1,
+      "ply": 36,
+      "label": 1,
+      "gap4": 24,
+      "gap5": 15,
+      "depth_change": -9,
+      "reason": "eligible_rear",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -11,
+        "score4_front": -35,
+        "score5_rear": -3,
+        "score5_front": -18
+      }
+    },
+    {
+      "group": 13,
+      "split": "train",
+      "player": 2,
+      "ply": 49,
+      "label": 0,
+      "gap4": -4,
+      "gap5": -1,
+      "depth_change": 3,
+      "reason": "stable_but_depth5_gap_lt2",
+      "geometry": {
+        "rear": {
+          "advance": 4,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 18,
+        "score4_front": 22,
+        "score5_rear": 25,
+        "score5_front": 26
+      }
+    },
+    {
+      "group": 14,
+      "split": "train",
+      "player": 1,
+      "ply": 60,
+      "label": -1,
+      "gap4": -1,
+      "gap5": -9,
+      "depth_change": -8,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 8,
+          "hops": 4,
+          "segments": 4,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -15,
+        "score4_front": -14,
+        "score5_rear": -11,
+        "score5_front": -2
+      }
+    },
+    {
+      "group": 15,
+      "split": "train",
+      "player": 2,
+      "ply": 73,
+      "label": 1,
+      "gap4": 1,
+      "gap5": 2,
+      "depth_change": 1,
+      "reason": "eligible_rear",
+      "geometry": {
+        "rear": {
+          "advance": 2,
+          "hops": 1,
+          "segments": 1,
+          "farthest_reduction": 2
+        },
+        "front": {
+          "advance": 2,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -11,
+        "score4_front": -12,
+        "score5_rear": -8,
+        "score5_front": -10
+      }
+    },
+    {
+      "group": 16,
+      "split": "train",
+      "player": 1,
+      "ply": 36,
+      "label": -1,
+      "gap4": -9,
+      "gap5": -9,
+      "depth_change": 0,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 6,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -13,
+        "score4_front": -4,
+        "score5_rear": -3,
+        "score5_front": 6
+      }
+    },
+    {
+      "group": 17,
+      "split": "train",
+      "player": 2,
+      "ply": 49,
+      "label": -1,
+      "gap4": -12,
+      "gap5": -8,
+      "depth_change": 4,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 2,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 6,
+        "score4_front": 18,
+        "score5_rear": 17,
+        "score5_front": 25
+      }
+    },
+    {
+      "group": 18,
+      "split": "train",
+      "player": 1,
+      "ply": 60,
+      "label": 0,
+      "gap4": -4,
+      "gap5": -1,
+      "depth_change": 3,
+      "reason": "stable_but_depth5_gap_lt2",
+      "geometry": {
+        "rear": {
+          "advance": 6,
+          "hops": 5,
+          "segments": 5,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 7,
+        "score4_front": 11,
+        "score5_rear": 15,
+        "score5_front": 16
+      }
+    },
+    {
+      "group": 19,
+      "split": "train",
+      "player": 2,
+      "ply": 73,
+      "label": 0,
+      "gap4": -5,
+      "gap5": 1,
+      "depth_change": 6,
+      "reason": "depth_sign_flip",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 2,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 4,
+        "score4_front": 9,
+        "score5_rear": 16,
+        "score5_front": 15
+      }
+    },
+    {
+      "group": 20,
+      "split": "train",
+      "player": 1,
+      "ply": 36,
+      "label": -1,
+      "gap4": -4,
+      "gap5": -6,
+      "depth_change": -2,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 6,
+          "hops": 5,
+          "segments": 5,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 17,
+        "score4_front": 21,
+        "score5_rear": 25,
+        "score5_front": 31
+      }
+    },
+    {
+      "group": 21,
+      "split": "train",
+      "player": 2,
+      "ply": 49,
+      "label": -1,
+      "gap4": -2,
+      "gap5": -3,
+      "depth_change": -1,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -13,
+        "score4_front": -11,
+        "score5_rear": -5,
+        "score5_front": -2
+      }
+    },
+    {
+      "group": 22,
+      "split": "train",
+      "player": 1,
+      "ply": 60,
+      "label": 1,
+      "gap4": 1,
+      "gap5": 5,
+      "depth_change": 4,
+      "reason": "eligible_rear",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 2,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 26,
+        "score4_front": 25,
+        "score5_rear": 35,
+        "score5_front": 30
+      }
+    },
+    {
+      "group": 23,
+      "split": "train",
+      "player": 2,
+      "ply": 73,
+      "label": -1,
+      "gap4": -6,
+      "gap5": -10,
+      "depth_change": -4,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 2,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -14,
+        "score4_front": -8,
+        "score5_rear": -7,
+        "score5_front": 3
+      }
+    },
+    {
+      "group": 24,
+      "split": "train",
+      "player": 1,
+      "ply": 36,
+      "label": 0,
+      "gap4": 0,
+      "gap5": -2,
+      "depth_change": -2,
+      "reason": "depth4_tie",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -12,
+        "score4_front": -12,
+        "score5_rear": -6,
+        "score5_front": -4
+      }
+    },
+    {
+      "group": 25,
+      "split": "train",
+      "player": 2,
+      "ply": 49,
+      "label": -1,
+      "gap4": -4,
+      "gap5": -8,
+      "depth_change": -4,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 8,
+          "hops": 4,
+          "segments": 4,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -9,
+        "score4_front": -5,
+        "score5_rear": -1,
+        "score5_front": 7
+      }
+    },
+    {
+      "group": 26,
+      "split": "train",
+      "player": 1,
+      "ply": 60,
+      "label": 1,
+      "gap4": 11,
+      "gap5": 10,
+      "depth_change": -1,
+      "reason": "eligible_rear",
+      "geometry": {
+        "rear": {
+          "advance": 10,
+          "hops": 5,
+          "segments": 5,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 2,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 32,
+        "score4_front": 21,
+        "score5_rear": 42,
+        "score5_front": 32
+      }
+    },
+    {
+      "group": 27,
+      "split": "train",
+      "player": 2,
+      "ply": 73,
+      "label": -1,
+      "gap4": -3,
+      "gap5": -8,
+      "depth_change": -5,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 8,
+          "hops": 5,
+          "segments": 5,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 1,
+        "score4_front": 4,
+        "score5_rear": 7,
+        "score5_front": 15
+      }
+    },
+    {
+      "group": 28,
+      "split": "train",
+      "player": 1,
+      "ply": 36,
+      "label": 1,
+      "gap4": 14,
+      "gap5": 9,
+      "depth_change": -5,
+      "reason": "eligible_rear",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 1,
+        "score4_front": -13,
+        "score5_rear": 7,
+        "score5_front": -2
+      }
+    },
+    {
+      "group": 29,
+      "split": "train",
+      "player": 2,
+      "ply": 49,
+      "label": 1,
+      "gap4": 2,
+      "gap5": 2,
+      "depth_change": 0,
+      "reason": "eligible_rear",
+      "geometry": {
+        "rear": {
+          "advance": 4,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 15,
+        "score4_front": 13,
+        "score5_rear": 22,
+        "score5_front": 20
+      }
+    },
+    {
+      "group": 30,
+      "split": "train",
+      "player": 1,
+      "ply": 60,
+      "label": 0,
+      "gap4": 0,
+      "gap5": -4,
+      "depth_change": -4,
+      "reason": "depth4_tie",
+      "geometry": {
+        "rear": {
+          "advance": 6,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -8,
+        "score4_front": -8,
+        "score5_rear": 0,
+        "score5_front": 4
+      }
+    },
+    {
+      "group": 31,
+      "split": "train",
+      "player": 2,
+      "ply": 73,
+      "label": -1,
+      "gap4": -12,
+      "gap5": -5,
+      "depth_change": 7,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 6,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 1,
+        "score4_front": 13,
+        "score5_rear": 13,
+        "score5_front": 18
+      }
+    },
+    {
+      "group": 32,
+      "split": "development",
+      "player": 1,
+      "ply": 36,
+      "label": -1,
+      "gap4": -12,
+      "gap5": -10,
+      "depth_change": 2,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 2,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -19,
+        "score4_front": -7,
+        "score5_rear": -7,
+        "score5_front": 3
+      }
+    },
+    {
+      "group": 33,
+      "split": "development",
+      "player": 2,
+      "ply": 49,
+      "label": 0,
+      "gap4": -2,
+      "gap5": 1,
+      "depth_change": 3,
+      "reason": "depth_sign_flip",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 2,
+          "hops": 4,
+          "segments": 4,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -30,
+        "score4_front": -28,
+        "score5_rear": -22,
+        "score5_front": -23
+      }
+    },
+    {
+      "group": 34,
+      "split": "development",
+      "player": 1,
+      "ply": 60,
+      "label": -1,
+      "gap4": -4,
+      "gap5": -6,
+      "depth_change": -2,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 8,
+          "hops": 5,
+          "segments": 5,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 4,
+        "score4_front": 8,
+        "score5_rear": 9,
+        "score5_front": 15
+      }
+    },
+    {
+      "group": 35,
+      "split": "development",
+      "player": 2,
+      "ply": 73,
+      "label": -1,
+      "gap4": -1,
+      "gap5": -3,
+      "depth_change": -2,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 2,
+        "score4_front": 3,
+        "score5_rear": 7,
+        "score5_front": 10
+      }
+    },
+    {
+      "group": 36,
+      "split": "development",
+      "player": 1,
+      "ply": 36,
+      "label": 1,
+      "gap4": 1,
+      "gap5": 4,
+      "depth_change": 3,
+      "reason": "eligible_rear",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -4,
+        "score4_front": -5,
+        "score5_rear": 5,
+        "score5_front": 1
+      }
+    },
+    {
+      "group": 37,
+      "split": "development",
+      "player": 2,
+      "ply": 49,
+      "label": -1,
+      "gap4": -2,
+      "gap5": -2,
+      "depth_change": 0,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 6,
+          "hops": 4,
+          "segments": 4,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -5,
+        "score4_front": -3,
+        "score5_rear": 0,
+        "score5_front": 2
+      }
+    },
+    {
+      "group": 38,
+      "split": "development",
+      "player": 1,
+      "ply": 60,
+      "label": 0,
+      "gap4": 1,
+      "gap5": -2,
+      "depth_change": -3,
+      "reason": "depth_sign_flip",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -19,
+        "score4_front": -20,
+        "score5_rear": -11,
+        "score5_front": -9
+      }
+    },
+    {
+      "group": 39,
+      "split": "development",
+      "player": 2,
+      "ply": 73,
+      "label": 0,
+      "gap4": 3,
+      "gap5": 1,
+      "depth_change": -2,
+      "reason": "stable_but_depth5_gap_lt2",
+      "geometry": {
+        "rear": {
+          "advance": 2,
+          "hops": 1,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 7,
+        "score4_front": 4,
+        "score5_rear": 12,
+        "score5_front": 11
+      }
+    },
+    {
+      "group": 40,
+      "split": "development",
+      "player": 1,
+      "ply": 36,
+      "label": -1,
+      "gap4": -6,
+      "gap5": -4,
+      "depth_change": 2,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 5,
+          "segments": 5,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -10,
+        "score4_front": -4,
+        "score5_rear": -4,
+        "score5_front": 0
+      }
+    },
+    {
+      "group": 41,
+      "split": "development",
+      "player": 2,
+      "ply": 49,
+      "label": 0,
+      "gap4": -1,
+      "gap5": -1,
+      "depth_change": 0,
+      "reason": "stable_but_depth5_gap_lt2",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -57,
+        "score4_front": -56,
+        "score5_rear": -48,
+        "score5_front": -47
+      }
+    },
+    {
+      "group": 42,
+      "split": "development",
+      "player": 1,
+      "ply": 60,
+      "label": -1,
+      "gap4": -3,
+      "gap5": -2,
+      "depth_change": 1,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -5,
+        "score4_front": -2,
+        "score5_rear": 1,
+        "score5_front": 3
+      }
+    },
+    {
+      "group": 43,
+      "split": "development",
+      "player": 2,
+      "ply": 73,
+      "label": -1,
+      "gap4": -7,
+      "gap5": -7,
+      "depth_change": 0,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 5,
+        "score4_front": 12,
+        "score5_rear": 11,
+        "score5_front": 18
+      }
+    },
+    {
+      "group": 44,
+      "split": "development",
+      "player": 1,
+      "ply": 36,
+      "label": 0,
+      "gap4": -2,
+      "gap5": 0,
+      "depth_change": 2,
+      "reason": "depth5_tie",
+      "geometry": {
+        "rear": {
+          "advance": 2,
+          "hops": 1,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 2,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -23,
+        "score4_front": -21,
+        "score5_rear": -16,
+        "score5_front": -16
+      }
+    },
+    {
+      "group": 45,
+      "split": "development",
+      "player": 2,
+      "ply": 49,
+      "label": 0,
+      "gap4": -2,
+      "gap5": 1,
+      "depth_change": 3,
+      "reason": "depth_sign_flip",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 3,
+          "segments": 3,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -15,
+        "score4_front": -13,
+        "score5_rear": -7,
+        "score5_front": -8
+      }
+    },
+    {
+      "group": 46,
+      "split": "development",
+      "player": 1,
+      "ply": 60,
+      "label": -1,
+      "gap4": -3,
+      "gap5": -2,
+      "depth_change": 1,
+      "reason": "eligible_front",
+      "geometry": {
+        "rear": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": 20,
+        "score4_front": 23,
+        "score5_rear": 27,
+        "score5_front": 29
+      }
+    },
+    {
+      "group": 47,
+      "split": "development",
+      "player": 2,
+      "ply": 73,
+      "label": 0,
+      "gap4": 0,
+      "gap5": 3,
+      "depth_change": 3,
+      "reason": "depth4_tie",
+      "geometry": {
+        "rear": {
+          "advance": 1,
+          "hops": 0,
+          "segments": 1,
+          "farthest_reduction": 1
+        },
+        "front": {
+          "advance": 4,
+          "hops": 2,
+          "segments": 2,
+          "farthest_reduction": 0
+        }
+      },
+      "scores": {
+        "score4_rear": -13,
+        "score4_front": -13,
+        "score5_rear": -5,
+        "score5_front": -8
+      }
+    }
+  ],
+  "data_quality_pass": false,
+  "gates": {
+    "train_total": true,
+    "development_total": true,
+    "train_both": true,
+    "development_both": false
+  },
+  "source_sha256": {
+    "nn_checkpoints/experiments/order121_trial_20261106/collection/dataset.json": "2a2fc930c5dc186c527a749451a075b4349fa95894945ba521e6c0be6ca58601",
+    "nn_checkpoints/experiments/order121_trial_20261106/collection/schedule.json": "44aea0751315a9b7d559ba979300a85368e7205e89c1b0c1415e90ff89d968ed",
+    "nn_checkpoints/experiments/order121_trial_20261106/collection/schedule_freeze.json": "12801c3ecc61e40895663fd28cf8456c98a71b84b5d4cdd10db96a7874ae2b11",
+    "nn_checkpoints/experiments/order121_trial_20261106/collection/config.json": "01a983c04b9c8c672c5ae08dc9a41eb9bee7a514739de9c50ce1ee085f4eb5f4"
+  },
+  "scope": "只读48根既有标签和几何统计；不查询教师、不训练、不补根或调阈值。",
+  "raw_depth_direction_counts": {
+    "train": {
+      "4": {
+        "front": 21,
+        "rear": 9,
+        "tie": 2
+      },
+      "5": {
+        "front": 22,
+        "rear": 10
+      }
+    },
+    "development": {
+      "4": {
+        "front": 12,
+        "rear": 3,
+        "tie": 1
+      },
+      "5": {
+        "front": 10,
+        "rear": 5,
+        "tie": 1
+      }
+    },
+    "all": {
+      "4": {
+        "front": 33,
+        "rear": 12,
+        "tie": 3
+      },
+      "5": {
+        "front": 32,
+        "rear": 15,
+        "tie": 1
+      }
+    }
+  },
+  "rear_template_audit": {
+    "summary": {
+      "train": {
+        "-1": {
+          "n": 16,
+          "rear_segments": {
+            "1": 14,
+            "2": 1,
+            "5": 1
+          },
+          "rear_multijump": 2,
+          "adjacent_single_step": 13,
+          "static_forward_multijump": 0,
+          "small_step_then_static_chain": 0
+        },
+        "0": {
+          "n": 8,
+          "rear_segments": {
+            "1": 5,
+            "3": 2,
+            "5": 1
+          },
+          "rear_multijump": 3,
+          "adjacent_single_step": 3,
+          "static_forward_multijump": 1,
+          "small_step_then_static_chain": 1
+        },
+        "1": {
+          "n": 8,
+          "rear_segments": {
+            "1": 6,
+            "5": 1,
+            "3": 1
+          },
+          "rear_multijump": 2,
+          "adjacent_single_step": 5,
+          "static_forward_multijump": 3,
+          "small_step_then_static_chain": 3
+        },
+        "all": {
+          "n": 32,
+          "rear_segments": {
+            "1": 25,
+            "3": 3,
+            "2": 1,
+            "5": 3
+          },
+          "rear_multijump": 7,
+          "adjacent_single_step": 21,
+          "static_forward_multijump": 4,
+          "small_step_then_static_chain": 4
+        }
+      },
+      "development": {
+        "-1": {
+          "n": 8,
+          "rear_segments": {
+            "3": 1,
+            "1": 6,
+            "2": 1
+          },
+          "rear_multijump": 2,
+          "adjacent_single_step": 6,
+          "static_forward_multijump": 3,
+          "small_step_then_static_chain": 3
+        },
+        "0": {
+          "n": 7,
+          "rear_segments": {
+            "1": 7
+          },
+          "rear_multijump": 0,
+          "adjacent_single_step": 5,
+          "static_forward_multijump": 1,
+          "small_step_then_static_chain": 1
+        },
+        "1": {
+          "n": 1,
+          "rear_segments": {
+            "1": 1
+          },
+          "rear_multijump": 0,
+          "adjacent_single_step": 1,
+          "static_forward_multijump": 0,
+          "small_step_then_static_chain": 0
+        },
+        "all": {
+          "n": 16,
+          "rear_segments": {
+            "3": 1,
+            "1": 14,
+            "2": 1
+          },
+          "rear_multijump": 2,
+          "adjacent_single_step": 12,
+          "static_forward_multijump": 4,
+          "small_step_then_static_chain": 4
+        }
+      },
+      "all": {
+        "-1": {
+          "n": 24,
+          "rear_segments": {
+            "1": 20,
+            "2": 2,
+            "5": 1,
+            "3": 1
+          },
+          "rear_multijump": 4,
+          "adjacent_single_step": 19,
+          "static_forward_multijump": 3,
+          "small_step_then_static_chain": 3
+        },
+        "0": {
+          "n": 15,
+          "rear_segments": {
+            "1": 12,
+            "3": 2,
+            "5": 1
+          },
+          "rear_multijump": 3,
+          "adjacent_single_step": 8,
+          "static_forward_multijump": 2,
+          "small_step_then_static_chain": 2
+        },
+        "1": {
+          "n": 9,
+          "rear_segments": {
+            "1": 7,
+            "5": 1,
+            "3": 1
+          },
+          "rear_multijump": 2,
+          "adjacent_single_step": 6,
+          "static_forward_multijump": 3,
+          "small_step_then_static_chain": 3
+        },
+        "all": {
+          "n": 48,
+          "rear_segments": {
+            "1": 39,
+            "3": 4,
+            "2": 2,
+            "5": 3
+          },
+          "rear_multijump": 9,
+          "adjacent_single_step": 33,
+          "static_forward_multijump": 8,
+          "small_step_then_static_chain": 8
+        }
+      }
+    },
+    "cases": [
+      {
+        "group": 0,
+        "split": "train",
+        "label": -1,
+        "rear_path": [
+          6,
+          14
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 1,
+        "split": "train",
+        "label": 0,
+        "rear_path": [
+          116,
+          103
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": false,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 2,
+        "split": "train",
+        "label": 0,
+        "rear_path": [
+          17,
+          42
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": false,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 3,
+        "split": "train",
+        "label": 0,
+        "rear_path": [
+          111,
+          102
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": true,
+        "static_forward_multijump_count": 2,
+        "static_example": [
+          102,
+          104,
+          79,
+          58
+        ],
+        "small_step_then_static_chain": true
+      },
+      {
+        "group": 4,
+        "split": "train",
+        "label": 1,
+        "rear_path": [
+          3,
+          6
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": true,
+        "static_forward_multijump_count": 1,
+        "static_example": [
+          6,
+          28,
+          26
+        ],
+        "small_step_then_static_chain": true
+      },
+      {
+        "group": 5,
+        "split": "train",
+        "label": -1,
+        "rear_path": [
+          103,
+          90
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 6,
+        "split": "train",
+        "label": 1,
+        "rear_path": [
+          16,
+          28
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 7,
+        "split": "train",
+        "label": -1,
+        "rear_path": [
+          69,
+          49
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": false,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 8,
+        "split": "train",
+        "label": -1,
+        "rear_path": [
+          7,
+          15
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 9,
+        "split": "train",
+        "label": -1,
+        "rear_path": [
+          112,
+          103
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 10,
+        "split": "train",
+        "label": -1,
+        "rear_path": [
+          30,
+          41
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 11,
+        "split": "train",
+        "label": -1,
+        "rear_path": [
+          108,
+          95
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 12,
+        "split": "train",
+        "label": 1,
+        "rear_path": [
+          1,
+          3
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": true,
+        "static_forward_multijump_count": 5,
+        "static_example": [
+          3,
+          16,
+          41,
+          62
+        ],
+        "small_step_then_static_chain": true
+      },
+      {
+        "group": 13,
+        "split": "train",
+        "label": 0,
+        "rear_path": [
+          92,
+          94,
+          71,
+          53
+        ],
+        "segments": 3,
+        "multijump": true,
+        "adjacent_single_step": false,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 14,
+        "split": "train",
+        "label": -1,
+        "rear_path": [
+          29,
+          40
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 15,
+        "split": "train",
+        "label": 1,
+        "rear_path": [
+          69,
+          51
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": false,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 16,
+        "split": "train",
+        "label": -1,
+        "rear_path": [
+          9,
+          18
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 17,
+        "split": "train",
+        "label": -1,
+        "rear_path": [
+          104,
+          79,
+          77
+        ],
+        "segments": 2,
+        "multijump": true,
+        "adjacent_single_step": false,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 18,
+        "split": "train",
+        "label": 0,
+        "rear_path": [
+          29,
+          50,
+          52,
+          70,
+          91,
+          89
+        ],
+        "segments": 5,
+        "multijump": true,
+        "adjacent_single_step": false,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 19,
+        "split": "train",
+        "label": 0,
+        "rear_path": [
+          81,
+          71
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 20,
+        "split": "train",
+        "label": -1,
+        "rear_path": [
+          4,
+          7
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 21,
+        "split": "train",
+        "label": -1,
+        "rear_path": [
+          104,
+          92
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 22,
+        "split": "train",
+        "label": 1,
+        "rear_path": [
+          50,
+          60
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 23,
+        "split": "train",
+        "label": -1,
+        "rear_path": [
+          82,
+          72
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 24,
+        "split": "train",
+        "label": 0,
+        "rear_path": [
+          7,
+          15
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 25,
+        "split": "train",
+        "label": -1,
+        "rear_path": [
+          114,
+          105
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 26,
+        "split": "train",
+        "label": 1,
+        "rear_path": [
+          39,
+          58,
+          79,
+          104,
+          115,
+          120
+        ],
+        "segments": 5,
+        "multijump": true,
+        "adjacent_single_step": false,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 27,
+        "split": "train",
+        "label": -1,
+        "rear_path": [
+          60,
+          41,
+          16,
+          5,
+          3,
+          0
+        ],
+        "segments": 5,
+        "multijump": true,
+        "adjacent_single_step": false,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 28,
+        "split": "train",
+        "label": 1,
+        "rear_path": [
+          4,
+          7
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": true,
+        "static_forward_multijump_count": 3,
+        "static_example": [
+          7,
+          9,
+          29,
+          27
+        ],
+        "small_step_then_static_chain": true
+      },
+      {
+        "group": 29,
+        "split": "train",
+        "label": 1,
+        "rear_path": [
+          92,
+          90,
+          69,
+          49
+        ],
+        "segments": 3,
+        "multijump": true,
+        "adjacent_single_step": false,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 30,
+        "split": "train",
+        "label": 0,
+        "rear_path": [
+          39,
+          58,
+          79,
+          102
+        ],
+        "segments": 3,
+        "multijump": true,
+        "adjacent_single_step": false,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 31,
+        "split": "train",
+        "label": -1,
+        "rear_path": [
+          68,
+          58
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 32,
+        "split": "development",
+        "label": -1,
+        "rear_path": [
+          6,
+          8,
+          28,
+          26
+        ],
+        "segments": 3,
+        "multijump": true,
+        "adjacent_single_step": false,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 33,
+        "split": "development",
+        "label": 0,
+        "rear_path": [
+          113,
+          104
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 34,
+        "split": "development",
+        "label": -1,
+        "rear_path": [
+          28,
+          39
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": true,
+        "static_forward_multijump_count": 2,
+        "static_example": [
+          39,
+          60,
+          81,
+          83
+        ],
+        "small_step_then_static_chain": true
+      },
+      {
+        "group": 35,
+        "split": "development",
+        "label": -1,
+        "rear_path": [
+          104,
+          92
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 36,
+        "split": "development",
+        "label": 1,
+        "rear_path": [
+          5,
+          8
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 37,
+        "split": "development",
+        "label": -1,
+        "rear_path": [
+          105,
+          92
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 38,
+        "split": "development",
+        "label": 0,
+        "rear_path": [
+          30,
+          41
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 39,
+        "split": "development",
+        "label": 0,
+        "rear_path": [
+          80,
+          59
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": false,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 40,
+        "split": "development",
+        "label": -1,
+        "rear_path": [
+          16,
+          28
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": true,
+        "static_forward_multijump_count": 2,
+        "static_example": [
+          28,
+          26,
+          49
+        ],
+        "small_step_then_static_chain": true
+      },
+      {
+        "group": 41,
+        "split": "development",
+        "label": 0,
+        "rear_path": [
+          114,
+          106
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 42,
+        "split": "development",
+        "label": -1,
+        "rear_path": [
+          29,
+          41
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 43,
+        "split": "development",
+        "label": -1,
+        "rear_path": [
+          91,
+          79
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": true,
+        "static_forward_multijump_count": 1,
+        "static_example": [
+          79,
+          81,
+          62
+        ],
+        "small_step_then_static_chain": true
+      },
+      {
+        "group": 44,
+        "split": "development",
+        "label": 0,
+        "rear_path": [
+          7,
+          29
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": false,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 45,
+        "split": "development",
+        "label": 0,
+        "rear_path": [
+          112,
+          103
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 46,
+        "split": "development",
+        "label": -1,
+        "rear_path": [
+          28,
+          51,
+          71
+        ],
+        "segments": 2,
+        "multijump": true,
+        "adjacent_single_step": false,
+        "static_forward_multijump": false,
+        "static_forward_multijump_count": 0,
+        "static_example": null,
+        "small_step_then_static_chain": false
+      },
+      {
+        "group": 47,
+        "split": "development",
+        "label": 0,
+        "rear_path": [
+          91,
+          79
+        ],
+        "segments": 1,
+        "multijump": false,
+        "adjacent_single_step": true,
+        "static_forward_multijump": true,
+        "static_forward_multijump_count": 1,
+        "static_example": [
+          79,
+          81,
+          60
+        ],
+        "small_step_then_static_chain": true
+      }
+    ],
+    "definition": "rear segments=len(path)-1；adjacent single step要求len=2且目标是NEIGHBORS。静态接力只在rear child棋盘上调用同棋子legal_paths，找len>=3且到目标尖端距离减少的返回路径；未执行对手、不保证下一轮可走，不是续弈评测。legal_paths每终点保留一条可达路径，统计为返回路径的接力潜力。"
+  }
+}

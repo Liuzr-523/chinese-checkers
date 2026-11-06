@@ -1,0 +1,7 @@
+{
+  "training_started": false,
+  "postrun_changes": {
+    "train121_order_trial.py": "仅修正config sampling描述：每批16根从全部有效train组均匀抽；原执行快照/原config/标签/gates不变。"
+  },
+  "historical_full_orbit_list_local_only": true
+}

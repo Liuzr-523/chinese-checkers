@@ -1,0 +1,548 @@
+{
+  "roadmap_step": 3,
+  "scope": "只读已保存的追加历史资格探针，无新teacher/模型查询。没有修改原48根或训练结果。",
+  "summary": {
+    "4": {
+      "all_agreement": 3,
+      "rear_winning_agreement": 3,
+      "front_preferred_agreement": 0
+    },
+    "5": {
+      "all_agreement": 4,
+      "rear_winning_agreement": 3,
+      "front_preferred_agreement": 1
+    },
+    "6": {
+      "all_agreement": 3,
+      "rear_winning_agreement": 3,
+      "front_preferred_agreement": 0
+    }
+  },
+  "pair_table": [
+    {
+      "seed_id": 9,
+      "player": 1,
+      "archived_preference": 1,
+      "depth_gaps": {
+        "4": 3,
+        "5": 3,
+        "6": 1
+      },
+      "eligible_under_new_rule": true,
+      "new_label": 1,
+      "eligible_agrees_archive": true
+    },
+    {
+      "seed_id": 12,
+      "player": 2,
+      "archived_preference": -1,
+      "depth_gaps": {
+        "4": 6,
+        "5": 1,
+        "6": 1
+      },
+      "eligible_under_new_rule": false,
+      "new_label": 0,
+      "eligible_agrees_archive": null
+    },
+    {
+      "seed_id": 13,
+      "player": 1,
+      "archived_preference": 1,
+      "depth_gaps": {
+        "4": 3,
+        "5": 9,
+        "6": 8
+      },
+      "eligible_under_new_rule": true,
+      "new_label": 1,
+      "eligible_agrees_archive": true
+    },
+    {
+      "seed_id": 31,
+      "player": 1,
+      "archived_preference": -1,
+      "depth_gaps": {
+        "4": 11,
+        "5": 2,
+        "6": 9
+      },
+      "eligible_under_new_rule": true,
+      "new_label": 1,
+      "eligible_agrees_archive": false
+    },
+    {
+      "seed_id": 40,
+      "player": 2,
+      "archived_preference": -1,
+      "depth_gaps": {
+        "4": 2,
+        "5": 2,
+        "6": 1
+      },
+      "eligible_under_new_rule": true,
+      "new_label": 1,
+      "eligible_agrees_archive": false
+    },
+    {
+      "seed_id": 44,
+      "player": 2,
+      "archived_preference": -1,
+      "depth_gaps": {
+        "4": 2,
+        "5": -1,
+        "6": 0
+      },
+      "eligible_under_new_rule": false,
+      "new_label": 0,
+      "eligible_agrees_archive": null
+    },
+    {
+      "seed_id": 47,
+      "player": 2,
+      "archived_preference": 1,
+      "depth_gaps": {
+        "4": 1,
+        "5": 1,
+        "6": 2
+      },
+      "eligible_under_new_rule": false,
+      "new_label": 0,
+      "eligible_agrees_archive": null
+    }
+  ],
+  "child_audits": [
+    {
+      "seed_id": 9,
+      "role": "rear",
+      "root_depth": 4,
+      "child_depth": 3,
+      "root_score": -26,
+      "child_score": 26,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 9,
+      "role": "front",
+      "root_depth": 4,
+      "child_depth": 3,
+      "root_score": -29,
+      "child_score": 29,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 9,
+      "role": "rear",
+      "root_depth": 5,
+      "child_depth": 4,
+      "root_score": -20,
+      "child_score": 20,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 9,
+      "role": "front",
+      "root_depth": 5,
+      "child_depth": 4,
+      "root_score": -23,
+      "child_score": 23,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 9,
+      "role": "rear",
+      "root_depth": 6,
+      "child_depth": 5,
+      "root_score": -27,
+      "child_score": 27,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 9,
+      "role": "front",
+      "root_depth": 6,
+      "child_depth": 5,
+      "root_score": -28,
+      "child_score": 28,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 12,
+      "role": "rear",
+      "root_depth": 4,
+      "child_depth": 3,
+      "root_score": -36,
+      "child_score": 36,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 12,
+      "role": "front",
+      "root_depth": 4,
+      "child_depth": 3,
+      "root_score": -42,
+      "child_score": 42,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 12,
+      "role": "rear",
+      "root_depth": 5,
+      "child_depth": 4,
+      "root_score": -32,
+      "child_score": 32,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 12,
+      "role": "front",
+      "root_depth": 5,
+      "child_depth": 4,
+      "root_score": -33,
+      "child_score": 33,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 12,
+      "role": "rear",
+      "root_depth": 6,
+      "child_depth": 5,
+      "root_score": -36,
+      "child_score": 36,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 12,
+      "role": "front",
+      "root_depth": 6,
+      "child_depth": 5,
+      "root_score": -37,
+      "child_score": 37,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 13,
+      "role": "rear",
+      "root_depth": 4,
+      "child_depth": 3,
+      "root_score": -22,
+      "child_score": 22,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 13,
+      "role": "front",
+      "root_depth": 4,
+      "child_depth": 3,
+      "root_score": -25,
+      "child_score": 25,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 13,
+      "role": "rear",
+      "root_depth": 5,
+      "child_depth": 4,
+      "root_score": -12,
+      "child_score": 12,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 13,
+      "role": "front",
+      "root_depth": 5,
+      "child_depth": 4,
+      "root_score": -21,
+      "child_score": 21,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 13,
+      "role": "rear",
+      "root_depth": 6,
+      "child_depth": 5,
+      "root_score": -17,
+      "child_score": 17,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 13,
+      "role": "front",
+      "root_depth": 6,
+      "child_depth": 5,
+      "root_score": -25,
+      "child_score": 25,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 31,
+      "role": "rear",
+      "root_depth": 4,
+      "child_depth": 3,
+      "root_score": -2,
+      "child_score": 2,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 31,
+      "role": "front",
+      "root_depth": 4,
+      "child_depth": 3,
+      "root_score": -13,
+      "child_score": 13,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 31,
+      "role": "rear",
+      "root_depth": 5,
+      "child_depth": 4,
+      "root_score": 4,
+      "child_score": -4,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 31,
+      "role": "front",
+      "root_depth": 5,
+      "child_depth": 4,
+      "root_score": 2,
+      "child_score": -2,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 31,
+      "role": "rear",
+      "root_depth": 6,
+      "child_depth": 5,
+      "root_score": -3,
+      "child_score": 3,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 31,
+      "role": "front",
+      "root_depth": 6,
+      "child_depth": 5,
+      "root_score": -12,
+      "child_score": 12,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 40,
+      "role": "rear",
+      "root_depth": 4,
+      "child_depth": 3,
+      "root_score": -1,
+      "child_score": 1,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 40,
+      "role": "front",
+      "root_depth": 4,
+      "child_depth": 3,
+      "root_score": -3,
+      "child_score": 3,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 40,
+      "role": "rear",
+      "root_depth": 5,
+      "child_depth": 4,
+      "root_score": 4,
+      "child_score": -4,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 40,
+      "role": "front",
+      "root_depth": 5,
+      "child_depth": 4,
+      "root_score": 2,
+      "child_score": -2,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 40,
+      "role": "rear",
+      "root_depth": 6,
+      "child_depth": 5,
+      "root_score": -1,
+      "child_score": 1,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 40,
+      "role": "front",
+      "root_depth": 6,
+      "child_depth": 5,
+      "root_score": -2,
+      "child_score": 2,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 44,
+      "role": "rear",
+      "root_depth": 4,
+      "child_depth": 3,
+      "root_score": -18,
+      "child_score": 18,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 44,
+      "role": "front",
+      "root_depth": 4,
+      "child_depth": 3,
+      "root_score": -20,
+      "child_score": 20,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 44,
+      "role": "rear",
+      "root_depth": 5,
+      "child_depth": 4,
+      "root_score": -12,
+      "child_score": 12,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 44,
+      "role": "front",
+      "root_depth": 5,
+      "child_depth": 4,
+      "root_score": -11,
+      "child_score": 11,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 44,
+      "role": "rear",
+      "root_depth": 6,
+      "child_depth": 5,
+      "root_score": -18,
+      "child_score": 18,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 44,
+      "role": "front",
+      "root_depth": 6,
+      "child_depth": 5,
+      "root_score": -18,
+      "child_score": 18,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 47,
+      "role": "rear",
+      "root_depth": 4,
+      "child_depth": 3,
+      "root_score": -16,
+      "child_score": 16,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 47,
+      "role": "front",
+      "root_depth": 4,
+      "child_depth": 3,
+      "root_score": -17,
+      "child_score": 17,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 47,
+      "role": "rear",
+      "root_depth": 5,
+      "child_depth": 4,
+      "root_score": -7,
+      "child_score": 7,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 47,
+      "role": "front",
+      "root_depth": 5,
+      "child_depth": 4,
+      "root_score": -8,
+      "child_score": 8,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 47,
+      "role": "rear",
+      "root_depth": 6,
+      "child_depth": 5,
+      "root_score": -13,
+      "child_score": 13,
+      "score_sign_correct": true,
+      "completed": true
+    },
+    {
+      "seed_id": 47,
+      "role": "front",
+      "root_depth": 6,
+      "child_depth": 5,
+      "root_score": -15,
+      "child_score": 15,
+      "score_sign_correct": true,
+      "completed": true
+    }
+  ],
+  "all_completed": true,
+  "all_score_negations_correct": true,
+  "original_clysto": false,
+  "current_rule_historical_eligible": 4,
+  "current_rule_eligible_agreement": 2,
+  "sha256": {
+    "nn_checkpoints/experiments/order121_trial_20261106/historical_teacher_probe/result.json": "53f4b95421f5cb2444779703b6821d36bd3f2d77203c8d5b544f80ca452dd250",
+    "nn_checkpoints/experiments/order121_trial_20261106/historical_teacher_probe/rows.json": "b4880d62424ecf067d38c23e6752f13ed491adfcbaca6bc951f21659c3697165",
+    "nn_checkpoints/experiments/order121_trial_20261106/historical_teacher_probe/config.json": "fae3295aed154bed9aae4dae1d99cf4b9d7ba4ee0e02e163f74b25cfd5ddcc69"
+  },
+  "old_root_and_pair_mapping_verified": true,
+  "archived_preference_two_continuation_policies_verified": true
+}

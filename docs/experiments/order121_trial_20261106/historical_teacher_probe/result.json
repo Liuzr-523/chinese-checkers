@@ -1,0 +1,1086 @@
+{
+  "roots": 7,
+  "queries": 42,
+  "seconds": 5.878894540946931,
+  "by_depth": {
+    "4": {
+      "all_agreement": 3,
+      "rear_winning_agreement": 3,
+      "front_preferred_agreement": 0
+    },
+    "5": {
+      "all_agreement": 4,
+      "rear_winning_agreement": 3,
+      "front_preferred_agreement": 1
+    },
+    "6": {
+      "all_agreement": 3,
+      "rear_winning_agreement": 3,
+      "front_preferred_agreement": 0
+    }
+  },
+  "rows": [
+    {
+      "seed_id": 9,
+      "player": 1,
+      "ply": 64,
+      "rear_path": [
+        41,
+        51
+      ],
+      "front_path": [
+        59,
+        80,
+        105
+      ],
+      "archived_continuation_preference": 1,
+      "scores": [
+        {
+          "depth": 4,
+          "rear_score": -26,
+          "front_score": -29,
+          "gap": 3,
+          "agrees_with_archived_continuation": true,
+          "rear_audit": {
+            "root_requested_depth": 4,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 3,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 26,
+                "depth_reached": 3,
+                "nodes_searched": 1697,
+                "nodes": 1697,
+                "nodes_pruned": 124,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 4,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 3,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 29,
+                "depth_reached": 3,
+                "nodes_searched": 1897,
+                "nodes": 1897,
+                "nodes_pruned": 133,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        },
+        {
+          "depth": 5,
+          "rear_score": -20,
+          "front_score": -23,
+          "gap": 3,
+          "agrees_with_archived_continuation": true,
+          "rear_audit": {
+            "root_requested_depth": 5,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 4,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 20,
+                "depth_reached": 4,
+                "nodes_searched": 11341,
+                "nodes": 11341,
+                "nodes_pruned": 1629,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 5,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 4,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 23,
+                "depth_reached": 4,
+                "nodes_searched": 8847,
+                "nodes": 8847,
+                "nodes_pruned": 1854,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        },
+        {
+          "depth": 6,
+          "rear_score": -27,
+          "front_score": -28,
+          "gap": 1,
+          "agrees_with_archived_continuation": true,
+          "rear_audit": {
+            "root_requested_depth": 6,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 5,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 27,
+                "depth_reached": 5,
+                "nodes_searched": 79481,
+                "nodes": 79481,
+                "nodes_pruned": 9920,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 6,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 5,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 28,
+                "depth_reached": 5,
+                "nodes_searched": 81984,
+                "nodes": 81984,
+                "nodes_pruned": 7239,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "seed_id": 12,
+      "player": 2,
+      "ply": 61,
+      "rear_path": [
+        103,
+        90
+      ],
+      "front_path": [
+        40,
+        15
+      ],
+      "archived_continuation_preference": -1,
+      "scores": [
+        {
+          "depth": 4,
+          "rear_score": -36,
+          "front_score": -42,
+          "gap": 6,
+          "agrees_with_archived_continuation": false,
+          "rear_audit": {
+            "root_requested_depth": 4,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 3,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 36,
+                "depth_reached": 3,
+                "nodes_searched": 3240,
+                "nodes": 3240,
+                "nodes_pruned": 222,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 4,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 3,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 42,
+                "depth_reached": 3,
+                "nodes_searched": 3098,
+                "nodes": 3098,
+                "nodes_pruned": 208,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        },
+        {
+          "depth": 5,
+          "rear_score": -32,
+          "front_score": -33,
+          "gap": 1,
+          "agrees_with_archived_continuation": false,
+          "rear_audit": {
+            "root_requested_depth": 5,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 4,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 32,
+                "depth_reached": 4,
+                "nodes_searched": 17497,
+                "nodes": 17497,
+                "nodes_pruned": 3113,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 5,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 4,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 33,
+                "depth_reached": 4,
+                "nodes_searched": 11565,
+                "nodes": 11565,
+                "nodes_pruned": 2962,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        },
+        {
+          "depth": 6,
+          "rear_score": -36,
+          "front_score": -37,
+          "gap": 1,
+          "agrees_with_archived_continuation": false,
+          "rear_audit": {
+            "root_requested_depth": 6,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 5,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 36,
+                "depth_reached": 5,
+                "nodes_searched": 170450,
+                "nodes": 170450,
+                "nodes_pruned": 14055,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 6,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 5,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 37,
+                "depth_reached": 5,
+                "nodes_searched": 160283,
+                "nodes": 160283,
+                "nodes_pruned": 8895,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "seed_id": 13,
+      "player": 1,
+      "ply": 60,
+      "rear_path": [
+        8,
+        16
+      ],
+      "front_path": [
+        78,
+        80,
+        105
+      ],
+      "archived_continuation_preference": 1,
+      "scores": [
+        {
+          "depth": 4,
+          "rear_score": -22,
+          "front_score": -25,
+          "gap": 3,
+          "agrees_with_archived_continuation": true,
+          "rear_audit": {
+            "root_requested_depth": 4,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 3,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 22,
+                "depth_reached": 3,
+                "nodes_searched": 3430,
+                "nodes": 3430,
+                "nodes_pruned": 166,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 4,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 3,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 25,
+                "depth_reached": 3,
+                "nodes_searched": 3198,
+                "nodes": 3198,
+                "nodes_pruned": 157,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        },
+        {
+          "depth": 5,
+          "rear_score": -12,
+          "front_score": -21,
+          "gap": 9,
+          "agrees_with_archived_continuation": true,
+          "rear_audit": {
+            "root_requested_depth": 5,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 4,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 12,
+                "depth_reached": 4,
+                "nodes_searched": 17122,
+                "nodes": 17122,
+                "nodes_pruned": 4133,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 5,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 4,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 21,
+                "depth_reached": 4,
+                "nodes_searched": 11758,
+                "nodes": 11758,
+                "nodes_pruned": 3039,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        },
+        {
+          "depth": 6,
+          "rear_score": -17,
+          "front_score": -25,
+          "gap": 8,
+          "agrees_with_archived_continuation": true,
+          "rear_audit": {
+            "root_requested_depth": 6,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 5,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 17,
+                "depth_reached": 5,
+                "nodes_searched": 231639,
+                "nodes": 231639,
+                "nodes_pruned": 13166,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 6,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 5,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 25,
+                "depth_reached": 5,
+                "nodes_searched": 180374,
+                "nodes": 180374,
+                "nodes_pruned": 9181,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "seed_id": 31,
+      "player": 1,
+      "ply": 78,
+      "rear_path": [
+        18,
+        31
+      ],
+      "front_path": [
+        80,
+        92
+      ],
+      "archived_continuation_preference": -1,
+      "scores": [
+        {
+          "depth": 4,
+          "rear_score": -2,
+          "front_score": -13,
+          "gap": 11,
+          "agrees_with_archived_continuation": false,
+          "rear_audit": {
+            "root_requested_depth": 4,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 3,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 2,
+                "depth_reached": 3,
+                "nodes_searched": 4295,
+                "nodes": 4295,
+                "nodes_pruned": 164,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 4,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 3,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 13,
+                "depth_reached": 3,
+                "nodes_searched": 3213,
+                "nodes": 3213,
+                "nodes_pruned": 184,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        },
+        {
+          "depth": 5,
+          "rear_score": 4,
+          "front_score": 2,
+          "gap": 2,
+          "agrees_with_archived_continuation": false,
+          "rear_audit": {
+            "root_requested_depth": 5,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 4,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": -4,
+                "depth_reached": 4,
+                "nodes_searched": 14445,
+                "nodes": 14445,
+                "nodes_pruned": 4227,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 5,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 4,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": -2,
+                "depth_reached": 4,
+                "nodes_searched": 34514,
+                "nodes": 34514,
+                "nodes_pruned": 8288,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        },
+        {
+          "depth": 6,
+          "rear_score": -3,
+          "front_score": -12,
+          "gap": 9,
+          "agrees_with_archived_continuation": false,
+          "rear_audit": {
+            "root_requested_depth": 6,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 5,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 3,
+                "depth_reached": 5,
+                "nodes_searched": 262396,
+                "nodes": 262396,
+                "nodes_pruned": 10416,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 6,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 5,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 12,
+                "depth_reached": 5,
+                "nodes_searched": 291391,
+                "nodes": 291391,
+                "nodes_pruned": 20575,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "seed_id": 40,
+      "player": 2,
+      "ply": 41,
+      "rear_path": [
+        116,
+        112
+      ],
+      "front_path": [
+        93,
+        70,
+        50
+      ],
+      "archived_continuation_preference": -1,
+      "scores": [
+        {
+          "depth": 4,
+          "rear_score": -1,
+          "front_score": -3,
+          "gap": 2,
+          "agrees_with_archived_continuation": false,
+          "rear_audit": {
+            "root_requested_depth": 4,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 3,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 1,
+                "depth_reached": 3,
+                "nodes_searched": 3165,
+                "nodes": 3165,
+                "nodes_pruned": 137,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 4,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 3,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 3,
+                "depth_reached": 3,
+                "nodes_searched": 3442,
+                "nodes": 3442,
+                "nodes_pruned": 153,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        },
+        {
+          "depth": 5,
+          "rear_score": 4,
+          "front_score": 2,
+          "gap": 2,
+          "agrees_with_archived_continuation": false,
+          "rear_audit": {
+            "root_requested_depth": 5,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 4,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": -4,
+                "depth_reached": 4,
+                "nodes_searched": 11118,
+                "nodes": 11118,
+                "nodes_pruned": 2911,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 5,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 4,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": -2,
+                "depth_reached": 4,
+                "nodes_searched": 12022,
+                "nodes": 12022,
+                "nodes_pruned": 3282,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        },
+        {
+          "depth": 6,
+          "rear_score": -1,
+          "front_score": -2,
+          "gap": 1,
+          "agrees_with_archived_continuation": false,
+          "rear_audit": {
+            "root_requested_depth": 6,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 5,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 1,
+                "depth_reached": 5,
+                "nodes_searched": 170058,
+                "nodes": 170058,
+                "nodes_pruned": 8174,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 6,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 5,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 2,
+                "depth_reached": 5,
+                "nodes_searched": 190208,
+                "nodes": 190208,
+                "nodes_pruned": 8726,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "seed_id": 44,
+      "player": 2,
+      "ply": 61,
+      "rear_path": [
+        82,
+        71
+      ],
+      "front_path": [
+        70,
+        52
+      ],
+      "archived_continuation_preference": -1,
+      "scores": [
+        {
+          "depth": 4,
+          "rear_score": -18,
+          "front_score": -20,
+          "gap": 2,
+          "agrees_with_archived_continuation": false,
+          "rear_audit": {
+            "root_requested_depth": 4,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 3,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 18,
+                "depth_reached": 3,
+                "nodes_searched": 1964,
+                "nodes": 1964,
+                "nodes_pruned": 131,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 4,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 3,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 20,
+                "depth_reached": 3,
+                "nodes_searched": 2109,
+                "nodes": 2109,
+                "nodes_pruned": 137,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        },
+        {
+          "depth": 5,
+          "rear_score": -12,
+          "front_score": -11,
+          "gap": -1,
+          "agrees_with_archived_continuation": true,
+          "rear_audit": {
+            "root_requested_depth": 5,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 4,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 12,
+                "depth_reached": 4,
+                "nodes_searched": 9533,
+                "nodes": 9533,
+                "nodes_pruned": 2023,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 5,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 4,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 11,
+                "depth_reached": 4,
+                "nodes_searched": 18961,
+                "nodes": 18961,
+                "nodes_pruned": 3812,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        },
+        {
+          "depth": 6,
+          "rear_score": -18,
+          "front_score": -18,
+          "gap": 0,
+          "agrees_with_archived_continuation": false,
+          "rear_audit": {
+            "root_requested_depth": 6,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 5,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 18,
+                "depth_reached": 5,
+                "nodes_searched": 85822,
+                "nodes": 85822,
+                "nodes_pruned": 7071,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 6,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 5,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 18,
+                "depth_reached": 5,
+                "nodes_searched": 145529,
+                "nodes": 145529,
+                "nodes_pruned": 15734,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "seed_id": 47,
+      "player": 2,
+      "ply": 49,
+      "rear_path": [
+        90,
+        79
+      ],
+      "front_path": [
+        59,
+        40,
+        15
+      ],
+      "archived_continuation_preference": 1,
+      "scores": [
+        {
+          "depth": 4,
+          "rear_score": -16,
+          "front_score": -17,
+          "gap": 1,
+          "agrees_with_archived_continuation": true,
+          "rear_audit": {
+            "root_requested_depth": 4,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 3,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 16,
+                "depth_reached": 3,
+                "nodes_searched": 3699,
+                "nodes": 3699,
+                "nodes_pruned": 340,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 4,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 3,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 17,
+                "depth_reached": 3,
+                "nodes_searched": 3565,
+                "nodes": 3565,
+                "nodes_pruned": 173,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        },
+        {
+          "depth": 5,
+          "rear_score": -7,
+          "front_score": -8,
+          "gap": 1,
+          "agrees_with_archived_continuation": true,
+          "rear_audit": {
+            "root_requested_depth": 5,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 4,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 7,
+                "depth_reached": 4,
+                "nodes_searched": 23015,
+                "nodes": 23015,
+                "nodes_pruned": 3835,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 5,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 4,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 8,
+                "depth_reached": 4,
+                "nodes_searched": 41198,
+                "nodes": 41198,
+                "nodes_pruned": 7355,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        },
+        {
+          "depth": 6,
+          "rear_score": -13,
+          "front_score": -15,
+          "gap": 2,
+          "agrees_with_archived_continuation": true,
+          "rear_audit": {
+            "root_requested_depth": 6,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 5,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 13,
+                "depth_reached": 5,
+                "nodes_searched": 237209,
+                "nodes": 237209,
+                "nodes_pruned": 20559,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          },
+          "front_audit": {
+            "root_requested_depth": 6,
+            "child_terminal": false,
+            "search": [
+              {
+                "requested_depth": 5,
+                "engine": "Clysto\u8bc4\u4f30\u6d3e\u751f121\uff08\u5019\u9009\uff0c\u975e\u539f\u7248\uff09",
+                "score": 15,
+                "depth_reached": 5,
+                "nodes_searched": 425501,
+                "nodes": 425501,
+                "nodes_pruned": 30096,
+                "aborted": false,
+                "eval_version": "clysto-table-clamped-wings-121-v1",
+                "rule_profile": "CCZ-121-Strict-LG-v2",
+                "original_clysto": false
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "\u6559\u5e08\u76f8\u5bf9\u8bc4\u5206\u4e0e\u4e24\u5957\u65e7\u7eed\u5f08\u65b9\u5411\u7684\u673a\u5236\u6bd4\u8f83\uff1b\u7eed\u5f08\u5e76\u975e\u6700\u4f18\u535a\u5f08\uff0c\u4e0d\u51ed\u76f8\u7b26\u6570\u62e9\u6559\u5e08\u6df1\u5ea6\u6216\u8bad\u7ec3\u6a21\u578b\u3002"
+}

@@ -1,0 +1,24 @@
+{
+  "depths": [
+    4,
+    5,
+    6
+  ],
+  "seed_ids": [
+    9,
+    12,
+    13,
+    31,
+    40,
+    44,
+    47
+  ],
+  "max_seconds": 300,
+  "scope": "\u53ea\u67e57\u4e2a\u5df2\u77e5\u5386\u53f2\u52a8\u4f5c\u5bf9\uff1b\u6559\u5e08\u6df1\u5ea6\u76f8\u5bf9\u8bc4\u5206\u4e0e\u56fa\u5b9a\u7eed\u5f08\u65b9\u5411\u662f\u5426\u4e00\u81f4\uff0c\u4e0d\u4f5c\u65b0\u8bad\u7ec3/\u5f00\u53d1\u9009\u62e9\uff0c\u4e0d\u6311\u6700\u597d\u6df1\u5ea6\uff0c\u4e0d\u4fee\u653948\u65b0\u6839\u3002",
+  "source_sha256": {
+    "nn_checkpoints/experiments/targeted121_complete_cycle_20261030/seeds.json": "356658e4102e744b3617b434b7f89766e53d80d5b36863a232dcb1add8a5094e",
+    "nn_checkpoints/experiments/recheck121_counterfactual_20261031/games.jsonl": "51355cd70a2c0083f0aee1c580772eadc55e0ad32b9067e421bf21eb3da1b66b",
+    "/Users/liuzirui/Desktop/py/chinese-checkers/diagnostics/audit121_order_teacher.py": "028f7bb7195458d8c780505319ccba60118102941a65944c4fcfb6d4b837a285",
+    "collect121_order_pairs.py": "b794d6e4a495a9eaba56fc372636a5c26c1070cec2cd9878510ff41897f087d6"
+  }
+}
