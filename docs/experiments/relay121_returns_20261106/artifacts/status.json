@@ -1,0 +1,7 @@
+{
+  "roadmap_step": 3,
+  "stage": "failed",
+  "pid": 26557,
+  "seconds": 212.44470220792573,
+  "error": "Traceback (most recent call last):\n  File \"/Users/liuzirui/Desktop/py/chinese-checkers/train121_relay_returns.py\", line 49, in main\n    subprocess.run([sys.executable,'-u','collect121_relay_returns.py','--out',str(a.out/'collection'),'--exclude-parent'],stdout=stream,stderr=subprocess.STDOUT,check=True,timeout=3700)\n  File \"/Users/liuzirui/miniconda3/envs/checkers/lib/python3.11/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['/Users/liuzirui/miniconda3/envs/checkers/bin/python', '-u', 'collect121_relay_returns.py', '--out', 'nn_checkpoints/experiments/relay121_returns_20261106/collection', '--exclude-parent']' returned non-zero exit status 1.\n"
+}

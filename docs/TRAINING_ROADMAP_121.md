@@ -57,3 +57,7 @@
 ## 当前待执行接续（2026-11-06）
 
 relay121_returns_20261106新方案已实现并通过211项本机测试，尚未启动采集/训练：48机制根24train/24dev，根40/41/56/57，邻步后出现原任何合法前进都不可达的新连跳终点；两配置192局真实续弈，points优先/双方胜才比较至少2个己方手数差。训练就绪与开发验收分开，2000步固定CNN策略训练，原冠军保留。用户要求迁移新聊天，实际操作入口是本机HANDOFF.md；公开协议与准备验证见experiments/relay121_returns_20261106。
+
+
+## 路线图第3步接手执行结果（2026-11-06）
+已核实main干净、无任务、预检源码/冠军SHA一致；497cfec成功push。单次启动relay121_returns完整入口，collector在22根后因P2 ply35 depth3仅达2、abortedTrue/nodes5057失败，父212.445秒/collector211.124秒（各自monotonic）。48根未freeze，无192续弈/dataset/训练/候选；不重启不补根不放宽。独立22根机制与历史288729轨道排重通过。执行后修复runner漏导入old_metrics；原执行快照与失败证据保留。中文公开报告docs/experiments/relay121_returns_20261106/README.md。现役v3保留；下一步仍第3步，先诊断归档搜索中止，再明确恢复边界。

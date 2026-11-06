@@ -1,0 +1,6 @@
+{
+  "stage": "failed",
+  "pid": 26562,
+  "seconds": 211.1236108749872,
+  "error": "Traceback (most recent call last):\n  File \"/Users/liuzirui/Desktop/py/chinese-checkers/collect121_relay_returns.py\", line 113, in main\n    path,info=expert.think(g.board,g.player,g.ply,g.repetitions);generation_queries+=1\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/liuzirui/Desktop/py/chinese-checkers/corrected121_decisions.py\", line 37, in think\n    raise RuntimeError(f'expert fixed-depth incomplete: requested={self.requested_depth}, reached={info[\"depth_reached\"]}, aborted={info[\"aborted\"]}, nodes={info.get(\"nodes\")}; reject label')\nRuntimeError: expert fixed-depth incomplete: requested=3, reached=2, aborted=True, nodes=5057; reject label\n"
+}

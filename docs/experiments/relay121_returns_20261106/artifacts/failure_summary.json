@@ -1,0 +1,26 @@
+{
+  "roadmap_step": 3,
+  "outcome": "采集异常停止，未训练",
+  "partial_roots": 22,
+  "frozen_roots": 0,
+  "completed_games": 0,
+  "training_started": false,
+  "development_pass": null,
+  "promoted": false,
+  "champion": "v3_expert_imitation",
+  "failure": {
+    "player": 2,
+    "ply": 35,
+    "requested_depth": 3,
+    "depth_reached": 2,
+    "aborted": true,
+    "nodes": 5057
+  },
+  "runner_seconds": 212.44470220792573,
+  "collector_seconds": 211.1236108749872,
+  "independent_partial_audit": true,
+  "source_changed_after_run": [
+    "train121_relay_returns.py：补充old_metrics导入；归档执行源码不改写"
+  ],
+  "scope": "部分根仅为溯源工件，不作为完成数据集，也不训练。正式result.json未生成；本文件是事后失败摘要。"
+}

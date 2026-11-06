@@ -1,0 +1,13 @@
+{
+  "roadmap_step": 3,
+  "status": "采集失败，部分根独立核验通过；完整实验审计不可适用",
+  "partial_roots_verified": 22,
+  "history_orbits": 288729,
+  "historical_or_cross_input_overlap": 0,
+  "games": 0,
+  "dataset_exists": false,
+  "schedule_frozen": false,
+  "training_started": false,
+  "scope": "独立重放所有已接收根及双方子局面；核验邻步接力新终点、前锋连跳和历史/跨组输入排除。未产生续弈归档，不宣称完成192局审计。",
+  "partial_schedule_sha256": "cbdbf11b7f0c85a927ca7379b0967b8bdf540e329b035453b35474f2b46de036"
+}
