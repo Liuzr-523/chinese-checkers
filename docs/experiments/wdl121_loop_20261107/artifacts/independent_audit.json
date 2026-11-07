@@ -59,6 +59,8 @@
     "正式开发门槛通过主要受降低和棋概率影响；候选二类胜负Brier劣于训练先验，不能证明学会胜负区分。",
     "开发16局没有真实和棋样本，不具备和棋校准验收覆盖；不晋升。"
   ],
+  "initial_selfplay_predictions_uniform": true,
+  "initial_policy_scalar_exact_v3": true,
   "trace_exact": true,
   "updates": 2000,
   "value_parameters_frozen": true,
