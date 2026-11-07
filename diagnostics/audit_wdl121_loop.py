@@ -13,9 +13,10 @@ from opening121_split_audit import orbit,decision_key
 def identity(g):return orbit(decision_key(g.board,g.player))
 def digest(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def audit_games(games,schedule,history,cfg,initial_path=None):
-    assert len(schedule)==56 and len(games)==48;used=set(history);roots={};steps=0;labels=Counter();reasons=Counter();trajectory=defaultdict(set);states=[];owners=defaultdict(set);prediction_inputs=[];prediction_targets=[]
+    count=cfg.get('groups',56);train_count=cfg.get('train',32);data_count=train_count+cfg.get('development',16)
+    assert len(schedule)==count and len(games)==data_count;used=set(history);roots={};steps=0;labels=Counter();reasons=Counter();trajectory=defaultdict(set);states=[];owners=defaultdict(set);prediction_inputs=[];prediction_targets=[]
     for i,row in enumerate(schedule):
-        assert row['group']==i and row['split']==('train' if i<32 else 'development' if i<48 else 'probe') and row['ply']==(8,9,16,17)[i%4]
+        assert row['group']==i and row['split']==('train' if i<train_count else 'development' if i<data_count else 'probe') and row['ply']==(8,9,16,17)[i%4]
         g=replay(row['opening']);assert (g.board,g.player,g.ply)==(row['board'],row['player'],row['ply']);anchor=replay(row['opening'][:8]);ids={identity(g),identity(anchor)};assert not ids&used;used.update(ids);assert identity(g)==row['orbit'] and identity(anchor)==row['anchor'];roots[i]=g
     for game,row in zip(games,schedule):
         group=row['group'];assert game['group']==group and game['opening']==row['opening'] and game['start_ply']==row['ply'];g=replay(game['opening']);assert len(game['paths'])==len(game['search_info']);rng=np.random.default_rng(cfg.get('selfplay_seed',111122)+group)
@@ -46,8 +47,8 @@ def audit_games(games,schedule,history,cfg,initial_path=None):
         if oid in history:excluded['historical_samples']+=1
         if oid in cross or oid in history:excluded['excluded_samples']+=1
         else:retained[part]+=1
-    probe_hits={str(i):sorted(group for group,orbits in trajectory.items() if identity(roots[i]) in orbits) for i in range(48,56)}
-    return dict(roots=56,selfplay_games=48,replayed_steps=steps,terminal_reasons=dict(reasons),raw_class_counts=dict(labels),cross_split_orbits=len(cross),retained={part:retained[part] for part in ('train','development')},excluded=dict(excluded),probe_root_trajectory_hits=probe_hits)
+    probe_hits={str(i):sorted(group for group,orbits in trajectory.items() if identity(roots[i]) in orbits) for i in range(data_count,count)}
+    return dict(roots=count,selfplay_games=data_count,replayed_steps=steps,terminal_reasons=dict(reasons),raw_class_counts=dict(labels),cross_split_orbits=len(cross),retained={part:retained[part] for part in ('train','development')},excluded=dict(excluded),probe_root_trajectory_hits=probe_hits)
 
 def audit_training(e,schedule,games,history,out):
     load=lambda name:json.loads((e/name).read_text());cfg=load('config.json');freeze=load('dataset_freeze.json');pools=torch.load(e/'samples.pt',weights_only=True)

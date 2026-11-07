@@ -1,0 +1,64 @@
+{
+  "replay": {
+    "roots": 80,
+    "selfplay_games": 72,
+    "replayed_steps": 6767,
+    "terminal_reasons": {
+      "all_pieces_in_goal": 67,
+      "equal_turn_goal_draw": 5
+    },
+    "raw_class_counts": {
+      "2": 3126,
+      "0": 3159,
+      "1": 482
+    },
+    "cross_split_orbits": 1,
+    "retained": {
+      "train": 4446,
+      "development": 2223
+    },
+    "excluded": {
+      "historical_samples": 98,
+      "excluded_samples": 98,
+      "cross_split_samples": 3
+    },
+    "probe_root_trajectory_hits": {
+      "72": [],
+      "73": [],
+      "74": [],
+      "75": [],
+      "76": [],
+      "77": [],
+      "78": [],
+      "79": []
+    }
+  },
+  "source_games": 8,
+  "hashes_verified": 13,
+  "trace_steps": 1200,
+  "frozen_parameters": true,
+  "development_checks": {
+    "decisive_coverage": true,
+    "decisive_parent_gain005": false,
+    "decisive_prior_gain005": false,
+    "middle_nonworse": true,
+    "frozen_parameters": true,
+    "policy_logits_equal": true,
+    "player1_decisive_nonworse": true,
+    "player2_decisive_nonworse": false
+  },
+  "decisive_brier": {
+    "late": {
+      "parent": 0.24924672189131794,
+      "prior": 0.2571526615297415,
+      "candidate": 0.2538139038072616
+    },
+    "middle": {
+      "parent": 0.24919687817090927,
+      "prior": 0.25722142602815246,
+      "candidate": 0.2519510070459802
+    }
+  },
+  "probe_games": 192,
+  "probe_roots": 8
+}

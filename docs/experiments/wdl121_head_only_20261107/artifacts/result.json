@@ -1,0 +1,20 @@
+{
+  "training_started": true,
+  "checks": {
+    "decisive_coverage": true,
+    "decisive_parent_gain005": false,
+    "decisive_prior_gain005": false,
+    "player1_decisive_nonworse": true,
+    "player2_decisive_nonworse": false,
+    "middle_nonworse": true,
+    "frozen_parameters": true,
+    "policy_logits_equal": true
+  },
+  "development_pass": false,
+  "probe_roots": 8,
+  "probe_games": 192,
+  "steps": 1200,
+  "seconds": 524.3706468750024,
+  "parent_sha": "0e9d850853771c0b0d0e58d6bcddc7e972378548ea9c8bb4461b6a01cae8c79d",
+  "candidate_sha": "1b86e7f1ac4e3eee792f4e2c3b312756401f3d1b073424cc9deceac4796ae200"
+}

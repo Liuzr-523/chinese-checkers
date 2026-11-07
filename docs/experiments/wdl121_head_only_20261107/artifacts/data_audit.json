@@ -1,0 +1,20 @@
+{
+  "raw_samples": 6767,
+  "retained": {
+    "train": 4446,
+    "development": 2223
+  },
+  "cross_split_orbits": 1,
+  "counts": {
+    "cross_split_samples": 3,
+    "historical_samples": 98,
+    "excluded_samples": 98
+  },
+  "class_counts": {
+    "2": 3094,
+    "0": 3113,
+    "1": 462
+  },
+  "prefix_samples": 0,
+  "scope": "\u6309\u6574\u76d8\u56fa\u5b9asplit\uff1b\u8de8\u7ec4\u4fdd\u5b88\u8f68\u9053\u51b2\u7a81\u53cc\u65b9\u6837\u672c\u5747\u6392\u9664\uff0c\u518d\u6392\u5386\u53f2\u8f93\u5165\uff1b\u622a\u65adwdl_class=None\uff0c\u65e0\u65cb\u8f6c\u6362\u8272\u6807\u7b7e\u589e\u5f3a\u3002"
+}
