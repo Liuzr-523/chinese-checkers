@@ -1,0 +1,203 @@
+{
+  "roots": 56,
+  "selfplay_games": 48,
+  "replayed_steps": 4379,
+  "terminal_reasons": {
+    "all_pieces_in_goal": 46,
+    "equal_turn_goal_draw": 2
+  },
+  "raw_class_counts": {
+    "2": 2084,
+    "0": 2112,
+    "1": 183
+  },
+  "cross_split_orbits": 1,
+  "retained": {
+    "train": 2908,
+    "development": 1411
+  },
+  "excluded": {
+    "historical_samples": 60,
+    "excluded_samples": 60,
+    "cross_split_samples": 2
+  },
+  "probe_root_trajectory_hits": {
+    "48": [],
+    "49": [],
+    "50": [],
+    "51": [],
+    "52": [],
+    "53": [],
+    "54": [],
+    "55": []
+  },
+  "post_execution_source_drift": [],
+  "hash_entries": 41,
+  "model_registry_unchanged": true,
+  "training_started": true,
+  "decisive_diagnostic": {
+    "candidate": {
+      "n": 1411,
+      "binary_brier": 0.2505995849490339,
+      "conditional_pwin_min": 0.39269406508288884,
+      "conditional_pwin_max": 0.6052619498087964,
+      "expectedpoint_mse_sample": 0.2501215384260711,
+      "expectedpoint_mse_game_macro": 0.24676936636877134
+    },
+    "prior": {
+      "n": 1411,
+      "binary_brier": 0.2503387269141555,
+      "conditional_pwin_min": 0.41393886372019695,
+      "conditional_pwin_max": 0.5904101906186854,
+      "expectedpoint_mse_sample": 0.24956930951432335,
+      "expectedpoint_mse_game_macro": 0.24635872135617393
+    }
+  },
+  "limitations": [
+    "概率指标及probe不替代全新独立整局验收，不自动晋升。",
+    "候选二类胜负Brier劣于训练先验，不能证明学会胜负区分。",
+    "开发没有真实和棋样本，不具备和棋校准验收覆盖。"
+  ],
+  "decisive_gate_metrics": {
+    "candidate": {
+      "overall": {
+        "n": 1411,
+        "wins": 709,
+        "losses": 702,
+        "n_games": 16,
+        "game_macro_brier": 0.2470271639107099
+      },
+      "by_player": {
+        "1": {
+          "n": 707,
+          "wins": 385,
+          "losses": 322,
+          "n_games": 16,
+          "game_macro_brier": 0.24730182776684556
+        },
+        "2": {
+          "n": 704,
+          "wins": 324,
+          "losses": 380,
+          "n_games": 16,
+          "game_macro_brier": 0.24682346990388587
+        }
+      }
+    },
+    "parent": {
+      "overall": {
+        "n": 1411,
+        "wins": 709,
+        "losses": 702,
+        "n_games": 16,
+        "game_macro_brier": 0.24882973319141505
+      },
+      "by_player": {
+        "1": {
+          "n": 707,
+          "wins": 385,
+          "losses": 322,
+          "n_games": 16,
+          "game_macro_brier": 0.24816391215034977
+        },
+        "2": {
+          "n": 704,
+          "wins": 324,
+          "losses": 380,
+          "n_games": 16,
+          "game_macro_brier": 0.24955858221162774
+        }
+      }
+    },
+    "prior": {
+      "overall": {
+        "n": 1411,
+        "wins": 709,
+        "losses": 702,
+        "n_games": 16,
+        "game_macro_brier": 0.24675044116531286
+      },
+      "by_player": {
+        "1": {
+          "n": 707,
+          "wins": 385,
+          "losses": 322,
+          "n_games": 16,
+          "game_macro_brier": 0.2468727287403713
+        },
+        "2": {
+          "n": 704,
+          "wins": 324,
+          "losses": 380,
+          "n_games": 16,
+          "game_macro_brier": 0.24664887714279543
+        }
+      }
+    }
+  },
+  "decisive_winner_groups": {
+    "1": [
+      "33",
+      "34",
+      "35",
+      "36",
+      "38",
+      "41",
+      "42",
+      "45",
+      "46"
+    ],
+    "2": [
+      "32",
+      "37",
+      "39",
+      "40",
+      "43",
+      "44",
+      "47"
+    ]
+  },
+  "initial_selfplay_predictions_uniform": false,
+  "initial_state_inheritance_verified": true,
+  "trace_exact": true,
+  "updates": 2000,
+  "value_parameters_frozen": true,
+  "development_checks": {
+    "development_coverage": true,
+    "nll_uniform": true,
+    "nll_prior": true,
+    "brier_uniform": true,
+    "brier_prior": true,
+    "new_policy": true,
+    "old_policy": true,
+    "normal_policy": false,
+    "value_parameters_unchanged": true,
+    "player1_brier": true,
+    "player2_brier": true,
+    "late_brier": true,
+    "decisive_coverage": true,
+    "decisive_parent_gain005": false,
+    "decisive_prior_gain005": false,
+    "player1_decisive_nonworse": true,
+    "player2_decisive_nonworse": true
+  },
+  "probe_counts": {
+    "PARENT_WDL": {
+      "games": 16,
+      "wins": 5,
+      "losses": 10,
+      "true_draws": 1,
+      "truncated": 0
+    },
+    "v3": {
+      "games": 16,
+      "wins": 5,
+      "losses": 9,
+      "true_draws": 2,
+      "truncated": 0
+    }
+  },
+  "roadmap_step": 3,
+  "passed": true,
+  "scope": "全部56根及48自弈逐手重放、概率与真实标签/隔离独立复核；未重复搜索或训练。"
+}

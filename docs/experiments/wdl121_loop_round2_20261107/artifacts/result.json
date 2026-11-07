@@ -1,0 +1,79 @@
+{
+  "roadmap_step": 3,
+  "iteration": 2,
+  "training_started": true,
+  "development_pass": false,
+  "ready_for_step4": false,
+  "calibrated": false,
+  "promoted": false,
+  "checks": {
+    "development_coverage": true,
+    "nll_uniform": true,
+    "nll_prior": true,
+    "brier_uniform": true,
+    "brier_prior": true,
+    "new_policy": true,
+    "old_policy": true,
+    "normal_policy": false,
+    "value_parameters_unchanged": true,
+    "player1_brier": true,
+    "player2_brier": true,
+    "late_brier": true,
+    "decisive_coverage": true,
+    "decisive_parent_gain005": false,
+    "decisive_prior_gain005": false,
+    "player1_decisive_nonworse": true,
+    "player2_decisive_nonworse": true
+  },
+  "before": {
+    "n_games": 16,
+    "brier3": 0.49861627604280284,
+    "nll": 0.715548214562387,
+    "expectedpoint_mse": 0.24885401178206285,
+    "ece10": 0.5002715069540524,
+    "accuracy": 0.5625
+  },
+  "after": {
+    "n_games": 16,
+    "brier3": 0.4993801165484384,
+    "nll": 0.7515843957267339,
+    "expectedpoint_mse": 0.2467693663687714,
+    "ece10": 0.4938446969555952,
+    "accuracy": 0.5625
+  },
+  "prior": {
+    "n_games": 16,
+    "brier3": 0.5093378511001294,
+    "nll": 0.797887184980995,
+    "expectedpoint_mse": 0.24635872135617412,
+    "ece10": 0.4966997792790302,
+    "accuracy": 0.5625
+  },
+  "old_policy_before": {
+    "old": 2.117033172712574,
+    "normal": 2.3978754107658315
+  },
+  "old_policy_after": {
+    "old": 2.128306036886358,
+    "normal": 2.4872258523368296
+  },
+  "value_parameters_unchanged": true,
+  "checkpoint_sha256": "62bfcfe1f77ad8d39c838a0dada8c8de27d9e09d7abce2cc2fa93ea1844c0d68",
+  "probe_counts": {
+    "PARENT_WDL": {
+      "games": 16,
+      "wins": 5,
+      "losses": 10,
+      "true_draws": 1,
+      "truncated": 0
+    },
+    "v3": {
+      "games": 16,
+      "wins": 5,
+      "losses": 9,
+      "true_draws": 2,
+      "truncated": 0
+    }
+  },
+  "seconds": 558.5400902919937
+}
