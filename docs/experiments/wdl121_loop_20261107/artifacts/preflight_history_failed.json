@@ -1,0 +1,7 @@
+{
+  "roadmap_step": 3,
+  "stage": "failed",
+  "pid": 9845,
+  "seconds": 290.04808629094623,
+  "error": "Traceback (most recent call last):\n  File \"/Users/liuzirui/Desktop/py/chinese-checkers/train121_wdl_loop.py\", line 98, in main\n    status('\u5b8c\u6574\u5386\u53f2\u8986\u76d6\u9884\u68c0');guards();history=build_history(a.out/'history',exclude_parent=True);atomic(a.out/'history_exclusions.json',history);historical=set(history['orbits']);history_sha=digest(a.out/'history_exclusions.json')\n                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/liuzirui/Desktop/py/chinese-checkers/collect121_order_pairs.py\", line 42, in build_history\n    history=incremental_history('nn_checkpoints/experiments',excluded)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/liuzirui/Desktop/py/chinese-checkers/expert121_pilot48.py\", line 38, in incremental_history\n    if base.get('incomplete') or delta.get('incomplete'):raise ValueError('\u5386\u53f2\u8986\u76d6\u6709\u7f3a\u53e3')\n                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: \u5386\u53f2\u8986\u76d6\u6709\u7f3a\u53e3\n"
+}

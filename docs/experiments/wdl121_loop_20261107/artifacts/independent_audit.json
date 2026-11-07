@@ -1,0 +1,98 @@
+{
+  "roots": 56,
+  "selfplay_games": 48,
+  "replayed_steps": 4404,
+  "terminal_reasons": {
+    "all_pieces_in_goal": 47,
+    "equal_turn_goal_draw": 1
+  },
+  "raw_class_counts": {
+    "0": 2165,
+    "2": 2142,
+    "1": 97
+  },
+  "cross_split_orbits": 0,
+  "retained": {
+    "train": 2939,
+    "development": 1432
+  },
+  "excluded": {
+    "historical_samples": 33,
+    "excluded_samples": 33
+  },
+  "probe_root_trajectory_hits": {
+    "48": [],
+    "49": [],
+    "50": [],
+    "51": [],
+    "52": [],
+    "53": [],
+    "54": [],
+    "55": []
+  },
+  "post_execution_source_drift": [
+    "gui121.py",
+    "tests/test_wdl121_display.py"
+  ],
+  "hash_entries": 40,
+  "model_registry_unchanged": true,
+  "training_started": true,
+  "decisive_diagnostic": {
+    "candidate": {
+      "n": 1432,
+      "binary_brier": 0.24844306408425923,
+      "conditional_pwin_min": 0.49079257080990396,
+      "conditional_pwin_max": 0.51903764508645,
+      "expectedpoint_mse_sample": 0.24847352666570227,
+      "expectedpoint_mse_game_macro": 0.24883476869696036
+    },
+    "prior": {
+      "n": 1432,
+      "binary_brier": 0.24372828122088014,
+      "conditional_pwin_min": 0.43037308649824074,
+      "conditional_pwin_max": 0.5732284376349159,
+      "expectedpoint_mse_sample": 0.24385214544426467,
+      "expectedpoint_mse_game_macro": 0.2461033714541583
+    }
+  },
+  "limitations": [
+    "正式开发门槛通过主要受降低和棋概率影响；候选二类胜负Brier劣于训练先验，不能证明学会胜负区分。",
+    "开发16局没有真实和棋样本，不具备和棋校准验收覆盖；不晋升。"
+  ],
+  "trace_exact": true,
+  "updates": 2000,
+  "value_parameters_frozen": true,
+  "development_checks": {
+    "development_coverage": true,
+    "nll_uniform": true,
+    "nll_prior": true,
+    "brier_uniform": true,
+    "brier_prior": true,
+    "new_policy": true,
+    "old_policy": true,
+    "normal_policy": true,
+    "value_parameters_unchanged": true,
+    "player1_brier": true,
+    "player2_brier": true,
+    "late_brier": true
+  },
+  "probe_counts": {
+    "WDL0": {
+      "games": 16,
+      "wins": 7,
+      "losses": 6,
+      "true_draws": 3,
+      "truncated": 0
+    },
+    "v3": {
+      "games": 16,
+      "wins": 10,
+      "losses": 6,
+      "true_draws": 0,
+      "truncated": 0
+    }
+  },
+  "roadmap_step": 3,
+  "passed": true,
+  "scope": "全部56根及48自弈逐手重放、概率与真实标签/隔离独立复核；未重复搜索或训练。"
+}

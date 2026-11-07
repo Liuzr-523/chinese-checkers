@@ -8,8 +8,9 @@ import rules121 as rules
 from engine121 import Search121
 import gui_style as skin
 from opening121 import BookEngine
+from wdl121_display import WDLAnalysis
 
-W, H = 880, 960
+W, H = 1240, 960
 
 def pos_to_px(pos):
     q, r = rules.COORDS[pos]
@@ -35,6 +36,71 @@ def draw_board(screen, board, selected=None, paths=()):
         pygame.draw.circle(screen, skin.GOLD, pos_to_px(selected), 24, 3)
     for path in paths:
         pygame.draw.circle(screen, skin.GREEN, pos_to_px(path[-1]), 22, 3)
+
+def candidate_badges(candidates,selected=None):
+    """以连线对应末点，贪心避让百分比标牌，保留每条候选身份。"""
+    badges=[]
+    offsets=[(18,-29),(18,3),(-102,-29),(-102,3),(18,35),(-102,35),(18,-61),(-102,-61),(18,67),(-102,67)]
+    for c in candidates:
+        if selected is not None and c['path'][0]!=selected:continue
+        point=pos_to_px(c['path'][-1]);rect=None
+        for dx,dy in offsets:
+            proposed=pygame.Rect(point[0]+dx,point[1]+dy,84,25)
+            proposed.clamp_ip(pygame.Rect(8,112,854,718))
+            if not any(proposed.inflate(6,6).colliderect(other['rect']) for other in badges):
+                rect=proposed;break
+        if rect is None:
+            rect=pygame.Rect(18,116+len(badges)*32,84,25)
+        value=c['wdl'];label=f"{c['rank']} · "+('未估计' if value is None else f'{value[0]:.1%}')
+        badges.append(dict(candidate=c,rect=rect,point=point,label=label))
+    return badges
+
+def draw_wdl_candidates(screen,candidates,font,player,selected=None,mouse=None):
+    """候选编号与同一条完整路径对应；同末点用偏移标记避免覆盖。"""
+    mouse=pygame.mouse.get_pos() if mouse is None else mouse
+    panel=pygame.Rect(880,16,344,918)
+    pygame.draw.rect(screen,(229,237,242),panel,border_radius=12)
+    def text(value,x,y,color=skin.TEXT):screen.blit(font.render(value,True,color),(x,y))
+    text('实验候选 · 未校准',896,32)
+    text(f'P{player} 当前方胜率 · 128次搜索',896,59)
+    text('编号 / 路径 / 胜·和·负 / 访问次数',896,86)
+    hovered=None
+    for i,c in enumerate(candidates):
+        rect=pygame.Rect(890,120+i*119,324,108)
+        active=rect.collidepoint(mouse)
+        pygame.draw.rect(screen,(248,250,251) if not active else (246,229,184),rect,border_radius=8)
+        path=c['path'];text(f"{c['rank']}   {path[0]} → {path[-1]}   访问 {c['visits']}"+(' ·部分限步' if c.get('partial') else ''),902,rect.y+10)
+        value=c['wdl']
+        text('胜率尚无有效估值' if value is None else f'胜 {value[0]:.1%}  和 {value[1]:.1%}  负 {value[2]:.1%}',902,rect.y+38)
+        route='→'.join(map(str,path))
+        if len(route)>60:route=route[:59]+'…'
+        for line in range(2):text(route[line*30:(line+1)*30],902,rect.y+64+line*18)
+        if active:hovered=c
+    if not candidates:text('候选分析更新中／暂无模型',896,136)
+    text('整体：网络预测；候选：搜索估计',896,731)
+    text('搜索量小，仅作模型估计',896,760)
+    text('棋盘标牌：编号 · 当前方胜率',896,789)
+    text('选子筛选；悬停候选查看完整路径',896,818)
+    if hovered is not None:
+        points=[pos_to_px(i) for i in hovered['path']]
+        pygame.draw.lines(screen,skin.GREEN,False,points,4)
+        pygame.draw.circle(screen,skin.GREEN,points[0],24,3)
+    counts={};offsets=[(0,-18),(18,0),(0,18),(-18,0),(14,14)]
+    for c in candidates:
+        path=c['path']
+        if selected is not None and path[0]!=selected:continue
+        x,y=pos_to_px(path[-1]);j=counts.get(path[-1],0);counts[path[-1]]=j+1
+        dx,dy=offsets[j%len(offsets)];center=(x+dx,y+dy)
+        skin.smooth_circle(screen,(239,183,63),center,12)
+        label=font.render(str(c['rank']),True,skin.TEXT);screen.blit(label,label.get_rect(center=center))
+    badges=candidate_badges(candidates,selected)
+    for badge in badges:pygame.draw.line(screen,(171,130,44),badge['point'],badge['rect'].center,1)
+    for badge in badges:
+        rect=badge['rect']
+        pygame.draw.rect(screen,(255,240,190),rect,border_radius=6)
+        pygame.draw.rect(screen,(185,139,49),rect,1,border_radius=6)
+        label=font.render(badge['label'],True,skin.TEXT);screen.blit(label,label.get_rect(center=rect.center))
+    return hovered
 
 class Animation:
     def __init__(self, board, path):
@@ -67,6 +133,7 @@ def main():
     book_button = pygame.Rect(300, 570, 340, 34)
     buttons = {'back': pygame.Rect(20, 885, 150, 42), 'undo': pygame.Rect(190, 885, 140, 42)}
     pool = ThreadPoolExecutor(max_workers=1)
+    analysis = WDLAnalysis()
     try:
         while running:
             for event in pygame.event.get():
@@ -153,6 +220,9 @@ def main():
                 title = f'P{game.player} 行棋' if result is None else ('和棋' if result == 0 else f'P{result} 获胜')
                 screen.blit(font.render(title, True, skin.TEXT), (25, 25))
                 screen.blit(small.render(f'P1 {(game.ply+1)//2} 步 · P2 {game.ply//2} 步 · 共 {game.ply} 手', True, skin.TEXT), (25, 60))
+                estimate = analysis.update(game, generation, animation is not None)
+                screen.blit(small.render(estimate, True, skin.TEXT), (25, 82))
+                draw_wdl_candidates(screen, analysis.candidates, small, game.player, selected)
                 screen.blit(small.render(error or reason or ('AI 思考中…' if future else rules.PROFILE+'  '+last_source), True, skin.TEXT), (25, 845))
             for key, rect in buttons.items():
                 if menu and key == 'undo': continue
@@ -161,6 +231,7 @@ def main():
                 screen.blit(small.render(label if key == 'back' else '悔棋', True, skin.TEXT), (rect.x+12, rect.y+10))
             pygame.display.flip(); clock.tick(60)
     finally:
+        analysis.close()
         pool.shutdown(wait=True, cancel_futures=True)
         pygame.quit()
 

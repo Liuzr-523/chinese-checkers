@@ -1,0 +1,6 @@
+{
+  "roadmap_step": 3,
+  "stage": "stopped_preflight",
+  "pid": 9680,
+  "reason": "旧policy-only样本带reason/winner却缺当前player，兼容检查发现KeyError；在历史预检阶段终止，尚无schedule/自弈/训练。原件保留，新目录修复重启。"
+}

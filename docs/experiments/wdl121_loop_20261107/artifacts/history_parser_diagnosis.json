@@ -1,0 +1,52 @@
+{
+  "nn_checkpoints/experiments/search121_diagnostic_20261106": {
+    "orbits": 881,
+    "incomplete": [],
+    "incomplete_count": 0,
+    "coverage": {
+      "parsed_files": 10,
+      "search_candidate_records": 619,
+      "search_candidate_paths": 35245,
+      "identity_occurrences": 1272,
+      "replayed_records": 13,
+      "source_or_cache_files_skipped": 8
+    }
+  },
+  "nn_checkpoints/experiments/leaf121_ablation_20261107": {
+    "orbits": 1888,
+    "incomplete": [],
+    "incomplete_count": 0,
+    "coverage": {
+      "parsed_files": 10,
+      "search_candidate_records": 1361,
+      "search_candidate_paths": 73416,
+      "identity_occurrences": 4828,
+      "replayed_records": 49,
+      "source_or_cache_files_skipped": 9
+    }
+  },
+  "docs/experiments/search121_diagnostic_20261106": {
+    "orbits": 881,
+    "incomplete": [],
+    "incomplete_count": 0,
+    "coverage": {
+      "parsed_files": 10,
+      "search_candidate_records": 590,
+      "search_candidate_paths": 33873,
+      "identity_occurrences": 1172,
+      "replayed_records": 12
+    }
+  },
+  "docs/experiments/leaf121_ablation_20261107": {
+    "orbits": 1888,
+    "incomplete": [],
+    "incomplete_count": 0,
+    "coverage": {
+      "parsed_files": 9,
+      "search_candidate_records": 1361,
+      "search_candidate_paths": 73416,
+      "identity_occurrences": 4728,
+      "replayed_records": 48
+    }
+  }
+}

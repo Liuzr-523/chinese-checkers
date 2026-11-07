@@ -35,7 +35,9 @@ def incremental_history(root,out):
         path=root/name
         if path.is_file() and digest(path)==sha:unchanged[name]=sha;exclude.append(path)
     delta=resolve_legacy_endgames(collect_history(root,exclude=exclude),root)
-    if base.get('incomplete') or delta.get('incomplete'):raise ValueError('历史覆盖有缺口')
+    if base.get('incomplete') or delta.get('incomplete'):
+        missing=base.get('incomplete',[])+delta.get('incomplete',[])
+        raise ValueError('历史覆盖有缺口：'+json.dumps(dict(count=len(missing),examples=missing[:10]),ensure_ascii=False))
     states=set(base['orbits'])|set(delta['orbits']);sources={**unchanged,**delta['source_sha256'],str(BASE.relative_to(root)):digest(BASE)}
     # 已看过的第一步诊断中显式局面也纳入；不是游戏胜负增强。
     diagnostic=Path('docs/experiments/roadmap121_step1_20261105');seen=collect_history(diagnostic)

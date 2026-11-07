@@ -1,0 +1,8 @@
+{
+  "checkpoint": "/Users/liuzirui/Desktop/py/chinese-checkers/nn_checkpoints/experiments/wdl121_loop_20261107_run2/candidate_step2000.pt",
+  "sha256": "0e9d850853771c0b0d0e58d6bcddc7e972378548ea9c8bb4461b6a01cae8c79d",
+  "model_version": "WDL\u53d7\u63a7\u9996\u8f6e_step2000",
+  "role": "experimental",
+  "calibrated": false,
+  "development_pass": true
+}

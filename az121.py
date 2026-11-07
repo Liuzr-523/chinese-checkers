@@ -105,7 +105,7 @@ class Node:
     def q(self): return self.total/self.visits if self.visits else 0.
 
 @torch.no_grad()
-def search(model,board,player,ply=0,repetitions=None,simulations=16,rng=None,noise=False,value_scale=1.,root_safety=False,heuristic_mix=0.,fpu_mode="zero",policy_temperature=1.,time_limit=None,leaf_value_fn=None):
+def search(model,board,player,ply=0,repetitions=None,simulations=16,rng=None,noise=False,value_scale=1.,root_safety=False,heuristic_mix=0.,fpu_mode="zero",policy_temperature=1.,time_limit=None,leaf_value_fn=None,wdl_stats=False):
     started=time.monotonic()
     if time_limit is not None and (not math.isfinite(time_limit) or time_limit<=0):raise ValueError('invalid search time limit')
     if simulations<1: raise ValueError('simulations must be positive')
@@ -113,6 +113,7 @@ def search(model,board,player,ply=0,repetitions=None,simulations=16,rng=None,noi
     if fpu_mode not in ('zero','parent'): raise ValueError('unknown first-play baseline')
     if not math.isfinite(value_scale) or not 0 <= value_scale <= 1: raise ValueError('value_scale must be between 0 and 1')
     if not math.isfinite(heuristic_mix) or not 0 <= heuristic_mix <= 1: raise ValueError('heuristic_mix must be between 0 and 1')
+    if wdl_stats and (not hasattr(model,'forward_wdl') or leaf_value_fn is not None or heuristic_mix or value_scale!=1.):raise ValueError('WDL statistics require an unmodified WDL evaluator')
     rng = np.random.default_rng() if rng is None else rng
     model.eval();root=Node()
     history=Counter(repetitions or {(tuple(board),player):1})
@@ -120,15 +121,24 @@ def search(model,board,player,ply=0,repetitions=None,simulations=16,rng=None,noi
     allowed=None
     if root_safety:
         allowed,guard=safe_root_actions(board,player,ply,history)
+    leaf_wdl=None
     def expand(node,b,p,n,counts):
+        nonlocal leaf_wdl
+        leaf_wdl=None
         winner,reason=r.terminal(b,p,n,counts)
-        if winner is not None: return 0. if winner==0 else 1. if winner==p else -1.
+        if winner is not None:
+            if wdl_stats and reason!='max_ply':leaf_wdl=np.eye(3)[1 if winner==0 else 0 if winner==p else 2]
+            return 0. if winner==0 else 1. if winner==p else -1.
         moves=r.get_all_moves(b,p)
         if node is root and allowed is not None:
             moves=[(s,path) for s,path in moves if (s,path[-1]) in allowed]
         if not moves: return 0.
         ids=[action_id(s,path[-1],p,getattr(model,'canonical',False)) for s,path in moves]
-        logits,value=model(torch.from_numpy(encode(b,p,n,counts,canonical=getattr(model,'canonical',False))).unsqueeze(0))
+        inputs=torch.from_numpy(encode(b,p,n,counts,canonical=getattr(model,'canonical',False))).unsqueeze(0)
+        if wdl_stats:
+            logits,wdl_logits=model.forward_wdl(inputs);prob=wdl_logits.softmax(-1)
+            leaf_wdl=prob[0].cpu().numpy();value=prob[:,0]-prob[:,2]
+        else:logits,value=model(inputs)
         probabilities=(logits[0,ids]/policy_temperature).softmax(0).cpu().numpy()
         node.children=[(path,Node(float(prior))) for (_,path),prior in zip(moves,probabilities)]
         leaf_value=float(value[0]) if leaf_value_fn is None else float(leaf_value_fn(b,p))
@@ -154,13 +164,18 @@ def search(model,board,player,ply=0,repetitions=None,simulations=16,rng=None,noi
             b=r.apply_move(b,path);p=3-p;n+=1;counts[(tuple(b),p)]+=1
             node=child;trace.append(node)
         value=expand(node,b,p,n,counts)
+        probability=leaf_wdl
         for visited in reversed(trace):
             visited.visits+=1;visited.total+=value;value=-value
+            if wdl_stats and probability is not None:
+                if not hasattr(visited,'wdl_total'):visited.wdl_total=np.zeros(3);visited.wdl_visits=0
+                visited.wdl_total+=probability;visited.wdl_visits+=1;probability=probability[[2,1,0]]
         completed+=1;depths.append(len(trace)-1)
     visits=np.array([child.visits for _,child in root.children],dtype=np.float64)
     policy=visits/visits.sum()
     index=int(np.argmax(visits))
     return root.children[index][0],dict(nodes=completed,root_visits=root.visits,
+        **(dict(child_wdl=[(child.wdl_total/child.wdl_visits)[[2,1,0]].tolist() if getattr(child,'wdl_visits',0) else None for _,child in root.children],child_wdl_visits=[getattr(child,'wdl_visits',0) for _,child in root.children],root_wdl=(root.wdl_total/root.wdl_visits).tolist() if getattr(root,'wdl_visits',0) else None) if wdl_stats else {}),
         **({'elapsed_seconds':time.monotonic()-started} if time_limit is not None else {}),
         time_limit=time_limit,root_visited_actions=int((visits>0).sum()),
         max_depth=max(depths),mean_depth=float(np.mean(depths)),visits=visits.tolist(),

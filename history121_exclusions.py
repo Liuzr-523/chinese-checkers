@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import math
 import re
 import numpy as np
 import torch
@@ -106,10 +107,30 @@ def collect_history(root, exclude=()):
             # Only replay records with evidence of the 121 rule profile.
             prefix = next((obj[k] for k in ('opening', 'prefix') if k in obj and moves(obj[k])), None)
             suffix = obj.get('paths')
+            # PUCT paths enumerate alternative root actions, not successive plies.
+            # Require the full search metadata shape; malformed marked records
+            # remain incomplete rather than disappearing behind this classifier.
+            candidate_marker = prefix is None and all(k in obj for k in ('paths','priors','policy','root_visits','child_visits'))
+            candidate_metadata = False
+            if candidate_marker:
+                try:
+                    n=len(suffix)
+                    candidate_metadata = bool(n and moves(suffix) and len(obj['priors'])==len(obj['policy'])==n
+                        and all(isinstance(v,(int,float)) and math.isfinite(v) and 0<=v<=1 for v in obj['priors']+obj['policy'])
+                        and abs(sum(obj['policy'])-1)<1e-5 and abs(sum(obj['priors'])-1)<1e-5
+                        and obj['root_visits']==obj['child_visits'] and obj['root_visits']>0)
+                except (TypeError,ValueError):candidate_metadata=False
+                if candidate_metadata:
+                    counts['search_candidate_records'] += 1
+                    counts['search_candidate_paths'] += n
+                else:
+                    counts['invalid_search_candidate_records'] += 1
+                    issues.append(dict(location=location,reason='非法搜索候选元数据'))
+                    if known121:incomplete.append(issues[-1])
             sequences = []
             if prefix is not None:
                 sequences.append(prefix + (suffix if moves(suffix) else []))
-            elif moves(suffix) and obj.get('start_ply', 0) == 0:
+            elif not candidate_marker and moves(suffix) and obj.get('start_ply', 0) == 0:
                 sequences.append(suffix)
             if sequences:
                 if known121:
@@ -134,7 +155,7 @@ def collect_history(root, exclude=()):
                             counts['replayed_records'] += 1
                 else:
                     counts['unclassified_or_non121_replay_records'] += 1
-            elif moves(suffix) and suffix:
+            elif not candidate_marker and moves(suffix) and suffix:
                 counts['suffix_without_prefix_records'] += 1
                 issues.append(dict(location=location, reason='非初始suffix缺少前缀'))
                 if known121:
@@ -156,7 +177,7 @@ def collect_history(root, exclude=()):
                 return '121' in profiles[parent]
             if parent == root:
                 break
-        return any('121' in part for part in path.relative_to(root).parts[:-1])
+        return '121' in root.name or any('121' in part for part in path.relative_to(root).parts[:-1])
 
     for path in sorted(root.rglob('*')):
         if not path.is_file() or any(path.resolve() == e or e in path.resolve().parents for e in excluded):

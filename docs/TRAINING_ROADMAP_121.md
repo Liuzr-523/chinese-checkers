@@ -73,3 +73,7 @@ relay121_returns_20261106新方案已实现并通过211项本机测试，尚未�
 
 ## 路线图第3步叶值消融完成（2026-11-07）
 固定v3策略/PUCT，仅替换非终局叶值nn/zero/hand=tanh(Clysto静态evaluate/40)，48旧根×3预算×3臂432case，四臂各12实战共48局，304.398秒。NN值0胜12负，zero0胜11负1真和，hand1胜9负2真和，pure0胜12负，无截断。hand512改变19/48选招，nn/zero512均与pure一致；11稳定pair无改善，不把候选外算错。独立432case/48局2480手/48pure根和300pure手argmax/13hash通过。新增6叶值测试，全229通过，无训练/晋升/GUI切换，无C修改/后台。报告docs/experiments/leaf121_ablation_20261107/README.md。结果说明搜索可响应叶值、原NN价值未体现收益，但hand仍弱于原生C，不能只归因反号bug或宣称棋力升级；下一步固定评价诊断计算吞吐与搜索选择。此前c4dea77已push成功。
+
+
+## 路线图第3步WDL学习闭环首轮完成（2026-11-07）
+用户明确改回KataGo式预测→完整对局→终局误差训练→复核主线，并要求top3-5候选落点胜率+搜索量。新增独立WDL CNN/三概率/GUI后台128模拟前5列表、路径与棋盘概率标牌，冠军v3不切换。两次预检阻塞（旧policy-only字段兼容；历史info.paths候选误读棋谱）修复并留原件，最终run2唯一执行。56根冻结，48自弈27P1胜20P2胜1真和；train2939/dev1432，历史排33/cross0。固定2000步，新真实WDL+policy+.1旧KL，全263tests通过。16dev三类Brier .666667→.498577、NLL1.098612→.715498，原技术gate全过；但去draw后二类Brier .248443劣于训练prior .243728，条件胜率仅49.08%-51.90%，不能说胜负区分已学好。32probe候选vsWDL0 7胜6负3真和/v3 10胜6负，样本少不晋升。模型/数据原件run2 ignored，默认原out/display_model.json指向run2 step2000，role实验/calibratedfalse。累计1143.100秒含600保守预检扣除，实际run2约543.100 monotonic，无后台。报告docs/experiments/wdl121_loop_20261107/README.md。仍步3，下一轮新协议重点胜负区分，不能在此dev反复调重考。

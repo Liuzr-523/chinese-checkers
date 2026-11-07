@@ -1,0 +1,8 @@
+{
+  "files": [
+    "gui121.py",
+    "tests/test_wdl121_display.py"
+  ],
+  "scope": "训练结束后仅增强棋盘候选百分比标牌；训练执行快照、标签和门槛未回改。",
+  "final_tests": 263
+}
